@@ -1,0 +1,4882 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<transformation>
+  <info>
+    <name>create_elements</name>
+    <description/>
+    <extended_description/>
+    <trans_version/>
+    <trans_type>Normal</trans_type>
+    <directory>&#x2f;</directory>
+    <parameters>
+    </parameters>
+    <log>
+<trans-log-table><connection/>
+<schema/>
+<table/>
+<size_limit_lines/>
+<interval/>
+<timeout_days/>
+<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>Y</enabled><name>CHANNEL_ID</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STATUS</id><enabled>Y</enabled><name>STATUS</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name><subject/></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name><subject/></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name><subject/></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name><subject/></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name><subject/></field><field><id>LINES_REJECTED</id><enabled>Y</enabled><name>LINES_REJECTED</name><subject/></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>STARTDATE</id><enabled>Y</enabled><name>STARTDATE</name></field><field><id>ENDDATE</id><enabled>Y</enabled><name>ENDDATE</name></field><field><id>LOGDATE</id><enabled>Y</enabled><name>LOGDATE</name></field><field><id>DEPDATE</id><enabled>Y</enabled><name>DEPDATE</name></field><field><id>REPLAYDATE</id><enabled>Y</enabled><name>REPLAYDATE</name></field><field><id>LOG_FIELD</id><enabled>Y</enabled><name>LOG_FIELD</name></field><field><id>EXECUTING_SERVER</id><enabled>N</enabled><name>EXECUTING_SERVER</name></field><field><id>EXECUTING_USER</id><enabled>N</enabled><name>EXECUTING_USER</name></field><field><id>CLIENT</id><enabled>N</enabled><name>CLIENT</name></field></trans-log-table>
+<perf-log-table><connection/>
+<schema/>
+<table/>
+<interval/>
+<timeout_days/>
+<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>SEQ_NR</id><enabled>Y</enabled><name>SEQ_NR</name></field><field><id>LOGDATE</id><enabled>Y</enabled><name>LOGDATE</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STEPNAME</id><enabled>Y</enabled><name>STEPNAME</name></field><field><id>STEP_COPY</id><enabled>Y</enabled><name>STEP_COPY</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name></field><field><id>LINES_REJECTED</id><enabled>Y</enabled><name>LINES_REJECTED</name></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>INPUT_BUFFER_ROWS</id><enabled>Y</enabled><name>INPUT_BUFFER_ROWS</name></field><field><id>OUTPUT_BUFFER_ROWS</id><enabled>Y</enabled><name>OUTPUT_BUFFER_ROWS</name></field></perf-log-table>
+<channel-log-table><connection/>
+<schema/>
+<table/>
+<timeout_days/>
+<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>Y</enabled><name>CHANNEL_ID</name></field><field><id>LOG_DATE</id><enabled>Y</enabled><name>LOG_DATE</name></field><field><id>LOGGING_OBJECT_TYPE</id><enabled>Y</enabled><name>LOGGING_OBJECT_TYPE</name></field><field><id>OBJECT_NAME</id><enabled>Y</enabled><name>OBJECT_NAME</name></field><field><id>OBJECT_COPY</id><enabled>Y</enabled><name>OBJECT_COPY</name></field><field><id>REPOSITORY_DIRECTORY</id><enabled>Y</enabled><name>REPOSITORY_DIRECTORY</name></field><field><id>FILENAME</id><enabled>Y</enabled><name>FILENAME</name></field><field><id>OBJECT_ID</id><enabled>Y</enabled><name>OBJECT_ID</name></field><field><id>OBJECT_REVISION</id><enabled>Y</enabled><name>OBJECT_REVISION</name></field><field><id>PARENT_CHANNEL_ID</id><enabled>Y</enabled><name>PARENT_CHANNEL_ID</name></field><field><id>ROOT_CHANNEL_ID</id><enabled>Y</enabled><name>ROOT_CHANNEL_ID</name></field></channel-log-table>
+<step-log-table><connection/>
+<schema/>
+<table/>
+<timeout_days/>
+<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>Y</enabled><name>CHANNEL_ID</name></field><field><id>LOG_DATE</id><enabled>Y</enabled><name>LOG_DATE</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STEPNAME</id><enabled>Y</enabled><name>STEPNAME</name></field><field><id>STEP_COPY</id><enabled>Y</enabled><name>STEP_COPY</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name></field><field><id>LINES_REJECTED</id><enabled>Y</enabled><name>LINES_REJECTED</name></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>LOG_FIELD</id><enabled>N</enabled><name>LOG_FIELD</name></field></step-log-table>
+<metrics-log-table><connection/>
+<schema/>
+<table/>
+<timeout_days/>
+<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>Y</enabled><name>CHANNEL_ID</name></field><field><id>LOG_DATE</id><enabled>Y</enabled><name>LOG_DATE</name></field><field><id>METRICS_DATE</id><enabled>Y</enabled><name>METRICS_DATE</name></field><field><id>METRICS_CODE</id><enabled>Y</enabled><name>METRICS_CODE</name></field><field><id>METRICS_DESCRIPTION</id><enabled>Y</enabled><name>METRICS_DESCRIPTION</name></field><field><id>METRICS_SUBJECT</id><enabled>Y</enabled><name>METRICS_SUBJECT</name></field><field><id>METRICS_TYPE</id><enabled>Y</enabled><name>METRICS_TYPE</name></field><field><id>METRICS_VALUE</id><enabled>Y</enabled><name>METRICS_VALUE</name></field></metrics-log-table>
+    </log>
+    <maxdate>
+      <connection/>
+      <table/>
+      <field/>
+      <offset>0.0</offset>
+      <maxdiff>0.0</maxdiff>
+    </maxdate>
+    <size_rowset>10000</size_rowset>
+    <sleep_time_empty>50</sleep_time_empty>
+    <sleep_time_full>50</sleep_time_full>
+    <unique_connections>N</unique_connections>
+    <feedback_shown>Y</feedback_shown>
+    <feedback_size>50000</feedback_size>
+    <using_thread_priorities>Y</using_thread_priorities>
+    <shared_objects_file/>
+    <capture_step_performance>N</capture_step_performance>
+    <step_performance_capturing_delay>1000</step_performance_capturing_delay>
+    <step_performance_capturing_size_limit>100</step_performance_capturing_size_limit>
+    <dependencies>
+    </dependencies>
+    <partitionschemas>
+    </partitionschemas>
+    <slaveservers>
+    </slaveservers>
+    <clusterschemas>
+    </clusterschemas>
+  <created_user>-</created_user>
+  <created_date>2015&#x2f;08&#x2f;10 05&#x3a;20&#x3a;47.270</created_date>
+  <modified_user>-</modified_user>
+  <modified_date>2015&#x2f;08&#x2f;10 05&#x3a;20&#x3a;47.270</modified_date>
+  </info>
+  <notepads>
+    <notepad>
+      <note>If this is a new element,&#xd;&#xa;fetch it from the staging&#xd;&#xa;table. Then, fetch the defaults&#xd;&#xa;for the remaining fields</note>
+      <xloc>81</xloc>
+      <yloc>257</yloc>
+      <width>206</width>
+      <heigth>90</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>If this is an existing element,&#xd;&#xa;fetch a template from SOURCE</note>
+      <xloc>191</xloc>
+      <yloc>28</yloc>
+      <width>214</width>
+      <heigth>50</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+  </notepads>
+  <connection>
+    <name>CODA-DEST</name>
+    <server>localhost</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>codadev</database>
+    <port>21521</port>
+    <username>codauser</username>
+    <password>Encrypted 2be98afc86aa7f2e4cb1aa174df96aacc</password>
+    <servername/>
+    <data_tablespace>codauser</data_tablespace>
+    <index_tablespace>codauser</index_tablespace>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>21521</attribute></attribute>
+      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>N</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>CODA-SOURCE</name>
+    <server>localhost</server>
+    <type>GENERIC</type>
+    <access>Native</access>
+    <database>coda2dev</database>
+    <port>11521</port>
+    <username>codauser</username>
+    <password>Encrypted 2be98afc86aa7f2e4cb1aa174df96aacc</password>
+    <servername/>
+    <data_tablespace>codamigtbl</data_tablespace>
+    <index_tablespace>codamigidx</index_tablespace>
+    <attributes>
+      <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>oracle.jdbc.OracleDriver</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;oracle&#x3a;thin&#x3a;&#x40;10.253.133.146&#x3a;1521&#x3a;codadev</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>11521</attribute></attribute>
+      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>N</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>STAGING</name>
+    <server/>
+    <type>GENERIC</type>
+    <access>Native</access>
+    <database/>
+    <port>1521</port>
+    <username>sa</username>
+    <password>Encrypted 2be98afc86aa7f2e4cb79ce10bef2bcdb</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>org.h2.Driver</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;h2&#x3a;&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;db&#x5c;data&#x5c;staging&#x3b;AUTO_SERVER&#x3d;true&#x3b;DB_CLOSE_ON_EXIT&#x3d;FALSE</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>1521</attribute></attribute>
+      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>N</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <order>
+  <hop> <from>Global Element</from><to>Get Source</to><enabled>Y</enabled> </hop>
+  <hop> <from>ELEMENT_STAGING</from><to>Lookup Type</to><enabled>Y</enabled> </hop>
+  <hop> <from>Lookup Type</from><to>Existing Element</to><enabled>Y</enabled> </hop>
+  <hop> <from>Existing Element</from><to>Global Element</to><enabled>Y</enabled> </hop>
+  <hop> <from>Existing Element</from><to>Lookup New</to><enabled>Y</enabled> </hop>
+  <hop> <from>Global Element</from><to>Set Source</to><enabled>Y</enabled> </hop>
+  <hop> <from>Set Source</from><to>Lookup Source</to><enabled>Y</enabled> </hop>
+  <hop> <from>Get Source</from><to>Lookup Source</to><enabled>Y</enabled> </hop>
+  <hop> <from>Lookup New</from><to>Lookup Defaults</to><enabled>Y</enabled> </hop>
+  <hop> <from>Lookup Source</from><to>Select values 2</to><enabled>Y</enabled> </hop>
+  <hop> <from>Lookup Defaults</from><to>Add Constants</to><enabled>Y</enabled> </hop>
+  <hop> <from>Add Constants</from><to>Select values</to><enabled>Y</enabled> </hop>
+  <hop> <from>Select values</from><to>Add CS</to><enabled>Y</enabled> </hop>
+  <hop> <from>Select values 2</from><to>Add CS</to><enabled>Y</enabled> </hop>
+  <hop> <from>ENTITY_STAGING</from><to>Create Global</to><enabled>Y</enabled> </hop>
+  <hop> <from>Add CS</from><to>Global Element 2</to><enabled>Y</enabled> </hop>
+  <hop> <from>Global Element 2</from><to>Remove CMPCODE</to><enabled>Y</enabled> </hop>
+  <hop> <from>Remove CMPCODE</from><to>Create Global</to><enabled>Y</enabled> </hop>
+  <hop> <from>Global Element 2</from><to>xOAS_ELEMENT</to><enabled>Y</enabled> </hop>
+  <hop> <from>Create Global</from><to>Reorder Fields</to><enabled>Y</enabled> </hop>
+  <hop> <from>Reorder Fields</from><to>xOAS_ELEMENT</to><enabled>Y</enabled> </hop>
+  </order>
+  <step>
+    <name>Add CS</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>CMPCODE_CS</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>ELMLEVEL_CS</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>CODE_CS</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1029</xloc>
+      <yloc>203</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Add Constants</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>TSTAMP</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>0</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>CUR</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>SOURCE_CMP</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>NEW</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>746</xloc>
+      <yloc>272</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Create Global</name>
+    <type>JoinRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
+      <prefix>out</prefix>
+      <cache_size>500</cache_size>
+      <main>Remove CMPCODE</main>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue/>
+ <function>&#x3d;</function>
+ <rightvalue/>
+ </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1381</xloc>
+      <yloc>110</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>ELEMENT_STAGING</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>STAGING</connection>
+    <sql>SELECT CMPCODE, CODE, ELMLEVEL&#xd;&#xa;FROM STAGING.ELEMENT_STAGING</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>64</xloc>
+      <yloc>162</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>ENTITY_STAGING</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>STAGING</connection>
+    <sql>SELECT TRIM&#x28;CODE&#x29; AS CMPCODE FROM STAGING.ENTITY_STAGING</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1384</xloc>
+      <yloc>14</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Existing Element</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Global Element</send_true_to>
+<send_false_to>Lookup New</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>NEWELEMENT</leftvalue>
+ <function>&#x3d;</function>
+ <rightvalue/>
+ <value><name>constant</name><type>String</type><text>FALSE</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>339</xloc>
+      <yloc>164</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Get Source</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>&#xd;&#xa;&#x2f;&#x2f; Set input parameter values&#xd;&#xa;sourceStmt.setInt&#x28;1,ELMLEVEL&#x29;&#x3b;&#xd;&#xa;sourceStmt.setString&#x28;2,CODE&#x29;&#x3b;&#xd;&#xa;&#xd;&#xa;var rs &#x3d; sourceStmt.executeQuery&#x28;&#x29;&#x3b;&#xd;&#xa;var source &#x3d; null&#x3b;&#xd;&#xa;while &#x28;rs.next&#x28;&#x29;&#x29; &#x7b;&#xd;&#xa;  source &#x3d; rs.getString&#x28;1&#x29;&#x3b;&#xd;&#xa;&#x7d;&#xd;&#xa;&#xd;&#xa;</jsScript_script>
+      </jsScript>      <jsScript>        <jsScript_type>1</jsScript_type>
+        <jsScript_name>Initialize</jsScript_name>
+        <jsScript_script>&#xd;&#xa;&#x2f;&#x2f; Fetch a prioritized list of all valid source companies&#xd;&#xa;var prioSql &#x3d; &#x22;SELECT PRIORITY,CMPCODE FROM STAGING.GLOBAL_PRIO ORDER BY PRIORITY ASC&#x22;&#x3b;&#xd;&#xa;var prioList &#x3d; fireToDB&#x28;&#x22;STAGING&#x22;, prioSql&#x29;&#x3b;&#xd;&#xa;var tableSql &#x3d; &#x22;&#x22;&#x3b;&#xd;&#xa;for &#x28;var i in prioList&#x29;&#x7b;&#xd;&#xa;  if &#x28;i &#x3e; 0&#x29;&#xd;&#xa;    tableSql &#x3d; tableSql &#x2b; &#x22;, &#x22;&#x3b;&#xd;&#xa;  tableSql &#x3d; tableSql &#x2b; prioList&#x5b;i&#x5d;&#x5b;0&#x5d; &#x2b; &#x22;, &#x27;&#x22; &#x2b; prioList&#x5b;i&#x5d;&#x5b;1&#x5d; &#x2b; &#x22;&#x27;&#x22;&#x3b;&#xd;&#xa;&#x7d;&#xd;&#xa;writeToLog&#x28;&#x22;l&#x22;,tableSql&#x29;&#x3b;&#xd;&#xa;&#xd;&#xa;&#x2f;&#x2f; Create a PreparedStatement to use for source lookups&#xd;&#xa;&#xd;&#xa;var sourceDb &#x3d; new org.&#x200b;pentaho.&#x200b;di.&#x200b;core.&#x200b;database.Database&#x28;_step_, _step_.getTransMeta&#x28;&#x29;.findDatabase&#x28;&#x22;CODA-SOURCE&#x22;&#x29;&#x29;&#x3b;&#xd;&#xa;sourceDb.shareVariablesWith&#x28;_step_&#x29;&#x3b;&#xd;&#xa;sourceDb.connect&#x28;&#x29;&#x3b;&#xd;&#xa;&#xd;&#xa;var stmtSql &#x3d; &#x22;SELECT EL.CMPCODE, P.PRIORITY&#x5c;n&#x22; &#xd;&#xa;&#x2b; &#x22;FROM&#x5c;n&#x22;&#xd;&#xa;&#x2b; &#x22;OAS_ELEMENT EL&#x5c;n&#x22;&#xd;&#xa;&#x2b; &#x22;JOIN&#x5c;n&#x22;&#xd;&#xa;&#x2b; &#x22;  &#x28;SELECT LEVEL AS PRIORITY, DECODE &#x28;LEVEL, &#x22; &#x2b; tableSql &#x2b; &#x22;&#x29; AS CMPCODE FROM DUAL CONNECT BY LEVEL &#x3c;&#x3d; &#x22; &#x2b; prioList.length &#x2b; &#x22;&#x29; P&#x5c;n&#x22;&#xd;&#xa;&#x2b; &#x22;    ON P.CMPCODE&#x3d;EL.CMPCODE&#x5c;n&#x22;&#xd;&#xa;&#x2b; &#x22;WHERE&#x5c;n&#x22;&#xd;&#xa;&#x2b; &#x22;  ELMLEVEL&#x3d;&#x3f;&#x5c;n&#x22;&#xd;&#xa;&#x2b; &#x22;  AND CODE&#x3d;&#x3f;&#x5c;n&#x22;&#xd;&#xa;&#x2b; &#x22;  AND ROWNUM&#x3d;1&#x22;&#xd;&#xa;writeToLog&#x28;&#x22;l&#x22;,stmtSql&#x29;&#x3b;&#xd;&#xa;&#xd;&#xa;var sourceStmt &#x3d; sourceDb.getConnection&#x28;&#x29;.prepareStatement&#x28;stmtSql&#x29;&#x3b;</jsScript_script>
+      </jsScript>    </jsScripts>    <fields>      <field>        <name>source</name>
+        <rename>SOURCE_CMP</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>590</xloc>
+      <yloc>63</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Global Element</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Get Source</send_true_to>
+<send_false_to>Set Source</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>CMPCODE</leftvalue>
+ <function>&#x3d;</function>
+ <rightvalue/>
+ <value><name>constant</name><type>String</type><text>&#x2a;</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>477</xloc>
+      <yloc>163</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Global Element 2</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Remove CMPCODE</send_true_to>
+<send_false_to>xOAS_ELEMENT</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>CMPCODE</leftvalue>
+ <function>&#x3d;</function>
+ <rightvalue/>
+ <value><name>constant</name><type>String</type><text>&#x2a;</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1136</xloc>
+      <yloc>204</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Lookup Defaults</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>STAGING</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema>STAGING_TEMPLATES</schema>
+      <table>DEFAULT_NEW</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>ELMLEVEL</name>
+        <field>ELMLEVEL</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>INDIRECTCODE</name>
+        <rename>INDIRECTCODE</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>TAX</name>
+        <rename>TAX</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>DESCR</name>
+        <rename>DESCR</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>STATPAYINT</name>
+        <rename>STATPAYINT</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>SUMMARY</name>
+        <rename>SUMMARY</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>SPLIT</name>
+        <rename>SPLIT</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>SETTLE</name>
+        <rename>SETTLE</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>PAPER</name>
+        <rename>PAPER</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>ELEC</name>
+        <rename>ELEC</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>TAXREPESL</name>
+        <rename>TAXREPESL</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>TAXREPINTRA</name>
+        <rename>TAXREPINTRA</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>CRLIMINFORCE</name>
+        <rename>CRLIMINFORCE</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>CRLIM</name>
+        <rename>CRLIM</rename>
+        <default/>
+        <type>Number</type>
+      </value>
+      <value>
+        <name>CRLIM_DP</name>
+        <rename>CRLIM_DP</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>TAXMETHOD</name>
+        <rename>TAXMETHOD</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>TERMS</name>
+        <rename>TERMS</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>KEEPTURN</name>
+        <rename>KEEPTURN</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>TEN99</name>
+        <rename>TEN99</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>CUSTSUPPACC</name>
+        <rename>CUSTSUPPACC</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>DISCENABLE</name>
+        <rename>DISCENABLE</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>FORCEDISPERSE</name>
+        <rename>FORCEDISPERSE</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>ENABLEPAY</name>
+        <rename>ENABLEPAY</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>PAYMODE</name>
+        <rename>PAYMODE</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>PRIORITY</name>
+        <rename>PRIORITY</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>MEDCODE</name>
+        <rename>MEDCODE</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>QTY3_USED</name>
+        <rename>QTY3_USED</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>QTY3_TITLE</name>
+        <rename>QTY3_TITLE</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>QTY3_MAND</name>
+        <rename>QTY3_MAND</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>QTY3_BALCODE</name>
+        <rename>QTY3_BALCODE</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>QTY3_DP</name>
+        <rename>QTY3_DP</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>QTY4_USED</name>
+        <rename>QTY4_USED</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>QTY4_TITLE</name>
+        <rename>QTY4_TITLE</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>QTY4_MAND</name>
+        <rename>QTY4_MAND</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>QTY4_BALCODE</name>
+        <rename>QTY4_BALCODE</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>QTY4_DP</name>
+        <rename>QTY4_DP</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>ADDDATE</name>
+        <rename>ADDDATE</rename>
+        <default/>
+        <type>Timestamp</type>
+      </value>
+      <value>
+        <name>MODDATE</name>
+        <rename>MODDATE</rename>
+        <default/>
+        <type>Timestamp</type>
+      </value>
+      <value>
+        <name>DELDATE</name>
+        <rename>DELDATE</rename>
+        <default/>
+        <type>Timestamp</type>
+      </value>
+      <value>
+        <name>USRNAME</name>
+        <rename>USRNAME</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>ACCOUNTSUMMARY</name>
+        <rename>ACCOUNTSUMMARY</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>CRLIMDATE</name>
+        <rename>CRLIMDATE</rename>
+        <default/>
+        <type>Timestamp</type>
+      </value>
+      <value>
+        <name>CRLIMCURR</name>
+        <rename>CRLIMCURR</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>ELMSTAT</name>
+        <rename>ELMSTAT</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>SIC</name>
+        <rename>SIC</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>CRMANAGER</name>
+        <rename>CRMANAGER</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>CRRATING</name>
+        <rename>CRRATING</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>CRRATINGDATE</name>
+        <rename>CRRATINGDATE</rename>
+        <default/>
+        <type>Timestamp</type>
+      </value>
+      <value>
+        <name>CRREF</name>
+        <rename>CRREF</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>CRAGENCY</name>
+        <rename>CRAGENCY</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>DATEACCOPENED</name>
+        <rename>DATEACCOPENED</rename>
+        <default/>
+        <type>Timestamp</type>
+      </value>
+      <value>
+        <name>PAYMENTINDEX</name>
+        <rename>PAYMENTINDEX</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>TAXADJUSTMENT</name>
+        <rename>TAXADJUSTMENT</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>MATCHTOPO</name>
+        <rename>MATCHTOPO</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>EXTVAL</name>
+        <rename>EXTVAL</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>ARCPAID</name>
+        <rename>ARCPAID</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>ARCRECON</name>
+        <rename>ARCRECON</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>TEN99CODE</name>
+        <rename>TEN99CODE</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>SUBSLEVEL</name>
+        <rename>SUBSLEVEL</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>SUBSELM</name>
+        <rename>SUBSELM</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>TEMPORARYELM</name>
+        <rename>TEMPORARYELM</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>MAXTEMPORARYID</name>
+        <rename>MAXTEMPORARYID</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>ALLOWTAXNUM</name>
+        <rename>ALLOWTAXNUM</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>ALLOWLANGCODE</name>
+        <rename>ALLOWLANGCODE</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>ALLOWCTYCODE</name>
+        <rename>ALLOWCTYCODE</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>FORCETERMS</name>
+        <rename>FORCETERMS</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>FORCETAXNUM</name>
+        <rename>FORCETAXNUM</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>FORCEADDRESS</name>
+        <rename>FORCEADDRESS</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>FORCE1099</name>
+        <rename>FORCE1099</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>STARTYEAR</name>
+        <rename>STARTYEAR</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>STARTPERIOD</name>
+        <rename>STARTPERIOD</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>ENDYEAR</name>
+        <rename>ENDYEAR</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>ENDPERIOD</name>
+        <rename>ENDPERIOD</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>STATMEMO</name>
+        <rename>STATMEMO</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>BALANCINGACC</name>
+        <rename>BALANCINGACC</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>EXTCODE</name>
+        <rename>EXTCODE</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>EXTCONFIG</name>
+        <rename>EXTCONFIG</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>PROCALLOWPRNT</name>
+        <rename>PROCALLOWPRNT</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>PROCTXPDF</name>
+        <rename>PROCTXPDF</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>PROCTXXML</name>
+        <rename>PROCTXXML</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>PROCTXB2B</name>
+        <rename>PROCTXB2B</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>PROCORDERS</name>
+        <rename>PROCORDERS</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>PROCREQ</name>
+        <rename>PROCREQ</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>BILLALLOWPRNT</name>
+        <rename>BILLALLOWPRNT</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>BILLTXPDF</name>
+        <rename>BILLTXPDF</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>BILLTXXML</name>
+        <rename>BILLTXXML</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>BILLSIPFORMA</name>
+        <rename>BILLSIPFORMA</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>BILLSIFINAL</name>
+        <rename>BILLSIFINAL</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>BILLCNPFORMA</name>
+        <rename>BILLCNPFORMA</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>BILLCNFINAL</name>
+        <rename>BILLCNFINAL</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>REPCODE1</name>
+        <rename>REPCODE1</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>REPCODE2</name>
+        <rename>REPCODE2</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>REPCODE3</name>
+        <rename>REPCODE3</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>PUNCHOUTCODE</name>
+        <rename>PUNCHOUTCODE</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>PUNCHOUTURL</name>
+        <rename>PUNCHOUTURL</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>PUNCHOUTDOMAIN</name>
+        <rename>PUNCHOUTDOMAIN</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>PUNCHOUTUSER</name>
+        <rename>PUNCHOUTUSER</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>PUNCHOUTPASSWD</name>
+        <rename>PUNCHOUTPASSWD</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>PUNCHOUTIDCODE</name>
+        <rename>PUNCHOUTIDCODE</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>PUNCHOUTENC</name>
+        <rename>PUNCHOUTENC</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>PUNCHOUTMKTPLACE</name>
+        <rename>PUNCHOUTMKTPLACE</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>CUSTSUPPACCEXT</name>
+        <rename>CUSTSUPPACCEXT</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>AUTORECEIPT</name>
+        <rename>AUTORECEIPT</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>PROCSTATUS</name>
+        <rename>PROCSTATUS</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>TOLERANCECODE</name>
+        <rename>TOLERANCECODE</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>MATCHINGOFFSET</name>
+        <rename>MATCHINGOFFSET</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>PROCTRANSLIMIT</name>
+        <rename>PROCTRANSLIMIT</rename>
+        <default/>
+        <type>Number</type>
+      </value>
+      <value>
+        <name>PROCTRANSLIMIT_DP</name>
+        <rename>PROCTRANSLIMIT_DP</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>PROCCALLOFFS</name>
+        <rename>PROCCALLOFFS</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>PROCGRNS</name>
+        <rename>PROCGRNS</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>PROCRETURNS</name>
+        <rename>PROCRETURNS</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>PROCEMAILSAL</name>
+        <rename>PROCEMAILSAL</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>PROCEMAILSUB</name>
+        <rename>PROCEMAILSUB</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>BILLOUTPUTDEVICE</name>
+        <rename>BILLOUTPUTDEVICE</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>BILLEMAILSAL</name>
+        <rename>BILLEMAILSAL</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>BILLEMAILSUB</name>
+        <rename>BILLEMAILSUB</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>EUVATCODE</name>
+        <rename>EUVATCODE</rename>
+        <default/>
+        <type>String</type>
+      </value>
+    </lookup>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>615</xloc>
+      <yloc>271</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Lookup New</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>STAGING</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema>STAGING</schema>
+      <table>NEW_ELEMENT_STAGING</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>CMPCODE</name>
+        <field>CMPCODE</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>ELMLEVEL</name>
+        <field>ELMLEVEL</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>CODE</name>
+        <field>CODE</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>NAME</name>
+        <rename>NAME</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>SNAME</name>
+        <rename>SNAME</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>ACCOUNTTYPE</name>
+        <rename>ACCOUNTTYPE</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>STATUSER</name>
+        <rename>STATUSER</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>STATPAY</name>
+        <rename>STATPAY</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>STATREC</name>
+        <rename>STATREC</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>MATCHABLE</name>
+        <rename>MATCHABLE</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>SUBANAL</name>
+        <rename>SUBANAL</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>TAG</name>
+        <rename>TAG</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>QTY1_USED</name>
+        <rename>QTY1_USED</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>QTY1_TITLE</name>
+        <rename>QTY1_TITLE</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>QTY1_MAND</name>
+        <rename>QTY1_MAND</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>QTY1_BALCODE</name>
+        <rename>QTY1_BALCODE</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>QTY1_DP</name>
+        <rename>QTY1_DP</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>QTY2_USED</name>
+        <rename>QTY2_USED</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>QTY2_TITLE</name>
+        <rename>QTY2_TITLE</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>QTY2_MAND</name>
+        <rename>QTY2_MAND</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>QTY2_BALCODE</name>
+        <rename>QTY2_BALCODE</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>QTY2_DP</name>
+        <rename>QTY2_DP</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>CATCODE</name>
+        <rename>CATCODE</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>ASSETELEMENT</name>
+        <rename>ASSETELEMENT</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+    </lookup>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>482</xloc>
+      <yloc>268</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Lookup Source</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>CODA-SOURCE</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema/>
+      <table>OAS_ELEMENT</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>SOURCE_CMP</name>
+        <field>CMPCODE</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>CODE</name>
+        <field>CODE</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>ELMLEVEL</name>
+        <field>ELMLEVEL</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>INDIRECTCODE</name>
+        <rename>INDIRECTCODE</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>TSTAMP</name>
+        <rename>TSTAMP</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>NAME</name>
+        <rename>NAME</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>SNAME</name>
+        <rename>SNAME</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>CUR</name>
+        <rename>CUR</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>TAX</name>
+        <rename>TAX</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>ACCOUNTTYPE</name>
+        <rename>ACCOUNTTYPE</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>STATUSER</name>
+        <rename>STATUSER</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>STATPAY</name>
+        <rename>STATPAY</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>STATREC</name>
+        <rename>STATREC</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>DESCR</name>
+        <rename>DESCR</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>MATCHABLE</name>
+        <rename>MATCHABLE</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>STATPAYINT</name>
+        <rename>STATPAYINT</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>SUMMARY</name>
+        <rename>SUMMARY</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>SPLIT</name>
+        <rename>SPLIT</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>SETTLE</name>
+        <rename>SETTLE</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>PAPER</name>
+        <rename>PAPER</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>ELEC</name>
+        <rename>ELEC</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>SUBANAL</name>
+        <rename>SUBANAL</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>TAXREPESL</name>
+        <rename>TAXREPESL</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>TAXREPINTRA</name>
+        <rename>TAXREPINTRA</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>CRLIMINFORCE</name>
+        <rename>CRLIMINFORCE</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>CRLIM</name>
+        <rename>CRLIM</rename>
+        <default/>
+        <type>Number</type>
+      </value>
+      <value>
+        <name>CRLIM_DP</name>
+        <rename>CRLIM_DP</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>TAXMETHOD</name>
+        <rename>TAXMETHOD</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>TERMS</name>
+        <rename>TERMS</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>KEEPTURN</name>
+        <rename>KEEPTURN</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>TEN99</name>
+        <rename>TEN99</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>CUSTSUPPACC</name>
+        <rename>CUSTSUPPACC</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>DISCENABLE</name>
+        <rename>DISCENABLE</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>FORCEDISPERSE</name>
+        <rename>FORCEDISPERSE</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>ENABLEPAY</name>
+        <rename>ENABLEPAY</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>PAYMODE</name>
+        <rename>PAYMODE</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>PRIORITY</name>
+        <rename>PRIORITY</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>MEDCODE</name>
+        <rename>MEDCODE</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>TAG</name>
+        <rename>TAG</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>QTY1_USED</name>
+        <rename>QTY1_USED</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>QTY1_TITLE</name>
+        <rename>QTY1_TITLE</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>QTY1_MAND</name>
+        <rename>QTY1_MAND</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>QTY1_BALCODE</name>
+        <rename>QTY1_BALCODE</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>QTY1_DP</name>
+        <rename>QTY1_DP</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>QTY2_USED</name>
+        <rename>QTY2_USED</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>QTY2_TITLE</name>
+        <rename>QTY2_TITLE</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>QTY2_MAND</name>
+        <rename>QTY2_MAND</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>QTY2_BALCODE</name>
+        <rename>QTY2_BALCODE</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>QTY2_DP</name>
+        <rename>QTY2_DP</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>QTY3_USED</name>
+        <rename>QTY3_USED</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>QTY3_TITLE</name>
+        <rename>QTY3_TITLE</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>QTY3_MAND</name>
+        <rename>QTY3_MAND</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>QTY3_BALCODE</name>
+        <rename>QTY3_BALCODE</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>QTY3_DP</name>
+        <rename>QTY3_DP</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>QTY4_USED</name>
+        <rename>QTY4_USED</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>QTY4_TITLE</name>
+        <rename>QTY4_TITLE</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>QTY4_MAND</name>
+        <rename>QTY4_MAND</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>QTY4_BALCODE</name>
+        <rename>QTY4_BALCODE</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>QTY4_DP</name>
+        <rename>QTY4_DP</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>ADDDATE</name>
+        <rename>ADDDATE</rename>
+        <default/>
+        <type>Timestamp</type>
+      </value>
+      <value>
+        <name>MODDATE</name>
+        <rename>MODDATE</rename>
+        <default/>
+        <type>Timestamp</type>
+      </value>
+      <value>
+        <name>DELDATE</name>
+        <rename>DELDATE</rename>
+        <default/>
+        <type>Timestamp</type>
+      </value>
+      <value>
+        <name>USRNAME</name>
+        <rename>USRNAME</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>ACCOUNTSUMMARY</name>
+        <rename>ACCOUNTSUMMARY</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>CRLIMDATE</name>
+        <rename>CRLIMDATE</rename>
+        <default/>
+        <type>Timestamp</type>
+      </value>
+      <value>
+        <name>CRLIMCURR</name>
+        <rename>CRLIMCURR</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>ELMSTAT</name>
+        <rename>ELMSTAT</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>SIC</name>
+        <rename>SIC</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>CRMANAGER</name>
+        <rename>CRMANAGER</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>CRRATING</name>
+        <rename>CRRATING</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>CRRATINGDATE</name>
+        <rename>CRRATINGDATE</rename>
+        <default/>
+        <type>Timestamp</type>
+      </value>
+      <value>
+        <name>CRREF</name>
+        <rename>CRREF</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>CRAGENCY</name>
+        <rename>CRAGENCY</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>DATEACCOPENED</name>
+        <rename>DATEACCOPENED</rename>
+        <default/>
+        <type>Timestamp</type>
+      </value>
+      <value>
+        <name>PAYMENTINDEX</name>
+        <rename>PAYMENTINDEX</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>TAXADJUSTMENT</name>
+        <rename>TAXADJUSTMENT</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>MATCHTOPO</name>
+        <rename>MATCHTOPO</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>EXTVAL</name>
+        <rename>EXTVAL</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>ARCPAID</name>
+        <rename>ARCPAID</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>ARCRECON</name>
+        <rename>ARCRECON</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>TEN99CODE</name>
+        <rename>TEN99CODE</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>SUBSLEVEL</name>
+        <rename>SUBSLEVEL</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>SUBSELM</name>
+        <rename>SUBSELM</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>TEMPORARYELM</name>
+        <rename>TEMPORARYELM</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>MAXTEMPORARYID</name>
+        <rename>MAXTEMPORARYID</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>ALLOWTAXNUM</name>
+        <rename>ALLOWTAXNUM</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>ALLOWLANGCODE</name>
+        <rename>ALLOWLANGCODE</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>ALLOWCTYCODE</name>
+        <rename>ALLOWCTYCODE</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>FORCETERMS</name>
+        <rename>FORCETERMS</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>FORCETAXNUM</name>
+        <rename>FORCETAXNUM</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>FORCEADDRESS</name>
+        <rename>FORCEADDRESS</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>FORCE1099</name>
+        <rename>FORCE1099</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>STARTYEAR</name>
+        <rename>STARTYEAR</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>STARTPERIOD</name>
+        <rename>STARTPERIOD</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>ENDYEAR</name>
+        <rename>ENDYEAR</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>ENDPERIOD</name>
+        <rename>ENDPERIOD</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>STATMEMO</name>
+        <rename>STATMEMO</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>BALANCINGACC</name>
+        <rename>BALANCINGACC</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>CATCODE</name>
+        <rename>CATCODE</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>ASSETELEMENT</name>
+        <rename>ASSETELEMENT</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>EXTCODE</name>
+        <rename>EXTCODE</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>EXTCONFIG</name>
+        <rename>EXTCONFIG</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>PROCALLOWPRNT</name>
+        <rename>PROCALLOWPRNT</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>PROCTXPDF</name>
+        <rename>PROCTXPDF</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>PROCTXXML</name>
+        <rename>PROCTXXML</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>PROCTXB2B</name>
+        <rename>PROCTXB2B</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>PROCORDERS</name>
+        <rename>PROCORDERS</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>PROCREQ</name>
+        <rename>PROCREQ</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>BILLALLOWPRNT</name>
+        <rename>BILLALLOWPRNT</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>BILLTXPDF</name>
+        <rename>BILLTXPDF</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>BILLTXXML</name>
+        <rename>BILLTXXML</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>BILLSIPFORMA</name>
+        <rename>BILLSIPFORMA</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>BILLSIFINAL</name>
+        <rename>BILLSIFINAL</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>BILLCNPFORMA</name>
+        <rename>BILLCNPFORMA</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>BILLCNFINAL</name>
+        <rename>BILLCNFINAL</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>REPCODE1</name>
+        <rename>REPCODE1</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>REPCODE2</name>
+        <rename>REPCODE2</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>REPCODE3</name>
+        <rename>REPCODE3</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>PUNCHOUTCODE</name>
+        <rename>PUNCHOUTCODE</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>PUNCHOUTURL</name>
+        <rename>PUNCHOUTURL</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>PUNCHOUTDOMAIN</name>
+        <rename>PUNCHOUTDOMAIN</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>PUNCHOUTUSER</name>
+        <rename>PUNCHOUTUSER</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>PUNCHOUTPASSWD</name>
+        <rename>PUNCHOUTPASSWD</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>PUNCHOUTIDCODE</name>
+        <rename>PUNCHOUTIDCODE</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>PUNCHOUTENC</name>
+        <rename>PUNCHOUTENC</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>PUNCHOUTMKTPLACE</name>
+        <rename>PUNCHOUTMKTPLACE</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>CUSTSUPPACCEXT</name>
+        <rename>CUSTSUPPACCEXT</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>AUTORECEIPT</name>
+        <rename>AUTORECEIPT</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>PROCSTATUS</name>
+        <rename>PROCSTATUS</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>TOLERANCECODE</name>
+        <rename>TOLERANCECODE</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>MATCHINGOFFSET</name>
+        <rename>MATCHINGOFFSET</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>PROCTRANSLIMIT</name>
+        <rename>PROCTRANSLIMIT</rename>
+        <default/>
+        <type>Number</type>
+      </value>
+      <value>
+        <name>PROCTRANSLIMIT_DP</name>
+        <rename>PROCTRANSLIMIT_DP</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>PROCCALLOFFS</name>
+        <rename>PROCCALLOFFS</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>PROCGRNS</name>
+        <rename>PROCGRNS</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>PROCRETURNS</name>
+        <rename>PROCRETURNS</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>PROCEMAILSAL</name>
+        <rename>PROCEMAILSAL</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>PROCEMAILSUB</name>
+        <rename>PROCEMAILSUB</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>BILLOUTPUTDEVICE</name>
+        <rename>BILLOUTPUTDEVICE</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>BILLEMAILSAL</name>
+        <rename>BILLEMAILSAL</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>BILLEMAILSUB</name>
+        <rename>BILLEMAILSUB</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>EUVATCODE</name>
+        <rename>EUVATCODE</rename>
+        <default/>
+        <type>String</type>
+      </value>
+    </lookup>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>746</xloc>
+      <yloc>165</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Lookup Type</name>
+    <type>DBJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>STAGING</connection>
+    <rowlimit>0</rowlimit>
+    <sql>SELECT&#xd;&#xa;CASE WHEN EXISTS &#x28;SELECT 1 FROM STAGING.NEW_ELEMENT_STAGING WHERE CMPCODE&#x3d;&#x3f; AND ELMLEVEL&#x3d;&#x3f; AND CODE&#x3d;&#x3f;&#x29; THEN &#x27;TRUE&#x27;&#xd;&#xa;ELSE &#x27;FALSE&#x27; END AS NEWELEMENT&#xd;&#xa;FROM DUAL</sql>
+    <outer_join>N</outer_join>
+    <replace_vars>N</replace_vars>
+    <parameter>
+      <field>
+        <name>CMPCODE</name>
+        <type>String</type>
+      </field>
+      <field>
+        <name>ELMLEVEL</name>
+        <type>Integer</type>
+      </field>
+      <field>
+        <name>CODE</name>
+        <type>String</type>
+      </field>
+    </parameter>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>197</xloc>
+      <yloc>163</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Remove CMPCODE</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>        <select_unspecified>N</select_unspecified>
+      <remove>        <name>CMPCODE</name>
+      </remove>    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1252</xloc>
+      <yloc>139</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Reorder Fields</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>      <field>        <name>CMPCODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ELMLEVEL</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>NEWELEMENT</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>SOURCE_CMP</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>INDIRECTCODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TSTAMP</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>NAME</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>SNAME</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CUR</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TAX</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ACCOUNTTYPE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>STATUSER</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>STATPAY</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>STATREC</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>DESCR</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>MATCHABLE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>STATPAYINT</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>SUMMARY</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>SPLIT</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>SETTLE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PAPER</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ELEC</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>SUBANAL</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TAXREPESL</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TAXREPINTRA</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CRLIMINFORCE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CRLIM</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CRLIM_DP</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TAXMETHOD</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TERMS</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>KEEPTURN</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TEN99</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CUSTSUPPACC</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>DISCENABLE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>FORCEDISPERSE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ENABLEPAY</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PAYMODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PRIORITY</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>MEDCODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TAG</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY1_USED</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY1_TITLE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY1_MAND</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY1_BALCODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY1_DP</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY2_USED</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY2_TITLE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY2_MAND</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY2_BALCODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY2_DP</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY3_USED</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY3_TITLE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY3_MAND</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY3_BALCODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY3_DP</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY4_USED</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY4_TITLE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY4_MAND</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY4_BALCODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY4_DP</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ADDDATE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>MODDATE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>DELDATE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>USRNAME</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ACCOUNTSUMMARY</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CRLIMDATE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CRLIMCURR</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ELMSTAT</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>SIC</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CRMANAGER</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CRRATING</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CRRATINGDATE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CRREF</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CRAGENCY</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>DATEACCOPENED</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PAYMENTINDEX</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TAXADJUSTMENT</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>MATCHTOPO</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>EXTVAL</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ARCPAID</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ARCRECON</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TEN99CODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>SUBSLEVEL</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>SUBSELM</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TEMPORARYELM</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>MAXTEMPORARYID</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ALLOWTAXNUM</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ALLOWLANGCODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ALLOWCTYCODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>FORCETERMS</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>FORCETAXNUM</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>FORCEADDRESS</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>FORCE1099</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>STARTYEAR</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>STARTPERIOD</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ENDYEAR</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ENDPERIOD</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>STATMEMO</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>BALANCINGACC</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CATCODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ASSETELEMENT</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>EXTCODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>EXTCONFIG</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PROCALLOWPRNT</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PROCTXPDF</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PROCTXXML</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PROCTXB2B</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PROCORDERS</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PROCREQ</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>BILLALLOWPRNT</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>BILLTXPDF</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>BILLTXXML</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>BILLSIPFORMA</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>BILLSIFINAL</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>BILLCNPFORMA</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>BILLCNFINAL</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>REPCODE1</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>REPCODE2</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>REPCODE3</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PUNCHOUTCODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PUNCHOUTURL</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PUNCHOUTDOMAIN</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PUNCHOUTUSER</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PUNCHOUTPASSWD</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PUNCHOUTIDCODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PUNCHOUTENC</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PUNCHOUTMKTPLACE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CUSTSUPPACCEXT</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>AUTORECEIPT</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PROCSTATUS</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TOLERANCECODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>MATCHINGOFFSET</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PROCTRANSLIMIT</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PROCTRANSLIMIT_DP</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PROCCALLOFFS</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PROCGRNS</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PROCRETURNS</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PROCEMAILSAL</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PROCEMAILSUB</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>BILLOUTPUTDEVICE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>BILLEMAILSAL</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>BILLEMAILSUB</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>EUVATCODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CMPCODE_CS</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ELMLEVEL_CS</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CODE_CS</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>        <select_unspecified>N</select_unspecified>
+      <meta>        <name>STATUSER</name>
+        <rename>STATUSER</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1380</xloc>
+      <yloc>198</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Select values</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>      <field>        <name>CMPCODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ELMLEVEL</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>NEWELEMENT</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>SOURCE_CMP</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>INDIRECTCODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TSTAMP</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>NAME</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>SNAME</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CUR</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TAX</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ACCOUNTTYPE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>STATUSER</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>STATPAY</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>STATREC</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>DESCR</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>MATCHABLE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>STATPAYINT</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>SUMMARY</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>SPLIT</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>SETTLE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PAPER</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ELEC</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>SUBANAL</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TAXREPESL</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TAXREPINTRA</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CRLIMINFORCE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CRLIM</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CRLIM_DP</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TAXMETHOD</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TERMS</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>KEEPTURN</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TEN99</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CUSTSUPPACC</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>DISCENABLE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>FORCEDISPERSE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ENABLEPAY</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PAYMODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PRIORITY</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>MEDCODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TAG</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY1_USED</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY1_TITLE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY1_MAND</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY1_BALCODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY1_DP</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY2_USED</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY2_TITLE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY2_MAND</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY2_BALCODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY2_DP</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY3_USED</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY3_TITLE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY3_MAND</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY3_BALCODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY3_DP</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY4_USED</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY4_TITLE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY4_MAND</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY4_BALCODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY4_DP</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ADDDATE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>MODDATE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>DELDATE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>USRNAME</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ACCOUNTSUMMARY</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CRLIMDATE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CRLIMCURR</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ELMSTAT</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>SIC</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CRMANAGER</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CRRATING</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CRRATINGDATE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CRREF</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CRAGENCY</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>DATEACCOPENED</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PAYMENTINDEX</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TAXADJUSTMENT</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>MATCHTOPO</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>EXTVAL</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ARCPAID</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ARCRECON</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TEN99CODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>SUBSLEVEL</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>SUBSELM</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TEMPORARYELM</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>MAXTEMPORARYID</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ALLOWTAXNUM</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ALLOWLANGCODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ALLOWCTYCODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>FORCETERMS</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>FORCETAXNUM</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>FORCEADDRESS</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>FORCE1099</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>STARTYEAR</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>STARTPERIOD</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ENDYEAR</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ENDPERIOD</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>STATMEMO</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>BALANCINGACC</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CATCODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ASSETELEMENT</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>EXTCODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>EXTCONFIG</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PROCALLOWPRNT</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PROCTXPDF</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PROCTXXML</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PROCTXB2B</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PROCORDERS</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PROCREQ</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>BILLALLOWPRNT</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>BILLTXPDF</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>BILLTXXML</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>BILLSIPFORMA</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>BILLSIFINAL</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>BILLCNPFORMA</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>BILLCNFINAL</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>REPCODE1</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>REPCODE2</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>REPCODE3</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PUNCHOUTCODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PUNCHOUTURL</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PUNCHOUTDOMAIN</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PUNCHOUTUSER</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PUNCHOUTPASSWD</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PUNCHOUTIDCODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PUNCHOUTENC</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PUNCHOUTMKTPLACE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CUSTSUPPACCEXT</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>AUTORECEIPT</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PROCSTATUS</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TOLERANCECODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>MATCHINGOFFSET</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PROCTRANSLIMIT</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PROCTRANSLIMIT_DP</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PROCCALLOFFS</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PROCGRNS</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PROCRETURNS</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PROCEMAILSAL</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PROCEMAILSUB</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>BILLOUTPUTDEVICE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>BILLEMAILSAL</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>BILLEMAILSUB</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>EUVATCODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>        <select_unspecified>N</select_unspecified>
+      <meta>        <name>STATUSER</name>
+        <rename>STATUSER</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>891</xloc>
+      <yloc>269</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Select values 2</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>      <field>        <name>CMPCODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ELMLEVEL</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>NEWELEMENT</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>SOURCE_CMP</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>INDIRECTCODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TSTAMP</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>NAME</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>SNAME</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CUR</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TAX</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ACCOUNTTYPE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>STATUSER</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>STATPAY</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>STATREC</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>DESCR</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>MATCHABLE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>STATPAYINT</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>SUMMARY</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>SPLIT</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>SETTLE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PAPER</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ELEC</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>SUBANAL</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TAXREPESL</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TAXREPINTRA</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CRLIMINFORCE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CRLIM</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CRLIM_DP</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TAXMETHOD</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TERMS</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>KEEPTURN</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TEN99</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CUSTSUPPACC</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>DISCENABLE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>FORCEDISPERSE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ENABLEPAY</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PAYMODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PRIORITY</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>MEDCODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TAG</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY1_USED</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY1_TITLE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY1_MAND</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY1_BALCODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY1_DP</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY2_USED</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY2_TITLE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY2_MAND</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY2_BALCODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY2_DP</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY3_USED</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY3_TITLE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY3_MAND</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY3_BALCODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY3_DP</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY4_USED</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY4_TITLE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY4_MAND</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY4_BALCODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>QTY4_DP</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ADDDATE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>MODDATE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>DELDATE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>USRNAME</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ACCOUNTSUMMARY</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CRLIMDATE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CRLIMCURR</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ELMSTAT</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>SIC</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CRMANAGER</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CRRATING</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CRRATINGDATE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CRREF</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CRAGENCY</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>DATEACCOPENED</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PAYMENTINDEX</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TAXADJUSTMENT</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>MATCHTOPO</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>EXTVAL</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ARCPAID</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ARCRECON</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TEN99CODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>SUBSLEVEL</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>SUBSELM</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TEMPORARYELM</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>MAXTEMPORARYID</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ALLOWTAXNUM</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ALLOWLANGCODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ALLOWCTYCODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>FORCETERMS</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>FORCETAXNUM</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>FORCEADDRESS</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>FORCE1099</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>STARTYEAR</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>STARTPERIOD</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ENDYEAR</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ENDPERIOD</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>STATMEMO</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>BALANCINGACC</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CATCODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ASSETELEMENT</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>EXTCODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>EXTCONFIG</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PROCALLOWPRNT</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PROCTXPDF</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PROCTXXML</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PROCTXB2B</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PROCORDERS</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PROCREQ</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>BILLALLOWPRNT</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>BILLTXPDF</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>BILLTXXML</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>BILLSIPFORMA</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>BILLSIFINAL</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>BILLCNPFORMA</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>BILLCNFINAL</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>REPCODE1</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>REPCODE2</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>REPCODE3</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PUNCHOUTCODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PUNCHOUTURL</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PUNCHOUTDOMAIN</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PUNCHOUTUSER</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PUNCHOUTPASSWD</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PUNCHOUTIDCODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PUNCHOUTENC</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PUNCHOUTMKTPLACE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CUSTSUPPACCEXT</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>AUTORECEIPT</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PROCSTATUS</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TOLERANCECODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>MATCHINGOFFSET</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PROCTRANSLIMIT</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PROCTRANSLIMIT_DP</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PROCCALLOFFS</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PROCGRNS</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PROCRETURNS</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PROCEMAILSAL</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PROCEMAILSUB</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>BILLOUTPUTDEVICE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>BILLEMAILSAL</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>BILLEMAILSUB</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>EUVATCODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>        <select_unspecified>N</select_unspecified>
+      <meta>        <name>STATUSER</name>
+        <rename>STATUSER</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>886</xloc>
+      <yloc>169</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Set Source</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+       <calculation><field_name>SOURCE_CMP</field_name>
+<calc_type>COPY_FIELD</calc_type>
+<field_a>CMPCODE</field_a>
+<field_b/>
+<field_c/>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<remove>N</remove>
+<conversion_mask/>
+<decimal_symbol/>
+<grouping_symbol/>
+<currency_symbol/>
+</calculation>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>605</xloc>
+      <yloc>167</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>xOAS_ELEMENT</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>STAGING</connection>
+    <schema>STAGING</schema>
+    <table>xOAS_ELEMENT</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+        <field>
+          <column_name>CMPCODE</column_name>
+          <stream_name>CMPCODE</stream_name>
+        </field>
+        <field>
+          <column_name>CODE</column_name>
+          <stream_name>CODE</stream_name>
+        </field>
+        <field>
+          <column_name>ELMLEVEL</column_name>
+          <stream_name>ELMLEVEL</stream_name>
+        </field>
+        <field>
+          <column_name>INDIRECTCODE</column_name>
+          <stream_name>INDIRECTCODE</stream_name>
+        </field>
+        <field>
+          <column_name>TSTAMP</column_name>
+          <stream_name>TSTAMP</stream_name>
+        </field>
+        <field>
+          <column_name>NAME</column_name>
+          <stream_name>NAME</stream_name>
+        </field>
+        <field>
+          <column_name>SNAME</column_name>
+          <stream_name>SNAME</stream_name>
+        </field>
+        <field>
+          <column_name>CUR</column_name>
+          <stream_name>CUR</stream_name>
+        </field>
+        <field>
+          <column_name>TAX</column_name>
+          <stream_name>TAX</stream_name>
+        </field>
+        <field>
+          <column_name>ACCOUNTTYPE</column_name>
+          <stream_name>ACCOUNTTYPE</stream_name>
+        </field>
+        <field>
+          <column_name>STATUSER</column_name>
+          <stream_name>STATUSER</stream_name>
+        </field>
+        <field>
+          <column_name>STATPAY</column_name>
+          <stream_name>STATPAY</stream_name>
+        </field>
+        <field>
+          <column_name>STATREC</column_name>
+          <stream_name>STATREC</stream_name>
+        </field>
+        <field>
+          <column_name>DESCR</column_name>
+          <stream_name>DESCR</stream_name>
+        </field>
+        <field>
+          <column_name>MATCHABLE</column_name>
+          <stream_name>MATCHABLE</stream_name>
+        </field>
+        <field>
+          <column_name>STATPAYINT</column_name>
+          <stream_name>STATPAYINT</stream_name>
+        </field>
+        <field>
+          <column_name>SUMMARY</column_name>
+          <stream_name>SUMMARY</stream_name>
+        </field>
+        <field>
+          <column_name>SPLIT</column_name>
+          <stream_name>SPLIT</stream_name>
+        </field>
+        <field>
+          <column_name>SETTLE</column_name>
+          <stream_name>SETTLE</stream_name>
+        </field>
+        <field>
+          <column_name>PAPER</column_name>
+          <stream_name>PAPER</stream_name>
+        </field>
+        <field>
+          <column_name>ELEC</column_name>
+          <stream_name>ELEC</stream_name>
+        </field>
+        <field>
+          <column_name>SUBANAL</column_name>
+          <stream_name>SUBANAL</stream_name>
+        </field>
+        <field>
+          <column_name>TAXREPESL</column_name>
+          <stream_name>TAXREPESL</stream_name>
+        </field>
+        <field>
+          <column_name>TAXREPINTRA</column_name>
+          <stream_name>TAXREPINTRA</stream_name>
+        </field>
+        <field>
+          <column_name>CRLIMINFORCE</column_name>
+          <stream_name>CRLIMINFORCE</stream_name>
+        </field>
+        <field>
+          <column_name>CRLIM</column_name>
+          <stream_name>CRLIM</stream_name>
+        </field>
+        <field>
+          <column_name>CRLIM_DP</column_name>
+          <stream_name>CRLIM_DP</stream_name>
+        </field>
+        <field>
+          <column_name>TAXMETHOD</column_name>
+          <stream_name>TAXMETHOD</stream_name>
+        </field>
+        <field>
+          <column_name>TERMS</column_name>
+          <stream_name>TERMS</stream_name>
+        </field>
+        <field>
+          <column_name>KEEPTURN</column_name>
+          <stream_name>KEEPTURN</stream_name>
+        </field>
+        <field>
+          <column_name>TEN99</column_name>
+          <stream_name>TEN99</stream_name>
+        </field>
+        <field>
+          <column_name>CUSTSUPPACC</column_name>
+          <stream_name>CUSTSUPPACC</stream_name>
+        </field>
+        <field>
+          <column_name>DISCENABLE</column_name>
+          <stream_name>DISCENABLE</stream_name>
+        </field>
+        <field>
+          <column_name>FORCEDISPERSE</column_name>
+          <stream_name>FORCEDISPERSE</stream_name>
+        </field>
+        <field>
+          <column_name>ENABLEPAY</column_name>
+          <stream_name>ENABLEPAY</stream_name>
+        </field>
+        <field>
+          <column_name>PAYMODE</column_name>
+          <stream_name>PAYMODE</stream_name>
+        </field>
+        <field>
+          <column_name>PRIORITY</column_name>
+          <stream_name>PRIORITY</stream_name>
+        </field>
+        <field>
+          <column_name>MEDCODE</column_name>
+          <stream_name>MEDCODE</stream_name>
+        </field>
+        <field>
+          <column_name>TAG</column_name>
+          <stream_name>TAG</stream_name>
+        </field>
+        <field>
+          <column_name>QTY1_USED</column_name>
+          <stream_name>QTY1_USED</stream_name>
+        </field>
+        <field>
+          <column_name>QTY1_TITLE</column_name>
+          <stream_name>QTY1_TITLE</stream_name>
+        </field>
+        <field>
+          <column_name>QTY1_MAND</column_name>
+          <stream_name>QTY1_MAND</stream_name>
+        </field>
+        <field>
+          <column_name>QTY1_BALCODE</column_name>
+          <stream_name>QTY1_BALCODE</stream_name>
+        </field>
+        <field>
+          <column_name>QTY1_DP</column_name>
+          <stream_name>QTY1_DP</stream_name>
+        </field>
+        <field>
+          <column_name>QTY2_USED</column_name>
+          <stream_name>QTY2_USED</stream_name>
+        </field>
+        <field>
+          <column_name>QTY2_TITLE</column_name>
+          <stream_name>QTY2_TITLE</stream_name>
+        </field>
+        <field>
+          <column_name>QTY2_MAND</column_name>
+          <stream_name>QTY2_MAND</stream_name>
+        </field>
+        <field>
+          <column_name>QTY2_BALCODE</column_name>
+          <stream_name>QTY2_BALCODE</stream_name>
+        </field>
+        <field>
+          <column_name>QTY2_DP</column_name>
+          <stream_name>QTY2_DP</stream_name>
+        </field>
+        <field>
+          <column_name>QTY3_USED</column_name>
+          <stream_name>QTY3_USED</stream_name>
+        </field>
+        <field>
+          <column_name>QTY3_TITLE</column_name>
+          <stream_name>QTY3_TITLE</stream_name>
+        </field>
+        <field>
+          <column_name>QTY3_MAND</column_name>
+          <stream_name>QTY3_MAND</stream_name>
+        </field>
+        <field>
+          <column_name>QTY3_BALCODE</column_name>
+          <stream_name>QTY3_BALCODE</stream_name>
+        </field>
+        <field>
+          <column_name>QTY3_DP</column_name>
+          <stream_name>QTY3_DP</stream_name>
+        </field>
+        <field>
+          <column_name>QTY4_USED</column_name>
+          <stream_name>QTY4_USED</stream_name>
+        </field>
+        <field>
+          <column_name>QTY4_TITLE</column_name>
+          <stream_name>QTY4_TITLE</stream_name>
+        </field>
+        <field>
+          <column_name>QTY4_MAND</column_name>
+          <stream_name>QTY4_MAND</stream_name>
+        </field>
+        <field>
+          <column_name>QTY4_BALCODE</column_name>
+          <stream_name>QTY4_BALCODE</stream_name>
+        </field>
+        <field>
+          <column_name>QTY4_DP</column_name>
+          <stream_name>QTY4_DP</stream_name>
+        </field>
+        <field>
+          <column_name>ADDDATE</column_name>
+          <stream_name>ADDDATE</stream_name>
+        </field>
+        <field>
+          <column_name>MODDATE</column_name>
+          <stream_name>MODDATE</stream_name>
+        </field>
+        <field>
+          <column_name>DELDATE</column_name>
+          <stream_name>DELDATE</stream_name>
+        </field>
+        <field>
+          <column_name>USRNAME</column_name>
+          <stream_name>USRNAME</stream_name>
+        </field>
+        <field>
+          <column_name>ACCOUNTSUMMARY</column_name>
+          <stream_name>ACCOUNTSUMMARY</stream_name>
+        </field>
+        <field>
+          <column_name>CRLIMDATE</column_name>
+          <stream_name>CRLIMDATE</stream_name>
+        </field>
+        <field>
+          <column_name>CRLIMCURR</column_name>
+          <stream_name>CRLIMCURR</stream_name>
+        </field>
+        <field>
+          <column_name>ELMSTAT</column_name>
+          <stream_name>ELMSTAT</stream_name>
+        </field>
+        <field>
+          <column_name>SIC</column_name>
+          <stream_name>SIC</stream_name>
+        </field>
+        <field>
+          <column_name>CRMANAGER</column_name>
+          <stream_name>CRMANAGER</stream_name>
+        </field>
+        <field>
+          <column_name>CRRATING</column_name>
+          <stream_name>CRRATING</stream_name>
+        </field>
+        <field>
+          <column_name>CRRATINGDATE</column_name>
+          <stream_name>CRRATINGDATE</stream_name>
+        </field>
+        <field>
+          <column_name>CRREF</column_name>
+          <stream_name>CRREF</stream_name>
+        </field>
+        <field>
+          <column_name>CRAGENCY</column_name>
+          <stream_name>CRAGENCY</stream_name>
+        </field>
+        <field>
+          <column_name>DATEACCOPENED</column_name>
+          <stream_name>DATEACCOPENED</stream_name>
+        </field>
+        <field>
+          <column_name>PAYMENTINDEX</column_name>
+          <stream_name>PAYMENTINDEX</stream_name>
+        </field>
+        <field>
+          <column_name>TAXADJUSTMENT</column_name>
+          <stream_name>TAXADJUSTMENT</stream_name>
+        </field>
+        <field>
+          <column_name>MATCHTOPO</column_name>
+          <stream_name>MATCHTOPO</stream_name>
+        </field>
+        <field>
+          <column_name>EXTVAL</column_name>
+          <stream_name>EXTVAL</stream_name>
+        </field>
+        <field>
+          <column_name>ARCPAID</column_name>
+          <stream_name>ARCPAID</stream_name>
+        </field>
+        <field>
+          <column_name>ARCRECON</column_name>
+          <stream_name>ARCRECON</stream_name>
+        </field>
+        <field>
+          <column_name>TEN99CODE</column_name>
+          <stream_name>TEN99CODE</stream_name>
+        </field>
+        <field>
+          <column_name>SUBSLEVEL</column_name>
+          <stream_name>SUBSLEVEL</stream_name>
+        </field>
+        <field>
+          <column_name>SUBSELM</column_name>
+          <stream_name>SUBSELM</stream_name>
+        </field>
+        <field>
+          <column_name>TEMPORARYELM</column_name>
+          <stream_name>TEMPORARYELM</stream_name>
+        </field>
+        <field>
+          <column_name>MAXTEMPORARYID</column_name>
+          <stream_name>MAXTEMPORARYID</stream_name>
+        </field>
+        <field>
+          <column_name>ALLOWTAXNUM</column_name>
+          <stream_name>ALLOWTAXNUM</stream_name>
+        </field>
+        <field>
+          <column_name>ALLOWLANGCODE</column_name>
+          <stream_name>ALLOWLANGCODE</stream_name>
+        </field>
+        <field>
+          <column_name>ALLOWCTYCODE</column_name>
+          <stream_name>ALLOWCTYCODE</stream_name>
+        </field>
+        <field>
+          <column_name>FORCETERMS</column_name>
+          <stream_name>FORCETERMS</stream_name>
+        </field>
+        <field>
+          <column_name>FORCETAXNUM</column_name>
+          <stream_name>FORCETAXNUM</stream_name>
+        </field>
+        <field>
+          <column_name>FORCEADDRESS</column_name>
+          <stream_name>FORCEADDRESS</stream_name>
+        </field>
+        <field>
+          <column_name>FORCE1099</column_name>
+          <stream_name>FORCE1099</stream_name>
+        </field>
+        <field>
+          <column_name>STARTYEAR</column_name>
+          <stream_name>STARTYEAR</stream_name>
+        </field>
+        <field>
+          <column_name>STARTPERIOD</column_name>
+          <stream_name>STARTPERIOD</stream_name>
+        </field>
+        <field>
+          <column_name>ENDYEAR</column_name>
+          <stream_name>ENDYEAR</stream_name>
+        </field>
+        <field>
+          <column_name>ENDPERIOD</column_name>
+          <stream_name>ENDPERIOD</stream_name>
+        </field>
+        <field>
+          <column_name>STATMEMO</column_name>
+          <stream_name>STATMEMO</stream_name>
+        </field>
+        <field>
+          <column_name>BALANCINGACC</column_name>
+          <stream_name>BALANCINGACC</stream_name>
+        </field>
+        <field>
+          <column_name>CATCODE</column_name>
+          <stream_name>CATCODE</stream_name>
+        </field>
+        <field>
+          <column_name>ASSETELEMENT</column_name>
+          <stream_name>ASSETELEMENT</stream_name>
+        </field>
+        <field>
+          <column_name>EXTCODE</column_name>
+          <stream_name>EXTCODE</stream_name>
+        </field>
+        <field>
+          <column_name>EXTCONFIG</column_name>
+          <stream_name>EXTCONFIG</stream_name>
+        </field>
+        <field>
+          <column_name>PROCALLOWPRNT</column_name>
+          <stream_name>PROCALLOWPRNT</stream_name>
+        </field>
+        <field>
+          <column_name>PROCTXPDF</column_name>
+          <stream_name>PROCTXPDF</stream_name>
+        </field>
+        <field>
+          <column_name>PROCTXXML</column_name>
+          <stream_name>PROCTXXML</stream_name>
+        </field>
+        <field>
+          <column_name>PROCTXB2B</column_name>
+          <stream_name>PROCTXB2B</stream_name>
+        </field>
+        <field>
+          <column_name>PROCORDERS</column_name>
+          <stream_name>PROCORDERS</stream_name>
+        </field>
+        <field>
+          <column_name>PROCREQ</column_name>
+          <stream_name>PROCREQ</stream_name>
+        </field>
+        <field>
+          <column_name>BILLALLOWPRNT</column_name>
+          <stream_name>BILLALLOWPRNT</stream_name>
+        </field>
+        <field>
+          <column_name>BILLTXPDF</column_name>
+          <stream_name>BILLTXPDF</stream_name>
+        </field>
+        <field>
+          <column_name>BILLTXXML</column_name>
+          <stream_name>BILLTXXML</stream_name>
+        </field>
+        <field>
+          <column_name>BILLSIPFORMA</column_name>
+          <stream_name>BILLSIPFORMA</stream_name>
+        </field>
+        <field>
+          <column_name>BILLSIFINAL</column_name>
+          <stream_name>BILLSIFINAL</stream_name>
+        </field>
+        <field>
+          <column_name>BILLCNPFORMA</column_name>
+          <stream_name>BILLCNPFORMA</stream_name>
+        </field>
+        <field>
+          <column_name>BILLCNFINAL</column_name>
+          <stream_name>BILLCNFINAL</stream_name>
+        </field>
+        <field>
+          <column_name>REPCODE1</column_name>
+          <stream_name>REPCODE1</stream_name>
+        </field>
+        <field>
+          <column_name>REPCODE2</column_name>
+          <stream_name>REPCODE2</stream_name>
+        </field>
+        <field>
+          <column_name>REPCODE3</column_name>
+          <stream_name>REPCODE3</stream_name>
+        </field>
+        <field>
+          <column_name>PUNCHOUTCODE</column_name>
+          <stream_name>PUNCHOUTCODE</stream_name>
+        </field>
+        <field>
+          <column_name>PUNCHOUTURL</column_name>
+          <stream_name>PUNCHOUTURL</stream_name>
+        </field>
+        <field>
+          <column_name>PUNCHOUTDOMAIN</column_name>
+          <stream_name>PUNCHOUTDOMAIN</stream_name>
+        </field>
+        <field>
+          <column_name>PUNCHOUTUSER</column_name>
+          <stream_name>PUNCHOUTUSER</stream_name>
+        </field>
+        <field>
+          <column_name>PUNCHOUTPASSWD</column_name>
+          <stream_name>PUNCHOUTPASSWD</stream_name>
+        </field>
+        <field>
+          <column_name>PUNCHOUTIDCODE</column_name>
+          <stream_name>PUNCHOUTIDCODE</stream_name>
+        </field>
+        <field>
+          <column_name>PUNCHOUTENC</column_name>
+          <stream_name>PUNCHOUTENC</stream_name>
+        </field>
+        <field>
+          <column_name>PUNCHOUTMKTPLACE</column_name>
+          <stream_name>PUNCHOUTMKTPLACE</stream_name>
+        </field>
+        <field>
+          <column_name>CUSTSUPPACCEXT</column_name>
+          <stream_name>CUSTSUPPACCEXT</stream_name>
+        </field>
+        <field>
+          <column_name>AUTORECEIPT</column_name>
+          <stream_name>AUTORECEIPT</stream_name>
+        </field>
+        <field>
+          <column_name>PROCSTATUS</column_name>
+          <stream_name>PROCSTATUS</stream_name>
+        </field>
+        <field>
+          <column_name>TOLERANCECODE</column_name>
+          <stream_name>TOLERANCECODE</stream_name>
+        </field>
+        <field>
+          <column_name>MATCHINGOFFSET</column_name>
+          <stream_name>MATCHINGOFFSET</stream_name>
+        </field>
+        <field>
+          <column_name>PROCTRANSLIMIT</column_name>
+          <stream_name>PROCTRANSLIMIT</stream_name>
+        </field>
+        <field>
+          <column_name>PROCTRANSLIMIT_DP</column_name>
+          <stream_name>PROCTRANSLIMIT_DP</stream_name>
+        </field>
+        <field>
+          <column_name>PROCCALLOFFS</column_name>
+          <stream_name>PROCCALLOFFS</stream_name>
+        </field>
+        <field>
+          <column_name>PROCGRNS</column_name>
+          <stream_name>PROCGRNS</stream_name>
+        </field>
+        <field>
+          <column_name>PROCRETURNS</column_name>
+          <stream_name>PROCRETURNS</stream_name>
+        </field>
+        <field>
+          <column_name>PROCEMAILSAL</column_name>
+          <stream_name>PROCEMAILSAL</stream_name>
+        </field>
+        <field>
+          <column_name>PROCEMAILSUB</column_name>
+          <stream_name>PROCEMAILSUB</stream_name>
+        </field>
+        <field>
+          <column_name>BILLOUTPUTDEVICE</column_name>
+          <stream_name>BILLOUTPUTDEVICE</stream_name>
+        </field>
+        <field>
+          <column_name>BILLEMAILSAL</column_name>
+          <stream_name>BILLEMAILSAL</stream_name>
+        </field>
+        <field>
+          <column_name>BILLEMAILSUB</column_name>
+          <stream_name>BILLEMAILSUB</stream_name>
+        </field>
+        <field>
+          <column_name>EUVATCODE</column_name>
+          <stream_name>EUVATCODE</stream_name>
+        </field>
+        <field>
+          <column_name>CMPCODE_CS</column_name>
+          <stream_name>CMPCODE_CS</stream_name>
+        </field>
+        <field>
+          <column_name>ELMLEVEL_CS</column_name>
+          <stream_name>ELMLEVEL_CS</stream_name>
+        </field>
+        <field>
+          <column_name>CODE_CS</column_name>
+          <stream_name>CODE_CS</stream_name>
+        </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1385</xloc>
+      <yloc>299</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step_error_handling>
+  </step_error_handling>
+   <slave-step-copy-partition-distribution>
+</slave-step-copy-partition-distribution>
+   <slave_transformation>N</slave_transformation>
+
+</transformation>

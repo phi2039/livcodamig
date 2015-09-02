@@ -1,0 +1,1021 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<transformation>
+  <info>
+    <name>build_asset_mapping</name>
+    <description/>
+    <extended_description/>
+    <trans_version/>
+    <trans_type>Normal</trans_type>
+    <trans_status>0</trans_status>
+    <directory>&#x2f;</directory>
+    <parameters>
+    </parameters>
+    <log>
+<trans-log-table><connection/>
+<schema/>
+<table/>
+<size_limit_lines/>
+<interval/>
+<timeout_days/>
+<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>Y</enabled><name>CHANNEL_ID</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STATUS</id><enabled>Y</enabled><name>STATUS</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name><subject/></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name><subject/></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name><subject/></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name><subject/></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name><subject/></field><field><id>LINES_REJECTED</id><enabled>Y</enabled><name>LINES_REJECTED</name><subject/></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>STARTDATE</id><enabled>Y</enabled><name>STARTDATE</name></field><field><id>ENDDATE</id><enabled>Y</enabled><name>ENDDATE</name></field><field><id>LOGDATE</id><enabled>Y</enabled><name>LOGDATE</name></field><field><id>DEPDATE</id><enabled>Y</enabled><name>DEPDATE</name></field><field><id>REPLAYDATE</id><enabled>Y</enabled><name>REPLAYDATE</name></field><field><id>LOG_FIELD</id><enabled>Y</enabled><name>LOG_FIELD</name></field><field><id>EXECUTING_SERVER</id><enabled>N</enabled><name>EXECUTING_SERVER</name></field><field><id>EXECUTING_USER</id><enabled>N</enabled><name>EXECUTING_USER</name></field><field><id>CLIENT</id><enabled>N</enabled><name>CLIENT</name></field></trans-log-table>
+<perf-log-table><connection/>
+<schema/>
+<table/>
+<interval/>
+<timeout_days/>
+<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>SEQ_NR</id><enabled>Y</enabled><name>SEQ_NR</name></field><field><id>LOGDATE</id><enabled>Y</enabled><name>LOGDATE</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STEPNAME</id><enabled>Y</enabled><name>STEPNAME</name></field><field><id>STEP_COPY</id><enabled>Y</enabled><name>STEP_COPY</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name></field><field><id>LINES_REJECTED</id><enabled>Y</enabled><name>LINES_REJECTED</name></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>INPUT_BUFFER_ROWS</id><enabled>Y</enabled><name>INPUT_BUFFER_ROWS</name></field><field><id>OUTPUT_BUFFER_ROWS</id><enabled>Y</enabled><name>OUTPUT_BUFFER_ROWS</name></field></perf-log-table>
+<channel-log-table><connection/>
+<schema/>
+<table/>
+<timeout_days/>
+<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>Y</enabled><name>CHANNEL_ID</name></field><field><id>LOG_DATE</id><enabled>Y</enabled><name>LOG_DATE</name></field><field><id>LOGGING_OBJECT_TYPE</id><enabled>Y</enabled><name>LOGGING_OBJECT_TYPE</name></field><field><id>OBJECT_NAME</id><enabled>Y</enabled><name>OBJECT_NAME</name></field><field><id>OBJECT_COPY</id><enabled>Y</enabled><name>OBJECT_COPY</name></field><field><id>REPOSITORY_DIRECTORY</id><enabled>Y</enabled><name>REPOSITORY_DIRECTORY</name></field><field><id>FILENAME</id><enabled>Y</enabled><name>FILENAME</name></field><field><id>OBJECT_ID</id><enabled>Y</enabled><name>OBJECT_ID</name></field><field><id>OBJECT_REVISION</id><enabled>Y</enabled><name>OBJECT_REVISION</name></field><field><id>PARENT_CHANNEL_ID</id><enabled>Y</enabled><name>PARENT_CHANNEL_ID</name></field><field><id>ROOT_CHANNEL_ID</id><enabled>Y</enabled><name>ROOT_CHANNEL_ID</name></field></channel-log-table>
+<step-log-table><connection/>
+<schema/>
+<table/>
+<timeout_days/>
+<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>Y</enabled><name>CHANNEL_ID</name></field><field><id>LOG_DATE</id><enabled>Y</enabled><name>LOG_DATE</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STEPNAME</id><enabled>Y</enabled><name>STEPNAME</name></field><field><id>STEP_COPY</id><enabled>Y</enabled><name>STEP_COPY</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name></field><field><id>LINES_REJECTED</id><enabled>Y</enabled><name>LINES_REJECTED</name></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>LOG_FIELD</id><enabled>N</enabled><name>LOG_FIELD</name></field></step-log-table>
+<metrics-log-table><connection/>
+<schema/>
+<table/>
+<timeout_days/>
+<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>Y</enabled><name>CHANNEL_ID</name></field><field><id>LOG_DATE</id><enabled>Y</enabled><name>LOG_DATE</name></field><field><id>METRICS_DATE</id><enabled>Y</enabled><name>METRICS_DATE</name></field><field><id>METRICS_CODE</id><enabled>Y</enabled><name>METRICS_CODE</name></field><field><id>METRICS_DESCRIPTION</id><enabled>Y</enabled><name>METRICS_DESCRIPTION</name></field><field><id>METRICS_SUBJECT</id><enabled>Y</enabled><name>METRICS_SUBJECT</name></field><field><id>METRICS_TYPE</id><enabled>Y</enabled><name>METRICS_TYPE</name></field><field><id>METRICS_VALUE</id><enabled>Y</enabled><name>METRICS_VALUE</name></field></metrics-log-table>
+    </log>
+    <maxdate>
+      <connection/>
+      <table/>
+      <field/>
+      <offset>0.0</offset>
+      <maxdiff>0.0</maxdiff>
+    </maxdate>
+    <size_rowset>10000</size_rowset>
+    <sleep_time_empty>50</sleep_time_empty>
+    <sleep_time_full>50</sleep_time_full>
+    <unique_connections>N</unique_connections>
+    <feedback_shown>Y</feedback_shown>
+    <feedback_size>50000</feedback_size>
+    <using_thread_priorities>Y</using_thread_priorities>
+    <shared_objects_file/>
+    <capture_step_performance>N</capture_step_performance>
+    <step_performance_capturing_delay>1000</step_performance_capturing_delay>
+    <step_performance_capturing_size_limit>100</step_performance_capturing_size_limit>
+    <dependencies>
+    </dependencies>
+    <partitionschemas>
+    </partitionschemas>
+    <slaveservers>
+    </slaveservers>
+    <clusterschemas>
+    </clusterschemas>
+  <created_user>-</created_user>
+  <created_date>2015&#x2f;08&#x2f;18 12&#x3a;10&#x3a;23.095</created_date>
+  <modified_user>-</modified_user>
+  <modified_date>2015&#x2f;08&#x2f;18 12&#x3a;10&#x3a;23.095</modified_date>
+  </info>
+  <notepads>
+    <notepad>
+      <note>Source Definition</note>
+      <xloc>18</xloc>
+      <yloc>207</yloc>
+      <width>126</width>
+      <heigth>30</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>HACK&#x3a; &#xd;&#xa;165217 -&#x3e; 165217&#xd;&#xa;and&#xd;&#xa;561551 -&#x3e; 561551&#xd;&#xa;&#xd;&#xa;TODO&#x3a; Handle broken &#xd;&#xa;categories automatically</note>
+      <xloc>1234</xloc>
+      <yloc>340</yloc>
+      <width>174</width>
+      <heigth>150</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>0</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>0</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+  </notepads>
+  <connection>
+    <name>CODA-DEST</name>
+    <server>localhost</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>codadev</database>
+    <port>21521</port>
+    <username>codauser</username>
+    <password>Encrypted 2be98afc86aa7f2e4cb1aa174df96aacc</password>
+    <servername/>
+    <data_tablespace>codauser</data_tablespace>
+    <index_tablespace>codauser</index_tablespace>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>21521</attribute></attribute>
+      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>N</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>CODA-SOURCE</name>
+    <server>localhost</server>
+    <type>GENERIC</type>
+    <access>Native</access>
+    <database>coda2dev</database>
+    <port>11521</port>
+    <username>codauser</username>
+    <password>Encrypted 2be98afc86aa7f2e4cb1aa174df96aacc</password>
+    <servername/>
+    <data_tablespace>codamigtbl</data_tablespace>
+    <index_tablespace>codamigidx</index_tablespace>
+    <attributes>
+      <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>oracle.jdbc.OracleDriver</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;oracle&#x3a;thin&#x3a;&#x40;10.253.133.146&#x3a;1521&#x3a;codadev</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>11521</attribute></attribute>
+      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>N</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>STAGING</name>
+    <server/>
+    <type>GENERIC</type>
+    <access>Native</access>
+    <database/>
+    <port>1521</port>
+    <username>sa</username>
+    <password>Encrypted 2be98afc86aa7f2e4cb79ce10bef2bcdb</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>org.h2.Driver</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;h2&#x3a;&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;db&#x5c;data&#x5c;staging&#x3b;AUTO_SERVER&#x3d;true&#x3b;DB_CLOSE_ON_EXIT&#x3d;FALSE</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>1521</attribute></attribute>
+      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>N</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <order>
+  <hop> <from>Normalize</from><to>Select Fields</to><enabled>Y</enabled> </hop>
+  <hop> <from>Account Codes</from><to>Flatten Types</to><enabled>Y</enabled> </hop>
+  <hop> <from>Entity List</from><to>Source Categories</to><enabled>Y</enabled> </hop>
+  <hop> <from>Add BegBal&#x2f;FX</from><to>Lookup Mapping</to><enabled>Y</enabled> </hop>
+  <hop> <from>Lookup Mapping</from><to>Valid Mapping</to><enabled>Y</enabled> </hop>
+  <hop> <from>Valid Mapping</from><to>Lookup Accounts</to><enabled>Y</enabled> </hop>
+  <hop> <from>Valid Mapping</from><to>Dummy &#x28;do nothing&#x29;</to><enabled>Y</enabled> </hop>
+  <hop> <from>Flatten Types</from><to>Merge Join</to><enabled>Y</enabled> </hop>
+  <hop> <from>Source Categories</from><to>Merge Join</to><enabled>Y</enabled> </hop>
+  <hop> <from>Lookup Accounts</from><to>Valid Cap Account</to><enabled>Y</enabled> </hop>
+  <hop> <from>Valid Cap Account</from><to>Dummy &#x28;do nothing&#x29; 2</to><enabled>Y</enabled> </hop>
+  <hop> <from>Valid Cap Account</from><to>Normalize</to><enabled>Y</enabled> </hop>
+  <hop> <from>Merge Join</from><to>Check Exp Acct</to><enabled>Y</enabled> </hop>
+  <hop> <from>Check Exp Acct</from><to>Add BegBal&#x2f;FX</to><enabled>Y</enabled> </hop>
+  <hop> <from>Auto Category</from><to>Map to Same</to><enabled>Y</enabled> </hop>
+  <hop> <from>Auto Category</from><to>ASSET_PRE_MAP</to><enabled>Y</enabled> </hop>
+  <hop> <from>Map to Same</from><to>ASSET_PRE_MAP</to><enabled>Y</enabled> </hop>
+  <hop> <from>Select Fields</from><to>Auto Category</to><enabled>Y</enabled> </hop>
+  </order>
+  <step>
+    <name>ASSET_PRE_MAP</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>STAGING</connection>
+    <schema>STAGING</schema>
+    <table>ASSET_PRE_MAP</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>N</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1362</xloc>
+      <yloc>144</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Account Codes</name>
+    <type>DataGrid</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>AccountType</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>AccountSuffix</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <data>
+      <line> <item>BEGBAL_CAP_ACCT</item><item>11</item> </line>
+      <line> <item>BEGBAL_AD_ACCT</item><item>51</item> </line>
+      <line> <item>BEGBAL_FX_ACCT</item><item>18</item> </line>
+      <line> <item>ACCUM_FX_ACCT</item><item>58</item> </line>
+      <line> <item>CTA_ACCT</item><item>331199</item> </line>
+    </data>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>196</xloc>
+      <yloc>330</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Add BegBal&#x2f;FX</name>
+    <type>Formula</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+       <formula><field_name>BEGBAL_CAP_ACCT_FROM</field_name>
+<formula_string>&#x5b;CATG_PREFIX&#x5d; &#x26; &#x5b;BEGBAL_CAP_ACCT_FROM&#x5d;</formula_string>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field>BEGBAL_CAP_ACCT_FROM</replace_field>
+</formula>
+       <formula><field_name>BEGBAL_AD_ACCT_FROM</field_name>
+<formula_string>&#x5b;CATG_PREFIX&#x5d; &#x26;  &#x5b;BEGBAL_AD_ACCT_FROM&#x5d;</formula_string>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field>BEGBAL_AD_ACCT_FROM</replace_field>
+</formula>
+       <formula><field_name>BEGBAL_FX_ACCT_FROM</field_name>
+<formula_string>&#x5b;CATG_PREFIX&#x5d; &#x26;  &#x5b;BEGBAL_FX_ACCT_FROM&#x5d;</formula_string>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field>BEGBAL_FX_ACCT_FROM</replace_field>
+</formula>
+       <formula><field_name>ACCUM_FX_ACCT_FROM</field_name>
+<formula_string>&#x5b;CATG_PREFIX&#x5d; &#x26;  &#x5b;ACCUM_FX_ACCT_FROM&#x5d;</formula_string>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field>ACCUM_FX_ACCT_FROM</replace_field>
+</formula>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>413</xloc>
+      <yloc>135</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Auto Category</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>ASSET_PRE_MAP</send_true_to>
+<send_false_to>Map to Same</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <conditions>
+  <condition>
+   <negated>N</negated>
+   <leftvalue>ELMCODE_FROM</leftvalue>
+   <function>&#x3c;&#x3e;</function>
+   <rightvalue/>
+   <value><name>constant</name><type>String</type><text>165217</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
+  <condition>
+   <negated>N</negated>
+   <operator>AND</operator>
+   <leftvalue>ELMCODE_FROM</leftvalue>
+   <function>&#x3c;&#x3e;</function>
+   <rightvalue/>
+   <value><name>constant</name><type>String</type><text>561551</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
+  </conditions>
+ </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1234</xloc>
+      <yloc>144</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Check Exp Acct</name>
+    <type>Formula</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+       <formula><field_name>ACCTDEPNCHARGE_FROM</field_name>
+<formula_string>IF&#x28;LEFT&#x28;&#x5b;ACCTDEPNCHARGE_FROM&#x5d;&#x3b; 1&#x29; &#x3d; &#x22;1&#x22;&#x3b; &#x3b; &#x5b;ACCTDEPNCHARGE_FROM&#x5d;&#x29;</formula_string>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field>ACCTDEPNCHARGE_FROM</replace_field>
+</formula>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>293</xloc>
+      <yloc>135</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Dummy &#x28;do nothing&#x29;</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>656</xloc>
+      <yloc>281</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Dummy &#x28;do nothing&#x29; 2</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>912</xloc>
+      <yloc>272</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Entity List</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>STAGING</connection>
+    <sql>SELECT&#xd;&#xa;GROUP_CONCAT&#x28;CMPCODE_FROM SEPARATOR &#x27;,&#x27;&#x29; AS CMPLIST_1,&#xd;&#xa;GROUP_CONCAT&#x28;CMPCODE_FROM SEPARATOR &#x27;,&#x27;&#x29; AS CMPLIST_2&#xd;&#xa;FROM&#xd;&#xa;STAGING.ENTITY_MAPPING</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>62</xloc>
+      <yloc>38</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Flatten Types</name>
+    <type>Denormaliser</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <key_field>AccountType</key_field>
+      <group>
+        </group>
+      <fields>
+        <field>
+          <field_name>AccountSuffix</field_name>
+          <key_value>BEGBAL_CAP_ACCT</key_value>
+          <target_name>BEGBAL_CAP_ACCT_FROM</target_name>
+          <target_type>String</target_type>
+          <target_format/>
+          <target_length>2</target_length>
+          <target_precision>-1</target_precision>
+          <target_decimal_symbol/>
+          <target_grouping_symbol/>
+          <target_currency_symbol/>
+          <target_null_string/>
+          <target_aggregation_type>-</target_aggregation_type>
+          </field>
+        <field>
+          <field_name>AccountSuffix</field_name>
+          <key_value>BEGBAL_AD_ACCT</key_value>
+          <target_name>BEGBAL_AD_ACCT_FROM</target_name>
+          <target_type>String</target_type>
+          <target_format/>
+          <target_length>2</target_length>
+          <target_precision>-1</target_precision>
+          <target_decimal_symbol/>
+          <target_grouping_symbol/>
+          <target_currency_symbol/>
+          <target_null_string/>
+          <target_aggregation_type>-</target_aggregation_type>
+          </field>
+        <field>
+          <field_name>AccountSuffix</field_name>
+          <key_value>BEGBAL_FX_ACCT</key_value>
+          <target_name>BEGBAL_FX_ACCT_FROM</target_name>
+          <target_type>String</target_type>
+          <target_format/>
+          <target_length>2</target_length>
+          <target_precision>-1</target_precision>
+          <target_decimal_symbol/>
+          <target_grouping_symbol/>
+          <target_currency_symbol/>
+          <target_null_string/>
+          <target_aggregation_type>-</target_aggregation_type>
+          </field>
+        <field>
+          <field_name>AccountSuffix</field_name>
+          <key_value>ACCUM_FX_ACCT</key_value>
+          <target_name>ACCUM_FX_ACCT_FROM</target_name>
+          <target_type>String</target_type>
+          <target_format/>
+          <target_length>2</target_length>
+          <target_precision>-1</target_precision>
+          <target_decimal_symbol/>
+          <target_grouping_symbol/>
+          <target_currency_symbol/>
+          <target_null_string/>
+          <target_aggregation_type>-</target_aggregation_type>
+          </field>
+        <field>
+          <field_name>AccountSuffix</field_name>
+          <key_value>CTA_ACCT</key_value>
+          <target_name>BEGBAL_FX_ACCT_TO</target_name>
+          <target_type>String</target_type>
+          <target_format/>
+          <target_length>6</target_length>
+          <target_precision>-1</target_precision>
+          <target_decimal_symbol/>
+          <target_grouping_symbol/>
+          <target_currency_symbol/>
+          <target_null_string/>
+          <target_aggregation_type>-</target_aggregation_type>
+          </field>
+        <field>
+          <field_name>AccountSuffix</field_name>
+          <key_value>CTA_ACCT</key_value>
+          <target_name>ACCUM_FX_ACCT_TO</target_name>
+          <target_type>String</target_type>
+          <target_format/>
+          <target_length>6</target_length>
+          <target_precision>-1</target_precision>
+          <target_decimal_symbol/>
+          <target_grouping_symbol/>
+          <target_currency_symbol/>
+          <target_null_string/>
+          <target_aggregation_type>-</target_aggregation_type>
+          </field>
+        </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>193</xloc>
+      <yloc>229</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Lookup Accounts</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>STAGING</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema>STAGING</schema>
+      <table>ASSET_CATEGORY</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>CATG_CODE_TO</name>
+        <field>CODE</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>ACCTCAPITAL</name>
+        <rename>ACCTCAPITAL_TO</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>ACCTDEPNACCUM</name>
+        <rename>ACCTDEPNACCUM_TO</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>ACCTDEPNCHARGE</name>
+        <rename>ACCTDEPNCHARGE_TO</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>DISPPROFACCT</name>
+        <rename>DISPPROFACCT_TO</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>DISPLOSSACCT</name>
+        <rename>DISPLOSSACCT_TO</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>ACCTOUTOFWIP</name>
+        <rename>ACCTOUTOFWIP_TO</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>ACCTINTOCAP</name>
+        <rename>ACCTINTOCAP_TO</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>SUSPENSE</name>
+        <rename>SUSPENSE_TO</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>ALTCAPACCSALE</name>
+        <rename>ALTCAPACCSALE_TO</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>ALTDEPNACCSALE</name>
+        <rename>ALTDEPNACCSALE_TO</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>BEGBAL_CAP_ACCT</name>
+        <rename>BEGBAL_CAP_ACCT_TO</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>BEGBAL_AD_ACCT</name>
+        <rename>BEGBAL_AD_ACCT_TO</rename>
+        <default/>
+        <type>String</type>
+      </value>
+    </lookup>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>776</xloc>
+      <yloc>140</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Lookup Mapping</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>STAGING</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema>STAGING_TEMPLATES</schema>
+      <table>ASSET_MAP</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>CATG_CODE_FROM</name>
+        <field>CATG_CODE_FROM</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>CATG_CODE_TO</name>
+        <rename>CATG_CODE_TO</rename>
+        <default/>
+        <type>String</type>
+      </value>
+    </lookup>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>534</xloc>
+      <yloc>136</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Map to Same</name>
+    <type>SetValueField</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>ELMCODE_TO</name>
+        <replaceby>ELMCODE_FROM</replaceby>
+        </field>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1301</xloc>
+      <yloc>265</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Merge Join</name>
+    <type>MergeJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<join_type>INNER</join_type>
+<step1>Source Categories</step1>
+<step2>Flatten Types</step2>
+    <keys_1>
+    </keys_1>
+    <keys_2>
+    </keys_2>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>188</xloc>
+      <yloc>136</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Normalize</name>
+    <type>Normaliser</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+   <typefield>ACCOUNT_TYPE</typefield>
+    <fields>      <field>        <name>ACCTCAPITAL_FROM</name>
+        <value>ACCTCAPITAL</value>
+        <norm>ELMCODE_FROM</norm>
+        </field>      <field>        <name>ACCTDEPNACCUM_FROM</name>
+        <value>ACCTDEPNACCUM</value>
+        <norm>ELMCODE_FROM</norm>
+        </field>      <field>        <name>ACCTDEPNCHARGE_FROM</name>
+        <value>ACCTDEPNCHARGE</value>
+        <norm>ELMCODE_FROM</norm>
+        </field>      <field>        <name>DISPPROFACCT_FROM</name>
+        <value>DISPPROFACCT</value>
+        <norm>ELMCODE_FROM</norm>
+        </field>      <field>        <name>DISPLOSSACCT_FROM</name>
+        <value>DISPLOSSACCT</value>
+        <norm>ELMCODE_FROM</norm>
+        </field>      <field>        <name>ACCTOUTOFWIP_FROM</name>
+        <value>ACCTOUTOFWIP</value>
+        <norm>ELMCODE_FROM</norm>
+        </field>      <field>        <name>ACCTINTOCAP_FROM</name>
+        <value>ACCTINTOCAP</value>
+        <norm>ELMCODE_FROM</norm>
+        </field>      <field>        <name>ALTCAPACCSALE_FROM</name>
+        <value>ALTCAPACCSALE</value>
+        <norm>ELMCODE_FROM</norm>
+        </field>      <field>        <name>ALTDEPNACCSALE_FROM</name>
+        <value>ALTDEPNACCSALE</value>
+        <norm>ELMCODE_FROM</norm>
+        </field>      <field>        <name>BEGBAL_CAP_ACCT_FROM</name>
+        <value>BEGBAL_CAP_ACCT</value>
+        <norm>ELMCODE_FROM</norm>
+        </field>      <field>        <name>BEGBAL_AD_ACCT_FROM</name>
+        <value>BEGBAL_AD_ACCT</value>
+        <norm>ELMCODE_FROM</norm>
+        </field>      <field>        <name>BEGBAL_FX_ACCT_FROM</name>
+        <value>BEGBAL_FX_ACCT</value>
+        <norm>ELMCODE_FROM</norm>
+        </field>      <field>        <name>ACCUM_FX_ACCT_FROM</name>
+        <value>ACCUM_FX_ACCT</value>
+        <norm>ELMCODE_FROM</norm>
+        </field>      <field>        <name>ACCTCAPITAL_TO</name>
+        <value>ACCTCAPITAL</value>
+        <norm>ELMCODE_TO</norm>
+        </field>      <field>        <name>ACCTDEPNACCUM_TO</name>
+        <value>ACCTDEPNACCUM</value>
+        <norm>ELMCODE_TO</norm>
+        </field>      <field>        <name>ACCTDEPNCHARGE_TO</name>
+        <value>ACCTDEPNCHARGE</value>
+        <norm>ELMCODE_TO</norm>
+        </field>      <field>        <name>DISPPROFACCT_TO</name>
+        <value>DISPPROFACCT</value>
+        <norm>ELMCODE_TO</norm>
+        </field>      <field>        <name>DISPLOSSACCT_TO</name>
+        <value>DISPLOSSACCT</value>
+        <norm>ELMCODE_TO</norm>
+        </field>      <field>        <name>ACCTOUTOFWIP_TO</name>
+        <value>ACCTOUTOFWIP</value>
+        <norm>ELMCODE_TO</norm>
+        </field>      <field>        <name>ACCTINTOCAP_TO</name>
+        <value>ACCTINTOCAP</value>
+        <norm>ELMCODE_TO</norm>
+        </field>      <field>        <name>ALTCAPACCSALE_TO</name>
+        <value>ALTCAPACCSALE</value>
+        <norm>ELMCODE_TO</norm>
+        </field>      <field>        <name>ALTDEPNACCSALE_TO</name>
+        <value>ALTDEPNACCSALE</value>
+        <norm>ELMCODE_TO</norm>
+        </field>      <field>        <name>BEGBAL_CAP_ACCT_TO</name>
+        <value>BEGBAL_CAP_ACCT</value>
+        <norm>ELMCODE_TO</norm>
+        </field>      <field>        <name>BEGBAL_AD_ACCT_TO</name>
+        <value>BEGBAL_AD_ACCT</value>
+        <norm>ELMCODE_TO</norm>
+        </field>      <field>        <name>BEGBAL_FX_ACCT_TO</name>
+        <value>BEGBAL_FX_ACCT</value>
+        <norm>ELMCODE_TO</norm>
+        </field>      <field>        <name>ACCUM_FX_ACCT_TO</name>
+        <value>ACCUM_FX_ACCT</value>
+        <norm>ELMCODE_TO</norm>
+        </field>      </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1025</xloc>
+      <yloc>143</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Select Fields</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>      <field>        <name>CMPCODE_FROM</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CATG_CODE_FROM</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CATG_CODE_TO</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ACCOUNT_TYPE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ELMCODE_FROM</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ELMCODE_TO</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>        <select_unspecified>N</select_unspecified>
+    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1119</xloc>
+      <yloc>143</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Source Categories</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>CODA-SOURCE</connection>
+    <sql>-- All categories and associated posting rules in all non-dev companies&#xd;&#xa;select &#xd;&#xa;c.cmpcode as cmpcode_from,&#xd;&#xa;c.code as catg_code_from,&#xd;&#xa;regexp_substr &#x28;p.acctcapital, &#x27;&#x5b;&#x5e;&#x5c;.&#x5d;&#x2b;&#x27;, 1&#x29; acctcapital_from,&#xd;&#xa;regexp_substr &#x28;p.acctdepnaccum, &#x27;&#x5b;&#x5e;&#x5c;.&#x5d;&#x2b;&#x27;, 1&#x29; acctdepnaccum_from,&#xd;&#xa;regexp_substr &#x28;p.acctdepncharge, &#x27;&#x5b;&#x5e;&#x5c;.&#x5d;&#x2b;&#x27;, 1&#x29; acctdepncharge_from,&#xd;&#xa;regexp_substr &#x28;p.dispprofacct, &#x27;&#x5b;&#x5e;&#x5c;.&#x5d;&#x2b;&#x27;, 1&#x29; dispprofacct_from,&#xd;&#xa;regexp_substr &#x28;p.displossacct, &#x27;&#x5b;&#x5e;&#x5c;.&#x5d;&#x2b;&#x27;, 1&#x29; displossacct_from,&#xd;&#xa;regexp_substr &#x28;p.acctoutofwip, &#x27;&#x5b;&#x5e;&#x5c;.&#x5d;&#x2b;&#x27;, 1&#x29; acctoutofwip_from,&#xd;&#xa;regexp_substr &#x28;p.acctintocap, &#x27;&#x5b;&#x5e;&#x5c;.&#x5d;&#x2b;&#x27;, 1&#x29; acctintocap_from,&#xd;&#xa;regexp_substr &#x28;p.altcapaccsale, &#x27;&#x5b;&#x5e;&#x5c;.&#x5d;&#x2b;&#x27;, 1&#x29; altcapaccsale_from,&#xd;&#xa;regexp_substr &#x28;p.altdepnaccsale, &#x27;&#x5b;&#x5e;&#x5c;.&#x5d;&#x2b;&#x27;, 1&#x29; altdepnaccsale_from,&#xd;&#xa;substr&#x28;regexp_substr &#x28;p.acctcapital, &#x27;&#x5b;&#x5e;&#x5c;.&#x5d;&#x2b;&#x27;, 1&#x29;,1,4&#x29; as catg_prefix&#xd;&#xa;from &#xd;&#xa;efa_category c&#xd;&#xa;join efa_postrule p on p.cmpcode&#x3d;c.cmpcode and p.code&#x3d;c.postrulecode&#xd;&#xa;left join &#xd;&#xa;  &#x28;select c.cmpcode as cmpcode, c.code as catcode, count&#x28;a.assetcode&#x29; as assets&#xd;&#xa;  from &#xd;&#xa;  efa_category c &#xd;&#xa;  left join efa_asset a on c.cmpcode&#x3d;a.cmpcode and c.code&#x3d;a.catcode&#xd;&#xa;  group by c.cmpcode, c.code&#x29; a on c.cmpcode&#x3d;a.cmpcode and c.code&#x3d;a.catcode&#xd;&#xa;where c.cmpcode in &#xd;&#xa;	&#x28;select regexp_substr&#x28;&#x3f;,&#x27;&#x5b;&#x5e;,&#x5d;&#x2b;&#x27;, 1, level&#x29; from dual&#xd;&#xa;	connect by regexp_substr&#x28;&#x3f;, &#x27;&#x5b;&#x5e;,&#x5d;&#x2b;&#x27;, 1, level&#x29; is not null&#x29;&#xd;&#xa;--and a.assets &#x3e; 0</sql>
+    <limit>0</limit>
+    <lookup>Entity List</lookup>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>66</xloc>
+      <yloc>136</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Valid Cap Account</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Normalize</send_true_to>
+<send_false_to>Dummy &#x28;do nothing&#x29; 2</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>ACCTCAPITAL_TO</leftvalue>
+ <function>IS NOT NULL</function>
+ <rightvalue/>
+ </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>906</xloc>
+      <yloc>141</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Valid Mapping</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Lookup Accounts</send_true_to>
+<send_false_to>Dummy &#x28;do nothing&#x29;</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>CATG_CODE_TO</leftvalue>
+ <function>IS NOT NULL</function>
+ <rightvalue/>
+ </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>656</xloc>
+      <yloc>139</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step_error_handling>
+  </step_error_handling>
+   <slave-step-copy-partition-distribution>
+</slave-step-copy-partition-distribution>
+   <slave_transformation>N</slave_transformation>
+
+</transformation>

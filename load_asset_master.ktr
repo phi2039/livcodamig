@@ -1,0 +1,1294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<transformation>
+  <info>
+    <name>load_asset_master</name>
+    <description/>
+    <extended_description/>
+    <trans_version/>
+    <trans_type>Normal</trans_type>
+    <directory>&#x2f;</directory>
+    <parameters>
+    </parameters>
+    <log>
+<trans-log-table><connection/>
+<schema/>
+<table/>
+<size_limit_lines/>
+<interval/>
+<timeout_days/>
+<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>Y</enabled><name>CHANNEL_ID</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STATUS</id><enabled>Y</enabled><name>STATUS</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name><subject/></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name><subject/></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name><subject/></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name><subject/></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name><subject/></field><field><id>LINES_REJECTED</id><enabled>Y</enabled><name>LINES_REJECTED</name><subject/></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>STARTDATE</id><enabled>Y</enabled><name>STARTDATE</name></field><field><id>ENDDATE</id><enabled>Y</enabled><name>ENDDATE</name></field><field><id>LOGDATE</id><enabled>Y</enabled><name>LOGDATE</name></field><field><id>DEPDATE</id><enabled>Y</enabled><name>DEPDATE</name></field><field><id>REPLAYDATE</id><enabled>Y</enabled><name>REPLAYDATE</name></field><field><id>LOG_FIELD</id><enabled>Y</enabled><name>LOG_FIELD</name></field><field><id>EXECUTING_SERVER</id><enabled>N</enabled><name>EXECUTING_SERVER</name></field><field><id>EXECUTING_USER</id><enabled>N</enabled><name>EXECUTING_USER</name></field><field><id>CLIENT</id><enabled>N</enabled><name>CLIENT</name></field></trans-log-table>
+<perf-log-table><connection/>
+<schema/>
+<table/>
+<interval/>
+<timeout_days/>
+<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>SEQ_NR</id><enabled>Y</enabled><name>SEQ_NR</name></field><field><id>LOGDATE</id><enabled>Y</enabled><name>LOGDATE</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STEPNAME</id><enabled>Y</enabled><name>STEPNAME</name></field><field><id>STEP_COPY</id><enabled>Y</enabled><name>STEP_COPY</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name></field><field><id>LINES_REJECTED</id><enabled>Y</enabled><name>LINES_REJECTED</name></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>INPUT_BUFFER_ROWS</id><enabled>Y</enabled><name>INPUT_BUFFER_ROWS</name></field><field><id>OUTPUT_BUFFER_ROWS</id><enabled>Y</enabled><name>OUTPUT_BUFFER_ROWS</name></field></perf-log-table>
+<channel-log-table><connection/>
+<schema/>
+<table/>
+<timeout_days/>
+<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>Y</enabled><name>CHANNEL_ID</name></field><field><id>LOG_DATE</id><enabled>Y</enabled><name>LOG_DATE</name></field><field><id>LOGGING_OBJECT_TYPE</id><enabled>Y</enabled><name>LOGGING_OBJECT_TYPE</name></field><field><id>OBJECT_NAME</id><enabled>Y</enabled><name>OBJECT_NAME</name></field><field><id>OBJECT_COPY</id><enabled>Y</enabled><name>OBJECT_COPY</name></field><field><id>REPOSITORY_DIRECTORY</id><enabled>Y</enabled><name>REPOSITORY_DIRECTORY</name></field><field><id>FILENAME</id><enabled>Y</enabled><name>FILENAME</name></field><field><id>OBJECT_ID</id><enabled>Y</enabled><name>OBJECT_ID</name></field><field><id>OBJECT_REVISION</id><enabled>Y</enabled><name>OBJECT_REVISION</name></field><field><id>PARENT_CHANNEL_ID</id><enabled>Y</enabled><name>PARENT_CHANNEL_ID</name></field><field><id>ROOT_CHANNEL_ID</id><enabled>Y</enabled><name>ROOT_CHANNEL_ID</name></field></channel-log-table>
+<step-log-table><connection/>
+<schema/>
+<table/>
+<timeout_days/>
+<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>Y</enabled><name>CHANNEL_ID</name></field><field><id>LOG_DATE</id><enabled>Y</enabled><name>LOG_DATE</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STEPNAME</id><enabled>Y</enabled><name>STEPNAME</name></field><field><id>STEP_COPY</id><enabled>Y</enabled><name>STEP_COPY</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name></field><field><id>LINES_REJECTED</id><enabled>Y</enabled><name>LINES_REJECTED</name></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>LOG_FIELD</id><enabled>N</enabled><name>LOG_FIELD</name></field></step-log-table>
+<metrics-log-table><connection/>
+<schema/>
+<table/>
+<timeout_days/>
+<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>Y</enabled><name>CHANNEL_ID</name></field><field><id>LOG_DATE</id><enabled>Y</enabled><name>LOG_DATE</name></field><field><id>METRICS_DATE</id><enabled>Y</enabled><name>METRICS_DATE</name></field><field><id>METRICS_CODE</id><enabled>Y</enabled><name>METRICS_CODE</name></field><field><id>METRICS_DESCRIPTION</id><enabled>Y</enabled><name>METRICS_DESCRIPTION</name></field><field><id>METRICS_SUBJECT</id><enabled>Y</enabled><name>METRICS_SUBJECT</name></field><field><id>METRICS_TYPE</id><enabled>Y</enabled><name>METRICS_TYPE</name></field><field><id>METRICS_VALUE</id><enabled>Y</enabled><name>METRICS_VALUE</name></field></metrics-log-table>
+    </log>
+    <maxdate>
+      <connection/>
+      <table/>
+      <field/>
+      <offset>0.0</offset>
+      <maxdiff>0.0</maxdiff>
+    </maxdate>
+    <size_rowset>10000</size_rowset>
+    <sleep_time_empty>50</sleep_time_empty>
+    <sleep_time_full>50</sleep_time_full>
+    <unique_connections>N</unique_connections>
+    <feedback_shown>Y</feedback_shown>
+    <feedback_size>50000</feedback_size>
+    <using_thread_priorities>Y</using_thread_priorities>
+    <shared_objects_file/>
+    <capture_step_performance>N</capture_step_performance>
+    <step_performance_capturing_delay>1000</step_performance_capturing_delay>
+    <step_performance_capturing_size_limit>100</step_performance_capturing_size_limit>
+    <dependencies>
+    </dependencies>
+    <partitionschemas>
+    </partitionschemas>
+    <slaveservers>
+    </slaveservers>
+    <clusterschemas>
+    </clusterschemas>
+  <created_user>-</created_user>
+  <created_date>2015&#x2f;08&#x2f;18 09&#x3a;37&#x3a;47.349</created_date>
+  <modified_user>-</modified_user>
+  <modified_date>2015&#x2f;08&#x2f;18 09&#x3a;37&#x3a;47.349</modified_date>
+  </info>
+  <notepads>
+    <notepad>
+      <note>TODO&#x3a; &#xd;&#xa;Vocabulary Mapping&#xd;&#xa;Validate Input Values</note>
+      <xloc>57</xloc>
+      <yloc>332</yloc>
+      <width>151</width>
+      <heigth>70</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>0</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>64</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+  </notepads>
+  <connection>
+    <name>CODA-DEST</name>
+    <server>localhost</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>codadev</database>
+    <port>21521</port>
+    <username>codauser</username>
+    <password>Encrypted 2be98afc86aa7f2e4cb1aa174df96aacc</password>
+    <servername/>
+    <data_tablespace>codauser</data_tablespace>
+    <index_tablespace>codauser</index_tablespace>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>21521</attribute></attribute>
+      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>N</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>CODA-SOURCE</name>
+    <server>localhost</server>
+    <type>GENERIC</type>
+    <access>Native</access>
+    <database>coda2dev</database>
+    <port>11521</port>
+    <username>codauser</username>
+    <password>Encrypted 2be98afc86aa7f2e4cb1aa174df96aacc</password>
+    <servername/>
+    <data_tablespace>codamigtbl</data_tablespace>
+    <index_tablespace>codamigidx</index_tablespace>
+    <attributes>
+      <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>oracle.jdbc.OracleDriver</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;oracle&#x3a;thin&#x3a;&#x40;10.253.133.146&#x3a;1521&#x3a;codadev</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>11521</attribute></attribute>
+      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>N</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>STAGING</name>
+    <server/>
+    <type>GENERIC</type>
+    <access>Native</access>
+    <database/>
+    <port>1521</port>
+    <username>sa</username>
+    <password>Encrypted 2be98afc86aa7f2e4cb79ce10bef2bcdb</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>org.h2.Driver</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;h2&#x3a;&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;db&#x5c;data&#x5c;staging&#x3b;AUTO_SERVER&#x3d;true&#x3b;DB_CLOSE_ON_EXIT&#x3d;FALSE</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>1521</attribute></attribute>
+      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>N</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <order>
+  <hop> <from>ASSET_MASTER</from><to>Set Posting Rule</to><enabled>Y</enabled> </hop>
+  <hop> <from>Set Posting Rule</from><to>Set Numbering Rule</to><enabled>Y</enabled> </hop>
+  <hop> <from>Set Numbering Rule</from><to>Set Constants</to><enabled>Y</enabled> </hop>
+  <hop> <from>Set Constants</from><to>WIP</to><enabled>Y</enabled> </hop>
+  <hop> <from>WIP</from><to>Set BS Type Id</to><enabled>Y</enabled> </hop>
+  <hop> <from>Account Codes</from><to>Flatten Types</to><enabled>Y</enabled> </hop>
+  <hop> <from>Build Accounts</from><to>Copy Accounts</to><enabled>Y</enabled> </hop>
+  <hop> <from>Flatten Types</from><to>Add Types</to><enabled>Y</enabled> </hop>
+  <hop> <from>Add Types</from><to>Build Accounts</to><enabled>Y</enabled> </hop>
+  <hop> <from>Set BS Type Id</from><to>Set IS Type Id</to><enabled>Y</enabled> </hop>
+  <hop> <from>Set IS Type Id</from><to>Add Types</to><enabled>Y</enabled> </hop>
+  <hop> <from>Posting Documents</from><to>Flatten Docs</to><enabled>Y</enabled> </hop>
+  <hop> <from>Flatten Docs</from><to>Add Docs</to><enabled>Y</enabled> </hop>
+  <hop> <from>Copy Accounts</from><to>Add Docs</to><enabled>Y</enabled> </hop>
+  <hop> <from>Add Docs</from><to>WIP Doc</to><enabled>Y</enabled> </hop>
+  <hop> <from>WIP Doc</from><to>Set Depr Rule</to><enabled>Y</enabled> </hop>
+  <hop> <from>Set Depr Rule</from><to>Sort on WIP</to><enabled>Y</enabled> </hop>
+  <hop> <from>Set Depr Rule</from><to>Lookup WIP Partner</to><enabled>Y</enabled> </hop>
+  <hop> <from>Sort on WIP</from><to>Lookup WIP Partner</to><enabled>Y</enabled> </hop>
+  <hop> <from>Lookup WIP Partner</from><to>Select Fields</to><enabled>Y</enabled> </hop>
+  <hop> <from>Select Fields</from><to>ASSET_CATEGORY</to><enabled>Y</enabled> </hop>
+  </order>
+  <step>
+    <name>ASSET_CATEGORY</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>STAGING</connection>
+    <schema>STAGING</schema>
+    <table>ASSET_CATEGORY</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>N</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1174</xloc>
+      <yloc>63</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>ASSET_MASTER</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>STAGING</connection>
+    <sql>SELECT&#xd;&#xa;  CATG_CODE&#xd;&#xa;, CATG_NAME&#xd;&#xa;, CATG_SNAME&#xd;&#xa;, CATG_TYPE&#xd;&#xa;, DEPR_RULE&#xd;&#xa;, CATG_ID&#xd;&#xa;, WIP_PARTNER&#xd;&#xa;, DEPR_AMORT&#xd;&#xa;, SALEABLE&#xd;&#xa;, SOURCESHEET&#xd;&#xa;, SOURCEROW&#xd;&#xa;, SOURCEFILE&#xd;&#xa;, SOURCEFILESIZE&#xd;&#xa;, SOURCEFILEMOD&#xd;&#xa;FROM STAGING_TEMPLATES.ASSET_MASTER&#xd;&#xa;</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>69</xloc>
+      <yloc>51</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Account Codes</name>
+    <type>DataGrid</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>AccountType</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>AccountSuffix</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <data>
+      <line> <item>CAP_ACCT</item><item>12</item> </line>
+      <line> <item>WIP_ACCT</item><item>17</item> </line>
+      <line> <item>AD_ACCT</item><item>52</item> </line>
+      <line> <item>DEPR_EXP_ACCT</item><item>51</item> </line>
+      <line> <item>COST_SALE_ACCT</item><item>16</item> </line>
+      <line> <item>AD_SALE_ACCT</item><item>56</item> </line>
+      <line> <item>BEGBAL_CAP_ACCT</item><item>11</item> </line>
+      <line> <item>BEGBAL_AD_ACCT</item><item>51</item> </line>
+      <line> <item>DISPOS_PROFIT_ACCT</item><item>546112</item> </line>
+      <line> <item>SUSPENSE_ACCT</item><item>98</item> </line>
+      <line> <item/><item/> </line>
+    </data>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>529</xloc>
+      <yloc>353</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Add Docs</name>
+    <type>JoinRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
+      <prefix>out</prefix>
+      <cache_size>500</cache_size>
+      <main/>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue/>
+ <function>&#x3d;</function>
+ <rightvalue/>
+ </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>661</xloc>
+      <yloc>149</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Add Types</name>
+    <type>JoinRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
+      <prefix>out</prefix>
+      <cache_size>500</cache_size>
+      <main/>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue/>
+ <function>&#x3d;</function>
+ <rightvalue/>
+ </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>524</xloc>
+      <yloc>147</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Build Accounts</name>
+    <type>Formula</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+       <formula><field_name>CAP_ACCT</field_name>
+<formula_string>&#x5b;CATG_TYPE_ID_BS&#x5d; &#x26; &#x5b;CATG_ID&#x5d; &#x26; IF &#x28;&#x5b;WIP&#x5d; &#x3d; 0&#x3b; &#x5b;CAP_ACCT&#x5d;&#x3b; &#x5b;WIP_ACCT&#x5d;&#x29;</formula_string>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field>CAP_ACCT</replace_field>
+</formula>
+       <formula><field_name>AD_ACCT</field_name>
+<formula_string>IF&#x28;&#x5b;DEPR_AMORT&#x5d; &#x3d; &#x22;N&#x22;&#x3b; &#x3b;&#x5b;CATG_TYPE_ID_BS&#x5d; &#x26; &#x5b;CATG_ID&#x5d; &#x26; &#x5b;AD_ACCT&#x5d;&#x29;</formula_string>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field>AD_ACCT</replace_field>
+</formula>
+       <formula><field_name>DEPR_EXP_ACCT</field_name>
+<formula_string>IF&#x28;&#x5b;DEPR_AMORT&#x5d; &#x3d; &#x22;N&#x22;&#x3b; &#x3b;&#x5b;CATG_TYPE_ID_IS&#x5d; &#x26; &#x5b;CATG_ID&#x5d; &#x26; &#x5b;DEPR_EXP_ACCT&#x5d;&#x29;</formula_string>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field>DEPR_EXP_ACCT</replace_field>
+</formula>
+       <formula><field_name>DISPOS_PROFIT_ACCT</field_name>
+<formula_string>IF&#x28;&#x5b;SALEABLE&#x5d; &#x3d; &#x22;N&#x22;&#x3b; &#x3b;&#x5b;DISPOS_PROFIT_ACCT&#x5d;&#x29;</formula_string>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field>DISPOS_PROFIT_ACCT</replace_field>
+</formula>
+       <formula><field_name>COST_SALE_ACCT</field_name>
+<formula_string>IF&#x28;&#x5b;SALEABLE&#x5d; &#x3d; &#x22;N&#x22;&#x3b; &#x3b;&#x5b;CATG_TYPE_ID_BS&#x5d; &#x26; &#x5b;CATG_ID&#x5d; &#x26; &#x5b;COST_SALE_ACCT&#x5d;&#x29;</formula_string>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field>COST_SALE_ACCT</replace_field>
+</formula>
+       <formula><field_name>AD_SALE_ACCT</field_name>
+<formula_string>IF&#x28;OR&#x28;&#x5b;SALEABLE&#x5d; &#x3d; &#x22;N&#x22;&#x3b; &#x5b;DEPR_AMORT&#x5d; &#x3d; &#x22;N&#x22;&#x29;&#x3b; &#x3b;&#x5b;CATG_TYPE_ID_BS&#x5d; &#x26; &#x5b;CATG_ID&#x5d; &#x26; &#x5b;AD_SALE_ACCT&#x5d;&#x29;</formula_string>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field>AD_SALE_ACCT</replace_field>
+</formula>
+       <formula><field_name>OUT_OF_WIP_ACCT</field_name>
+<formula_string>IF&#x28;&#x5b;WIP&#x5d;&#x3d;0&#x3b; &#x3b;&#x5b;CAP_ACCT&#x5d;&#x29;</formula_string>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field/>
+</formula>
+       <formula><field_name>SUSPENSE_ACCT</field_name>
+<formula_string>&#x5b;CATG_TYPE_ID_BS&#x5d; &#x26; &#x5b;CATG_ID&#x5d; &#x26; &#x5b;SUSPENSE_ACCT&#x5d;</formula_string>
+<value_type>None</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field>SUSPENSE_ACCT</replace_field>
+</formula>
+       <formula><field_name>BEGBAL_CAP_ACCT</field_name>
+<formula_string>&#x5b;CATG_TYPE_ID_BS&#x5d; &#x26; &#x5b;CATG_ID&#x5d; &#x26; IF &#x28;&#x5b;WIP&#x5d; &#x3d; 1&#x3b; &#x3b;&#x5b;BEGBAL_CAP_ACCT&#x5d;&#x29;</formula_string>
+<value_type>None</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field>BEGBAL_CAP_ACCT</replace_field>
+</formula>
+       <formula><field_name>BEGBAL_AD_ACCT</field_name>
+<formula_string>&#x5b;CATG_TYPE_ID_BS&#x5d; &#x26; &#x5b;CATG_ID&#x5d; &#x26; IF &#x28;&#x5b;WIP&#x5d; &#x3d; 1&#x3b; &#x3b;&#x5b;BEGBAL_AD_ACCT&#x5d;&#x29;</formula_string>
+<value_type>None</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field>BEGBAL_AD_ACCT</replace_field>
+</formula>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>527</xloc>
+      <yloc>53</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Copy Accounts</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+       <calculation><field_name>DISPOS_LOSS_ACCT</field_name>
+<calc_type>COPY_FIELD</calc_type>
+<field_a>DISPOS_PROFIT_ACCT</field_a>
+<field_b/>
+<field_c/>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<remove>N</remove>
+<conversion_mask/>
+<decimal_symbol/>
+<grouping_symbol/>
+<currency_symbol/>
+</calculation>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>663</xloc>
+      <yloc>55</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Flatten Docs</name>
+    <type>Denormaliser</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <key_field>DocType</key_field>
+      <group>
+        </group>
+      <fields>
+        <field>
+          <field_name>DocCode</field_name>
+          <key_value>CAP_DOC</key_value>
+          <target_name>CAP_DOC</target_name>
+          <target_type>String</target_type>
+          <target_format/>
+          <target_length>-1</target_length>
+          <target_precision>-1</target_precision>
+          <target_decimal_symbol/>
+          <target_grouping_symbol/>
+          <target_currency_symbol/>
+          <target_null_string/>
+          <target_aggregation_type>-</target_aggregation_type>
+          </field>
+        <field>
+          <field_name>DocCode</field_name>
+          <key_value>DISP_DOC</key_value>
+          <target_name>DISP_DOC</target_name>
+          <target_type>String</target_type>
+          <target_format/>
+          <target_length>-1</target_length>
+          <target_precision>-1</target_precision>
+          <target_decimal_symbol/>
+          <target_grouping_symbol/>
+          <target_currency_symbol/>
+          <target_null_string/>
+          <target_aggregation_type>-</target_aggregation_type>
+          </field>
+        <field>
+          <field_name>DocCode</field_name>
+          <key_value>DEPR_DOC</key_value>
+          <target_name>DEPR_DOC</target_name>
+          <target_type>String</target_type>
+          <target_format/>
+          <target_length>-1</target_length>
+          <target_precision>-1</target_precision>
+          <target_decimal_symbol/>
+          <target_grouping_symbol/>
+          <target_currency_symbol/>
+          <target_null_string/>
+          <target_aggregation_type>-</target_aggregation_type>
+          </field>
+        <field>
+          <field_name>DocCode</field_name>
+          <key_value>REVAL_DOC</key_value>
+          <target_name>REVAL_DOC</target_name>
+          <target_type>String</target_type>
+          <target_format/>
+          <target_length>-1</target_length>
+          <target_precision>-1</target_precision>
+          <target_decimal_symbol/>
+          <target_grouping_symbol/>
+          <target_currency_symbol/>
+          <target_null_string/>
+          <target_aggregation_type>-</target_aggregation_type>
+          </field>
+        <field>
+          <field_name>DocCode</field_name>
+          <key_value>TRANS_DOC</key_value>
+          <target_name>TRANS_DOC</target_name>
+          <target_type>String</target_type>
+          <target_format/>
+          <target_length>-1</target_length>
+          <target_precision>-1</target_precision>
+          <target_decimal_symbol/>
+          <target_grouping_symbol/>
+          <target_currency_symbol/>
+          <target_null_string/>
+          <target_aggregation_type>-</target_aggregation_type>
+          </field>
+        <field>
+          <field_name>DocCode</field_name>
+          <key_value>RECLASS_DOC</key_value>
+          <target_name>RECLASS_DOC</target_name>
+          <target_type>String</target_type>
+          <target_format/>
+          <target_length>-1</target_length>
+          <target_precision>-1</target_precision>
+          <target_decimal_symbol/>
+          <target_grouping_symbol/>
+          <target_currency_symbol/>
+          <target_null_string/>
+          <target_aggregation_type>-</target_aggregation_type>
+          </field>
+        </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>661</xloc>
+      <yloc>250</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Flatten Types</name>
+    <type>Denormaliser</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <key_field>AccountType</key_field>
+      <group>
+        </group>
+      <fields>
+        <field>
+          <field_name>AccountSuffix</field_name>
+          <key_value>CAP_ACCT</key_value>
+          <target_name>CAP_ACCT</target_name>
+          <target_type>String</target_type>
+          <target_format/>
+          <target_length>2</target_length>
+          <target_precision>-1</target_precision>
+          <target_decimal_symbol/>
+          <target_grouping_symbol/>
+          <target_currency_symbol/>
+          <target_null_string/>
+          <target_aggregation_type>-</target_aggregation_type>
+          </field>
+        <field>
+          <field_name>AccountSuffix</field_name>
+          <key_value>WIP_ACCT</key_value>
+          <target_name>WIP_ACCT</target_name>
+          <target_type>String</target_type>
+          <target_format/>
+          <target_length>2</target_length>
+          <target_precision>-1</target_precision>
+          <target_decimal_symbol/>
+          <target_grouping_symbol/>
+          <target_currency_symbol/>
+          <target_null_string/>
+          <target_aggregation_type>-</target_aggregation_type>
+          </field>
+        <field>
+          <field_name>AccountSuffix</field_name>
+          <key_value>AD_ACCT</key_value>
+          <target_name>AD_ACCT</target_name>
+          <target_type>String</target_type>
+          <target_format/>
+          <target_length>2</target_length>
+          <target_precision>-1</target_precision>
+          <target_decimal_symbol/>
+          <target_grouping_symbol/>
+          <target_currency_symbol/>
+          <target_null_string/>
+          <target_aggregation_type>-</target_aggregation_type>
+          </field>
+        <field>
+          <field_name>AccountSuffix</field_name>
+          <key_value>COST_SALE_ACCT</key_value>
+          <target_name>COST_SALE_ACCT</target_name>
+          <target_type>String</target_type>
+          <target_format/>
+          <target_length>2</target_length>
+          <target_precision>-1</target_precision>
+          <target_decimal_symbol/>
+          <target_grouping_symbol/>
+          <target_currency_symbol/>
+          <target_null_string/>
+          <target_aggregation_type>-</target_aggregation_type>
+          </field>
+        <field>
+          <field_name>AccountSuffix</field_name>
+          <key_value>AD_SALE_ACCT</key_value>
+          <target_name>AD_SALE_ACCT</target_name>
+          <target_type>String</target_type>
+          <target_format/>
+          <target_length>2</target_length>
+          <target_precision>-1</target_precision>
+          <target_decimal_symbol/>
+          <target_grouping_symbol/>
+          <target_currency_symbol/>
+          <target_null_string/>
+          <target_aggregation_type>-</target_aggregation_type>
+          </field>
+        <field>
+          <field_name>AccountSuffix</field_name>
+          <key_value>DEPR_EXP_ACCT</key_value>
+          <target_name>DEPR_EXP_ACCT</target_name>
+          <target_type>String</target_type>
+          <target_format/>
+          <target_length>2</target_length>
+          <target_precision>-1</target_precision>
+          <target_decimal_symbol/>
+          <target_grouping_symbol/>
+          <target_currency_symbol/>
+          <target_null_string/>
+          <target_aggregation_type>-</target_aggregation_type>
+          </field>
+        <field>
+          <field_name>AccountSuffix</field_name>
+          <key_value>SUSPENSE_ACCT</key_value>
+          <target_name>SUSPENSE_ACCT</target_name>
+          <target_type>String</target_type>
+          <target_format/>
+          <target_length>2</target_length>
+          <target_precision>-1</target_precision>
+          <target_decimal_symbol/>
+          <target_grouping_symbol/>
+          <target_currency_symbol/>
+          <target_null_string/>
+          <target_aggregation_type>-</target_aggregation_type>
+          </field>
+        <field>
+          <field_name>AccountSuffix</field_name>
+          <key_value>BEGBAL_CAP_ACCT</key_value>
+          <target_name>BEGBAL_CAP_ACCT</target_name>
+          <target_type>String</target_type>
+          <target_format/>
+          <target_length>2</target_length>
+          <target_precision>-1</target_precision>
+          <target_decimal_symbol/>
+          <target_grouping_symbol/>
+          <target_currency_symbol/>
+          <target_null_string/>
+          <target_aggregation_type>-</target_aggregation_type>
+          </field>
+        <field>
+          <field_name>AccountSuffix</field_name>
+          <key_value>BEGBAL_AD_ACCT</key_value>
+          <target_name>BEGBAL_AD_ACCT</target_name>
+          <target_type>String</target_type>
+          <target_format/>
+          <target_length>2</target_length>
+          <target_precision>-1</target_precision>
+          <target_decimal_symbol/>
+          <target_grouping_symbol/>
+          <target_currency_symbol/>
+          <target_null_string/>
+          <target_aggregation_type>-</target_aggregation_type>
+          </field>
+        <field>
+          <field_name>AccountSuffix</field_name>
+          <key_value>DISPOS_PROFIT_ACCT</key_value>
+          <target_name>DISPOS_PROFIT_ACCT</target_name>
+          <target_type>String</target_type>
+          <target_format/>
+          <target_length>6</target_length>
+          <target_precision>-1</target_precision>
+          <target_decimal_symbol/>
+          <target_grouping_symbol/>
+          <target_currency_symbol/>
+          <target_null_string/>
+          <target_aggregation_type>-</target_aggregation_type>
+          </field>
+        </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>526</xloc>
+      <yloc>252</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Lookup WIP Partner</name>
+    <type>StreamLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <from>Sort on WIP</from>
+    <input_sorted>N</input_sorted>
+    <preserve_memory>Y</preserve_memory>
+    <sorted_list>N</sorted_list>
+    <integer_pair>N</integer_pair>
+    <lookup>
+      <key>
+        <name>WIP_PARTNER</name>
+        <field>CATG_CODE</field>
+      </key>
+      <value>
+        <name>CAP_ACCT</name>
+        <rename>INTO_CAP_ACCT</rename>
+        <default/>
+        <type>String</type>
+      </value>
+    </lookup>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>888</xloc>
+      <yloc>55</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Posting Documents</name>
+    <type>DataGrid</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>DocType</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>DocCode</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <data>
+      <line> <item>CAP_DOC</item><item>FACAP</item> </line>
+      <line> <item>DISP_DOC</item><item>FADISP</item> </line>
+      <line> <item>DEPR_DOC</item><item>FADEP</item> </line>
+      <line> <item>REVAL_DOC</item><item>FAREVAL</item> </line>
+      <line> <item>TRANS_DOC</item><item>FATRAN</item> </line>
+      <line> <item>RECLASS_DOC</item><item>FAWIP</item> </line>
+    </data>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>664</xloc>
+      <yloc>354</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Select Fields</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>      <field>        <name>CATG_CODE</name>
+        <rename>CODE</rename>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CATG_NAME</name>
+        <rename>NAME</rename>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CATG_SNAME</name>
+        <rename>SNAME</rename>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>DEPR_RULE</name>
+        <rename>DEPNCODE</rename>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>POSTRULECODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>NUMRULECODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CAP_DOC</name>
+        <rename>DOCCAPNCODE</rename>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>DISP_DOC</name>
+        <rename>DOCDISPCODE</rename>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>DEPR_DOC</name>
+        <rename>DOCDEPNCODE</rename>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>REVAL_DOC</name>
+        <rename>DOCREVALCODE</rename>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TRANS_DOC</name>
+        <rename>DOCTRANCODE</rename>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>RECLASS_DOC</name>
+        <rename>DOCRECLASSCODE</rename>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CAP_ACCT</name>
+        <rename>ACCTCAPITAL</rename>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>AD_ACCT</name>
+        <rename>ACCTDEPNACCUM</rename>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>DEPR_EXP_ACCT</name>
+        <rename>ACCTDEPNCHARGE</rename>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>DISPOS_PROFIT_ACCT</name>
+        <rename>DISPPROFACCT</rename>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>DISPOS_LOSS_ACCT</name>
+        <rename>DISPLOSSACCT</rename>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>OUT_OF_WIP_ACCT</name>
+        <rename>ACCTOUTOFWIP</rename>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>INTO_CAP_ACCT</name>
+        <rename>ACCTINTOCAP</rename>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>SUSPENSE_ACCT</name>
+        <rename>SUSPENSE</rename>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>COST_SALE_ACCT</name>
+        <rename>ALTCAPACCSALE</rename>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>AD_SALE_ACCT</name>
+        <rename>ALTDEPNACCSALE</rename>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>WIP_PARTNER</name>
+        <rename>ASSOCCAT</rename>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>COSTCENTRELEVEL</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ELEMENTLEVEL</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>WIP</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>BEGBAL_CAP_ACCT</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>BEGBAL_AD_ACCT</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>        <select_unspecified>N</select_unspecified>
+    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1025</xloc>
+      <yloc>58</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Set BS Type Id</name>
+    <type>ValueMapper</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <field_to_use>CATG_TYPE</field_to_use>
+    <target_field>CATG_TYPE_ID_BS</target_field>
+    <non_match_default/>
+    <fields>
+      <field>
+        <source_value>INTANGIBLE</source_value>
+        <target_value>16</target_value>
+      </field>
+      <field>
+        <source_value>FIXED</source_value>
+        <target_value>14</target_value>
+      </field>
+      <field>
+        <source_value>GOODWILL</source_value>
+        <target_value>15</target_value>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>417</xloc>
+      <yloc>51</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Set Constants</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>COSTCENTRELEVEL</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>3</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>ELEMENTLEVEL</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>1</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>314</xloc>
+      <yloc>52</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Set Depr Rule</name>
+    <type>Formula</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+       <formula><field_name>DEPR_RULE</field_name>
+<formula_string>IF &#x28;&#x5b;DEPR_AMORT&#x5d;&#x3d;&#x22;N&#x22;&#x3b; &#x3b; &#x5b;DEPR_RULE&#x5d;&#x29;</formula_string>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field>DEPR_RULE</replace_field>
+</formula>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>766</xloc>
+      <yloc>151</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Set IS Type Id</name>
+    <type>ValueMapper</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <field_to_use>CATG_TYPE</field_to_use>
+    <target_field>CATG_TYPE_ID_IS</target_field>
+    <non_match_default/>
+    <fields>
+      <field>
+        <source_value>INTANGIBLE</source_value>
+        <target_value>57</target_value>
+      </field>
+      <field>
+        <source_value>FIXED</source_value>
+        <target_value>56</target_value>
+      </field>
+      <field>
+        <source_value>GOODWILL</source_value>
+        <target_value>XX</target_value>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>418</xloc>
+      <yloc>143</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Set Numbering Rule</name>
+    <type>ValueMapper</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <field_to_use>CATG_TYPE</field_to_use>
+    <target_field>NUMRULECODE</target_field>
+    <non_match_default/>
+    <fields>
+      <field>
+        <source_value>INTANGIBLE</source_value>
+        <target_value>IA</target_value>
+      </field>
+      <field>
+        <source_value>FIXED</source_value>
+        <target_value>FA</target_value>
+      </field>
+      <field>
+        <source_value>GOODWILL</source_value>
+        <target_value>GW</target_value>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>196</xloc>
+      <yloc>139</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Set Posting Rule</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+       <calculation><field_name>POSTRULECODE</field_name>
+<calc_type>COPY_FIELD</calc_type>
+<field_a>CATG_CODE</field_a>
+<field_b/>
+<field_c/>
+<value_type>String</value_type>
+<value_length>12</value_length>
+<value_precision>-1</value_precision>
+<remove>N</remove>
+<conversion_mask/>
+<decimal_symbol/>
+<grouping_symbol/>
+<currency_symbol/>
+</calculation>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>199</xloc>
+      <yloc>51</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Sort on WIP</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
+      <prefix>out</prefix>
+      <sort_size>1000000</sort_size>
+      <free_memory/>
+      <compress>N</compress>
+      <compress_variable/>
+      <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>WIP</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>884</xloc>
+      <yloc>151</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>WIP</name>
+    <type>Formula</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+       <formula><field_name>WIP</field_name>
+<formula_string>IF &#x28;ISBLANK&#x28;&#x5b;WIP_PARTNER&#x5d;&#x29;&#x3b; 0&#x3b; 1&#x29;</formula_string>
+<value_type>Integer</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field/>
+</formula>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>312</xloc>
+      <yloc>140</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>WIP Doc</name>
+    <type>Formula</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+       <formula><field_name>RECLASS_DOC</field_name>
+<formula_string>IF &#x28;&#x5b;WIP&#x5d;&#x3d;0&#x3b; &#x3b; &#x5b;RECLASS_DOC&#x5d;&#x29;</formula_string>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field>RECLASS_DOC</replace_field>
+</formula>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>768</xloc>
+      <yloc>54</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step_error_handling>
+  </step_error_handling>
+   <slave-step-copy-partition-distribution>
+</slave-step-copy-partition-distribution>
+   <slave_transformation>N</slave_transformation>
+
+</transformation>

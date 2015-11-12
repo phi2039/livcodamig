@@ -290,7 +290,7 @@
            <schema_name/>
            </partitioning>
     <connection>STAGING</connection>
-    <sql>SELECT&#xd;&#xa;CMPCODE,&#xd;&#xa;EL1 &#xd;&#xa;FROM STAGING.ACCT_BALANCE_SOURCE &#xd;&#xa;WHERE &#xd;&#xa;RULE&#x3d;&#x27;Local Balance&#x27;&#xd;&#xa;GROUP BY CMPCODE,EL1&#xd;&#xa;</sql>
+    <sql>SELECT&#xd;&#xa;CMPCODE,&#xd;&#xa;EL1 &#xd;&#xa;FROM OPEN_MIG.ACCT_BALANCE_SOURCE &#xd;&#xa;WHERE &#xd;&#xa;RULE&#x3d;&#x27;Local Balance&#x27;&#xd;&#xa;GROUP BY CMPCODE,EL1&#xd;&#xa;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>

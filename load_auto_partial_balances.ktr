@@ -181,7 +181,6 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Get Rule Type</from><to>Rules</to><enabled>Y</enabled> </hop>
   <hop> <from>Rules</from><to>Source Partial Balances</to><enabled>Y</enabled> </hop>
   <hop> <from>Source Partial Balances</from><to>Add Source</to><enabled>Y</enabled> </hop>
   <hop> <from>Add Source</from><to>AUTO_PARTIAL_BAL_SOURCE</to><enabled>Y</enabled> </hop>
@@ -265,6 +264,39 @@
     </step>
 
   <step>
+    <name>Add Source</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+       <calculation><field_name>SOURCE</field_name>
+<calc_type>SUBSTITUTE_VARIABLE</calc_type>
+<field_a>&#x24;&#x7b;ruleType&#x7d;</field_a>
+<field_b/>
+<field_c/>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<remove>N</remove>
+<conversion_mask/>
+<decimal_symbol/>
+<grouping_symbol/>
+<currency_symbol/>
+</calculation>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>529</xloc>
+      <yloc>95</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
     <name>Get Rule Type</name>
     <type>GetVariable</type>
     <description/>
@@ -309,10 +341,10 @@
            <schema_name/>
            </partitioning>
     <connection>STAGING</connection>
-    <sql>SELECT&#xd;&#xa;CMPCODE,&#xd;&#xa;EL1 &#xd;&#xa;FROM OPEN_MIG.ACCT_BALANCE_SOURCE &#xd;&#xa;WHERE &#xd;&#xa;RULE&#x3d;&#x3f; &#xd;&#xa;GROUP BY CMPCODE,EL1&#xd;&#xa;</sql>
+    <sql>SELECT&#xd;&#xa;CMPCODE,&#xd;&#xa;EL1 &#xd;&#xa;FROM OPEN_MIG.ACCT_BALANCE_SOURCE &#xd;&#xa;WHERE &#xd;&#xa;RULE IN &#x28;&#x27;Partial Balances - Automatic&#x27;,&#x27;Open Documents&#x27;&#x29;&#xd;&#xa;GROUP BY CMPCODE,EL1&#xd;&#xa;</sql>
     <limit>0</limit>
-    <lookup>Get Rule Type</lookup>
-    <execute_each_row>Y</execute_each_row>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
     <variables_active>N</variables_active>
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
@@ -344,39 +376,6 @@
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>406</xloc>
-      <yloc>95</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Add Source</name>
-    <type>Calculator</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-       <calculation><field_name>SOURCE</field_name>
-<calc_type>SUBSTITUTE_VARIABLE</calc_type>
-<field_a>&#x24;&#x7b;ruleType&#x7d;</field_a>
-<field_b/>
-<field_c/>
-<value_type>String</value_type>
-<value_length>-1</value_length>
-<value_precision>-1</value_precision>
-<remove>N</remove>
-<conversion_mask/>
-<decimal_symbol/>
-<grouping_symbol/>
-<currency_symbol/>
-</calculation>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>529</xloc>
       <yloc>95</yloc>
       <draw>Y</draw>
       </GUI>

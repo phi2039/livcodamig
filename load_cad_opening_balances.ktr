@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>load_acct_mig_rules</name>
+    <name>load_cad_opening_balances</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -66,9 +66,9 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2015&#x2f;11&#x2f;11 15&#x3a;12&#x3a;12.349</created_date>
+  <created_date>2015&#x2f;11&#x2f;12 13&#x3a;32&#x3a;25.088</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2015&#x2f;11&#x2f;11 15&#x3a;12&#x3a;12.349</modified_date>
+  <modified_date>2015&#x2f;11&#x2f;12 13&#x3a;32&#x3a;25.088</modified_date>
   </info>
   <notepads>
   </notepads>
@@ -175,11 +175,165 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>All Accounts &#x2f; Rules</from><to>Choose Rule</to><enabled>Y</enabled> </hop>
-  <hop> <from>Choose Rule</from><to>ACCT_BALANCE_SOURCE</to><enabled>Y</enabled> </hop>
+  <hop> <from>Asset Account</from><to>Flatten Assets</to><enabled>Y</enabled> </hop>
+  <hop> <from>Asset Account</from><to>Map Account Code</to><enabled>Y</enabled> </hop>
+  <hop> <from>Flatten Assets</from><to>Map Account Code</to><enabled>Y</enabled> </hop>
+  <hop> <from>Map Account Code</from><to>CAD_BALANCE_ERR</to><enabled>Y</enabled> </hop>
+  <hop> <from>Map Account Code</from><to>CAD_BALANCES</to><enabled>Y</enabled> </hop>
+  <hop> <from>Opening Balances</from><to>Asset Account</to><enabled>Y</enabled> </hop>
   </order>
   <step>
-    <name>ACCT_BALANCE_SOURCE</name>
+    <name>Opening Balances</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>CODA-SOURCE</connection>
+    <sql>select&#xd;&#xa;  cmpcode,&#xd;&#xa;  el1,el2,el3,el4,el5,el6,&#xd;&#xa;  accode,&#xd;&#xa;  full_value as CAD_AMT&#xd;&#xa;from&#xd;&#xa;  oas_balance&#xd;&#xa;where&#xd;&#xa;  full_value &#x21;&#x3d; 0&#xd;&#xa;  and yr &#x3d; 2015&#xd;&#xa;  and period &#x3d; 0&#xd;&#xa;  and balcode &#x3d; &#x27;ACTUAL&#x27;&#xd;&#xa;  and curcode &#x3d; &#x27;CAD&#x27;&#xd;&#xa;  and repbasis &#x3d; 0</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>109</xloc>
+      <yloc>160</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Asset Account</name>
+    <type>JavaFilter</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Flatten Assets</send_true_to>
+<send_false_to>Map Account Code</send_false_to>
+<condition>EL1.substring&#x28;0,2&#x29;.equals&#x28;&#x22;14&#x22;&#x29; &#x7c;&#x7c; EL1.substring&#x28;0,2&#x29;.equals&#x28;&#x22;16&#x22;&#x29;</condition>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>278</xloc>
+      <yloc>160</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Flatten Assets</name>
+    <type>Janino</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+       <formula><field_name>EL1</field_name>
+<formula_string>&#x28;EL1.substring&#x28;4,6&#x29;.equals&#x28;&#x22;12&#x22;&#x29; &#x7c;&#x7c; EL1.substring&#x28;4,6&#x29;.equals&#x28;&#x22;52&#x22;&#x29;&#x29; &#x3f; &#x28;EL1.substring&#x28;0,5&#x29; &#x2b; &#x22;1&#x22;&#x29; &#x3a; EL1</formula_string>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field>EL1</replace_field>
+</formula>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>368</xloc>
+      <yloc>38</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Map Account Code</name>
+    <type>Mapping</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <specification_method>filename</specification_method>
+    <trans_object_id/>
+    <trans_name/>
+    <filename>&#x24;&#x7b;KETTLE_HOME&#x7d;&#x2f;map_account_code_sub.ktr</filename>
+    <directory_path/>
+    <mappings>
+      <input>
+    <mapping>    <input_step/>
+    <output_step>Mapping Input</output_step>
+    <main_path>Y</main_path>
+    <rename_on_output>N</rename_on_output>
+    <description/>
+       <connector><parent>CMPCODE</parent><child>CMPCODE</child></connector>
+       <connector><parent>EL1</parent><child>EL1</child></connector>
+       <connector><parent>EL2</parent><child>EL2</child></connector>
+       <connector><parent>EL3</parent><child>EL3</child></connector>
+       <connector><parent>EL4</parent><child>EL4</child></connector>
+       <connector><parent>EL5</parent><child>EL5</child></connector>
+       <connector><parent>EL6</parent><child>EL6</child></connector>
+       <connector><parent>CAD_AMT</parent><child>CAD_AMT</child></connector>
+    </mapping>      </input>
+      <output>
+    <mapping>    <input_step>Main Output</input_step>
+    <output_step>CAD_BALANCES</output_step>
+    <main_path>N</main_path>
+    <rename_on_output>N</rename_on_output>
+    <description/>
+    </mapping>    <mapping>    <input_step>Error Output</input_step>
+    <output_step>CAD_BALANCE_ERR</output_step>
+    <main_path>N</main_path>
+    <rename_on_output>N</rename_on_output>
+    <description/>
+       <connector><parent>CMPCODE</parent><child>CMPCODE</child></connector>
+       <connector><parent>EL1</parent><child>EL1</child></connector>
+       <connector><parent>EL2</parent><child>EL2</child></connector>
+       <connector><parent>EL3</parent><child>EL3</child></connector>
+       <connector><parent>EL4</parent><child>EL4</child></connector>
+       <connector><parent>EL5</parent><child>EL5</child></connector>
+       <connector><parent>EL6</parent><child>EL6</child></connector>
+       <connector><parent>DEST_CMPCODE</parent><child>DEST_CMPCODE</child></connector>
+       <connector><parent>DEST_EL2</parent><child>DEST_EL2</child></connector>
+       <connector><parent>DEST_EL5</parent><child>DEST_EL5</child></connector>
+       <connector><parent>DEST_EL6</parent><child>DEST_EL6</child></connector>
+       <connector><parent>DEST_EL1</parent><child>DEST_EL1</child></connector>
+       <connector><parent>DEST_EL3</parent><child>DEST_EL3</child></connector>
+       <connector><parent>DEST_EL4</parent><child>DEST_EL4</child></connector>
+       <connector><parent>DEST_ACCODE</parent><child>DEST_ACCODE</child></connector>
+       <connector><parent>CAD_AMT</parent><child>CAD_AMT</child></connector>
+       <connector><parent>SOURCE</parent><child>SOURCE</child></connector>
+       <connector><parent>errFields</parent><child>errFields</child></connector>
+       <connector><parent>errCodes</parent><child>errCodes</child></connector>
+    </mapping>      </output>
+          <parameters>    <inherit_all_vars>Y</inherit_all_vars>
+    </parameters>
+    </mappings>
+    <allow_multiple_input>Y</allow_multiple_input>
+    <allow_multiple_output>Y</allow_multiple_output>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>451</xloc>
+      <yloc>158</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>CAD_BALANCE_ERR</name>
     <type>TableOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -191,7 +345,7 @@
            </partitioning>
     <connection>STAGING</connection>
     <schema>OPEN_MIG</schema>
-    <table>ACCT_BALANCE_SOURCE</table>
+    <table>CAD_BALANCE_ERR</table>
     <commit>1000</commit>
     <truncate>Y</truncate>
     <ignore_errors>N</ignore_errors>
@@ -213,24 +367,84 @@
         </field>
         <field>
           <column_name>EL1</column_name>
-          <stream_name>ACCT</stream_name>
+          <stream_name>EL1</stream_name>
         </field>
         <field>
-          <column_name>RULE</column_name>
-          <stream_name>RULE</stream_name>
+          <column_name>EL2</column_name>
+          <stream_name>EL2</stream_name>
+        </field>
+        <field>
+          <column_name>EL3</column_name>
+          <stream_name>EL3</stream_name>
+        </field>
+        <field>
+          <column_name>EL4</column_name>
+          <stream_name>EL4</stream_name>
+        </field>
+        <field>
+          <column_name>EL5</column_name>
+          <stream_name>EL5</stream_name>
+        </field>
+        <field>
+          <column_name>EL6</column_name>
+          <stream_name>EL6</stream_name>
+        </field>
+        <field>
+          <column_name>CAD_AMT</column_name>
+          <stream_name>CAD_AMT</stream_name>
+        </field>
+        <field>
+          <column_name>DEST_CMPCODE</column_name>
+          <stream_name>DEST_CMPCODE</stream_name>
+        </field>
+        <field>
+          <column_name>DEST_EL2</column_name>
+          <stream_name>DEST_EL2</stream_name>
+        </field>
+        <field>
+          <column_name>DEST_EL5</column_name>
+          <stream_name>DEST_EL5</stream_name>
+        </field>
+        <field>
+          <column_name>DEST_EL6</column_name>
+          <stream_name>DEST_EL6</stream_name>
+        </field>
+        <field>
+          <column_name>DEST_EL1</column_name>
+          <stream_name>DEST_EL1</stream_name>
+        </field>
+        <field>
+          <column_name>DEST_EL3</column_name>
+          <stream_name>DEST_EL3</stream_name>
+        </field>
+        <field>
+          <column_name>DEST_EL4</column_name>
+          <stream_name>DEST_EL4</stream_name>
+        </field>
+        <field>
+          <column_name>DEST_ACCODE</column_name>
+          <stream_name>DEST_ACCODE</stream_name>
+        </field>
+        <field>
+          <column_name>ERRFIELDS</column_name>
+          <stream_name>errFields</stream_name>
+        </field>
+        <field>
+          <column_name>ERRCODES</column_name>
+          <stream_name>errCodes</stream_name>
         </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>443</xloc>
-      <yloc>56</yloc>
+      <xloc>511</xloc>
+      <yloc>333</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>All Accounts &#x2f; Rules</name>
-    <type>TableInput</type>
+    <name>CAD_BALANCES</name>
+    <type>TableOutput</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -240,42 +454,64 @@
            <schema_name/>
            </partitioning>
     <connection>STAGING</connection>
-    <sql>SELECT &#xd;&#xa;C.CMPCODE AS CMPCODE, R.ACCT, R.SUBLEDGER_RULE, R.VASTERA_RULE, R.DEFAULT_RULE,&#xd;&#xa;CASE &#xd;&#xa;	WHEN C.CMPCODE IN &#x28;&#x27;C310&#x27;,&#x27;C165&#x27;,&#x27;U125&#x27;&#x29; THEN &#x27;SUBLEDGER&#x27;&#xd;&#xa;	WHEN C.CMPCODE LIKE &#x27;V&#x25;&#x27; AND CMPCODE NOT IN &#x28;&#x27;VBM&#x27;,&#x27;VCA&#x27;,&#x27;VLUX&#x27;,&#x27;VLUXELIM&#x27;,&#x27;VUI&#x27;,&#x27;VUP&#x27;&#x29; THEN &#x27;VASTERA&#x27;&#xd;&#xa;	ELSE &#x27;DEFAULT&#x27;&#xd;&#xa;END AS CMP_TYPE&#xd;&#xa;FROM &#x28;SELECT TRIM&#x28;CMPCODE_FROM&#x29; AS CMPCODE FROM STAGING_TEMPLATES.CMPCODE_MAP GROUP BY TRIM&#x28;CMPCODE_FROM&#x29;&#x29; C&#xd;&#xa;JOIN STAGING_TEMPLATES.ACCT_MIG_RULES R ON 1&#x3d;1</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
+    <schema>OPEN_MIG</schema>
+    <table>CAD_BALANCES</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+        <field>
+          <column_name>CAD_AMT</column_name>
+          <stream_name>CAD_AMT</stream_name>
+        </field>
+        <field>
+          <column_name>CMPCODE</column_name>
+          <stream_name>DEST_CMPCODE</stream_name>
+        </field>
+        <field>
+          <column_name>EL1</column_name>
+          <stream_name>DEST_EL1</stream_name>
+        </field>
+        <field>
+          <column_name>EL2</column_name>
+          <stream_name>DEST_EL2</stream_name>
+        </field>
+        <field>
+          <column_name>EL3</column_name>
+          <stream_name>DEST_EL3</stream_name>
+        </field>
+        <field>
+          <column_name>EL4</column_name>
+          <stream_name>DEST_EL4</stream_name>
+        </field>
+        <field>
+          <column_name>EL5</column_name>
+          <stream_name>DEST_EL5</stream_name>
+        </field>
+        <field>
+          <column_name>EL6</column_name>
+          <stream_name>DEST_EL6</stream_name>
+        </field>
+        <field>
+          <column_name>ACCODE</column_name>
+          <stream_name>DEST_ACCODE</stream_name>
+        </field>
+    </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>123</xloc>
-      <yloc>56</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Choose Rule</name>
-    <type>Formula</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-       <formula><field_name>RULE</field_name>
-<formula_string>IF&#x28;&#x5b;CMP_TYPE&#x5d; &#x3d; &#x22;SUBLEDGER&#x22;&#x3b; &#x5b;SUBLEDGER_RULE&#x5d;&#x3b; IF&#x28;&#x5b;CMP_TYPE&#x5d;&#x3d;&#x22;VASTERA&#x22;&#x3b;&#x5b;VASTERA_RULE&#x5d;&#x3b;&#x5b;DEFAULT_RULE&#x5d;&#x29;&#x29;</formula_string>
-<value_type>String</value_type>
-<value_length>-1</value_length>
-<value_precision>-1</value_precision>
-<replace_field/>
-</formula>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>282</xloc>
-      <yloc>56</yloc>
+      <xloc>647</xloc>
+      <yloc>160</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

@@ -93,7 +93,7 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>Vendor &#x28;V&#x2a;&#x29; elements are only&#xd;&#xa;copied to&#x2f;from actve &#xd;&#xa;destination entities</note>
+      <note>Vendor &#x28;V&#x2a;&#x29; elements are only&#xd;&#xa;copied to&#x2f;from active &#xd;&#xa;destination entities</note>
       <xloc>573</xloc>
       <yloc>30</yloc>
       <width>209</width>
@@ -176,7 +176,54 @@
       <bordercolorblue>100</bordercolorblue>
       <drawshadow>Y</drawshadow>
     </notepad>
+    <notepad>
+      <note>NOTE&#x3a; Only load EL6 members &#xd;&#xa;that have balance activity in 2015</note>
+      <xloc>38</xloc>
+      <yloc>623</yloc>
+      <width>231</width>
+      <heigth>50</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
   </notepads>
+  <connection>
+    <name>ARCHIVE</name>
+    <server/>
+    <type>GENERIC</type>
+    <access>Native</access>
+    <database/>
+    <port>1521</port>
+    <username>sa</username>
+    <password>Encrypted 2be98afc86aa7f2e4cb79ce10bef2bcdb</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>org.h2.Driver</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;h2&#x3a;&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;db&#x5c;data&#x5c;archive&#x3b;AUTO_SERVER&#x3d;true&#x3b;DB_CLOSE_ON_EXIT&#x3d;FALSE</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>1521</attribute></attribute>
+      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>N</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
   <connection>
     <name>CODA-DEST</name>
     <server>localhost</server>
@@ -278,6 +325,35 @@
   <hop> <from>Vendor Element</from><to>Lookup Dest Entity</to><enabled>Y</enabled> </hop>
   </order>
   <step>
+    <name>Active Entity</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Select Fields 2</send_true_to>
+<send_false_to>Dropped Element 3</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>DEST_CMP</leftvalue>
+ <function>IS NOT NULL</function>
+ <rightvalue/>
+ </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>781</xloc>
+      <yloc>139</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
     <name>Add constants</name>
     <type>Constant</type>
     <description/>
@@ -375,7 +451,7 @@
            <schema_name/>
            </partitioning>
     <connection>CODA-SOURCE</connection>
-    <sql>SELECT CMPCODE,ELMLEVEL,CODE&#xd;&#xa;FROM OAS_ELEMENT &#xd;&#xa;WHERE ELMLEVEL &#x3d; 5&#xd;&#xa;AND DELDATE IS NULL</sql>
+    <sql>SELECT CMPCODE,ELMLEVEL,CODE&#xd;&#xa;FROM OAS_ELEMENT &#xd;&#xa;WHERE ELMLEVEL &#x3d; 5&#xd;&#xa;AND E.CMPCODE NOT IN &#x28;&#x27;PROPHET&#x27;,&#x27;PROCAD&#x27;,&#x27;ZBPCAD&#x27;,&#x27;ZBPUSD&#x27;,&#x27;TESTC310&#x27;,&#x27;TESTU125&#x27;,&#x27;DEVC310&#x27;,&#x27;DEVU125&#x27;,&#x27;MIGRATEU125&#x27;,&#x27;MIGRATEC310&#x27;,&#x27;MODELUSD&#x27;,&#x27;MODELCAD&#x27;&#x29;&#xd;&#xa;AND DELDATE IS NULL</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -401,7 +477,7 @@
            <schema_name/>
            </partitioning>
     <connection>CODA-SOURCE</connection>
-    <sql>SELECT DISTINCT CODE&#xd;&#xa;FROM OAS_ELEMENT&#xd;&#xa;WHERE ELMLEVEL &#x3d; 6&#xd;&#xa;AND DELDATE IS NULL</sql>
+    <sql>SELECT E.CODE&#xd;&#xa;FROM OAS_ELEMENT E&#xd;&#xa;JOIN OAS_BALANCE B ON B.EL6&#x3d;E.CODE&#xd;&#xa;WHERE E.ELMLEVEL &#x3d; 6&#xd;&#xa;AND E.CMPCODE NOT IN &#x28;&#x27;PROPHET&#x27;,&#x27;PROCAD&#x27;,&#x27;ZBPCAD&#x27;,&#x27;ZBPUSD&#x27;,&#x27;TESTC310&#x27;,&#x27;TESTU125&#x27;,&#x27;DEVC310&#x27;,&#x27;DEVU125&#x27;,&#x27;MIGRATEU125&#x27;,&#x27;MIGRATEC310&#x27;,&#x27;MODELUSD&#x27;,&#x27;MODELCAD&#x27;&#x29;&#xd;&#xa;AND E.DELDATE IS NULL&#xd;&#xa;GROUP BY E.CODE&#xd;&#xa;HAVING SUM&#x28;B.FULL_VALUE&#x29; &#x21;&#x3d;0</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -483,6 +559,63 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>380</xloc>
       <yloc>471</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Dropped Element</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>665</xloc>
+      <yloc>221</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Dropped Element 2</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>465</xloc>
+      <yloc>37</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Dropped Element 3</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>889</xloc>
+      <yloc>33</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -578,6 +711,48 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>1105</xloc>
       <yloc>414</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Lookup Dest Entity</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>STAGING</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema>STAGING</schema>
+      <table>ENTITY_STAGING</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>CMPCODE</name>
+        <field>CODE</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>CODE</name>
+        <rename>DEST_CMP</rename>
+        <default/>
+        <type>String</type>
+      </value>
+    </lookup>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>599</xloc>
+      <yloc>139</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -792,77 +967,6 @@
     </step>
 
   <step>
-    <name>Lookup Dest Entity</name>
-    <type>DBLookup</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>STAGING</connection>
-    <cache>N</cache>
-    <cache_load_all>N</cache_load_all>
-    <cache_size>0</cache_size>
-    <lookup>
-      <schema>STAGING</schema>
-      <table>ENTITY_STAGING</table>
-      <orderby/>
-      <fail_on_multiple>N</fail_on_multiple>
-      <eat_row_on_failure>N</eat_row_on_failure>
-      <key>
-        <name>CMPCODE</name>
-        <field>CODE</field>
-        <condition>&#x3d;</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>CODE</name>
-        <rename>DEST_CMP</rename>
-        <default/>
-        <type>String</type>
-      </value>
-    </lookup>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>599</xloc>
-      <yloc>139</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Active Entity</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<send_true_to>Select Fields 2</send_true_to>
-<send_false_to>Dropped Element 3</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>DEST_CMP</leftvalue>
- <function>IS NOT NULL</function>
- <rightvalue/>
- </condition>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>781</xloc>
-      <yloc>139</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
     <name>Vendor Element</name>
     <type>FilterRows</type>
     <description/>
@@ -887,63 +991,6 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>403</xloc>
       <yloc>138</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Dropped Element</name>
-    <type>Dummy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>665</xloc>
-      <yloc>221</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Dropped Element 2</name>
-    <type>Dummy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>465</xloc>
-      <yloc>37</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Dropped Element 3</name>
-    <type>Dummy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>889</xloc>
-      <yloc>33</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

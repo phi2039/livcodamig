@@ -22,6 +22,11 @@
             <description/>
         </parameter>
         <parameter>
+            <name>scenarioName</name>
+            <default_value>&#x5b;NONE&#x5d;</default_value>
+            <description/>
+        </parameter>
+        <parameter>
             <name>startPeriod</name>
             <default_value>0</default_value>
             <description/>
@@ -32,6 +37,32 @@
             <description/>
         </parameter>
     </parameters>
+  <connection>
+    <name>ARCHIVE</name>
+    <server/>
+    <type>GENERIC</type>
+    <access>Native</access>
+    <database/>
+    <port>1521</port>
+    <username>sa</username>
+    <password>Encrypted 2be98afc86aa7f2e4cb79ce10bef2bcdb</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>org.h2.Driver</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;h2&#x3a;&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;db&#x5c;data&#x5c;archive&#x3b;AUTO_SERVER&#x3d;true&#x3b;DB_CLOSE_ON_EXIT&#x3d;FALSE</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>1521</attribute></attribute>
+      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>N</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
   <connection>
     <name>CODA-DEST</name>
     <server>localhost</server>
@@ -163,11 +194,17 @@
             </parameter>            <parameter>            <name>startPeriod</name>
             <stream_name/>
             <value>&#x24;&#x7b;startPeriod&#x7d;</value>
+            </parameter>            <parameter>            <name>currency</name>
+            <stream_name/>
+            <value>&#x24;&#x7b;currency&#x7d;</value>
+            </parameter>            <parameter>            <name>year</name>
+            <stream_name/>
+            <value>&#x24;&#x7b;year&#x7d;</value>
             </parameter>      </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>197</xloc>
-      <yloc>53</yloc>
+      <xloc>172</xloc>
+      <yloc>157</yloc>
       </entry>
     <entry>
       <name>Aggregate Balances</name>
@@ -199,11 +236,11 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>509</xloc>
-      <yloc>54</yloc>
+      <xloc>311</xloc>
+      <yloc>51</yloc>
       </entry>
     <entry>
-      <name>Consolidate Balances</name>
+      <name>Consolidate Accounts</name>
       <description/>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
@@ -232,8 +269,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>336</xloc>
-      <yloc>53</yloc>
+      <xloc>769</xloc>
+      <yloc>162</yloc>
       </entry>
     <entry>
       <name>START</name>
@@ -262,8 +299,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>799</xloc>
-      <yloc>56</yloc>
+      <xloc>1071</xloc>
+      <yloc>169</yloc>
       </entry>
     <entry>
       <name>Verify Mapping</name>
@@ -295,14 +332,213 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>660</xloc>
+      <xloc>771</xloc>
+      <yloc>56</yloc>
+      </entry>
+    <entry>
+      <name>Compress DB</name>
+      <description/>
+      <type>SQL</type>
+      <sql>shutdown defrag&#x3b;</sql>
+      <useVariableSubstitution>F</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>STAGING</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>1074</xloc>
+      <yloc>61</yloc>
+      </entry>
+    <entry>
+      <name>Check Scenario</name>
+      <description/>
+      <type>SIMPLE_EVAL</type>
+      <valuetype>variable</valuetype>
+      <fieldname/>
+      <variablename>scenarioName</variablename>
+      <fieldtype>string</fieldtype>
+      <mask/>
+      <comparevalue>&#x5b;NONE&#x5d;</comparevalue>
+      <minvalue/>
+      <maxvalue/>
+      <successcondition>different</successcondition>
+      <successnumbercondition>equal</successnumbercondition>
+      <successbooleancondition>false</successbooleancondition>
+      <successwhenvarset>N</successwhenvarset>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>44</xloc>
+      <yloc>157</yloc>
+      </entry>
+    <entry>
+      <name>Create Version</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>&#x24;&#x7b;KETTLE_HOME&#x7d;&#x2f;create_mapping_version.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
+            <parameter>            <name>scenarioName</name>
+            <stream_name/>
+            <value>&#x24;&#x7b;scenarioName&#x7d;</value>
+            </parameter>      </parameters>      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>171</xloc>
+      <yloc>53</yloc>
+      </entry>
+    <entry>
+      <name>Archive Scenario</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>&#x24;&#x7b;KETTLE_HOME&#x7d;&#x2f;archive_mapping_scenario.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
+            <parameter>            <name>scenarioName</name>
+            <stream_name/>
+            <value>&#x24;&#x7b;scenarioName&#x7d;</value>
+            </parameter>            <parameter>            <name>scenarioVersion</name>
+            <stream_name/>
+            <value>&#x24;&#x7b;nextVersion&#x7d;</value>
+            </parameter>      </parameters>      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>919</xloc>
+      <yloc>162</yloc>
+      </entry>
+    <entry>
+      <name>Update Statistics</name>
+      <description/>
+      <type>SQL</type>
+      <sql>ANALYZE SAMPLE_SIZE 0&#x3b;</sql>
+      <useVariableSubstitution>F</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>STAGING</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>311</xloc>
+      <yloc>159</yloc>
+      </entry>
+    <entry>
+      <name>Create Archive Tables</name>
+      <description/>
+      <type>SQL</type>
+      <sql>CREATE SCHEMA IF NOT EXISTS &#x24;&#x7b;scenarioName&#x7d;&#x3b;&#xd;&#xa;DROP TABLE IF EXISTS &#x24;&#x7b;scenarioName&#x7d;.MAPPED_BALANCES_v&#x24;&#x7b;nextVersion&#x7d;&#x3b;&#xd;&#xa;CREATE TABLE &#x24;&#x7b;scenarioName&#x7d;.MAPPED_BALANCES_v&#x24;&#x7b;nextVersion&#x7d;&#xd;&#xa;&#x28;&#xd;&#xa;  YR INTEGER&#xd;&#xa;, PERIOD INTEGER&#xd;&#xa;, CMPCODE VARCHAR&#x28;12&#x29;&#xd;&#xa;, EL1 VARCHAR&#x28;72&#x29;&#xd;&#xa;, EL2 VARCHAR&#x28;72&#x29;&#xd;&#xa;, EL3 VARCHAR&#x28;72&#x29;&#xd;&#xa;, EL4 VARCHAR&#x28;72&#x29;&#xd;&#xa;, EL5 VARCHAR&#x28;72&#x29;&#xd;&#xa;, EL6 VARCHAR&#x28;72&#x29;&#xd;&#xa;, ACCODE VARCHAR&#x28;79&#x29;&#xd;&#xa;, CURCODE VARCHAR&#x28;3&#x29;&#xd;&#xa;, DEBIT_VALUE DECIMAL&#xd;&#xa;, CREDIT_VALUE DECIMAL&#xd;&#xa;, FULL_VALUE DECIMAL&#xd;&#xa;&#x29;&#xd;&#xa;&#x3b;&#xd;&#xa;&#x3b;CREATE INDEX idx_&#x24;&#x7b;scenarioName&#x7d;_MB_&#x24;&#x7b;nextVersion&#x7d;1 ON &#x24;&#x7b;scenarioName&#x7d;.MAPPED_BALANCES_v&#x24;&#x7b;nextVersion&#x7d;&#x28;CMPCODE, EL1, EL2, EL3, EL4, EL5, EL6, YR, PERIOD, CURCODE&#x29;&#xd;&#xa;&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS &#x24;&#x7b;scenarioName&#x7d;.CONSOLIDATED_BALANCES_v&#x24;&#x7b;nextVersion&#x7d;&#x3b;&#xd;&#xa;CREATE TABLE &#x24;&#x7b;scenarioName&#x7d;.CONSOLIDATED_BALANCES_v&#x24;&#x7b;nextVersion&#x7d;&#xd;&#xa;&#x28;&#xd;&#xa;  CMPCODE VARCHAR&#x28;12&#x29;&#xd;&#xa;, ELMLEVEL INTEGER&#xd;&#xa;, CODE VARCHAR&#x28;72&#x29;&#xd;&#xa;, YR INTEGER&#xd;&#xa;, PERIOD INTEGER&#xd;&#xa;, CURCODE VARCHAR&#x28;3&#x29;&#xd;&#xa;, DEBIT_VALUE DECIMAL&#xd;&#xa;, CREDIT_VALUE DECIMAL&#xd;&#xa;, FULL_VALUE DECIMAL&#xd;&#xa;&#x29;&#xd;&#xa;&#x3b;&#xd;&#xa;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>ARCHIVE</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>923</xloc>
+      <yloc>62</yloc>
+      </entry>
+    <entry>
+      <name>Currency Type</name>
+      <description/>
+      <type>SIMPLE_EVAL</type>
+      <valuetype>variable</valuetype>
+      <fieldname/>
+      <variablename>&#x24;&#x7b;currency&#x7d;</variablename>
+      <fieldtype>string</fieldtype>
+      <mask/>
+      <comparevalue>&#x5b;home&#x5d;</comparevalue>
+      <minvalue/>
+      <maxvalue/>
+      <successcondition>equal</successcondition>
+      <successnumbercondition>equal</successnumbercondition>
+      <successbooleancondition>false</successbooleancondition>
+      <successwhenvarset>N</successwhenvarset>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>455</xloc>
+      <yloc>93</yloc>
+      </entry>
+    <entry>
+      <name>Local Currency</name>
+      <description/>
+      <type>SQL</type>
+      <sql>DROP INDEX IF EXISTS idx_MAPPED_BALANCES_lookup&#x3b;&#xd;&#xa;DROP INDEX IF EXISTS idx_MAPPED_BALANCES_lookup2&#x3b;&#xd;&#xa;&#xd;&#xa;UPDATE STAGING.MAPPED_BALANCES B&#xd;&#xa;SET CURCODE &#x3d; &#x28;SELECT CURLOCAL FROM STAGING_TEMPLATES.CMP_MASTER C WHERE C.CMPCODE&#x3d;B.CMPCODE&#x29;&#x3b;&#xd;&#xa;&#xd;&#xa;CREATE INDEX idx_MAPPED_BALANCES_lookup ON STAGING.MAPPED_BALANCES&#x28;CMPCODE, EL1, EL2, EL3, EL4, EL5, EL6, YR, PERIOD, CURCODE&#x29;&#xd;&#xa;CREATE INDEX idx_MAPPED_BALANCES_lookup2 ON STAGING.MAPPED_BALANCES&#x28;CMPCODE, YR, PERIOD&#x29;&#x3b;</sql>
+      <useVariableSubstitution>F</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>STAGING</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>601</xloc>
+      <yloc>166</yloc>
+      </entry>
+    <entry>
+      <name>Standard Currency</name>
+      <description/>
+      <type>SQL</type>
+      <sql>DROP INDEX IF EXISTS idx_MAPPED_BALANCES_lookup&#x3b;&#xd;&#xa;DROP INDEX IF EXISTS idx_MAPPED_BALANCES_lookup2&#x3b;&#xd;&#xa;&#xd;&#xa;UPDATE STAGING.MAPPED_BALANCES&#xd;&#xa;SET CURCODE &#x3d; &#x27;&#x24;&#x7b;currency&#x7d;&#x27;&#x3b;&#xd;&#xa;&#xd;&#xa;CREATE INDEX idx_MAPPED_BALANCES_lookup ON STAGING.MAPPED_BALANCES&#x28;CMPCODE, EL1, EL2, EL3, EL4, EL5, EL6, YR, PERIOD, CURCODE&#x29;&#xd;&#xa;CREATE INDEX idx_MAPPED_BALANCES_lookup2 ON STAGING.MAPPED_BALANCES&#x28;CMPCODE, YR, PERIOD&#x29;&#x3b;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>STAGING</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>600</xloc>
       <yloc>56</yloc>
       </entry>
   </entries>
   <hops>
     <hop>
-      <from>START</from>
-      <to>Map Balances</to>
+      <from>Compress DB</from>
+      <to>Success</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -310,8 +546,17 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>Map Balances</from>
-      <to>Consolidate Balances</to>
+      <from>START</from>
+      <to>Check Scenario</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Check Scenario</from>
+      <to>Create Version</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -319,7 +564,16 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Consolidate Balances</from>
+      <from>Create Version</from>
+      <to>Map Balances</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Map Balances</from>
       <to>Aggregate Balances</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -328,7 +582,79 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
+      <from>Verify Mapping</from>
+      <to>Consolidate Accounts</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Archive Scenario</from>
+      <to>Compress DB</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
       <from>Aggregate Balances</from>
+      <to>Update Statistics</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Consolidate Accounts</from>
+      <to>Create Archive Tables</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Create Archive Tables</from>
+      <to>Archive Scenario</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Update Statistics</from>
+      <to>Currency Type</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Currency Type</from>
+      <to>Local Currency</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Currency Type</from>
+      <to>Standard Currency</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Local Currency</from>
       <to>Verify Mapping</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -337,8 +663,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Verify Mapping</from>
-      <to>Success</to>
+      <from>Standard Currency</from>
+      <to>Verify Mapping</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>

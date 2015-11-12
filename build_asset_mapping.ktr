@@ -94,11 +94,11 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>HACK&#x3a; &#xd;&#xa;165217 -&#x3e; 165217&#xd;&#xa;and&#xd;&#xa;561551 -&#x3e; 561551&#xd;&#xa;&#xd;&#xa;TODO&#x3a; Handle broken &#xd;&#xa;categories automatically</note>
-      <xloc>1234</xloc>
-      <yloc>340</yloc>
+      <note>HACK&#x3a; &#xd;&#xa;561551 -&#x3e; 561551&#xd;&#xa;165217 -&#x3e; 165211&#xd;&#xa;&#xd;&#xa;TODO&#x3a; Handle broken &#xd;&#xa;categories automatically</note>
+      <xloc>1362</xloc>
+      <yloc>338</yloc>
       <width>174</width>
-      <heigth>150</heigth>
+      <heigth>130</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -195,7 +195,7 @@
   <hop> <from>Normalize</from><to>Select Fields</to><enabled>Y</enabled> </hop>
   <hop> <from>Account Codes</from><to>Flatten Types</to><enabled>Y</enabled> </hop>
   <hop> <from>Entity List</from><to>Source Categories</to><enabled>Y</enabled> </hop>
-  <hop> <from>Add BegBal&#x2f;FX</from><to>Lookup Mapping</to><enabled>Y</enabled> </hop>
+  <hop> <from>Build BegBal&#x2f;FX</from><to>Lookup Mapping</to><enabled>Y</enabled> </hop>
   <hop> <from>Lookup Mapping</from><to>Valid Mapping</to><enabled>Y</enabled> </hop>
   <hop> <from>Valid Mapping</from><to>Lookup Accounts</to><enabled>Y</enabled> </hop>
   <hop> <from>Valid Mapping</from><to>Dummy &#x28;do nothing&#x29;</to><enabled>Y</enabled> </hop>
@@ -203,13 +203,14 @@
   <hop> <from>Source Categories</from><to>Merge Join</to><enabled>Y</enabled> </hop>
   <hop> <from>Lookup Accounts</from><to>Valid Cap Account</to><enabled>Y</enabled> </hop>
   <hop> <from>Valid Cap Account</from><to>Dummy &#x28;do nothing&#x29; 2</to><enabled>Y</enabled> </hop>
-  <hop> <from>Valid Cap Account</from><to>Normalize</to><enabled>Y</enabled> </hop>
   <hop> <from>Merge Join</from><to>Check Exp Acct</to><enabled>Y</enabled> </hop>
-  <hop> <from>Check Exp Acct</from><to>Add BegBal&#x2f;FX</to><enabled>Y</enabled> </hop>
-  <hop> <from>Auto Category</from><to>Map to Same</to><enabled>Y</enabled> </hop>
+  <hop> <from>Check Exp Acct</from><to>Build BegBal&#x2f;FX</to><enabled>Y</enabled> </hop>
   <hop> <from>Auto Category</from><to>ASSET_PRE_MAP</to><enabled>Y</enabled> </hop>
-  <hop> <from>Map to Same</from><to>ASSET_PRE_MAP</to><enabled>Y</enabled> </hop>
   <hop> <from>Select Fields</from><to>Auto Category</to><enabled>Y</enabled> </hop>
+  <hop> <from>Auto Category</from><to>Static Mapping</to><enabled>Y</enabled> </hop>
+  <hop> <from>Static Mapping</from><to>ASSET_PRE_MAP</to><enabled>Y</enabled> </hop>
+  <hop> <from>Valid Cap Account</from><to>FX to BegBal</to><enabled>Y</enabled> </hop>
+  <hop> <from>FX to BegBal</from><to>Normalize</to><enabled>Y</enabled> </hop>
   </order>
   <step>
     <name>ASSET_PRE_MAP</name>
@@ -243,8 +244,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1362</xloc>
-      <yloc>144</yloc>
+      <xloc>1502</xloc>
+      <yloc>143</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -289,7 +290,6 @@
       <line> <item>BEGBAL_AD_ACCT</item><item>51</item> </line>
       <line> <item>BEGBAL_FX_ACCT</item><item>18</item> </line>
       <line> <item>ACCUM_FX_ACCT</item><item>58</item> </line>
-      <line> <item>CTA_ACCT</item><item>331199</item> </line>
     </data>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
@@ -300,7 +300,7 @@
     </step>
 
   <step>
-    <name>Add BegBal&#x2f;FX</name>
+    <name>Build BegBal&#x2f;FX</name>
     <type>Formula</type>
     <description/>
     <distribute>Y</distribute>
@@ -358,17 +358,11 @@
            <schema_name/>
            </partitioning>
 <send_true_to>ASSET_PRE_MAP</send_true_to>
-<send_false_to>Map to Same</send_false_to>
+<send_false_to>Static Mapping</send_false_to>
     <compare>
 <condition>
  <negated>N</negated>
  <conditions>
-  <condition>
-   <negated>N</negated>
-   <leftvalue>ELMCODE_FROM</leftvalue>
-   <function>&#x3c;&#x3e;</function>
-   <rightvalue/>
-   <value><name>constant</name><type>String</type><text>165217</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
   <condition>
    <negated>N</negated>
    <operator>AND</operator>
@@ -376,13 +370,20 @@
    <function>&#x3c;&#x3e;</function>
    <rightvalue/>
    <value><name>constant</name><type>String</type><text>561551</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
+  <condition>
+   <negated>N</negated>
+   <operator>AND</operator>
+   <leftvalue>ELMCODE_FROM</leftvalue>
+   <function>&#x3c;&#x3e;</function>
+   <rightvalue/>
+   <value><name>constant</name><type>String</type><text>165217</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
   </conditions>
  </condition>
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1234</xloc>
-      <yloc>144</yloc>
+      <xloc>1374</xloc>
+      <yloc>143</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -478,6 +479,53 @@
     </step>
 
   <step>
+    <name>FX to BegBal</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+       <calculation><field_name>BEGBAL_FX_ACCT_TO</field_name>
+<calc_type>COPY_FIELD</calc_type>
+<field_a>BEGBAL_CAP_ACCT_TO</field_a>
+<field_b/>
+<field_c/>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<remove>N</remove>
+<conversion_mask/>
+<decimal_symbol/>
+<grouping_symbol/>
+<currency_symbol/>
+</calculation>
+       <calculation><field_name>ACCUM_FX_ACCT_TO</field_name>
+<calc_type>COPY_FIELD</calc_type>
+<field_a>BEGBAL_AD_ACCT_TO</field_a>
+<field_b/>
+<field_c/>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<remove>N</remove>
+<conversion_mask/>
+<decimal_symbol/>
+<grouping_symbol/>
+<currency_symbol/>
+</calculation>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1039</xloc>
+      <yloc>142</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
     <name>Flatten Types</name>
     <type>Denormaliser</type>
     <description/>
@@ -541,34 +589,6 @@
           <target_type>String</target_type>
           <target_format/>
           <target_length>2</target_length>
-          <target_precision>-1</target_precision>
-          <target_decimal_symbol/>
-          <target_grouping_symbol/>
-          <target_currency_symbol/>
-          <target_null_string/>
-          <target_aggregation_type>-</target_aggregation_type>
-          </field>
-        <field>
-          <field_name>AccountSuffix</field_name>
-          <key_value>CTA_ACCT</key_value>
-          <target_name>BEGBAL_FX_ACCT_TO</target_name>
-          <target_type>String</target_type>
-          <target_format/>
-          <target_length>6</target_length>
-          <target_precision>-1</target_precision>
-          <target_decimal_symbol/>
-          <target_grouping_symbol/>
-          <target_currency_symbol/>
-          <target_null_string/>
-          <target_aggregation_type>-</target_aggregation_type>
-          </field>
-        <field>
-          <field_name>AccountSuffix</field_name>
-          <key_value>CTA_ACCT</key_value>
-          <target_name>ACCUM_FX_ACCT_TO</target_name>
-          <target_type>String</target_type>
-          <target_format/>
-          <target_length>6</target_length>
           <target_precision>-1</target_precision>
           <target_decimal_symbol/>
           <target_grouping_symbol/>
@@ -736,31 +756,6 @@
     </step>
 
   <step>
-    <name>Map to Same</name>
-    <type>SetValueField</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>
-      <field>
-        <name>ELMCODE_TO</name>
-        <replaceby>ELMCODE_FROM</replaceby>
-        </field>
-      </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1301</xloc>
-      <yloc>265</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
     <name>Merge Join</name>
     <type>MergeJoin</type>
     <description/>
@@ -878,8 +873,8 @@
         <norm>ELMCODE_TO</norm>
         </field>      </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1025</xloc>
-      <yloc>143</yloc>
+      <xloc>1165</xloc>
+      <yloc>142</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -922,8 +917,8 @@
       </field>        <select_unspecified>N</select_unspecified>
     </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1119</xloc>
-      <yloc>143</yloc>
+      <xloc>1259</xloc>
+      <yloc>142</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -955,6 +950,32 @@
     </step>
 
   <step>
+    <name>Static Mapping</name>
+    <type>Formula</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+       <formula><field_name>ELMCODE_TO</field_name>
+<formula_string>if&#x28;&#x5b;ELMCODE_FROM&#x5d;&#x3d;&#x22;165217&#x22;&#x3b; &#x22;165211&#x22;&#x3b; &#x5b;ELMCODE_FROM&#x5d;&#x29;</formula_string>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field>ELMCODE_TO</replace_field>
+</formula>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1438</xloc>
+      <yloc>249</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
     <name>Valid Cap Account</name>
     <type>FilterRows</type>
     <description/>
@@ -965,7 +986,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-<send_true_to>Normalize</send_true_to>
+<send_true_to>FX to BegBal</send_true_to>
 <send_false_to>Dummy &#x28;do nothing&#x29; 2</send_false_to>
     <compare>
 <condition>

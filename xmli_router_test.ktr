@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>consolidate_balances</name>
+    <name>xmli_router_test</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -66,12 +66,38 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2015&#x2f;08&#x2f;05 19&#x3a;31&#x3a;25.566</created_date>
+  <created_date>2015&#x2f;10&#x2f;30 11&#x3a;25&#x3a;29.606</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2015&#x2f;08&#x2f;05 19&#x3a;31&#x3a;25.566</modified_date>
+  <modified_date>2015&#x2f;10&#x2f;30 11&#x3a;25&#x3a;29.606</modified_date>
   </info>
   <notepads>
   </notepads>
+  <connection>
+    <name>ARCHIVE</name>
+    <server/>
+    <type>GENERIC</type>
+    <access>Native</access>
+    <database/>
+    <port>1521</port>
+    <username>sa</username>
+    <password>Encrypted 2be98afc86aa7f2e4cb79ce10bef2bcdb</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>org.h2.Driver</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;h2&#x3a;&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;db&#x5c;data&#x5c;archive&#x3b;AUTO_SERVER&#x3d;true&#x3b;DB_CLOSE_ON_EXIT&#x3d;FALSE</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>1521</attribute></attribute>
+      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>N</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
   <connection>
     <name>CODA-DEST</name>
     <server>localhost</server>
@@ -149,11 +175,10 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>BALANCE_STAGING</from><to>CONSOLIDATED_BALANCES</to><enabled>Y</enabled> </hop>
   </order>
   <step>
-    <name>BALANCE_STAGING</name>
-    <type>TableInput</type>
+    <name>User Defined Java Class</name>
+    <type>UserDefinedJavaClass</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -162,91 +187,117 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>STAGING</connection>
-    <sql>SELECT &#xd;&#xa;  CMPCODE,&#xd;&#xa;  1 AS ELMLEVEL,&#xd;&#xa;  EL1,&#xd;&#xa;  YR,&#xd;&#xa;  PERIOD,&#xd;&#xa;  CURCODE,&#xd;&#xa;  SUM&#x28;DEBIT_VALUE&#x29; AS DEBIT_VALUE,&#xd;&#xa;  SUM&#x28;CREDIT_VALUE&#x29; AS CREDIT_VALUE,&#xd;&#xa;  SUM&#x28;FULL_VALUE&#x29; AS FULL_VALUE&#xd;&#xa;FROM STAGING.MAPPED_BALANCES&#xd;&#xa;GROUP BY&#xd;&#xa;  CMPCODE,&#xd;&#xa;  EL1,&#xd;&#xa;  YR,&#xd;&#xa;  PERIOD,&#xd;&#xa;  CURCODE</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>127</xloc>
-      <yloc>70</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
 
-  <step>
-    <name>CONSOLIDATED_BALANCES</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>STAGING</connection>
-    <schema>STAGING</schema>
-    <table>CONSOLIDATED_BALANCES</table>
-    <commit>1000</commit>
-    <truncate>Y</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
+    <definitions>
+        <definition>
+        <class_type>TRANSFORM_CLASS</class_type>
+
+        <class_name>Processor</class_name>
+
+        <class_source><![CDATA[import com.sigma.codaclient.services.*;
+import com.sigma.codaclient.codarouter.CodaRouter;
+
+public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws KettleException
+{
+	if (first){
+	  first = false;
+
+	  /* TODO: Your code here. (Using info fields)
+
+	  FieldHelper infoField = get(Fields.Info, "info_field_name");
+
+	  RowSet infoStream = findInfoRowSet("info_stream_tag");
+
+	  Object[] infoRow = null;
+
+	  int infoRowCount = 0;
+
+
+	  // Read all rows from info step before calling getRow() method, which returns first row from any
+	  // input rowset. As rowMeta for info and input steps varies getRow() can lead to errors.
+	  while((infoRow = getRowFrom(infoStream)) != null){
+
+	    // do something with info data
+	    infoRowCount++;
+	  }
+	  */
+	}
+
+	Object[] r = getRow();
+
+	if (r == null) {
+	  setOutputDone();
+	  return false;
+	}
+
+	// It is always safest to call createOutputRow() to ensure that your output row's Object[] is large
+    // enough to handle any new fields you are creating in this step.
+    r = createOutputRow(r, data.outputRowMeta.size());
+	
+    /* TODO: Your code here. (See Sample)
+    
+    // Get the value from an input field
+    String foobar = get(Fields.In, "a_fieldname").getString(r);
+
+    foobar += "bar";
+    
+    // Set a value in a new output field
+    get(Fields.Out, "output_fieldname").setValue(r, foobar);
+
+	*/
+	// Send the row on to the next step.
+    putRow(data.outputRowMeta, r);
+
+	return true;
+}
+
+public boolean init(StepMetaInterface stepMetaInterface, StepDataInterface stepDataInterface)
+{
+	try {
+    CodaRouter router = new CodaRouter();
+    CodaRouter.setNamespaces(true);
+    router.setLogging(true, false);
+
+	String nsvHost = getParameter("nsvHost");
+	Integer nsvPort = Integer.parseInt(getParameter("nsvPort"));
+	String lsvName = getParameter("lsvName");
+	String routerUser = getParameter("routerUser");
+	String routerPass = getParameter("routerPass");
+
+	router.connect(nsvHost, nsvPort, lsvName);
+    router.authenticate(routerUser, routerPass, "VEK", 0);
+    } catch (Exception ex) {
+		logError("Failed to connect to CODA", ex);
+		return false;
+	}
+
+    return parent.initImpl(stepMetaInterface, stepDataInterface);
+}
+
+]]></class_source>
+        </definition>
+    </definitions>
     <fields>
-        <field>
-          <column_name>CMPCODE</column_name>
-          <stream_name>CMPCODE</stream_name>
-        </field>
-        <field>
-          <column_name>ELMLEVEL</column_name>
-          <stream_name>ELMLEVEL</stream_name>
-        </field>
-        <field>
-          <column_name>YR</column_name>
-          <stream_name>YR</stream_name>
-        </field>
-        <field>
-          <column_name>PERIOD</column_name>
-          <stream_name>PERIOD</stream_name>
-        </field>
-        <field>
-          <column_name>CURCODE</column_name>
-          <stream_name>CURCODE</stream_name>
-        </field>
-        <field>
-          <column_name>DEBIT_VALUE</column_name>
-          <stream_name>DEBIT_VALUE</stream_name>
-        </field>
-        <field>
-          <column_name>CREDIT_VALUE</column_name>
-          <stream_name>CREDIT_VALUE</stream_name>
-        </field>
-        <field>
-          <column_name>FULL_VALUE</column_name>
-          <stream_name>FULL_VALUE</stream_name>
-        </field>
-        <field>
-          <column_name>CODE</column_name>
-          <stream_name>EL1</stream_name>
-        </field>
-    </fields>
-     <cluster_schema/>
+    </fields><clear_result_fields>N</clear_result_fields>
+<info_steps></info_steps><target_steps></target_steps><usage_parameters><usage_parameter><parameter_tag>nsvHost</parameter_tag>
+<parameter_value>localhost</parameter_value>
+<parameter_description/>
+</usage_parameter><usage_parameter><parameter_tag>nsvPort</parameter_tag>
+<parameter_value>11300</parameter_value>
+<parameter_description/>
+</usage_parameter><usage_parameter><parameter_tag>lsvName</parameter_tag>
+<parameter_value>codadev_fin_lsv</parameter_value>
+<parameter_description/>
+</usage_parameter><usage_parameter><parameter_tag>routerUser</parameter_tag>
+<parameter_value>INSTALL</parameter_value>
+<parameter_description/>
+</usage_parameter><usage_parameter><parameter_tag>routerPass</parameter_tag>
+<parameter_value>OAS</parameter_value>
+<parameter_description/>
+</usage_parameter></usage_parameters>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>344</xloc>
-      <yloc>71</yloc>
+      <xloc>532</xloc>
+      <yloc>142</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

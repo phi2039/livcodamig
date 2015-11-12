@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>validate_new_elements</name>
+    <name>build_element_sources</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -67,17 +67,17 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2015&#x2f;07&#x2f;28 10&#x3a;12&#x3a;55.127</created_date>
+  <created_date>2015&#x2f;08&#x2f;10 05&#x3a;20&#x3a;47.270</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2015&#x2f;07&#x2f;28 10&#x3a;12&#x3a;55.127</modified_date>
+  <modified_date>2015&#x2f;08&#x2f;10 05&#x3a;20&#x3a;47.270</modified_date>
   </info>
   <notepads>
     <notepad>
-      <note>New elements&#x3a;&#xd;&#xa;- Override existing elements in SOURCE&#xd;&#xa;- CANNOT exist more than once each entity &#x28;GLOBAL or LOCAL&#x29;&#xd;&#xa;- Entity MUST exist&#xd;&#xa;- MUST have valid field values</note>
-      <xloc>13</xloc>
-      <yloc>17</yloc>
-      <width>432</width>
-      <heigth>110</heigth>
+      <note>If this is a new element,&#xd;&#xa;fetch it from the staging&#xd;&#xa;table. Then, fetch the defaults&#xd;&#xa;for the remaining fields</note>
+      <xloc>116</xloc>
+      <yloc>403</yloc>
+      <width>206</width>
+      <heigth>90</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -94,10 +94,10 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>NOTE&#x3a; Wildcard &#xd;&#xa;entries come first</note>
-      <xloc>29</xloc>
-      <yloc>309</yloc>
-      <width>125</width>
+      <note>If this is an existing element,&#xd;&#xa;fetch a template from SOURCE</note>
+      <xloc>116</xloc>
+      <yloc>88</yloc>
+      <width>214</width>
       <heigth>50</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
@@ -218,60 +218,42 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Existing Entity</from><to>Remove Entity Flag</to><enabled>Y</enabled> </hop>
-  <hop> <from>Lookup Entity</from><to>Existing Entity</to><enabled>Y</enabled> </hop>
-  <hop> <from>Remove Entity Flag</from><to>Lookup Source Local</to><enabled>Y</enabled> </hop>
-  <hop> <from>Existing Entity</from><to>Unknown Entity</to><enabled>Y</enabled> </hop>
-  <hop> <from>Detect Duplicates</from><to>Duplicate Element</to><enabled>Y</enabled> </hop>
-  <hop> <from>Get System Info</from><to>Insert NEW_ELEMENT_ERR</to><enabled>Y</enabled> </hop>
-  <hop> <from>Duplicate Element</from><to>Select values 2</to><enabled>Y</enabled> </hop>
-  <hop> <from>Existing Element Warning</from><to>Select values 2</to><enabled>Y</enabled> </hop>
-  <hop> <from>Select values 2</from><to>Get System Info</to><enabled>Y</enabled> </hop>
-  <hop> <from>Unknown Entity</from><to>Select values</to><enabled>Y</enabled> </hop>
-  <hop> <from>Select values</from><to>Get System Info</to><enabled>Y</enabled> </hop>
-  <hop> <from>Override Warning</from><to>Select values 4</to><enabled>Y</enabled> </hop>
-  <hop> <from>Select values 4</from><to>Get System Info</to><enabled>Y</enabled> </hop>
-  <hop> <from>NEW_ELEMENT_PRE_STAGING</from><to>Global Element</to><enabled>Y</enabled> </hop>
-  <hop> <from>Global Element</from><to>Lookup Local Override</to><enabled>Y</enabled> </hop>
-  <hop> <from>Lookup Local Override</from><to>Local Override</to><enabled>Y</enabled> </hop>
-  <hop> <from>Local Override</from><to>Override Warning</to><enabled>Y</enabled> </hop>
-  <hop> <from>Lookup Local Override</from><to>Lookup Entity</to><enabled>Y</enabled> </hop>
-  <hop> <from>Global Element</from><to>Lookup Source Global</to><enabled>Y</enabled> </hop>
-  <hop> <from>Lookup Source Local</from><to>Merge</to><enabled>Y</enabled> </hop>
-  <hop> <from>Lookup Source Global</from><to>Merge</to><enabled>Y</enabled> </hop>
-  <hop> <from>Merge</from><to>Existing Element</to><enabled>Y</enabled> </hop>
-  <hop> <from>Existing Element</from><to>Existing Element Warning</to><enabled>Y</enabled> </hop>
-  <hop> <from>Merge</from><to>Detect Duplicates</to><enabled>Y</enabled> </hop>
-  <hop> <from>Detect Duplicates</from><to>Insert NEW_ELEMENT_STAGING</to><enabled>Y</enabled> </hop>
+  <hop> <from>Global Element</from><to>Get Source Company</to><enabled>Y</enabled> </hop>
+  <hop> <from>ELEMENT_STAGING</from><to>Lookup Type</to><enabled>Y</enabled> </hop>
+  <hop> <from>Lookup Type</from><to>Existing Element</to><enabled>Y</enabled> </hop>
+  <hop> <from>Existing Element</from><to>Global Element</to><enabled>Y</enabled> </hop>
+  <hop> <from>Existing Element</from><to>Lookup New</to><enabled>Y</enabled> </hop>
+  <hop> <from>Global Element</from><to>Set Source Company</to><enabled>Y</enabled> </hop>
+  <hop> <from>ENTITY_STAGING</from><to>Create Global</to><enabled>Y</enabled> </hop>
+  <hop> <from>Global Element 2</from><to>Remove CMPCODE</to><enabled>Y</enabled> </hop>
+  <hop> <from>Remove CMPCODE</from><to>Create Global</to><enabled>Y</enabled> </hop>
+  <hop> <from>Create Global</from><to>Reorder Fields</to><enabled>Y</enabled> </hop>
+  <hop> <from>Set Source Company</from><to>Set Source Element</to><enabled>Y</enabled> </hop>
+  <hop> <from>Set Source Element</from><to>NULL Names</to><enabled>Y</enabled> </hop>
+  <hop> <from>Lookup New</from><to>Global Element 2</to><enabled>Y</enabled> </hop>
+  <hop> <from>NULL Names</from><to>Global Element 2</to><enabled>Y</enabled> </hop>
+  <hop> <from>Reorder Fields</from><to>Merge</to><enabled>Y</enabled> </hop>
+  <hop> <from>Global Element 2</from><to>Merge</to><enabled>Y</enabled> </hop>
+  <hop> <from>Merge</from><to>Lookup Currency</to><enabled>Y</enabled> </hop>
+  <hop> <from>Lookup Currency</from><to>Level 1</to><enabled>Y</enabled> </hop>
+  <hop> <from>Level 1</from><to>Level 4</to><enabled>Y</enabled> </hop>
+  <hop> <from>Level 4</from><to>ELEMENT_LOAD_DEF</to><enabled>Y</enabled> </hop>
+  <hop> <from>Level 1</from><to>Lookup Bank</to><enabled>Y</enabled> </hop>
+  <hop> <from>Lookup Bank</from><to>Check Bank Currency</to><enabled>Y</enabled> </hop>
+  <hop> <from>Level 4</from><to>Lookup Note</to><enabled>Y</enabled> </hop>
+  <hop> <from>Lookup Note</from><to>Check Note Currency</to><enabled>Y</enabled> </hop>
+  <hop> <from>Check Bank Currency</from><to>Remove Fields</to><enabled>Y</enabled> </hop>
+  <hop> <from>Check Note Currency</from><to>Remove Fields 2</to><enabled>Y</enabled> </hop>
+  <hop> <from>Remove Fields</from><to>ELEMENT_LOAD_DEF</to><enabled>Y</enabled> </hop>
+  <hop> <from>Remove Fields 2</from><to>ELEMENT_LOAD_DEF</to><enabled>Y</enabled> </hop>
+  <hop> <from>Get Source Company</from><to>Valid Source</to><enabled>Y</enabled> </hop>
+  <hop> <from>Valid Source</from><to>Set Source Element</to><enabled>Y</enabled> </hop>
+  <hop> <from>Valid Source</from><to>No Source</to><enabled>Y</enabled> </hop>
+  <hop> <from>No Source</from><to>ELEMENT_LOAD_DEF_ERR</to><enabled>Y</enabled> </hop>
   </order>
   <step>
-    <name>Detect Duplicates</name>
-    <type>UniqueRowsByHashSet</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <store_values>Y</store_values>
-      <reject_duplicate_row>Y</reject_duplicate_row>
-      <error_description/>
-    <fields>      <field>        <name>CMPCODE</name>
-        </field>      <field>        <name>ELMLEVEL</name>
-        </field>      <field>        <name>CODE</name>
-        </field>      </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1196</xloc>
-      <yloc>243</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Duplicate Element</name>
-    <type>Constant</type>
+    <name>Check Bank Currency</name>
+    <type>Formula</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -280,43 +262,24 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <fields>
-      <field>
-        <name>errMessage</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>Element has already been defined</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>errLevel</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>ERROR</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
+       <formula><field_name>BANKCUR</field_name>
+<formula_string>IF&#x28;ISBLANK&#x28;&#x5b;CURCODE&#x5d;&#x29;&#x3b;&#x5b;CURLOCAL&#x5d;&#x3b;&#x5b;CURCODE&#x5d;&#x29;</formula_string>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field>CURLOCAL</replace_field>
+</formula>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1194</xloc>
-      <yloc>527</yloc>
+      <xloc>755</xloc>
+      <yloc>596</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Existing Element</name>
-    <type>FilterRows</type>
+    <name>Check Note Currency</name>
+    <type>Formula</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -325,154 +288,54 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-<send_true_to>Existing Element Warning</send_true_to>
-<send_false_to/>
+       <formula><field_name>NOTECUR</field_name>
+<formula_string>IF&#x28;ISBLANK&#x28;&#x5b;CURCODE&#x5d;&#x29;&#x3b;&#x5b;CURLOCAL&#x5d;&#x3b;&#x5b;CURCODE&#x5d;&#x29;</formula_string>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field>CURLOCAL</replace_field>
+</formula>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1237</xloc>
+      <yloc>671</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Create Global</name>
+    <type>JoinRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
+      <prefix>out</prefix>
+      <cache_size>500</cache_size>
+      <main>Remove CMPCODE</main>
     <compare>
 <condition>
  <negated>N</negated>
- <leftvalue>EXISTINGELEMENT</leftvalue>
+ <leftvalue/>
  <function>&#x3d;</function>
  <rightvalue/>
- <value><name>constant</name><type>String</type><text>TRUE</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
+ </condition>
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1032</xloc>
-      <yloc>414</yloc>
+      <xloc>983</xloc>
+      <yloc>149</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Existing Element Warning</name>
-    <type>Constant</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>
-      <field>
-        <name>errMessage</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>Element Exists in SOURCE and will be replaced</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>errLevel</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>WARN</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1029</xloc>
-      <yloc>527</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Existing Entity</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<send_true_to>Remove Entity Flag</send_true_to>
-<send_false_to>Unknown Entity</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>EXISTINGENTITY</leftvalue>
- <function>&#x3d;</function>
- <rightvalue/>
- <value><name>constant</name><type>String</type><text>TRUE</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>657</xloc>
-      <yloc>314</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Get System Info</name>
-    <type>SystemInfo</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>
-      <field>
-        <name>ERRDATE</name>
-        <type>system date &#x28;variable&#x29;</type>
-        </field>
-      </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>798</xloc>
-      <yloc>740</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Global Element</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<send_true_to>Lookup Source Global</send_true_to>
-<send_false_to>Lookup Local Override</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>CMPCODE</leftvalue>
- <function>&#x3d;</function>
- <rightvalue/>
- <value><name>constant</name><type>String</type><text>&#x2a;</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>277</xloc>
-      <yloc>224</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Insert NEW_ELEMENT_ERR</name>
+    <name>ELEMENT_LOAD_DEF</name>
     <type>TableOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -484,45 +347,7 @@
            </partitioning>
     <connection>STAGING</connection>
     <schema>STAGING</schema>
-    <table>NEW_ELEMENT_ERR</table>
-    <commit>10</commit>
-    <truncate>Y</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>N</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>803</xloc>
-      <yloc>839</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Insert NEW_ELEMENT_STAGING</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>STAGING</connection>
-    <schema>STAGING</schema>
-    <table>NEW_ELEMENT_STAGING</table>
+    <table>ELEMENT_LOAD_DEF</table>
     <commit>1000</commit>
     <truncate>Y</truncate>
     <ignore_errors>N</ignore_errors>
@@ -539,228 +364,52 @@
     <return_field/>
     <fields>
         <field>
-          <column_name>CODE</column_name>
-          <stream_name>CODE</stream_name>
-        </field>
-        <field>
-          <column_name>ELMLEVEL</column_name>
-          <stream_name>ELMLEVEL</stream_name>
-        </field>
-        <field>
-          <column_name>CMPCODE</column_name>
+          <column_name>CMPCODE_DEST</column_name>
           <stream_name>CMPCODE</stream_name>
         </field>
         <field>
-          <column_name>NAME</column_name>
-          <stream_name>NAME</stream_name>
+          <column_name>ELMCODE_DEST</column_name>
+          <stream_name>CODE</stream_name>
         </field>
         <field>
-          <column_name>SNAME</column_name>
-          <stream_name>SNAME</stream_name>
+          <column_name>ELMLEVEL_DEST</column_name>
+          <stream_name>ELMLEVEL</stream_name>
         </field>
         <field>
-          <column_name>TEMPLATE_CMP</column_name>
+          <column_name>CMPCODE_SRC</column_name>
           <stream_name>TEMPLATE_CMP</stream_name>
         </field>
         <field>
-          <column_name>TEMPLATE_ELM</column_name>
+          <column_name>ELMCODE_SRC</column_name>
           <stream_name>TEMPLATE_ELM</stream_name>
+        </field>
+        <field>
+          <column_name>ELMLEVEL_SRC</column_name>
+          <stream_name>ELMLEVEL</stream_name>
+        </field>
+        <field>
+          <column_name>CURCODE_DEST</column_name>
+          <stream_name>CURLOCAL</stream_name>
+        </field>
+        <field>
+          <column_name>NAME_DEST</column_name>
+          <stream_name>NAME</stream_name>
+        </field>
+        <field>
+          <column_name>SNAME_DEST</column_name>
+          <stream_name>SNAME</stream_name>
         </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1380</xloc>
-      <yloc>244</yloc>
+      <xloc>992</xloc>
+      <yloc>779</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Local Override</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<send_true_to>Override Warning</send_true_to>
-<send_false_to/>
-    <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>OVERRIDE</leftvalue>
- <function>&#x3d;</function>
- <rightvalue/>
- <value><name>constant</name><type>String</type><text>TRUE</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>425</xloc>
-      <yloc>429</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Lookup Entity</name>
-    <type>DBJoin</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>CODA-SOURCE</connection>
-    <rowlimit>0</rowlimit>
-    <sql>select&#xd;&#xa;  case when exists &#x28;select 1 from oas_company where code&#x3d;&#x3f;&#x29; then &#x27;TRUE&#x27;&#xd;&#xa;  else &#x27;FALSE&#x27;&#xd;&#xa;  end as existingEntity&#xd;&#xa;from dual</sql>
-    <outer_join>N</outer_join>
-    <replace_vars>N</replace_vars>
-    <parameter>
-      <field>
-        <name>CMPCODE</name>
-        <type>String</type>
-      </field>
-    </parameter>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>539</xloc>
-      <yloc>312</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Lookup Local Override</name>
-    <type>DBJoin</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>STAGING</connection>
-    <rowlimit>0</rowlimit>
-    <sql>select&#xd;&#xa;  case &#xd;&#xa;    -- Find any wildcard entries for this element, and return TRUE if this is an override &#x28;i.e. a wildcard exists&#x29;&#xd;&#xa;    when exists &#x28;select 1 from staging.new_element_pre_staging where cmpcode &#x3d; &#x27;&#x2a;&#x27; and elmlevel&#x3d;&#x3f; and code&#x3d;&#x3f;&#x29; then &#x27;TRUE&#x27;&#xd;&#xa;    else &#x27;FALSE&#x27;&#xd;&#xa;  end as override&#xd;&#xa;from dual</sql>
-    <outer_join>N</outer_join>
-    <replace_vars>N</replace_vars>
-    <parameter>
-      <field>
-        <name>ELMLEVEL</name>
-        <type>Integer</type>
-      </field>
-      <field>
-        <name>CODE</name>
-        <type>String</type>
-      </field>
-    </parameter>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>375</xloc>
-      <yloc>309</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Lookup Source Global</name>
-    <type>DBJoin</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>CODA-SOURCE</connection>
-    <rowlimit>0</rowlimit>
-    <sql>select&#xd;&#xa;  case when exists &#x28;select 1 from oas_element where elmlevel&#x3d;&#x3f; and code&#x3d;&#x3f;&#x29; then &#x27;TRUE&#x27;&#xd;&#xa;  else &#x27;FALSE&#x27;&#xd;&#xa;  end as existingElement&#xd;&#xa;from dual</sql>
-    <outer_join>N</outer_join>
-    <replace_vars>N</replace_vars>
-    <parameter>
-      <field>
-        <name>ELMLEVEL</name>
-        <type>Integer</type>
-      </field>
-      <field>
-        <name>CODE</name>
-        <type>String</type>
-      </field>
-    </parameter>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>936</xloc>
-      <yloc>165</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Lookup Source Local</name>
-    <type>DBJoin</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>CODA-SOURCE</connection>
-    <rowlimit>0</rowlimit>
-    <sql>select&#xd;&#xa;  case when exists &#x28;select 1 from oas_element where cmpcode&#x3d;&#x3f; and elmlevel&#x3d;&#x3f; and code&#x3d;&#x3f;&#x29; then &#x27;TRUE&#x27;&#xd;&#xa;  else &#x27;FALSE&#x27;&#xd;&#xa;  end as existingElement&#xd;&#xa;from dual</sql>
-    <outer_join>N</outer_join>
-    <replace_vars>N</replace_vars>
-    <parameter>
-      <field>
-        <name>CMPCODE</name>
-        <type>String</type>
-      </field>
-      <field>
-        <name>ELMLEVEL</name>
-        <type>Integer</type>
-      </field>
-      <field>
-        <name>CODE</name>
-        <type>String</type>
-      </field>
-    </parameter>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>934</xloc>
-      <yloc>311</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Merge</name>
-    <type>Dummy</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1034</xloc>
-      <yloc>243</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>NEW_ELEMENT_PRE_STAGING</name>
+    <name>ELEMENT_STAGING</name>
     <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -771,7 +420,7 @@
            <schema_name/>
            </partitioning>
     <connection>STAGING</connection>
-    <sql>SELECT &#x2a; FROM STAGING.NEW_ELEMENT_PRE_STAGING&#xd;&#xa;ORDER BY CMPCODE, ELMLEVEL, CODE</sql>
+    <sql>SELECT CMPCODE, CODE, ELMLEVEL&#xd;&#xa;FROM STAGING.ELEMENT_STAGING</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -779,14 +428,485 @@
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>87</xloc>
-      <yloc>223</yloc>
+      <xloc>82</xloc>
+      <yloc>294</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Override Warning</name>
+    <name>ENTITY_STAGING</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>STAGING</connection>
+    <sql>SELECT TRIM&#x28;CODE&#x29; AS CMPCODE FROM STAGING.ENTITY_STAGING</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>986</xloc>
+      <yloc>46</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Existing Element</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Global Element</send_true_to>
+<send_false_to>Lookup New</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>NEWELEMENT</leftvalue>
+ <function>&#x3d;</function>
+ <rightvalue/>
+ <value><name>constant</name><type>String</type><text>FALSE</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>325</xloc>
+      <yloc>294</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Get Source Company</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>&#xd;&#xa;&#x2f;&#x2f; Set input parameter values&#xd;&#xa;sourceStmt.setInt&#x28;1,ELMLEVEL&#x29;&#x3b;&#xd;&#xa;sourceStmt.setString&#x28;2,CODE&#x29;&#x3b;&#xd;&#xa;&#xd;&#xa;var rs &#x3d; sourceStmt.executeQuery&#x28;&#x29;&#x3b;&#xd;&#xa;var source &#x3d; null&#x3b;&#xd;&#xa;while &#x28;rs.next&#x28;&#x29;&#x29; &#x7b;&#xd;&#xa;  source &#x3d; rs.getString&#x28;1&#x29;&#x3b;&#xd;&#xa;&#x7d;&#xd;&#xa;rs.close&#x28;&#x29;&#x3b;&#xd;&#xa;</jsScript_script>
+      </jsScript>      <jsScript>        <jsScript_type>1</jsScript_type>
+        <jsScript_name>Initialize</jsScript_name>
+        <jsScript_script>&#xd;&#xa;&#x2f;&#x2f; Fetch a prioritized list of all valid source companies&#xd;&#xa;var prioSql &#x3d; &#x22;SELECT PRIORITY,CMPCODE FROM STAGING.GLOBAL_PRIO ORDER BY PRIORITY ASC&#x22;&#x3b;&#xd;&#xa;var prioList &#x3d; fireToDB&#x28;&#x22;STAGING&#x22;, prioSql&#x29;&#x3b;&#xd;&#xa;var tableSql &#x3d; &#x22;&#x22;&#x3b;&#xd;&#xa;for &#x28;var i in prioList&#x29;&#x7b;&#xd;&#xa;  if &#x28;i &#x3e; 0&#x29;&#xd;&#xa;    tableSql &#x3d; tableSql &#x2b; &#x22;, &#x22;&#x3b;&#xd;&#xa;  tableSql &#x3d; tableSql &#x2b; prioList&#x5b;i&#x5d;&#x5b;0&#x5d; &#x2b; &#x22;, &#x27;&#x22; &#x2b; prioList&#x5b;i&#x5d;&#x5b;1&#x5d; &#x2b; &#x22;&#x27;&#x22;&#x3b;&#xd;&#xa;&#x7d;&#xd;&#xa;writeToLog&#x28;&#x22;l&#x22;,tableSql&#x29;&#x3b;&#xd;&#xa;&#xd;&#xa;&#x2f;&#x2f; Create a PreparedStatement to use for source lookups&#xd;&#xa;&#xd;&#xa;var sourceDb &#x3d; new org.&#x200b;pentaho.&#x200b;di.&#x200b;core.&#x200b;database.Database&#x28;_step_, _step_.getTransMeta&#x28;&#x29;.findDatabase&#x28;&#x22;CODA-SOURCE&#x22;&#x29;&#x29;&#x3b;&#xd;&#xa;sourceDb.shareVariablesWith&#x28;_step_&#x29;&#x3b;&#xd;&#xa;sourceDb.connect&#x28;&#x29;&#x3b;&#xd;&#xa;&#xd;&#xa;var stmtSql &#x3d; &#x22;SELECT EL.CMPCODE, P.PRIORITY&#x5c;n&#x22; &#xd;&#xa;&#x2b; &#x22;FROM&#x5c;n&#x22;&#xd;&#xa;&#x2b; &#x22;OAS_ELEMENT EL&#x5c;n&#x22;&#xd;&#xa;&#x2b; &#x22;JOIN&#x5c;n&#x22;&#xd;&#xa;&#x2b; &#x22;  &#x28;SELECT LEVEL AS PRIORITY, DECODE &#x28;LEVEL, &#x22; &#x2b; tableSql &#x2b; &#x22;&#x29; AS CMPCODE FROM DUAL CONNECT BY LEVEL &#x3c;&#x3d; &#x22; &#x2b; prioList.length &#x2b; &#x22;&#x29; P&#x5c;n&#x22;&#xd;&#xa;&#x2b; &#x22;    ON P.CMPCODE&#x3d;EL.CMPCODE&#x5c;n&#x22;&#xd;&#xa;&#x2b; &#x22;WHERE&#x5c;n&#x22;&#xd;&#xa;&#x2b; &#x22;  ELMLEVEL&#x3d;&#x3f;&#x5c;n&#x22;&#xd;&#xa;&#x2b; &#x22;  AND CODE&#x3d;&#x3f;&#x5c;n&#x22;&#xd;&#xa;&#x2b; &#x22;  AND ROWNUM&#x3d;1&#x22;&#xd;&#xa;writeToLog&#x28;&#x22;l&#x22;,stmtSql&#x29;&#x3b;&#xd;&#xa;&#xd;&#xa;var sourceStmt &#x3d; sourceDb.getConnection&#x28;&#x29;.prepareStatement&#x28;stmtSql&#x29;&#x3b;</jsScript_script>
+      </jsScript>    </jsScripts>    <fields>      <field>        <name>source</name>
+        <rename>TEMPLATE_CMP</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>405</xloc>
+      <yloc>99</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Global Element</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Get Source Company</send_true_to>
+<send_false_to>Set Source Company</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>CMPCODE</leftvalue>
+ <function>&#x3d;</function>
+ <rightvalue/>
+ <value><name>constant</name><type>String</type><text>&#x2a;</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>325</xloc>
+      <yloc>200</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Global Element 2</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Remove CMPCODE</send_true_to>
+<send_false_to>Merge</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>CMPCODE</leftvalue>
+ <function>&#x3d;</function>
+ <rightvalue/>
+ <value><name>constant</name><type>String</type><text>&#x2a;</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>792</xloc>
+      <yloc>242</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Level 1</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Lookup Bank</send_true_to>
+<send_false_to>Level 4</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>ELMLEVEL</leftvalue>
+ <function>&#x3d;</function>
+ <rightvalue/>
+ <value><name>constant</name><type>Integer</type><text>1</text><length>-1</length><precision>0</precision><isnull>N</isnull><mask>&#x23;&#x3b;-&#x23;</mask></value> </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>989</xloc>
+      <yloc>540</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Level 4</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Lookup Note</send_true_to>
+<send_false_to>ELEMENT_LOAD_DEF</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>ELMLEVEL</leftvalue>
+ <function>&#x3d;</function>
+ <rightvalue/>
+ <value><name>constant</name><type>Integer</type><text>4</text><length>-1</length><precision>0</precision><isnull>N</isnull><mask>&#x23;&#x3b;-&#x23;</mask></value> </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>991</xloc>
+      <yloc>642</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Lookup Bank</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>STAGING</connection>
+    <cache>Y</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema>STAGING_TEMPLATES</schema>
+      <table>EL1_BANK_MAP</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>CMPCODE</name>
+        <field>CMPCODE</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>CODE</name>
+        <field>EL1_TO</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>CURCODE</name>
+        <rename>CURCODE</rename>
+        <default/>
+        <type>String</type>
+      </value>
+    </lookup>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>857</xloc>
+      <yloc>542</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Lookup Currency</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>STAGING</connection>
+    <cache>Y</cache>
+    <cache_load_all>Y</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema>STAGING_TEMPLATES</schema>
+      <table>CMP_MASTER</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>CMPCODE</name>
+        <field>CMPCODE</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>CURLOCAL</name>
+        <rename>CURLOCAL</rename>
+        <default/>
+        <type>String</type>
+      </value>
+    </lookup>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>988</xloc>
+      <yloc>444</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Lookup New</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>STAGING</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema>STAGING</schema>
+      <table>NEW_ELEMENT_STAGING</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>CMPCODE</name>
+        <field>CMPCODE</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>ELMLEVEL</name>
+        <field>ELMLEVEL</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>CODE</name>
+        <field>CODE</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>TEMPLATE_CMP</name>
+        <rename>TEMPLATE_CMP</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>TEMPLATE_ELM</name>
+        <rename>TEMPLATE_ELM</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>NAME</name>
+        <rename>NAME</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>SNAME</name>
+        <rename>SNAME</rename>
+        <default/>
+        <type>String</type>
+      </value>
+    </lookup>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>599</xloc>
+      <yloc>292</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Lookup Note</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>STAGING</connection>
+    <cache>Y</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema>STAGING_TEMPLATES</schema>
+      <table>EL4_MASTER_NEW</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>CMPCODE</name>
+        <field>CMPCODE</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>CODE</name>
+        <field>EL4</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>CURCODE</name>
+        <rename>CURCODE</rename>
+        <default/>
+        <type>String</type>
+      </value>
+    </lookup>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1128</xloc>
+      <yloc>638</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Lookup Type</name>
+    <type>DBJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>STAGING</connection>
+    <rowlimit>0</rowlimit>
+    <sql>SELECT&#xd;&#xa;CASE WHEN EXISTS &#x28;SELECT 1 FROM STAGING.NEW_ELEMENT_STAGING WHERE CMPCODE&#x3d;&#x3f; AND ELMLEVEL&#x3d;&#x3f; AND CODE&#x3d;&#x3f;&#x29; THEN &#x27;TRUE&#x27;&#xd;&#xa;ELSE &#x27;FALSE&#x27; END AS NEWELEMENT&#xd;&#xa;FROM DUAL</sql>
+    <outer_join>N</outer_join>
+    <replace_vars>N</replace_vars>
+    <parameter>
+      <field>
+        <name>CMPCODE</name>
+        <type>String</type>
+      </field>
+      <field>
+        <name>ELMLEVEL</name>
+        <type>Integer</type>
+      </field>
+      <field>
+        <name>CODE</name>
+        <type>String</type>
+      </field>
+    </parameter>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>205</xloc>
+      <yloc>294</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Merge</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>989</xloc>
+      <yloc>345</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>NULL Names</name>
     <type>Constant</type>
     <description/>
     <distribute>Y</distribute>
@@ -798,25 +918,25 @@
            </partitioning>
     <fields>
       <field>
-        <name>errMessage</name>
+        <name>NAME</name>
         <type>String</type>
         <format/>
         <currency/>
         <decimal/>
         <group/>
-        <nullif>Entry overrides Global entry</nullif>
+        <nullif/>
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
       </field>
       <field>
-        <name>errLevel</name>
+        <name>SNAME</name>
         <type>String</type>
         <format/>
         <currency/>
         <decimal/>
         <group/>
-        <nullif>WARN</nullif>
+        <nullif/>
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
@@ -824,230 +944,14 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>433</xloc>
-      <yloc>530</yloc>
+      <xloc>702</xloc>
+      <yloc>163</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Remove Entity Flag</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>      <field>        <name>CODE</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>ELMLEVEL</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>CMPCODE</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>NAME</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>SNAME</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>TEMPLATE_CMP</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>TEMPLATE_ELM</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>        <select_unspecified>N</select_unspecified>
-    </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>788</xloc>
-      <yloc>313</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Select values</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>      <field>        <name>CODE</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>ELMLEVEL</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>CMPCODE</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>NAME</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>SNAME</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>TEMPLATE_CMP</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>TEMPLATE_ELM</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>errMessage</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>errLevel</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>        <select_unspecified>N</select_unspecified>
-    </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>657</xloc>
-      <yloc>617</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Select values 2</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>      <field>        <name>CODE</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>ELMLEVEL</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>CMPCODE</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>NAME</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>SNAME</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>TEMPLATE_CMP</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>TEMPLATE_ELM</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>errMessage</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>errLevel</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>        <select_unspecified>N</select_unspecified>
-    </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1032</xloc>
-      <yloc>646</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Select values 4</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>      <field>        <name>CODE</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>ELMLEVEL</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>CMPCODE</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>NAME</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>SNAME</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>TEMPLATE_CMP</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>TEMPLATE_ELM</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>errMessage</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>errLevel</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>        <select_unspecified>N</select_unspecified>
-    </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>431</xloc>
-      <yloc>629</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Unknown Entity</name>
+    <name>No Source</name>
     <type>Constant</type>
     <description/>
     <distribute>Y</distribute>
@@ -1059,19 +963,7 @@
            </partitioning>
     <fields>
       <field>
-        <name>errMessage</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>Unknown Entity</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>errLevel</name>
+        <name>ERRLEVEL</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -1082,28 +974,370 @@
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
       </field>
+      <field>
+        <name>ERRMESSAGE</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>No source company found</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>656</xloc>
-      <yloc>511</yloc>
+      <xloc>650</xloc>
+      <yloc>53</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Remove CMPCODE</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>        <select_unspecified>N</select_unspecified>
+      <remove>        <name>CMPCODE</name>
+      </remove>    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>865</xloc>
+      <yloc>150</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Remove Fields</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>      <field>        <name>CMPCODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ELMLEVEL</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>NEWELEMENT</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TEMPLATE_CMP</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TEMPLATE_ELM</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>NAME</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>SNAME</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CURLOCAL</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>        <select_unspecified>N</select_unspecified>
+    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>854</xloc>
+      <yloc>705</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Remove Fields 2</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>      <field>        <name>CMPCODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ELMLEVEL</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>NEWELEMENT</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TEMPLATE_CMP</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TEMPLATE_ELM</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>NAME</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>SNAME</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CURLOCAL</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>        <select_unspecified>N</select_unspecified>
+    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1143</xloc>
+      <yloc>740</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Reorder Fields</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>      <field>        <name>CMPCODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ELMLEVEL</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>NEWELEMENT</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TEMPLATE_CMP</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TEMPLATE_ELM</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>NAME</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>SNAME</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>        <select_unspecified>N</select_unspecified>
+    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>985</xloc>
+      <yloc>250</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Set Source Company</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+       <calculation><field_name>TEMPLATE_CMP</field_name>
+<calc_type>COPY_FIELD</calc_type>
+<field_a>CMPCODE</field_a>
+<field_b/>
+<field_c/>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<remove>N</remove>
+<conversion_mask/>
+<decimal_symbol/>
+<grouping_symbol/>
+<currency_symbol/>
+</calculation>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>464</xloc>
+      <yloc>200</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Set Source Element</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+       <calculation><field_name>TEMPLATE_ELM</field_name>
+<calc_type>COPY_FIELD</calc_type>
+<field_a>CODE</field_a>
+<field_b/>
+<field_c/>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<remove>N</remove>
+<conversion_mask/>
+<decimal_symbol/>
+<grouping_symbol/>
+<currency_symbol/>
+</calculation>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>576</xloc>
+      <yloc>156</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>ELEMENT_LOAD_DEF_ERR</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>STAGING</connection>
+    <schema>STAGING</schema>
+    <table>ELEMENT_LOAD_DEF_ERR</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+        <field>
+          <column_name>ERRLEVEL</column_name>
+          <stream_name>ERRLEVEL</stream_name>
+        </field>
+        <field>
+          <column_name>ERRMESSAGE</column_name>
+          <stream_name>ERRMESSAGE</stream_name>
+        </field>
+        <field>
+          <column_name>CMPCODE_DEST</column_name>
+          <stream_name>CMPCODE</stream_name>
+        </field>
+        <field>
+          <column_name>ELMCODE_DEST</column_name>
+          <stream_name>CODE</stream_name>
+        </field>
+        <field>
+          <column_name>ELMLEVEL_SRC</column_name>
+          <stream_name>ELMLEVEL</stream_name>
+        </field>
+        <field>
+          <column_name>CMPCODE_SRC</column_name>
+          <stream_name>TEMPLATE_CMP</stream_name>
+        </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>792</xloc>
+      <yloc>43</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Valid Source</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Set Source Element</send_true_to>
+<send_false_to>No Source</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>TEMPLATE_CMP</leftvalue>
+ <function>IS NOT NULL</function>
+ <rightvalue/>
+ </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>514</xloc>
+      <yloc>71</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step_error_handling>
-      <error>
-        <source_step>Detect Duplicates</source_step>
-        <target_step>Duplicate Element</target_step>
-        <is_enabled>Y</is_enabled>
-        <nr_valuename/>
-        <descriptions_valuename/>
-        <fields_valuename/>
-        <codes_valuename/>
-        <max_errors/>
-        <max_pct_errors/>
-        <min_pct_rows/>
-      </error>
   </step_error_handling>
    <slave-step-copy-partition-distribution>
 </slave-step-copy-partition-distribution>

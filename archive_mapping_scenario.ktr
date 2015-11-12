@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>consolidate_balances</name>
+    <name>archive_mapping_scenario</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
+    <trans_status>0</trans_status>
     <directory>&#x2f;</directory>
     <parameters>
+        <parameter>
+            <name>scenarioName</name>
+            <default_value/>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>scenarioVersion</name>
+            <default_value/>
+            <description/>
+        </parameter>
     </parameters>
     <log>
 <trans-log-table><connection/>
@@ -66,12 +77,38 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2015&#x2f;08&#x2f;05 19&#x3a;31&#x3a;25.566</created_date>
+  <created_date>2015&#x2f;10&#x2f;07 10&#x3a;47&#x3a;51.715</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2015&#x2f;08&#x2f;05 19&#x3a;31&#x3a;25.566</modified_date>
+  <modified_date>2015&#x2f;10&#x2f;07 10&#x3a;47&#x3a;51.715</modified_date>
   </info>
   <notepads>
   </notepads>
+  <connection>
+    <name>ARCHIVE</name>
+    <server/>
+    <type>GENERIC</type>
+    <access>Native</access>
+    <database/>
+    <port>1521</port>
+    <username>sa</username>
+    <password>Encrypted 2be98afc86aa7f2e4cb79ce10bef2bcdb</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>org.h2.Driver</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;h2&#x3a;&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;db&#x5c;data&#x5c;archive&#x3b;AUTO_SERVER&#x3d;true&#x3b;DB_CLOSE_ON_EXIT&#x3d;FALSE</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>1521</attribute></attribute>
+      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>N</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
   <connection>
     <name>CODA-DEST</name>
     <server>localhost</server>
@@ -149,10 +186,11 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>BALANCE_STAGING</from><to>CONSOLIDATED_BALANCES</to><enabled>Y</enabled> </hop>
+  <hop> <from>MAPPED_BALANCES</from><to>MAPPED_BALANCES_vX</to><enabled>Y</enabled> </hop>
+  <hop> <from>CONSOLIDATED_BALANCES</from><to>CONSOLIDATED_BALANCES_vX</to><enabled>Y</enabled> </hop>
   </order>
   <step>
-    <name>BALANCE_STAGING</name>
+    <name>CONSOLIDATED_BALANCES</name>
     <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -163,7 +201,7 @@
            <schema_name/>
            </partitioning>
     <connection>STAGING</connection>
-    <sql>SELECT &#xd;&#xa;  CMPCODE,&#xd;&#xa;  1 AS ELMLEVEL,&#xd;&#xa;  EL1,&#xd;&#xa;  YR,&#xd;&#xa;  PERIOD,&#xd;&#xa;  CURCODE,&#xd;&#xa;  SUM&#x28;DEBIT_VALUE&#x29; AS DEBIT_VALUE,&#xd;&#xa;  SUM&#x28;CREDIT_VALUE&#x29; AS CREDIT_VALUE,&#xd;&#xa;  SUM&#x28;FULL_VALUE&#x29; AS FULL_VALUE&#xd;&#xa;FROM STAGING.MAPPED_BALANCES&#xd;&#xa;GROUP BY&#xd;&#xa;  CMPCODE,&#xd;&#xa;  EL1,&#xd;&#xa;  YR,&#xd;&#xa;  PERIOD,&#xd;&#xa;  CURCODE</sql>
+    <sql>SELECT&#xd;&#xa;  CMPCODE&#xd;&#xa;, ELMLEVEL&#xd;&#xa;, CODE&#xd;&#xa;, YR&#xd;&#xa;, PERIOD&#xd;&#xa;, CURCODE&#xd;&#xa;, DEBIT_VALUE&#xd;&#xa;, CREDIT_VALUE&#xd;&#xa;, FULL_VALUE&#xd;&#xa;FROM STAGING.CONSOLIDATED_BALANCES&#xd;&#xa;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -171,14 +209,14 @@
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>127</xloc>
-      <yloc>70</yloc>
+      <xloc>145</xloc>
+      <yloc>86</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>CONSOLIDATED_BALANCES</name>
+    <name>CONSOLIDATED_BALANCES_vX</name>
     <type>TableOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -188,11 +226,11 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>STAGING</connection>
-    <schema>STAGING</schema>
-    <table>CONSOLIDATED_BALANCES</table>
+    <connection>ARCHIVE</connection>
+    <schema>&#x24;&#x7b;scenarioName&#x7d;</schema>
+    <table>CONSOLIDATED_BALANCES_v&#x24;&#x7b;scenarioVersion&#x7d;</table>
     <commit>1000</commit>
-    <truncate>Y</truncate>
+    <truncate>N</truncate>
     <ignore_errors>N</ignore_errors>
     <use_batch>Y</use_batch>
     <specify_fields>Y</specify_fields>
@@ -213,6 +251,10 @@
         <field>
           <column_name>ELMLEVEL</column_name>
           <stream_name>ELMLEVEL</stream_name>
+        </field>
+        <field>
+          <column_name>CODE</column_name>
+          <stream_name>CODE</stream_name>
         </field>
         <field>
           <column_name>YR</column_name>
@@ -238,15 +280,131 @@
           <column_name>FULL_VALUE</column_name>
           <stream_name>FULL_VALUE</stream_name>
         </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>367</xloc>
+      <yloc>87</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>MAPPED_BALANCES</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>STAGING</connection>
+    <sql>SELECT&#xd;&#xa;  YR&#xd;&#xa;, PERIOD&#xd;&#xa;, CMPCODE&#xd;&#xa;, EL1&#xd;&#xa;, EL2&#xd;&#xa;, EL3&#xd;&#xa;, EL4&#xd;&#xa;, EL5&#xd;&#xa;, EL6&#xd;&#xa;, ACCODE&#xd;&#xa;, CURCODE&#xd;&#xa;, DEBIT_VALUE&#xd;&#xa;, CREDIT_VALUE&#xd;&#xa;, FULL_VALUE&#xd;&#xa;FROM STAGING.MAPPED_BALANCES&#xd;&#xa;</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>152</xloc>
+      <yloc>214</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>MAPPED_BALANCES_vX</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>ARCHIVE</connection>
+    <schema>&#x24;&#x7b;scenarioName&#x7d;</schema>
+    <table>MAPPED_BALANCES_v&#x24;&#x7b;scenarioVersion&#x7d;</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
         <field>
-          <column_name>CODE</column_name>
+          <column_name>YR</column_name>
+          <stream_name>YR</stream_name>
+        </field>
+        <field>
+          <column_name>PERIOD</column_name>
+          <stream_name>PERIOD</stream_name>
+        </field>
+        <field>
+          <column_name>CMPCODE</column_name>
+          <stream_name>CMPCODE</stream_name>
+        </field>
+        <field>
+          <column_name>EL1</column_name>
           <stream_name>EL1</stream_name>
+        </field>
+        <field>
+          <column_name>EL2</column_name>
+          <stream_name>EL2</stream_name>
+        </field>
+        <field>
+          <column_name>EL3</column_name>
+          <stream_name>EL3</stream_name>
+        </field>
+        <field>
+          <column_name>EL4</column_name>
+          <stream_name>EL4</stream_name>
+        </field>
+        <field>
+          <column_name>EL5</column_name>
+          <stream_name>EL5</stream_name>
+        </field>
+        <field>
+          <column_name>EL6</column_name>
+          <stream_name>EL6</stream_name>
+        </field>
+        <field>
+          <column_name>ACCODE</column_name>
+          <stream_name>ACCODE</stream_name>
+        </field>
+        <field>
+          <column_name>CURCODE</column_name>
+          <stream_name>CURCODE</stream_name>
+        </field>
+        <field>
+          <column_name>DEBIT_VALUE</column_name>
+          <stream_name>DEBIT_VALUE</stream_name>
+        </field>
+        <field>
+          <column_name>CREDIT_VALUE</column_name>
+          <stream_name>CREDIT_VALUE</stream_name>
+        </field>
+        <field>
+          <column_name>FULL_VALUE</column_name>
+          <stream_name>FULL_VALUE</stream_name>
         </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>344</xloc>
-      <yloc>71</yloc>
+      <xloc>368</xloc>
+      <yloc>216</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

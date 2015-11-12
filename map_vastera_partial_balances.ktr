@@ -74,6 +74,32 @@
   <notepads>
   </notepads>
   <connection>
+    <name>ARCHIVE</name>
+    <server/>
+    <type>GENERIC</type>
+    <access>Native</access>
+    <database/>
+    <port>1521</port>
+    <username>sa</username>
+    <password>Encrypted 2be98afc86aa7f2e4cb79ce10bef2bcdb</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>org.h2.Driver</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;h2&#x3a;&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;db&#x5c;data&#x5c;archive&#x3b;AUTO_SERVER&#x3d;true&#x3b;DB_CLOSE_ON_EXIT&#x3d;FALSE</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>1521</attribute></attribute>
+      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>N</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
     <name>CODA-DEST</name>
     <server>localhost</server>
     <type>ORACLE</type>
@@ -152,11 +178,11 @@
   <order>
   <hop> <from>Map Account Code</from><to>STAGED_PARTIAL_BALANCES</to><enabled>Y</enabled> </hop>
   <hop> <from>SOURCE_PARTIAL_BALANCES</from><to>Add Yr&#x2f;Period</to><enabled>Y</enabled> </hop>
-  <hop> <from>Remap Assets</from><to>Map Account Code</to><enabled>Y</enabled> </hop>
+  <hop> <from>Flatten Assets</from><to>Map Account Code</to><enabled>Y</enabled> </hop>
   <hop> <from>Add Yr&#x2f;Period</from><to>Asset Account</to><enabled>Y</enabled> </hop>
   <hop> <from>Asset Account</from><to>Map Account Code</to><enabled>Y</enabled> </hop>
   <hop> <from>Map Account Code</from><to>PARTIAL_BALANCE_ERR</to><enabled>Y</enabled> </hop>
-  <hop> <from>Asset Account</from><to>Remap Assets</to><enabled>Y</enabled> </hop>
+  <hop> <from>Asset Account</from><to>Flatten Assets</to><enabled>Y</enabled> </hop>
   </order>
   <step>
     <name>Add Yr&#x2f;Period</name>
@@ -214,7 +240,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-<send_true_to>Remap Assets</send_true_to>
+<send_true_to>Flatten Assets</send_true_to>
 <send_false_to>Map Account Code</send_false_to>
 <condition>EL1.substring&#x28;0,2&#x29;.equals&#x28;&#x22;14&#x22;&#x29; &#x7c;&#x7c; EL1.substring&#x28;0,2&#x29;.equals&#x28;&#x22;16&#x22;&#x29;</condition>
      <cluster_schema/>
@@ -351,7 +377,7 @@
     </step>
 
   <step>
-    <name>Remap Assets</name>
+    <name>Flatten Assets</name>
     <type>Janino</type>
     <description/>
     <distribute>Y</distribute>
@@ -388,7 +414,7 @@
            <schema_name/>
            </partitioning>
     <connection>STAGING</connection>
-    <sql>select&#xd;&#xa;b.cmpcode,&#xd;&#xa;b.el1,b.el2,b.el3,b.el4,b.el5,b.el6,&#xd;&#xa;b.curcode,&#xd;&#xa;b.amount as input_amt,&#xd;&#xa;rc.rate as cad_rate,&#xd;&#xa;b.amount &#x2a; &#x28;rc.rate &#x2f; 10000000&#x29; cad_amt,&#xd;&#xa;c.curlocal,&#xd;&#xa;b.amount &#x2a; &#x28;rc.rate&#x2f;rl.rate&#x29; local_amt,&#xd;&#xa;&#x28;rc.rate&#x2f;rl.rate&#x29; &#x2a; 10000000 as local_rate&#xd;&#xa;from &#xd;&#xa;vastera.source_partial_balances b&#xd;&#xa;left join staging_templates.cmpcode_map cm on cm.cmpcode_from&#x3d;b.cmpcode&#xd;&#xa;left join staging_templates.cmp_master c on c.cmpcode&#x3d;cm.cmpcode_to&#xd;&#xa;left join staging_templates.rate_master rc on rc.rate_type&#x3d;&#x27;ME_RATE&#x27; and rc.base&#x3d;b.curcode and rc.parent&#x3d;&#x27;CAD&#x27;&#xd;&#xa;left join staging_templates.rate_master rl on rl.rate_type&#x3d;&#x27;ME_RATE&#x27; and rl.base&#x3d;c.curlocal and rl.parent&#x3d;&#x27;CAD&#x27;</sql>
+    <sql>select&#xd;&#xa;b.cmpcode,&#xd;&#xa;b.el1,b.el2,b.el3,b.el4,b.el5,b.el6,&#xd;&#xa;b.curcode,&#xd;&#xa;b.amount as input_amt,&#xd;&#xa;rc.rate as cad_rate,&#xd;&#xa;b.amount &#x2a; &#x28;rc.rate &#x2f; 10000000&#x29; cad_amt,&#xd;&#xa;c.curlocal,&#xd;&#xa;b.amount &#x2a; &#x28;rc.rate&#x2f;rl.rate&#x29; local_amt,&#xd;&#xa;&#x28;rc.rate&#x2f;rl.rate&#x29; &#x2a; 10000000 as local_rate,&#xd;&#xa;b.amount &#x2a; &#x28;rc.rate&#x2f;rf.rate&#x29; func_amt,&#xd;&#xa;&#x28;rc.rate&#x2f;rf.rate&#x29; &#x2a; 10000000 as func_rate&#xd;&#xa;from &#xd;&#xa;vastera.source_partial_balances b&#xd;&#xa;left join staging_templates.cmpcode_map cm on cm.cmpcode_from&#x3d;b.cmpcode&#xd;&#xa;left join staging_templates.cmp_master c on c.cmpcode&#x3d;cm.cmpcode_to&#xd;&#xa;left join staging_templates.rate_master rc on rc.rate_type&#x3d;&#x27;ME_RATE&#x27; and rc.base&#x3d;b.curcode and rc.parent&#x3d;&#x27;CAD&#x27;&#xd;&#xa;left join staging_templates.rate_master rl on rl.rate_type&#x3d;&#x27;ME_RATE&#x27; and rl.base&#x3d;c.curlocal and rl.parent&#x3d;&#x27;CAD&#x27;&#xd;&#xa;left join staging_templates.rate_master rf on rf.rate_type&#x3d;&#x27;ME_RATE&#x27; and rf.base&#x3d;c.curfunc and rf.parent&#x3d;&#x27;CAD&#x27;&#xd;&#xa;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -450,6 +476,14 @@
         <field>
           <column_name>LOCAL_RATE</column_name>
           <stream_name>LOCAL_RATE</stream_name>
+        </field>
+        <field>
+          <column_name>FUNC_AMT</column_name>
+          <stream_name>FUNC_AMT</stream_name>
+        </field>
+        <field>
+          <column_name>FUNC_RATE</column_name>
+          <stream_name>FUNC_RATE</stream_name>
         </field>
         <field>
           <column_name>PERIOD</column_name>

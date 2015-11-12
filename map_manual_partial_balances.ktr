@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>load_new_elements</name>
+    <name>map_manual_partial_balances</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -66,32 +66,11 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2015&#x2f;07&#x2f;28 10&#x3a;12&#x3a;55.127</created_date>
+  <created_date>2015&#x2f;11&#x2f;11 19&#x3a;54&#x3a;29.072</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2015&#x2f;07&#x2f;28 10&#x3a;12&#x3a;55.127</modified_date>
+  <modified_date>2015&#x2f;11&#x2f;11 19&#x3a;54&#x3a;29.072</modified_date>
   </info>
   <notepads>
-    <notepad>
-      <note>Merge NEW Element definitions</note>
-      <xloc>19</xloc>
-      <yloc>22</yloc>
-      <width>223</width>
-      <heigth>30</heigth>
-      <fontname>Segoe UI</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
   </notepads>
   <connection>
     <name>ARCHIVE</name>
@@ -196,18 +175,18 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>EL1_MASTER_NEW</from><to>All Companies &#x28;Level 1&#x29;</to><enabled>Y</enabled> </hop>
-  <hop> <from>EL3_MASTER_NEW</from><to>Level 3</to><enabled>Y</enabled> </hop>
-  <hop> <from>Level 3</from><to>Select values</to><enabled>Y</enabled> </hop>
-  <hop> <from>EL4_MASTER_NEW</from><to>Level 4</to><enabled>Y</enabled> </hop>
-  <hop> <from>Level 4</from><to>Select values 3</to><enabled>Y</enabled> </hop>
-  <hop> <from>All Companies &#x28;Level 1&#x29;</from><to>Select values 2</to><enabled>Y</enabled> </hop>
-  <hop> <from>Select values 3</from><to>Insert NEW_ELEMENT_PRE_STAGING</to><enabled>Y</enabled> </hop>
-  <hop> <from>Select values</from><to>Insert NEW_ELEMENT_PRE_STAGING</to><enabled>Y</enabled> </hop>
-  <hop> <from>Select values 2</from><to>Insert NEW_ELEMENT_PRE_STAGING</to><enabled>Y</enabled> </hop>
+  <hop> <from>Add Yr&#x2f;Period</from><to>Asset Account</to><enabled>Y</enabled> </hop>
+  <hop> <from>Asset Account</from><to>Flatten Assets</to><enabled>Y</enabled> </hop>
+  <hop> <from>Asset Account</from><to>Map Account Code</to><enabled>Y</enabled> </hop>
+  <hop> <from>Flatten Assets</from><to>Map Account Code</to><enabled>Y</enabled> </hop>
+  <hop> <from>Map Account Code</from><to>PARTIAL_BALANCE_ERR</to><enabled>Y</enabled> </hop>
+  <hop> <from>Map Account Code</from><to>STAGED_PARTIAL_BALANCES</to><enabled>Y</enabled> </hop>
+  <hop> <from>PART_BALANCES</from><to>Valid Amounts</to><enabled>Y</enabled> </hop>
+  <hop> <from>Valid Amounts</from><to>Add Yr&#x2f;Period</to><enabled>Y</enabled> </hop>
+  <hop> <from>Valid Amounts</from><to>No Currencies</to><enabled>Y</enabled> </hop>
   </order>
   <step>
-    <name>All Companies &#x28;Level 1&#x29;</name>
+    <name>Add Yr&#x2f;Period</name>
     <type>Constant</type>
     <description/>
     <distribute>Y</distribute>
@@ -219,25 +198,25 @@
            </partitioning>
     <fields>
       <field>
-        <name>CMPCODE</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>&#x2a;</nullif>
-        <length>12</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>ELMLEVEL</name>
+        <name>YR</name>
         <type>Integer</type>
         <format/>
         <currency/>
         <decimal/>
         <group/>
-        <nullif>1</nullif>
+        <nullif>2015</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>PERIOD</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>0</nullif>
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
@@ -245,15 +224,15 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>280</xloc>
-      <yloc>93</yloc>
+      <xloc>473</xloc>
+      <yloc>187</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>EL1_MASTER_NEW</name>
-    <type>TableInput</type>
+    <name>Asset Account</name>
+    <type>JavaFilter</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -262,24 +241,20 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>STAGING</connection>
-    <sql>SELECT &#x2a; FROM STAGING_TEMPLATES.EL1_MASTER_NEW</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
+<send_true_to>Flatten Assets</send_true_to>
+<send_false_to>Map Account Code</send_false_to>
+<condition>EL1.substring&#x28;0,2&#x29;.equals&#x28;&#x22;14&#x22;&#x29; &#x7c;&#x7c; EL1.substring&#x28;0,2&#x29;.equals&#x28;&#x22;16&#x22;&#x29;</condition>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>126</xloc>
-      <yloc>95</yloc>
+      <xloc>594</xloc>
+      <yloc>187</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>EL3_MASTER_NEW</name>
-    <type>TableInput</type>
+    <name>Flatten Assets</name>
+    <type>Janino</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -288,24 +263,111 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>STAGING</connection>
-    <sql>SELECT &#x2a; FROM STAGING_TEMPLATES.EL3_MASTER_NEW</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
+       <formula><field_name>EL1</field_name>
+<formula_string>&#x28;EL1.substring&#x28;4,6&#x29;.equals&#x28;&#x22;12&#x22;&#x29; &#x7c;&#x7c; EL1.substring&#x28;4,6&#x29;.equals&#x28;&#x22;52&#x22;&#x29;&#x29; &#x3f; &#x28;EL1.substring&#x28;0,5&#x29; &#x2b; &#x22;1&#x22;&#x29; &#x3a; EL1</formula_string>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field>EL1</replace_field>
+</formula>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>129</xloc>
-      <yloc>197</yloc>
+      <xloc>684</xloc>
+      <yloc>65</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>EL4_MASTER_NEW</name>
-    <type>TableInput</type>
+    <name>Map Account Code</name>
+    <type>Mapping</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <specification_method>filename</specification_method>
+    <trans_object_id/>
+    <trans_name/>
+    <filename>&#x24;&#x7b;KETTLE_HOME&#x7d;&#x2f;map_account_code_sub.ktr</filename>
+    <directory_path/>
+    <mappings>
+      <input>
+    <mapping>    <input_step/>
+    <output_step>Mapping Input</output_step>
+    <main_path>Y</main_path>
+    <rename_on_output>N</rename_on_output>
+    <description/>
+       <connector><parent>CMPCODE</parent><child>CMPCODE</child></connector>
+       <connector><parent>YR</parent><child>YR</child></connector>
+       <connector><parent>PERIOD</parent><child>PERIOD</child></connector>
+       <connector><parent>EL1</parent><child>EL1</child></connector>
+       <connector><parent>EL2</parent><child>EL2</child></connector>
+       <connector><parent>EL3</parent><child>EL3</child></connector>
+       <connector><parent>EL4</parent><child>EL4</child></connector>
+       <connector><parent>EL5</parent><child>EL5</child></connector>
+       <connector><parent>EL6</parent><child>EL6</child></connector>
+       <connector><parent>CURCODE</parent><child>CURCODE</child></connector>
+       <connector><parent>AMOUNT</parent><child>DOC_AMT</child></connector>
+       <connector><parent>RATE</parent><child>CAD_RATE</child></connector>
+       <connector><parent>CAD_AMT</parent><child>CAD_AMT</child></connector>
+       <connector><parent>CURLOCAL</parent><child>CURLOCAL</child></connector>
+       <connector><parent>LOCAL_RATE</parent><child>LOCAL_RATE</child></connector>
+       <connector><parent>LOCAL_AMT</parent><child>LOCAL_AMT</child></connector>
+    </mapping>      </input>
+      <output>
+    <mapping>    <input_step>Main Output</input_step>
+    <output_step>STAGED_PARTIAL_BALANCES</output_step>
+    <main_path>N</main_path>
+    <rename_on_output>N</rename_on_output>
+    <description/>
+    </mapping>    <mapping>    <input_step>Error Output</input_step>
+    <output_step>PARTIAL_BALANCE_ERR</output_step>
+    <main_path>N</main_path>
+    <rename_on_output>N</rename_on_output>
+    <description/>
+       <connector><parent>YR</parent><child>YR</child></connector>
+       <connector><parent>PERIOD</parent><child>PERIOD</child></connector>
+       <connector><parent>CMPCODE</parent><child>CMPCODE</child></connector>
+       <connector><parent>EL1</parent><child>EL1</child></connector>
+       <connector><parent>EL2</parent><child>EL2</child></connector>
+       <connector><parent>EL3</parent><child>EL3</child></connector>
+       <connector><parent>EL4</parent><child>EL4</child></connector>
+       <connector><parent>EL5</parent><child>EL5</child></connector>
+       <connector><parent>EL6</parent><child>EL6</child></connector>
+       <connector><parent>DEST_CMPCODE</parent><child>DEST_CMPCODE</child></connector>
+       <connector><parent>DEST_EL2</parent><child>DEST_EL2</child></connector>
+       <connector><parent>DEST_EL5</parent><child>DEST_EL5</child></connector>
+       <connector><parent>DEST_EL6</parent><child>DEST_EL6</child></connector>
+       <connector><parent>DEST_EL1</parent><child>DEST_EL1</child></connector>
+       <connector><parent>DEST_EL3</parent><child>DEST_EL3</child></connector>
+       <connector><parent>DEST_EL4</parent><child>DEST_EL4</child></connector>
+       <connector><parent>DEST_ACCODE</parent><child>DEST_ACCODE</child></connector>
+       <connector><parent>DEBIT_VALUE</parent><child>DEBIT_VALUE</child></connector>
+       <connector><parent>CREDIT_VALUE</parent><child>CREDIT_VALUE</child></connector>
+       <connector><parent>FULL_VALUE</parent><child>FULL_VALUE</child></connector>
+       <connector><parent>errFields</parent><child>errFields</child></connector>
+       <connector><parent>errCodes</parent><child>errCodes</child></connector>
+    </mapping>      </output>
+          <parameters>    <inherit_all_vars>Y</inherit_all_vars>
+    </parameters>
+    </mappings>
+    <allow_multiple_input>Y</allow_multiple_input>
+    <allow_multiple_output>Y</allow_multiple_output>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>767</xloc>
+      <yloc>185</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>No Currencies</name>
+    <type>Dummy</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -314,23 +376,16 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>STAGING</connection>
-    <sql>SELECT &#x2a; FROM STAGING_TEMPLATES.EL4_MASTER_NEW</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>132</xloc>
-      <yloc>300</yloc>
+      <xloc>369</xloc>
+      <yloc>313</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Insert NEW_ELEMENT_PRE_STAGING</name>
+    <name>PARTIAL_BALANCE_ERR</name>
     <type>TableOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -342,7 +397,7 @@
            </partitioning>
     <connection>STAGING</connection>
     <schema>STAGING</schema>
-    <table>NEW_ELEMENT_PRE_STAGING</table>
+    <table>PARTIAL_BALANCE_ERR</table>
     <commit>1000</commit>
     <truncate>Y</truncate>
     <ignore_errors>N</ignore_errors>
@@ -361,15 +416,15 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>633</xloc>
-      <yloc>197</yloc>
+      <xloc>621</xloc>
+      <yloc>347</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Level 3</name>
-    <type>Constant</type>
+    <name>PART_BALANCES</name>
+    <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -378,31 +433,138 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
+    <connection>STAGING</connection>
+    <sql>select&#xd;&#xa;b.cmpcode,&#xd;&#xa;b.el1,b.el2,b.el3,b.el4,b.el5,b.el6,&#xd;&#xa;b.curcode,&#xd;&#xa;b.amount as input_amt,&#xd;&#xa;rc.rate as cad_rate,&#xd;&#xa;b.amount &#x2a; &#x28;rc.rate &#x2f; 10000000&#x29; cad_amt,&#xd;&#xa;c.curlocal,&#xd;&#xa;b.amount &#x2a; &#x28;rc.rate&#x2f;rl.rate&#x29; local_amt,&#xd;&#xa;&#x28;rc.rate&#x2f;rl.rate&#x29; &#x2a; 10000000 as local_rate,&#xd;&#xa;b.amount &#x2a; &#x28;rc.rate&#x2f;rf.rate&#x29; func_amt,&#xd;&#xa;&#x28;rc.rate&#x2f;rf.rate&#x29; &#x2a; 10000000 as func_rate&#xd;&#xa;from &#xd;&#xa;staging_templates.part_balances b&#xd;&#xa;left join staging_templates.cmpcode_map cm on cm.cmpcode_from&#x3d;b.cmpcode&#xd;&#xa;left join staging_templates.cmp_master c on c.cmpcode&#x3d;cm.cmpcode_to&#xd;&#xa;left join staging_templates.rate_master rc on rc.rate_type&#x3d;&#x27;ME_RATE&#x27; and rc.base&#x3d;b.curcode and rc.parent&#x3d;&#x27;CAD&#x27;&#xd;&#xa;left join staging_templates.rate_master rl on rl.rate_type&#x3d;&#x27;ME_RATE&#x27; and rl.base&#x3d;c.curlocal and rl.parent&#x3d;&#x27;CAD&#x27;&#xd;&#xa;left join staging_templates.rate_master rf on rf.rate_type&#x3d;&#x27;ME_RATE&#x27; and rf.base&#x3d;c.curfunc and rf.parent&#x3d;&#x27;CAD&#x27;&#xd;&#xa;</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>158</xloc>
+      <yloc>182</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>STAGED_PARTIAL_BALANCES</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>STAGING</connection>
+    <schema>STAGING</schema>
+    <table>STAGED_PARTIAL_BALANCES</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
     <fields>
-      <field>
-        <name>ELMLEVEL</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>3</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
+        <field>
+          <column_name>CAD_AMT</column_name>
+          <stream_name>CAD_AMT</stream_name>
+        </field>
+        <field>
+          <column_name>CAD_RATE</column_name>
+          <stream_name>CAD_RATE</stream_name>
+        </field>
+        <field>
+          <column_name>DOC_AMT</column_name>
+          <stream_name>DOC_AMT</stream_name>
+        </field>
+        <field>
+          <column_name>LOCAL_AMT</column_name>
+          <stream_name>LOCAL_AMT</stream_name>
+        </field>
+        <field>
+          <column_name>LOCAL_RATE</column_name>
+          <stream_name>LOCAL_RATE</stream_name>
+        </field>
+        <field>
+          <column_name>FUNC_AMT</column_name>
+          <stream_name>FUNC_AMT</stream_name>
+        </field>
+        <field>
+          <column_name>FUNC_RATE</column_name>
+          <stream_name>FUNC_RATE</stream_name>
+        </field>
+        <field>
+          <column_name>PERIOD</column_name>
+          <stream_name>PERIOD</stream_name>
+        </field>
+        <field>
+          <column_name>YR</column_name>
+          <stream_name>YR</stream_name>
+        </field>
+        <field>
+          <column_name>DOC_CURCODE</column_name>
+          <stream_name>CURCODE</stream_name>
+        </field>
+        <field>
+          <column_name>LOCAL_CURCODE</column_name>
+          <stream_name>CURLOCAL</stream_name>
+        </field>
+        <field>
+          <column_name>CMPCODE</column_name>
+          <stream_name>DEST_CMPCODE</stream_name>
+        </field>
+        <field>
+          <column_name>EL1</column_name>
+          <stream_name>DEST_EL1</stream_name>
+        </field>
+        <field>
+          <column_name>EL2</column_name>
+          <stream_name>DEST_EL2</stream_name>
+        </field>
+        <field>
+          <column_name>EL3</column_name>
+          <stream_name>DEST_EL3</stream_name>
+        </field>
+        <field>
+          <column_name>EL4</column_name>
+          <stream_name>DEST_EL4</stream_name>
+        </field>
+        <field>
+          <column_name>EL5</column_name>
+          <stream_name>DEST_EL5</stream_name>
+        </field>
+        <field>
+          <column_name>EL6</column_name>
+          <stream_name>DEST_EL6</stream_name>
+        </field>
+        <field>
+          <column_name>ACCODE</column_name>
+          <stream_name>DEST_ACCODE</stream_name>
+        </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>277</xloc>
-      <yloc>194</yloc>
+      <xloc>963</xloc>
+      <yloc>187</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Level 4</name>
-    <type>Constant</type>
+    <name>Valid Amounts</name>
+    <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -411,168 +573,20 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <fields>
-      <field>
-        <name>ELMLEVEL</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>4</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
+<send_true_to>Add Yr&#x2f;Period</send_true_to>
+<send_false_to>No Currencies</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>CURLOCAL</leftvalue>
+ <function>IS NOT NULL</function>
+ <rightvalue/>
+ </condition>
+    </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>280</xloc>
-      <yloc>299</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Select values</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>      <field>        <name>CMPCODE</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>ELMLEVEL</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>EL3</name>
-        <rename>CODE</rename>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>NAME</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>SNAME</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>TEMPLATE_CMP</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>TEMPLATE_ELM</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>        <select_unspecified>N</select_unspecified>
-    </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>422</xloc>
-      <yloc>198</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Select values 2</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>      <field>        <name>CMPCODE</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>ELMLEVEL</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>EL1</name>
-        <rename>CODE</rename>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>NAME</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>SNAME</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>TEMPLATE_CMP</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>TEMPLATE_ELM</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>        <select_unspecified>N</select_unspecified>
-    </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>420</xloc>
-      <yloc>92</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Select values 3</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>      <field>        <name>CMPCODE</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>ELMLEVEL</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>EL4</name>
-        <rename>CODE</rename>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>NAME</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>SNAME</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>TEMPLATE_CMP</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>TEMPLATE_ELM</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>        <select_unspecified>N</select_unspecified>
-    </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>422</xloc>
-      <yloc>296</yloc>
+      <xloc>337</xloc>
+      <yloc>183</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

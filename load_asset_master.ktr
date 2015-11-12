@@ -293,7 +293,7 @@
     </fields>
     <data>
       <line> <item>CAP_ACCT</item><item>12</item> </line>
-      <line> <item>WIP_ACCT</item><item>17</item> </line>
+      <line> <item>WIP_ACCT</item><item>12</item> </line>
       <line> <item>AD_ACCT</item><item>52</item> </line>
       <line> <item>DEPR_EXP_ACCT</item><item>51</item> </line>
       <line> <item>COST_SALE_ACCT</item><item>16</item> </line>
@@ -449,7 +449,7 @@
 <replace_field>BEGBAL_CAP_ACCT</replace_field>
 </formula>
        <formula><field_name>BEGBAL_AD_ACCT</field_name>
-<formula_string>&#x5b;CATG_TYPE_ID_BS&#x5d; &#x26; &#x5b;CATG_ID&#x5d; &#x26; IF &#x28;&#x5b;WIP&#x5d; &#x3d; 1&#x3b; &#x3b;&#x5b;BEGBAL_AD_ACCT&#x5d;&#x29;</formula_string>
+<formula_string>IF&#x28;&#x5b;DEPR_AMORT&#x5d; &#x3d; &#x22;N&#x22;&#x3b; &#x3b; &#x5b;CATG_TYPE_ID_BS&#x5d; &#x26; &#x5b;CATG_ID&#x5d; &#x26; IF &#x28;&#x5b;WIP&#x5d; &#x3d; 1&#x3b; &#x3b;&#x5b;BEGBAL_AD_ACCT&#x5d;&#x29;&#x29;</formula_string>
 <value_type>None</value_type>
 <value_length>-1</value_length>
 <value_precision>-1</value_precision>

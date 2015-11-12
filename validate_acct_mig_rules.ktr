@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>consolidate_balances</name>
+    <name>validate_acct_mig_rules</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -66,12 +66,38 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2015&#x2f;08&#x2f;05 19&#x3a;31&#x3a;25.566</created_date>
+  <created_date>2015&#x2f;11&#x2f;11 16&#x3a;51&#x3a;52.479</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2015&#x2f;08&#x2f;05 19&#x3a;31&#x3a;25.566</modified_date>
+  <modified_date>2015&#x2f;11&#x2f;11 16&#x3a;51&#x3a;52.479</modified_date>
   </info>
   <notepads>
   </notepads>
+  <connection>
+    <name>ARCHIVE</name>
+    <server/>
+    <type>GENERIC</type>
+    <access>Native</access>
+    <database/>
+    <port>1521</port>
+    <username>sa</username>
+    <password>Encrypted 2be98afc86aa7f2e4cb79ce10bef2bcdb</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>org.h2.Driver</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;h2&#x3a;&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;db&#x5c;data&#x5c;archive&#x3b;AUTO_SERVER&#x3d;true&#x3b;DB_CLOSE_ON_EXIT&#x3d;FALSE</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>1521</attribute></attribute>
+      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>N</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
   <connection>
     <name>CODA-DEST</name>
     <server>localhost</server>
@@ -149,10 +175,19 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>BALANCE_STAGING</from><to>CONSOLIDATED_BALANCES</to><enabled>Y</enabled> </hop>
+  <hop> <from>Active Accounts</from><to>Lookup Rule</to><enabled>Y</enabled> </hop>
+  <hop> <from>Lookup Rule</from><to>Valid Rule</to><enabled>Y</enabled> </hop>
+  <hop> <from>Valid Rule</from><to>Switch &#x2f; Case</to><enabled>Y</enabled> </hop>
+  <hop> <from>Switch &#x2f; Case</from><to>Local</to><enabled>Y</enabled> </hop>
+  <hop> <from>Switch &#x2f; Case</from><to>Partial - Auto</to><enabled>Y</enabled> </hop>
+  <hop> <from>Switch &#x2f; Case</from><to>Partial - Manual</to><enabled>Y</enabled> </hop>
+  <hop> <from>Switch &#x2f; Case</from><to>Open Docs</to><enabled>Y</enabled> </hop>
+  <hop> <from>Switch &#x2f; Case</from><to>Unknown</to><enabled>Y</enabled> </hop>
+  <hop> <from>Valid Rule</from><to>Add constants</to><enabled>Y</enabled> </hop>
+  <hop> <from>Add constants</from><to>ACCT_BALANCE_SOURCE_ERR</to><enabled>Y</enabled> </hop>
   </order>
   <step>
-    <name>BALANCE_STAGING</name>
+    <name>Active Accounts</name>
     <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -162,8 +197,8 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>STAGING</connection>
-    <sql>SELECT &#xd;&#xa;  CMPCODE,&#xd;&#xa;  1 AS ELMLEVEL,&#xd;&#xa;  EL1,&#xd;&#xa;  YR,&#xd;&#xa;  PERIOD,&#xd;&#xa;  CURCODE,&#xd;&#xa;  SUM&#x28;DEBIT_VALUE&#x29; AS DEBIT_VALUE,&#xd;&#xa;  SUM&#x28;CREDIT_VALUE&#x29; AS CREDIT_VALUE,&#xd;&#xa;  SUM&#x28;FULL_VALUE&#x29; AS FULL_VALUE&#xd;&#xa;FROM STAGING.MAPPED_BALANCES&#xd;&#xa;GROUP BY&#xd;&#xa;  CMPCODE,&#xd;&#xa;  EL1,&#xd;&#xa;  YR,&#xd;&#xa;  PERIOD,&#xd;&#xa;  CURCODE</sql>
+    <connection>CODA-SOURCE</connection>
+    <sql>select distinct&#xd;&#xa;  cmpcode,&#xd;&#xa;  el1&#xd;&#xa;from&#xd;&#xa;  oas_balance&#xd;&#xa;where&#xd;&#xa;--  &#x28;debit_value &#x21;&#x3d; 0 or credit_value &#x21;&#x3d; 0&#x29;&#xd;&#xa;  full_value &#x21;&#x3d; 0&#xd;&#xa;  and yr &#x3d; 2015&#xd;&#xa;  and period &#x3d; 0&#xd;&#xa;  and balcode &#x3d; &#x27;ACTUAL&#x27;&#xd;&#xa;  and curcode &#x3d; &#x27;CAD&#x27;&#xd;&#xa;  and repbasis &#x3d; 0</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -171,14 +206,220 @@
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>127</xloc>
-      <yloc>70</yloc>
+      <xloc>115</xloc>
+      <yloc>76</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>CONSOLIDATED_BALANCES</name>
+    <name>Local</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>769</xloc>
+      <yloc>24</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Lookup Rule</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>STAGING</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema>STAGING</schema>
+      <table>ACCT_BALANCE_SOURCE</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>CMPCODE</name>
+        <field>CMPCODE</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>EL1</name>
+        <field>EL1</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>RULE</name>
+        <rename>RULE</rename>
+        <default/>
+        <type>String</type>
+      </value>
+    </lookup>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>276</xloc>
+      <yloc>75</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Open Docs</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>774</xloc>
+      <yloc>244</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Partial - Auto</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>770</xloc>
+      <yloc>96</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Partial - Manual</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>772</xloc>
+      <yloc>168</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Switch &#x2f; Case</name>
+    <type>SwitchCase</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<fieldname>RULE</fieldname>
+<use_contains>N</use_contains>
+<case_value_type>String</case_value_type>
+<case_value_format/>
+<case_value_decimal/>
+<case_value_group/>
+<default_target_step>Unknown</default_target_step>
+<cases><case><value>Local Balance</value>
+<target_step>Local</target_step>
+</case><case><value>Partial Balances - Automatic</value>
+<target_step>Partial - Auto</target_step>
+</case><case><value>Partial Balances - Manual</value>
+<target_step>Partial - Manual</target_step>
+</case><case><value>Open Documents</value>
+<target_step>Open Docs</target_step>
+</case></cases>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>559</xloc>
+      <yloc>77</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Unknown</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>776</xloc>
+      <yloc>328</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Valid Rule</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Switch &#x2f; Case</send_true_to>
+<send_false_to>Add constants</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>RULE</leftvalue>
+ <function>IS NOT NULL</function>
+ <rightvalue/>
+ </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>420</xloc>
+      <yloc>75</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>ACCT_BALANCE_SOURCE_ERR</name>
     <type>TableOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -190,7 +431,7 @@
            </partitioning>
     <connection>STAGING</connection>
     <schema>STAGING</schema>
-    <table>CONSOLIDATED_BALANCES</table>
+    <table>ACCT_BALANCE_SOURCE_ERR</table>
     <commit>1000</commit>
     <truncate>Y</truncate>
     <ignore_errors>N</ignore_errors>
@@ -206,47 +447,56 @@
     <return_keys>N</return_keys>
     <return_field/>
     <fields>
-        <field>
-          <column_name>CMPCODE</column_name>
-          <stream_name>CMPCODE</stream_name>
-        </field>
-        <field>
-          <column_name>ELMLEVEL</column_name>
-          <stream_name>ELMLEVEL</stream_name>
-        </field>
-        <field>
-          <column_name>YR</column_name>
-          <stream_name>YR</stream_name>
-        </field>
-        <field>
-          <column_name>PERIOD</column_name>
-          <stream_name>PERIOD</stream_name>
-        </field>
-        <field>
-          <column_name>CURCODE</column_name>
-          <stream_name>CURCODE</stream_name>
-        </field>
-        <field>
-          <column_name>DEBIT_VALUE</column_name>
-          <stream_name>DEBIT_VALUE</stream_name>
-        </field>
-        <field>
-          <column_name>CREDIT_VALUE</column_name>
-          <stream_name>CREDIT_VALUE</stream_name>
-        </field>
-        <field>
-          <column_name>FULL_VALUE</column_name>
-          <stream_name>FULL_VALUE</stream_name>
-        </field>
-        <field>
-          <column_name>CODE</column_name>
-          <stream_name>EL1</stream_name>
-        </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>344</xloc>
-      <yloc>71</yloc>
+      <xloc>486</xloc>
+      <yloc>306</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Add constants</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>ERRLEVEL</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>ERROR</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>ERRMESSAGE</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>No rule defined</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>457</xloc>
+      <yloc>200</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

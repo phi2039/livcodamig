@@ -451,7 +451,7 @@
            <schema_name/>
            </partitioning>
     <connection>CODA-SOURCE</connection>
-    <sql>SELECT CMPCODE,ELMLEVEL,CODE&#xd;&#xa;FROM OAS_ELEMENT &#xd;&#xa;WHERE ELMLEVEL &#x3d; 5&#xd;&#xa;AND E.CMPCODE NOT IN &#x28;&#x27;PROPHET&#x27;,&#x27;PROCAD&#x27;,&#x27;ZBPCAD&#x27;,&#x27;ZBPUSD&#x27;,&#x27;TESTC310&#x27;,&#x27;TESTU125&#x27;,&#x27;DEVC310&#x27;,&#x27;DEVU125&#x27;,&#x27;MIGRATEU125&#x27;,&#x27;MIGRATEC310&#x27;,&#x27;MODELUSD&#x27;,&#x27;MODELCAD&#x27;&#x29;&#xd;&#xa;AND DELDATE IS NULL</sql>
+    <sql>SELECT CMPCODE,ELMLEVEL,CODE&#xd;&#xa;FROM OAS_ELEMENT &#xd;&#xa;WHERE ELMLEVEL &#x3d; 5&#xd;&#xa;AND CMPCODE NOT IN &#x28;&#x27;PROPHET&#x27;,&#x27;PROCAD&#x27;,&#x27;ZBPCAD&#x27;,&#x27;ZBPUSD&#x27;,&#x27;TESTC310&#x27;,&#x27;TESTU125&#x27;,&#x27;DEVC310&#x27;,&#x27;DEVU125&#x27;,&#x27;MIGRATEU125&#x27;,&#x27;MIGRATEC310&#x27;,&#x27;MODELUSD&#x27;,&#x27;MODELCAD&#x27;&#x29;&#xd;&#xa;AND DELDATE IS NULL</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>

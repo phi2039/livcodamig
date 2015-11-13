@@ -9,16 +9,6 @@
     <trans_status>0</trans_status>
     <directory>&#x2f;</directory>
     <parameters>
-        <parameter>
-            <name>autoRule</name>
-            <default_value>Partial Balances - Automatic</default_value>
-            <description>&#x22;Partial Balances - Automatic&#x22; or blank</description>
-        </parameter>
-        <parameter>
-            <name>openRule</name>
-            <default_value>Open Documents</default_value>
-            <description>&#x22;Open Documents&#x22; or blank</description>
-        </parameter>
     </parameters>
     <log>
 <trans-log-table><connection/>
@@ -112,7 +102,7 @@
   <connection>
     <name>CODA-AWS</name>
     <server>localhost</server>
-    <type>ORACLE</type>
+    <type>GENERIC</type>
     <access>Native</access>
     <database>coda</database>
     <port>21523</port>
@@ -122,6 +112,8 @@
     <data_tablespace>codamigtbl</data_tablespace>
     <index_tablespace>codamigidx</index_tablespace>
     <attributes>
+      <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>oracle.jdbc.OracleDriver</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;oracle&#x3a;thin&#x3a;&#x40;localhost&#x3a;21523&#x3a;coda</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
@@ -210,43 +202,9 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Open Rules</from><to>Open Documents</to><enabled>Y</enabled> </hop>
-  <hop> <from>Get Load Open</from><to>Open Rules</to><enabled>Y</enabled> </hop>
   <hop> <from>Open Documents</from><to>OPEN_DOC_SOURCE</to><enabled>Y</enabled> </hop>
+  <hop> <from>Open Rules</from><to>Open Documents</to><enabled>Y</enabled> </hop>
   </order>
-  <step>
-    <name>Get Load Open</name>
-    <type>GetVariable</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>
-      <field>
-        <name>ruleType</name>
-        <variable>&#x24;&#x7b;openRule&#x7d;</variable>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>78</xloc>
-      <yloc>61</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
   <step>
     <name>OPEN_DOC_SOURCE</name>
     <type>TableOutput</type>
@@ -315,8 +273,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>545</xloc>
-      <yloc>69</yloc>
+      <xloc>414</xloc>
+      <yloc>70</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -341,8 +299,8 @@
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>378</xloc>
-      <yloc>66</yloc>
+      <xloc>247</xloc>
+      <yloc>67</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -359,16 +317,16 @@
            <schema_name/>
            </partitioning>
     <connection>STAGING</connection>
-    <sql>SELECT&#xd;&#xa;CMPCODE,&#xd;&#xa;EL1 &#xd;&#xa;FROM OPEN_MIG.ACCT_BALANCE_SOURCE &#xd;&#xa;WHERE &#xd;&#xa;RULE&#x3d;&#x3f; &#xd;&#xa;GROUP BY CMPCODE,EL1&#xd;&#xa;</sql>
+    <sql>SELECT&#xd;&#xa;CMPCODE,&#xd;&#xa;EL1 &#xd;&#xa;FROM OPEN_MIG.ACCT_BALANCE_SOURCE &#xd;&#xa;WHERE &#xd;&#xa;RULE&#x3d;&#x27;Open Documents&#x27;&#xd;&#xa;GROUP BY CMPCODE,EL1&#xd;&#xa;</sql>
     <limit>0</limit>
-    <lookup>Get Load Open</lookup>
-    <execute_each_row>Y</execute_each_row>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
     <variables_active>N</variables_active>
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>231</xloc>
-      <yloc>63</yloc>
+      <xloc>99</xloc>
+      <yloc>64</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

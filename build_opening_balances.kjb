@@ -257,13 +257,7 @@
       <create_parent_folder>N</create_parent_folder>
       <logging_remote_work>N</logging_remote_work>
       <parameters>        <pass_all_parameters>Y</pass_all_parameters>
-            <parameter>            <name>autoRule</name>
-            <stream_name/>
-            <value>Partial Balances - Automatic</value>
-            </parameter>            <parameter>            <name>openRule</name>
-            <stream_name/>
-            <value>Open Documents</value>
-            </parameter>      </parameters>      <parallel>N</parallel>
+      </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>351</xloc>
@@ -458,13 +452,7 @@
       <create_parent_folder>N</create_parent_folder>
       <logging_remote_work>N</logging_remote_work>
       <parameters>        <pass_all_parameters>Y</pass_all_parameters>
-            <parameter>            <name>autoRule</name>
-            <stream_name/>
-            <value>Partial Balances - Automatic</value>
-            </parameter>            <parameter>            <name>openRule</name>
-            <stream_name/>
-            <value>Open Documents</value>
-            </parameter>      </parameters>      <parallel>N</parallel>
+      </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>511</xloc>

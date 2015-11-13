@@ -1130,15 +1130,27 @@
  <conditions>
   <condition>
    <negated>N</negated>
-   <leftvalue>FULL_VALUE</leftvalue>
-   <function>IS NULL</function>
-   <rightvalue/>
+   <conditions>
+    <condition>
+     <negated>N</negated>
+     <leftvalue>FULL_VALUE</leftvalue>
+     <function>IS NULL</function>
+     <rightvalue/>
+     </condition>
+    <condition>
+     <negated>N</negated>
+     <operator>OR</operator>
+     <leftvalue>FULL_VALUE</leftvalue>
+     <function>&#x3d;</function>
+     <rightvalue/>
+     <value><name>constant</name><type>Number</type><text>0.0</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask>&#x23;.&#x23;&#x3b;-&#x23;.&#x23;</mask></value>     </condition>
+    </conditions>
    </condition>
   <condition>
    <negated>N</negated>
-   <operator>OR</operator>
-   <leftvalue>FULL_VALUE</leftvalue>
-   <function>&#x3d;</function>
+   <operator>AND</operator>
+   <leftvalue>AMOUNT</leftvalue>
+   <function>&#x3c;&#x3e;</function>
    <rightvalue/>
    <value><name>constant</name><type>Number</type><text>0.0</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask>&#x23;.&#x23;&#x3b;-&#x23;.&#x23;</mask></value>   </condition>
   </conditions>

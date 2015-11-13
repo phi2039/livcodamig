@@ -700,6 +700,14 @@
           <column_name>CAD_BALANCE</column_name>
           <stream_name>CAD_BALANCE</stream_name>
         </field>
+        <field>
+          <column_name>LOAD_CUR</column_name>
+          <stream_name>CURCODE</stream_name>
+        </field>
+        <field>
+          <column_name>LOAD_AMT</column_name>
+          <stream_name>AMOUNT</stream_name>
+        </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>

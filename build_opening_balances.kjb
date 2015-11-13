@@ -266,8 +266,8 @@
             </parameter>      </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>374</xloc>
-      <yloc>86</yloc>
+      <xloc>352</xloc>
+      <yloc>173</yloc>
       </entry>
     <entry>
       <name>Load Local Balances</name>
@@ -299,8 +299,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>375</xloc>
-      <yloc>175</yloc>
+      <xloc>497</xloc>
+      <yloc>86</yloc>
       </entry>
     <entry>
       <name>Map Opening Balances</name>
@@ -332,8 +332,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>572</xloc>
-      <yloc>89</yloc>
+      <xloc>511</xloc>
+      <yloc>175</yloc>
       </entry>
     <entry>
       <name>Load Reported CAD Balances</name>
@@ -365,8 +365,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>571</xloc>
-      <yloc>176</yloc>
+      <xloc>696</xloc>
+      <yloc>86</yloc>
       </entry>
     <entry>
       <name>Balance Companies</name>
@@ -398,8 +398,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>771</xloc>
-      <yloc>89</yloc>
+      <xloc>695</xloc>
+      <yloc>176</yloc>
       </entry>
     <entry>
       <name>Success</name>
@@ -408,8 +408,28 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>933</xloc>
-      <yloc>88</yloc>
+      <xloc>866</xloc>
+      <yloc>177</yloc>
+      </entry>
+    <entry>
+      <name>Check Errors</name>
+      <description/>
+      <type>EVAL_TABLE_CONTENT</type>
+      <connection>STAGING</connection>
+      <schemaname>OPEN_MIG</schemaname>
+      <tablename>MANUAL_PARTIAL_SOURCE_ERR</tablename>
+      <success_condition>rows_count_equal</success_condition>
+      <limit>0</limit>
+      <is_custom_sql>Y</is_custom_sql>
+      <is_usevars>N</is_usevars>
+      <custom_sql>SELECT&#xd;&#xa;  CMPCODE&#xd;&#xa;, EL1&#xd;&#xa;, RULE&#xd;&#xa;, CAD_BALANCE&#xd;&#xa;, ERRDATE&#xd;&#xa;, ERRLEVEL&#xd;&#xa;, ERRMESSAGE&#xd;&#xa;FROM OPEN_MIG.MANUAL_PARTIAL_SOURCE_ERR&#xd;&#xa;WHERE ERRLEVEL&#x3d;&#x27;ERROR&#x27;&#xd;&#xa;</custom_sql>
+      <add_rows_result>N</add_rows_result>
+      <clear_result_rows>Y</clear_result_rows>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>360</xloc>
+      <yloc>89</yloc>
       </entry>
   </entries>
   <hops>
@@ -425,15 +445,6 @@
     <hop>
       <from>Load Manual Balances</from>
       <to>Validate Manual Balances</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Validate Manual Balances</from>
-      <to>Load Auto Balances</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -479,6 +490,24 @@
     <hop>
       <from>Balance Companies</from>
       <to>Success</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Validate Manual Balances</from>
+      <to>Check Errors</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Check Errors</from>
+      <to>Load Auto Balances</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>

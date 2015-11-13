@@ -702,7 +702,7 @@
       <yloc>78</yloc>
       </entry>
     <entry>
-      <name>Build Element Sources</name>
+      <name>Build Element Migration</name>
       <description/>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
@@ -948,7 +948,7 @@
     </hop>
     <hop>
       <from>Find Unmapped Balances</from>
-      <to>Build Element Sources</to>
+      <to>Build Element Migration</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -956,7 +956,7 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Build Element Sources</from>
+      <from>Build Element Migration</from>
       <to>Success</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>

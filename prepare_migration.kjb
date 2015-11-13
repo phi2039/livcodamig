@@ -158,8 +158,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>43</xloc>
-      <yloc>73</yloc>
+      <xloc>44</xloc>
+      <yloc>123</yloc>
       </entry>
     <entry>
       <name>Success</name>
@@ -168,8 +168,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1830</xloc>
-      <yloc>186</yloc>
+      <xloc>1831</xloc>
+      <yloc>236</yloc>
       </entry>
     <entry>
       <name>Load Templates</name>
@@ -204,8 +204,8 @@
             </parameter>      </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>154</xloc>
-      <yloc>175</yloc>
+      <xloc>155</xloc>
+      <yloc>225</yloc>
       </entry>
     <entry>
       <name>Load Entity Mapping</name>
@@ -237,8 +237,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>319</xloc>
-      <yloc>176</yloc>
+      <xloc>320</xloc>
+      <yloc>226</yloc>
       </entry>
     <entry>
       <name>Load New Elements</name>
@@ -270,8 +270,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>478</xloc>
-      <yloc>74</yloc>
+      <xloc>479</xloc>
+      <yloc>124</yloc>
       </entry>
     <entry>
       <name>Load Ledger Dest</name>
@@ -303,8 +303,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>659</xloc>
-      <yloc>69</yloc>
+      <xloc>660</xloc>
+      <yloc>119</yloc>
       </entry>
     <entry>
       <name>Clear Staging Schema</name>
@@ -319,8 +319,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>160</xloc>
-      <yloc>74</yloc>
+      <xloc>161</xloc>
+      <yloc>124</yloc>
       </entry>
     <entry>
       <name>Validate Ledger Dest</name>
@@ -352,8 +352,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>803</xloc>
-      <yloc>174</yloc>
+      <xloc>804</xloc>
+      <yloc>224</yloc>
       </entry>
     <entry>
       <name>Validate New Elements</name>
@@ -385,8 +385,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>475</xloc>
-      <yloc>175</yloc>
+      <xloc>476</xloc>
+      <yloc>225</yloc>
       </entry>
     <entry>
       <name>Load Entity Dest</name>
@@ -418,8 +418,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>319</xloc>
-      <yloc>72</yloc>
+      <xloc>320</xloc>
+      <yloc>122</yloc>
       </entry>
     <entry>
       <name>Load Element Mapping</name>
@@ -451,8 +451,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1119</xloc>
-      <yloc>73</yloc>
+      <xloc>1120</xloc>
+      <yloc>123</yloc>
       </entry>
     <entry>
       <name>Validate Element Mapping</name>
@@ -484,8 +484,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1297</xloc>
-      <yloc>178</yloc>
+      <xloc>1298</xloc>
+      <yloc>228</yloc>
       </entry>
     <entry>
       <name>Find Unmapped Balances</name>
@@ -517,8 +517,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1685</xloc>
-      <yloc>72</yloc>
+      <xloc>1686</xloc>
+      <yloc>122</yloc>
       </entry>
     <entry>
       <name>Load Subledger Dest</name>
@@ -550,8 +550,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>949</xloc>
-      <yloc>72</yloc>
+      <xloc>950</xloc>
+      <yloc>122</yloc>
       </entry>
     <entry>
       <name>Remove Unused</name>
@@ -566,8 +566,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>952</xloc>
-      <yloc>173</yloc>
+      <xloc>953</xloc>
+      <yloc>223</yloc>
       </entry>
     <entry>
       <name>Load Asset Master</name>
@@ -599,8 +599,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>661</xloc>
-      <yloc>180</yloc>
+      <xloc>662</xloc>
+      <yloc>230</yloc>
       </entry>
     <entry>
       <name>Build Asset Mapping</name>
@@ -632,8 +632,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1121</xloc>
-      <yloc>178</yloc>
+      <xloc>1122</xloc>
+      <yloc>228</yloc>
       </entry>
     <entry>
       <name>Load Asset Mapping</name>
@@ -665,8 +665,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1301</xloc>
-      <yloc>70</yloc>
+      <xloc>1302</xloc>
+      <yloc>120</yloc>
       </entry>
     <entry>
       <name>Load Asset Dest</name>
@@ -698,8 +698,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>801</xloc>
-      <yloc>78</yloc>
+      <xloc>802</xloc>
+      <yloc>128</yloc>
       </entry>
     <entry>
       <name>Build Element Migration</name>
@@ -731,8 +731,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1683</xloc>
-      <yloc>185</yloc>
+      <xloc>1684</xloc>
+      <yloc>235</yloc>
       </entry>
     <entry>
       <name>Load Open Balance Rules</name>
@@ -764,8 +764,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1504</xloc>
-      <yloc>69</yloc>
+      <xloc>1505</xloc>
+      <yloc>119</yloc>
       </entry>
     <entry>
       <name>Validate Open Balance Rules</name>
@@ -797,8 +797,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1500</xloc>
-      <yloc>181</yloc>
+      <xloc>1501</xloc>
+      <yloc>231</yloc>
       </entry>
   </entries>
   <hops>
@@ -1004,8 +1004,8 @@
   <notepads>
     <notepad>
       <note>Targets						&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;</note>
-      <xloc>596</xloc>
-      <yloc>41</yloc>
+      <xloc>597</xloc>
+      <yloc>91</yloc>
       <width>442</width>
       <heigth>230</heigth>
       <fontname>Segoe UI</fontname>
@@ -1025,8 +1025,8 @@
     </notepad>
     <notepad>
       <note>TODO&#x3a; Archive input file</note>
-      <xloc>81</xloc>
-      <yloc>243</yloc>
+      <xloc>82</xloc>
+      <yloc>293</yloc>
       <width>170</width>
       <heigth>30</heigth>
       <fontname>Segoe UI</fontname>
@@ -1046,8 +1046,8 @@
     </notepad>
     <notepad>
       <note>ELEMENT_STAGING_ERR</note>
-      <xloc>735</xloc>
-      <yloc>264</yloc>
+      <xloc>736</xloc>
+      <yloc>314</yloc>
       <width>172</width>
       <heigth>30</heigth>
       <fontname>Segoe UI</fontname>
@@ -1067,8 +1067,8 @@
     </notepad>
     <notepad>
       <note>NEW_ELEMENT_ERR</note>
-      <xloc>423</xloc>
-      <yloc>245</yloc>
+      <xloc>424</xloc>
+      <yloc>295</yloc>
       <width>144</width>
       <heigth>30</heigth>
       <fontname>Segoe UI</fontname>
@@ -1088,8 +1088,8 @@
     </notepad>
     <notepad>
       <note>ENTITY_ERR</note>
-      <xloc>288</xloc>
-      <yloc>244</yloc>
+      <xloc>289</xloc>
+      <yloc>294</yloc>
       <width>89</width>
       <heigth>30</heigth>
       <fontname>Segoe UI</fontname>
@@ -1109,9 +1109,93 @@
     </notepad>
     <notepad>
       <note>ELEMENT_MAPPING_ERR</note>
-      <xloc>1046</xloc>
-      <yloc>12</yloc>
+      <xloc>1217</xloc>
+      <yloc>305</yloc>
       <width>175</width>
+      <heigth>30</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>0</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>ELEMENT_LOAD_DEF_ERR</note>
+      <xloc>1607</xloc>
+      <yloc>354</yloc>
+      <width>182</width>
+      <heigth>30</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>0</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>ACCT_BALANCE_SOURCE_ERR</note>
+      <xloc>1410</xloc>
+      <yloc>305</yloc>
+      <width>209</width>
+      <heigth>30</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>0</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>UNMAPPED_ELEMENT_ERR</note>
+      <xloc>1588</xloc>
+      <yloc>65</yloc>
+      <width>190</width>
+      <heigth>30</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>0</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>UNMAPPED_ENTITY_ERR</note>
+      <xloc>1597</xloc>
+      <yloc>17</yloc>
+      <width>174</width>
       <heigth>30</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>

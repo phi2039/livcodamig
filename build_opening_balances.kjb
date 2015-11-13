@@ -266,7 +266,7 @@
             </parameter>      </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>352</xloc>
+      <xloc>351</xloc>
       <yloc>173</yloc>
       </entry>
     <entry>
@@ -299,8 +299,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>497</xloc>
-      <yloc>86</yloc>
+      <xloc>510</xloc>
+      <yloc>174</yloc>
       </entry>
     <entry>
       <name>Map Opening Balances</name>
@@ -332,8 +332,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>511</xloc>
-      <yloc>175</yloc>
+      <xloc>691</xloc>
+      <yloc>86</yloc>
       </entry>
     <entry>
       <name>Load Reported CAD Balances</name>
@@ -365,8 +365,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>696</xloc>
-      <yloc>86</yloc>
+      <xloc>690</xloc>
+      <yloc>174</yloc>
       </entry>
     <entry>
       <name>Balance Companies</name>
@@ -398,8 +398,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>695</xloc>
-      <yloc>176</yloc>
+      <xloc>882</xloc>
+      <yloc>87</yloc>
       </entry>
     <entry>
       <name>Success</name>
@@ -408,8 +408,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>866</xloc>
-      <yloc>177</yloc>
+      <xloc>1042</xloc>
+      <yloc>92</yloc>
       </entry>
     <entry>
       <name>Check Errors</name>
@@ -428,8 +428,47 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>360</xloc>
+      <xloc>359</xloc>
       <yloc>89</yloc>
+      </entry>
+    <entry>
+      <name>Load Open Doc Balances</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;load_open_doc_balances_alt.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
+            <parameter>            <name>autoRule</name>
+            <stream_name/>
+            <value>Partial Balances - Automatic</value>
+            </parameter>            <parameter>            <name>openRule</name>
+            <stream_name/>
+            <value>Open Documents</value>
+            </parameter>      </parameters>      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>511</xloc>
+      <yloc>87</yloc>
       </entry>
   </entries>
   <hops>
@@ -445,15 +484,6 @@
     <hop>
       <from>Load Manual Balances</from>
       <to>Validate Manual Balances</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Load Auto Balances</from>
-      <to>Load Local Balances</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -508,6 +538,24 @@
     <hop>
       <from>Check Errors</from>
       <to>Load Auto Balances</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Load Auto Balances</from>
+      <to>Load Open Doc Balances</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Load Open Doc Balances</from>
+      <to>Load Local Balances</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>

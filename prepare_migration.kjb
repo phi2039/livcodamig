@@ -674,7 +674,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>C&#x3a;&#x5c;Users&#x5c;CLANCE&#x5c;Documents&#x5c;Syncplicity Folders&#x5c;Livingston&#x5c;_CODA Initiative - Hermes&#x5c;Migration&#x5c;PDI&#x5c;load_asset_dest.ktr</filename>
+      <filename>&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;load_asset_dest.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>

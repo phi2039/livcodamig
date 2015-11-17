@@ -175,7 +175,6 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Asset Account</from><to>Flatten Assets</to><enabled>Y</enabled> </hop>
   <hop> <from>Asset Account</from><to>Map Account Code</to><enabled>Y</enabled> </hop>
   <hop> <from>Flatten Assets</from><to>Map Account Code</to><enabled>Y</enabled> </hop>
   <hop> <from>Map Account Code</from><to>OPENING_BALANCE_ERR</to><enabled>Y</enabled> </hop>
@@ -185,10 +184,12 @@
   <hop> <from>LOCAL_BALANCE_SOURCE</from><to>Local</to><enabled>Y</enabled> </hop>
   <hop> <from>Local</from><to>Merge</to><enabled>Y</enabled> </hop>
   <hop> <from>Manual</from><to>Merge</to><enabled>Y</enabled> </hop>
-  <hop> <from>Merge</from><to>Valid Amounts</to><enabled>Y</enabled> </hop>
   <hop> <from>Valid Amounts</from><to>Asset Account</to><enabled>Y</enabled> </hop>
   <hop> <from>AUTO_PARTIAL_BAL_SOURCE</from><to>Auto</to><enabled>Y</enabled> </hop>
   <hop> <from>Auto</from><to>Merge</to><enabled>Y</enabled> </hop>
+  <hop> <from>Asset Account</from><to>Flatten Assets</to><enabled>Y</enabled> </hop>
+  <hop> <from>Merge</from><to>Valid Amounts</to><enabled>Y</enabled> </hop>
+  <hop> <from>Merge</from><to>STAGED_BALANCES_PRE_MAPPING</to><enabled>Y</enabled> </hop>
   </order>
   <step>
     <name>AUTO_PARTIAL_BAL_SOURCE</name>
@@ -210,7 +211,7 @@
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>134</xloc>
+      <xloc>107</xloc>
       <yloc>158</yloc>
       <draw>Y</draw>
       </GUI>
@@ -232,8 +233,8 @@
 <condition>EL1.substring&#x28;0,2&#x29;.equals&#x28;&#x22;14&#x22;&#x29; &#x7c;&#x7c; EL1.substring&#x28;0,2&#x29;.equals&#x28;&#x22;16&#x22;&#x29;</condition>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>679</xloc>
-      <yloc>166</yloc>
+      <xloc>681</xloc>
+      <yloc>164</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -265,7 +266,7 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>294</xloc>
+      <xloc>267</xloc>
       <yloc>160</yloc>
       <draw>Y</draw>
       </GUI>
@@ -291,8 +292,8 @@
 </formula>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>769</xloc>
-      <yloc>44</yloc>
+      <xloc>771</xloc>
+      <yloc>42</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -317,7 +318,7 @@
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>134</xloc>
+      <xloc>107</xloc>
       <yloc>258</yloc>
       <draw>Y</draw>
       </GUI>
@@ -350,7 +351,7 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>299</xloc>
+      <xloc>272</xloc>
       <yloc>263</yloc>
       <draw>Y</draw>
       </GUI>
@@ -376,7 +377,7 @@
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>137</xloc>
+      <xloc>110</xloc>
       <yloc>54</yloc>
       <draw>Y</draw>
       </GUI>
@@ -409,7 +410,7 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>292</xloc>
+      <xloc>265</xloc>
       <yloc>56</yloc>
       <draw>Y</draw>
       </GUI>
@@ -502,8 +503,8 @@
     <allow_multiple_output>Y</allow_multiple_output>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>852</xloc>
-      <yloc>164</yloc>
+      <xloc>854</xloc>
+      <yloc>162</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -512,7 +513,7 @@
     <name>Merge</name>
     <type>Dummy</type>
     <description/>
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution/>
     <copies>1</copies>
          <partitioning>
@@ -521,7 +522,7 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>407</xloc>
+      <xloc>380</xloc>
       <yloc>164</yloc>
       <draw>Y</draw>
       </GUI>
@@ -540,8 +541,8 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>539</xloc>
-      <yloc>44</yloc>
+      <xloc>541</xloc>
+      <yloc>42</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -686,8 +687,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>912</xloc>
-      <yloc>339</yloc>
+      <xloc>914</xloc>
+      <yloc>337</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -796,8 +797,114 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1048</xloc>
-      <yloc>166</yloc>
+      <xloc>1050</xloc>
+      <yloc>164</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>STAGED_BALANCES_PRE_MAPPING</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>STAGING</connection>
+    <schema>OPEN_MIG</schema>
+    <table>STAGED_BALANCES_PRE_MAPPING</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+        <field>
+          <column_name>CAD_AMT</column_name>
+          <stream_name>CAD_AMT</stream_name>
+        </field>
+        <field>
+          <column_name>LOCAL_AMT</column_name>
+          <stream_name>LOCAL_AMT</stream_name>
+        </field>
+        <field>
+          <column_name>LOCAL_RATE</column_name>
+          <stream_name>LOCAL_RATE</stream_name>
+        </field>
+        <field>
+          <column_name>FUNC_AMT</column_name>
+          <stream_name>FUNC_AMT</stream_name>
+        </field>
+        <field>
+          <column_name>FUNC_RATE</column_name>
+          <stream_name>FUNC_RATE</stream_name>
+        </field>
+        <field>
+          <column_name>LOCAL_CURCODE</column_name>
+          <stream_name>CURLOCAL</stream_name>
+        </field>
+        <field>
+          <column_name>DOC_AMT</column_name>
+          <stream_name>DOC_AMOUNT</stream_name>
+        </field>
+        <field>
+          <column_name>SOURCE</column_name>
+          <stream_name>SOURCE</stream_name>
+        </field>
+        <field>
+          <column_name>CMPCODE</column_name>
+          <stream_name>CMPCODE</stream_name>
+        </field>
+        <field>
+          <column_name>EL1</column_name>
+          <stream_name>EL1</stream_name>
+        </field>
+        <field>
+          <column_name>EL2</column_name>
+          <stream_name>EL2</stream_name>
+        </field>
+        <field>
+          <column_name>EL3</column_name>
+          <stream_name>EL3</stream_name>
+        </field>
+        <field>
+          <column_name>EL4</column_name>
+          <stream_name>EL4</stream_name>
+        </field>
+        <field>
+          <column_name>EL5</column_name>
+          <stream_name>EL5</stream_name>
+        </field>
+        <field>
+          <column_name>EL6</column_name>
+          <stream_name>EL6</stream_name>
+        </field>
+        <field>
+          <column_name>DOC_CURCODE</column_name>
+          <stream_name>DOC_CURCODE</stream_name>
+        </field>
+        <field>
+          <column_name>CAD_RATE</column_name>
+          <stream_name>RATE</stream_name>
+        </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>525</xloc>
+      <yloc>293</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -825,8 +932,8 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>526</xloc>
-      <yloc>165</yloc>
+      <xloc>528</xloc>
+      <yloc>163</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

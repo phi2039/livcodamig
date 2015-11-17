@@ -330,12 +330,12 @@
       <yloc>175</yloc>
       </entry>
     <entry>
-      <name>Load Reported CAD Balances</name>
+      <name>Load GL Balances</name>
       <description/>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;load_cad_opening_balances.ktr</filename>
+      <filename>&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;load_gl_opening_balances.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -392,8 +392,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>900</xloc>
-      <yloc>183</yloc>
+      <xloc>1054</xloc>
+      <yloc>94</yloc>
       </entry>
     <entry>
       <name>Success</name>
@@ -402,8 +402,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1042</xloc>
-      <yloc>92</yloc>
+      <xloc>1168</xloc>
+      <yloc>96</yloc>
       </entry>
     <entry>
       <name>Check Errors</name>
@@ -455,8 +455,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>702</xloc>
-      <yloc>178</yloc>
+      <xloc>879</xloc>
+      <yloc>95</yloc>
       </entry>
     <entry>
       <name>Convert Vastera Balancing</name>
@@ -488,8 +488,28 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>902</xloc>
-      <yloc>97</yloc>
+      <xloc>878</xloc>
+      <yloc>177</yloc>
+      </entry>
+    <entry>
+      <name>Check GL Balancing</name>
+      <description/>
+      <type>EVAL_TABLE_CONTENT</type>
+      <connection>STAGING</connection>
+      <schemaname>OPEN_MIG</schemaname>
+      <tablename>GL_BALANCES</tablename>
+      <success_condition>rows_count_equal</success_condition>
+      <limit>0</limit>
+      <is_custom_sql>Y</is_custom_sql>
+      <is_usevars>N</is_usevars>
+      <custom_sql>SELECT CMPCODE,CURCODE,SUM&#x28;AMOUNT&#x29;&#xd;&#xa;FROM OPEN_MIG.GL_BALANCES&#xd;&#xa;GROUP BY CMPCODE,CURCODE&#xd;&#xa;HAVING SUM&#x28;AMOUNT&#x29; &#x21;&#x3d; 0</custom_sql>
+      <add_rows_result>N</add_rows_result>
+      <clear_result_rows>Y</clear_result_rows>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>701</xloc>
+      <yloc>178</yloc>
       </entry>
   </entries>
   <hops>
@@ -522,7 +542,7 @@
     </hop>
     <hop>
       <from>Map Opening Balances</from>
-      <to>Load Reported CAD Balances</to>
+      <to>Load GL Balances</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -566,26 +586,35 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Load Reported CAD Balances</from>
-      <to>Load Src Balancing Amts</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>Load Src Balancing Amts</from>
       <to>Convert Vastera Balancing</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>
     <hop>
       <from>Convert Vastera Balancing</from>
       <to>Balance Companies</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Load GL Balances</from>
+      <to>Check GL Balancing</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Check GL Balancing</from>
+      <to>Load Src Balancing Amts</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>

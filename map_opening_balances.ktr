@@ -189,8 +189,6 @@
   <hop> <from>Valid Amounts</from><to>Asset Account</to><enabled>Y</enabled> </hop>
   <hop> <from>AUTO_PARTIAL_BAL_SOURCE</from><to>Auto</to><enabled>Y</enabled> </hop>
   <hop> <from>Auto</from><to>Merge</to><enabled>Y</enabled> </hop>
-  <hop> <from>OPEN_DOC_SOURCE</from><to>Open</to><enabled>Y</enabled> </hop>
-  <hop> <from>Open</from><to>Merge</to><enabled>Y</enabled> </hop>
   </order>
   <step>
     <name>AUTO_PARTIAL_BAL_SOURCE</name>
@@ -241,6 +239,39 @@
     </step>
 
   <step>
+    <name>Auto</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>SOURCE</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Partial Balances - Automatic</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>294</xloc>
+      <yloc>160</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
     <name>Flatten Assets</name>
     <type>Janino</type>
     <description/>
@@ -286,8 +317,8 @@
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>139</xloc>
-      <yloc>351</yloc>
+      <xloc>134</xloc>
+      <yloc>258</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -319,8 +350,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>304</xloc>
-      <yloc>356</yloc>
+      <xloc>299</xloc>
+      <yloc>263</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -796,98 +827,6 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>526</xloc>
       <yloc>165</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>OPEN_DOC_SOURCE</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>STAGING</connection>
-    <sql>select&#xd;&#xa;b.cmpcode,&#xd;&#xa;b.el1,b.el2,b.el3,b.el4,b.el5,b.el6,&#xd;&#xa;b.doc_curcode,&#xd;&#xa;b.doc_amount as input_amt,&#xd;&#xa;rc.rate as cad_rate,&#xd;&#xa;b.doc_amount &#x2a; &#x28;rc.rate &#x2f; 10000000&#x29; cad_amt,&#xd;&#xa;c.curlocal,&#xd;&#xa;b.doc_amount &#x2a; &#x28;rc.rate&#x2f;rl.rate&#x29; local_amt,&#xd;&#xa;&#x28;rc.rate&#x2f;rl.rate&#x29; &#x2a; 10000000 as local_rate,&#xd;&#xa;b.doc_amount &#x2a; &#x28;rc.rate&#x2f;rf.rate&#x29; func_amt,&#xd;&#xa;&#x28;rc.rate&#x2f;rf.rate&#x29; &#x2a; 10000000 as func_rate&#xd;&#xa;from &#xd;&#xa;open_mig.open_doc_source b&#xd;&#xa;left join staging_templates.cmpcode_map cm on cm.cmpcode_from&#x3d;b.cmpcode&#xd;&#xa;left join staging_templates.cmp_master c on c.cmpcode&#x3d;cm.cmpcode_to&#xd;&#xa;left join staging_templates.rate_master rc on rc.rate_type&#x3d;&#x27;ME_RATE&#x27; and rc.base&#x3d;b.doc_curcode and rc.parent&#x3d;&#x27;CAD&#x27;&#xd;&#xa;left join staging_templates.rate_master rl on rl.rate_type&#x3d;&#x27;ME_RATE&#x27; and rl.base&#x3d;c.curlocal and rl.parent&#x3d;&#x27;CAD&#x27;&#xd;&#xa;left join staging_templates.rate_master rf on rf.rate_type&#x3d;&#x27;ME_RATE&#x27; and rf.base&#x3d;c.curfunc and rf.parent&#x3d;&#x27;CAD&#x27;&#xd;&#xa;</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>137</xloc>
-      <yloc>254</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Auto</name>
-    <type>Constant</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>
-      <field>
-        <name>SOURCE</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>Partial Balances - Automatic</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>294</xloc>
-      <yloc>160</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Open</name>
-    <type>Constant</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>
-      <field>
-        <name>SOURCE</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>Open Documents</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>292</xloc>
-      <yloc>255</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

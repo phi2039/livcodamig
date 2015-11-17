@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>balance_opening_balances</name>
+    <name>convert_vastera_ret_earn</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -66,9 +66,9 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2015&#x2f;11&#x2f;12 18&#x3a;44&#x3a;52.484</created_date>
+  <created_date>2015&#x2f;11&#x2f;14 12&#x3a;16&#x3a;13.352</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2015&#x2f;11&#x2f;12 18&#x3a;44&#x3a;52.484</modified_date>
+  <modified_date>2015&#x2f;11&#x2f;14 12&#x3a;16&#x3a;13.352</modified_date>
   </info>
   <notepads>
   </notepads>
@@ -176,25 +176,6 @@
   </connection>
   <order>
   </order>
-  <step>
-    <name>Dummy &#x28;do nothing&#x29;</name>
-    <type>Dummy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>133</xloc>
-      <yloc>55</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
   <step_error_handling>
   </step_error_handling>
    <slave-step-copy-partition-distribution>

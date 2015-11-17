@@ -293,8 +293,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>510</xloc>
-      <yloc>174</yloc>
+      <xloc>507</xloc>
+      <yloc>93</yloc>
       </entry>
     <entry>
       <name>Map Opening Balances</name>
@@ -326,8 +326,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>691</xloc>
-      <yloc>86</yloc>
+      <xloc>508</xloc>
+      <yloc>175</yloc>
       </entry>
     <entry>
       <name>Load Reported CAD Balances</name>
@@ -359,8 +359,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>690</xloc>
-      <yloc>174</yloc>
+      <xloc>703</xloc>
+      <yloc>96</yloc>
       </entry>
     <entry>
       <name>Balance Companies</name>
@@ -392,8 +392,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>882</xloc>
-      <yloc>87</yloc>
+      <xloc>900</xloc>
+      <yloc>183</yloc>
       </entry>
     <entry>
       <name>Success</name>
@@ -426,12 +426,12 @@
       <yloc>89</yloc>
       </entry>
     <entry>
-      <name>Load Open Doc Balances</name>
+      <name>Load Src Balancing Amts</name>
       <description/>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;load_open_doc_balances_alt.ktr</filename>
+      <filename>&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;load_source_bal_amounts.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -455,8 +455,41 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>511</xloc>
-      <yloc>87</yloc>
+      <xloc>702</xloc>
+      <yloc>178</yloc>
+      </entry>
+    <entry>
+      <name>Convert Vastera Balancing</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;convert_vastera_bal_amounts.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>902</xloc>
+      <yloc>97</yloc>
       </entry>
   </entries>
   <hops>
@@ -497,15 +530,6 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Load Reported CAD Balances</from>
-      <to>Balance Companies</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>Balance Companies</from>
       <to>Success</to>
       <from_nr>0</from_nr>
@@ -534,7 +558,7 @@
     </hop>
     <hop>
       <from>Load Auto Balances</from>
-      <to>Load Open Doc Balances</to>
+      <to>Load Local Balances</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -542,8 +566,26 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Load Open Doc Balances</from>
-      <to>Load Local Balances</to>
+      <from>Load Reported CAD Balances</from>
+      <to>Load Src Balancing Amts</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Load Src Balancing Amts</from>
+      <to>Convert Vastera Balancing</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Convert Vastera Balancing</from>
+      <to>Balance Companies</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>

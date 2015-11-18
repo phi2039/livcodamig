@@ -359,8 +359,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>703</xloc>
-      <yloc>96</yloc>
+      <xloc>797</xloc>
+      <yloc>92</yloc>
       </entry>
     <entry>
       <name>Balance Companies</name>
@@ -392,8 +392,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1054</xloc>
-      <yloc>94</yloc>
+      <xloc>1148</xloc>
+      <yloc>90</yloc>
       </entry>
     <entry>
       <name>Success</name>
@@ -402,8 +402,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1168</xloc>
-      <yloc>96</yloc>
+      <xloc>1262</xloc>
+      <yloc>92</yloc>
       </entry>
     <entry>
       <name>Check Errors</name>
@@ -455,8 +455,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>879</xloc>
-      <yloc>95</yloc>
+      <xloc>973</xloc>
+      <yloc>91</yloc>
       </entry>
     <entry>
       <name>Convert Vastera Balancing</name>
@@ -488,8 +488,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>878</xloc>
-      <yloc>177</yloc>
+      <xloc>972</xloc>
+      <yloc>173</yloc>
       </entry>
     <entry>
       <name>Check GL Balancing</name>
@@ -508,8 +508,41 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>701</xloc>
-      <yloc>178</yloc>
+      <xloc>795</xloc>
+      <yloc>174</yloc>
+      </entry>
+    <entry>
+      <name>Add Missing CTA</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;create_missing_cta_lines.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>656</xloc>
+      <yloc>94</yloc>
       </entry>
   </entries>
   <hops>
@@ -534,15 +567,6 @@
     <hop>
       <from>Load Local Balances</from>
       <to>Map Opening Balances</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Map Opening Balances</from>
-      <to>Load GL Balances</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -615,6 +639,24 @@
     <hop>
       <from>Check GL Balancing</from>
       <to>Load Src Balancing Amts</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>N</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Map Opening Balances</from>
+      <to>Add Missing CTA</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Add Missing CTA</from>
+      <to>Load GL Balances</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>

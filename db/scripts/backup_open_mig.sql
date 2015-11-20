@@ -1,0 +1,1 @@
+SCRIPT DROP TO 'C:\temp\open_mig.zip' COMPRESSION ZIP SCHEMA OPEN_MIG;

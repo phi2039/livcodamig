@@ -10,18 +10,43 @@
     <directory>&#x2f;</directory>
     <parameters>
         <parameter>
+            <name>deleteDestRows</name>
+            <default_value>false</default_value>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>destSchema</name>
+            <default_value>CODAUSER</default_value>
+            <description/>
+        </parameter>
+        <parameter>
             <name>fileName</name>
-            <default_value>C&#x3a;&#x5c;Users&#x5c;CLANCE&#x5c;Documents&#x5c;Syncplicity Folders&#x5c;Livingston&#x5c;_CODA Initiative - Hermes&#x5c;Migration&#x5c;Baseline&#x5c;Sources&#x5c;Masters&#x5c;OAS_MAM.csv</default_value>
+            <default_value/>
             <description/>
         </parameter>
         <parameter>
             <name>keyFields</name>
-            <default_value>CMPCODE,CODE</default_value>
+            <default_value/>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>maxRows</name>
+            <default_value>0</default_value>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>sourceSchema</name>
+            <default_value>CODAUSER</default_value>
             <description/>
         </parameter>
         <parameter>
             <name>tableName</name>
-            <default_value>OAS_MAM</default_value>
+            <default_value/>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>truncateDest</name>
+            <default_value>true</default_value>
             <description/>
         </parameter>
     </parameters>
@@ -117,7 +142,7 @@
   <connection>
     <name>CODA-DEST</name>
     <server>localhost</server>
-    <type>ORACLE</type>
+    <type>GENERIC</type>
     <access>Native</access>
     <database>codadev</database>
     <port>21521</port>
@@ -127,6 +152,8 @@
     <data_tablespace>codauser</data_tablespace>
     <index_tablespace>codauser</index_tablespace>
     <attributes>
+      <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>oracle.jdbc.OracleDriver</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;oracle&#x3a;thin&#x3a;&#x40;localhost&#x3a;21521&#x3a;coda</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
@@ -194,17 +221,25 @@
   <hop> <from>Input File</from><to>Unpivot Field names</to><enabled>Y</enabled> </hop>
   <hop> <from>Unpivot Field names</from><to>Select values</to><enabled>Y</enabled> </hop>
   <hop> <from>Select values</from><to>Database join</to><enabled>Y</enabled> </hop>
-  <hop> <from>Database join</from><to>Switch Type</to><enabled>Y</enabled> </hop>
   <hop> <from>Switch Type</from><to>String</to><enabled>Y</enabled> </hop>
-  <hop> <from>Switch Type</from><to>Number</to><enabled>Y</enabled> </hop>
   <hop> <from>Switch Type</from><to>Unknown Type</to><enabled>Y</enabled> </hop>
-  <hop> <from>String</from><to>Merge</to><enabled>Y</enabled> </hop>
-  <hop> <from>Number</from><to>Merge</to><enabled>Y</enabled> </hop>
   <hop> <from>Merge</from><to>ETL Metadata Injection</to><enabled>Y</enabled> </hop>
+  <hop> <from>Database join</from><to>Add sequence</to><enabled>Y</enabled> </hop>
+  <hop> <from>Add sequence</from><to>Switch Type</to><enabled>Y</enabled> </hop>
+  <hop> <from>String</from><to>Sort rows</to><enabled>Y</enabled> </hop>
+  <hop> <from>Sort rows</from><to>Merge</to><enabled>Y</enabled> </hop>
+  <hop> <from>Integer</from><to>Sort rows</to><enabled>Y</enabled> </hop>
+  <hop> <from>Switch Type</from><to>Number</to><enabled>Y</enabled> </hop>
+  <hop> <from>Number</from><to>Integer</to><enabled>Y</enabled> </hop>
+  <hop> <from>Number</from><to>Decimal</to><enabled>Y</enabled> </hop>
+  <hop> <from>Decimal</from><to>Sort rows</to><enabled>Y</enabled> </hop>
+  <hop> <from>Switch Type</from><to>Date</to><enabled>Y</enabled> </hop>
+  <hop> <from>Date</from><to>Sort rows</to><enabled>Y</enabled> </hop>
+  <hop> <from>Unknown Type</from><to>Abort</to><enabled>Y</enabled> </hop>
   </order>
   <step>
-    <name>Unpivot Field names</name>
-    <type>Normaliser</type>
+    <name>Add sequence</name>
+    <type>Sequence</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -213,155 +248,156 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-   <typefield>fieldType</typefield>
-    <fields>      <field>        <name>Field1</name>
-        <value>Field1</value>
-        <norm>fieldName</norm>
-        </field>      <field>        <name>Field2</name>
-        <value>Field2</value>
-        <norm>fieldName</norm>
-        </field>      <field>        <name>Field3</name>
-        <value>Field3</value>
-        <norm>fieldName</norm>
-        </field>      <field>        <name>Field4</name>
-        <value>Field4</value>
-        <norm>fieldName</norm>
-        </field>      <field>        <name>Field5</name>
-        <value>Field5</value>
-        <norm>fieldName</norm>
-        </field>      <field>        <name>Field6</name>
-        <value>Field6</value>
-        <norm>fieldName</norm>
-        </field>      <field>        <name>Field7</name>
-        <value>Field7</value>
-        <norm>fieldName</norm>
-        </field>      <field>        <name>Field8</name>
-        <value>Field8</value>
-        <norm>fieldName</norm>
-        </field>      <field>        <name>Field9</name>
-        <value>Field9</value>
-        <norm>fieldName</norm>
-        </field>      <field>        <name>Field10</name>
-        <value>Field10</value>
-        <norm>fieldName</norm>
-        </field>      <field>        <name>Field11</name>
-        <value>Field11</value>
-        <norm>fieldName</norm>
-        </field>      <field>        <name>Field12</name>
-        <value>Field12</value>
-        <norm>fieldName</norm>
-        </field>      <field>        <name>Field13</name>
-        <value>Field13</value>
-        <norm>fieldName</norm>
-        </field>      <field>        <name>Field14</name>
-        <value>Field14</value>
-        <norm>fieldName</norm>
-        </field>      <field>        <name>Field15</name>
-        <value>Field15</value>
-        <norm>fieldName</norm>
-        </field>      <field>        <name>Field16</name>
-        <value>Field16</value>
-        <norm>fieldName</norm>
-        </field>      <field>        <name>Field17</name>
-        <value>Field17</value>
-        <norm>fieldName</norm>
-        </field>      <field>        <name>Field18</name>
-        <value>Field18</value>
-        <norm>fieldName</norm>
-        </field>      <field>        <name>Field19</name>
-        <value>Field19</value>
-        <norm>fieldName</norm>
-        </field>      <field>        <name>Field20</name>
-        <value>Field20</value>
-        <norm>fieldName</norm>
-        </field>      <field>        <name>Field21</name>
-        <value>Field21</value>
-        <norm>fieldName</norm>
-        </field>      <field>        <name>Field22</name>
-        <value>Field22</value>
-        <norm>fieldName</norm>
-        </field>      <field>        <name>Field23</name>
-        <value>Field23</value>
-        <norm>fieldName</norm>
-        </field>      <field>        <name>Field24</name>
-        <value>Field24</value>
-        <norm>fieldName</norm>
-        </field>      <field>        <name>Field25</name>
-        <value>Field25</value>
-        <norm>fieldName</norm>
-        </field>      <field>        <name>Field26</name>
-        <value>Field26</value>
-        <norm>fieldName</norm>
-        </field>      <field>        <name>Field27</name>
-        <value>Field27</value>
-        <norm>fieldName</norm>
-        </field>      <field>        <name>Field28</name>
-        <value>Field28</value>
-        <norm>fieldName</norm>
-        </field>      <field>        <name>Field29</name>
-        <value>Field29</value>
-        <norm>fieldName</norm>
-        </field>      <field>        <name>Field30</name>
-        <value>Field30</value>
-        <norm>fieldName</norm>
-        </field>      <field>        <name>Field31</name>
-        <value>Field31</value>
-        <norm>fieldName</norm>
-        </field>      <field>        <name>Field32</name>
-        <value>Field32</value>
-        <norm>fieldName</norm>
-        </field>      <field>        <name>Field33</name>
-        <value>Field33</value>
-        <norm>fieldName</norm>
-        </field>      <field>        <name>Field34</name>
-        <value>Field34</value>
-        <norm>fieldName</norm>
-        </field>      <field>        <name>Field35</name>
-        <value>Field35</value>
-        <norm>fieldName</norm>
-        </field>      <field>        <name>Field36</name>
-        <value>Field36</value>
-        <norm>fieldName</norm>
-        </field>      <field>        <name>Field37</name>
-        <value>Field37</value>
-        <norm>fieldName</norm>
-        </field>      <field>        <name>Field38</name>
-        <value>Field38</value>
-        <norm>fieldName</norm>
-        </field>      <field>        <name>Field39</name>
-        <value>Field39</value>
-        <norm>fieldName</norm>
-        </field>      <field>        <name>Field40</name>
-        <value>Field40</value>
-        <norm>fieldName</norm>
-        </field>      <field>        <name>Field41</name>
-        <value>Field41</value>
-        <norm>fieldName</norm>
-        </field>      <field>        <name>Field42</name>
-        <value>Field42</value>
-        <norm>fieldName</norm>
-        </field>      <field>        <name>Field43</name>
-        <value>Field43</value>
-        <norm>fieldName</norm>
-        </field>      <field>        <name>Field44</name>
-        <value>Field44</value>
-        <norm>fieldName</norm>
-        </field>      <field>        <name>Field45</name>
-        <value>Field45</value>
-        <norm>fieldName</norm>
-        </field>      <field>        <name>Field46</name>
-        <value>Field46</value>
-        <norm>fieldName</norm>
-        </field>      <field>        <name>Field47</name>
-        <value>Field47</value>
-        <norm>fieldName</norm>
-        </field>      <field>        <name>Field48</name>
-        <value>Field48</value>
-        <norm>fieldName</norm>
-        </field>      </fields>     <cluster_schema/>
+      <valuename>fieldSeq</valuename>
+      <use_database>N</use_database>
+      <connection/>
+      <schema/>
+      <seqname>SEQ_</seqname>
+      <use_counter>Y</use_counter>
+      <counter_name/>
+      <start_at>1</start_at>
+      <increment_by>1</increment_by>
+      <max_value>999999999</max_value>
+     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>151</xloc>
-      <yloc>20</yloc>
+      <xloc>519</xloc>
+      <yloc>54</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Database join</name>
+    <type>DBJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>CODA-SOURCE</connection>
+    <rowlimit>0</rowlimit>
+    <sql>SELECT DATA_TYPE,DATA_PRECISION,DATA_SCALE FROM&#xd;&#xa;ALL_TAB_COLUMNS&#xd;&#xa;WHERE&#xd;&#xa;TABLE_NAME&#x3d;&#x27;&#x24;&#x7b;tableName&#x7d;&#x27;&#xd;&#xa;AND COLUMN_NAME&#x3d;&#x3f;</sql>
+    <outer_join>N</outer_join>
+    <replace_vars>Y</replace_vars>
+    <parameter>
+      <field>
+        <name>fieldName</name>
+        <type>String</type>
+      </field>
+    </parameter>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>411</xloc>
+      <yloc>54</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Decimal</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>fieldType</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Number</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>fieldFormat</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>Y</set_empty_string>
+      </field>
+      <field>
+        <name>fieldTrim</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>none</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>717</xloc>
+      <yloc>231</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>ETL Metadata Injection</name>
+    <type>MetaInject</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <specification_method>filename</specification_method>
+    <trans_object_id/>
+    <trans_name/>
+    <filename>&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;copy_modified_masters_template.ktr</filename>
+    <directory_path/>
+    <source_step/>
+    <source_output_fields>    </source_output_fields>    <target_file>c&#x3a;&#x5c;temp&#x5c;foo.ktr</target_file>
+    <no_execution>N</no_execution>
+    <stream_source_step/>
+    <stream_target_step/>
+    <mappings>      <mapping>        <target_step_name>Input File</target_step_name>
+        <target_attribute_key>FIELD_FORMAT</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>Merge</source_step>
+        <source_field>fieldFormat</source_field>
+      </mapping>      <mapping>        <target_step_name>Input File</target_step_name>
+        <target_attribute_key>FIELD_TRIM_TYPE</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>Merge</source_step>
+        <source_field>fieldTrim</source_field>
+      </mapping>      <mapping>        <target_step_name>Input File</target_step_name>
+        <target_attribute_key>FIELD_NAME</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>Merge</source_step>
+        <source_field>fieldName</source_field>
+      </mapping>      <mapping>        <target_step_name>Input File</target_step_name>
+        <target_attribute_key>FIELD_TYPE</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>Merge</source_step>
+        <source_field>fieldType</source_field>
+      </mapping>    </mappings>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>782</xloc>
+      <yloc>439</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1163,15 +1199,15 @@
     <sizeFieldName/>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>39</xloc>
-      <yloc>20</yloc>
+      <xloc>64</xloc>
+      <yloc>54</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Database join</name>
-    <type>DBJoin</type>
+    <name>Integer</name>
+    <type>Constant</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -1180,21 +1216,96 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>CODA-SOURCE</connection>
-    <rowlimit>0</rowlimit>
-    <sql>SELECT DATA_TYPE FROM&#xd;&#xa;ALL_TAB_COLUMNS&#xd;&#xa;WHERE&#xd;&#xa;TABLE_NAME&#x3d;&#x27;&#x24;&#x7b;tableName&#x7d;&#x27;&#xd;&#xa;AND COLUMN_NAME&#x3d;&#x3f;</sql>
-    <outer_join>N</outer_join>
-    <replace_vars>Y</replace_vars>
-    <parameter>
+    <fields>
       <field>
-        <name>fieldName</name>
+        <name>fieldType</name>
         <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Integer</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
       </field>
-    </parameter>
+      <field>
+        <name>fieldFormat</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>Y</set_empty_string>
+      </field>
+      <field>
+        <name>fieldTrim</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>none</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>386</xloc>
-      <yloc>20</yloc>
+      <xloc>842</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Merge</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>635</xloc>
+      <yloc>438</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Number</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Integer</send_true_to>
+<send_false_to>Decimal</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>DATA_SCALE</leftvalue>
+ <function>&#x3d;</function>
+ <rightvalue/>
+ <value><name>constant</name><type>Number</type><text>0.0</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask>&#x23;.&#x23;&#x3b;-&#x23;.&#x23;</mask></value> </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>774</xloc>
+      <yloc>146</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1217,15 +1328,15 @@
       </field>        <select_unspecified>N</select_unspecified>
     </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>278</xloc>
-      <yloc>21</yloc>
+      <xloc>303</xloc>
+      <yloc>55</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Unknown Type</name>
-    <type>Dummy</type>
+    <name>Sort rows</name>
+    <type>SortRows</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -1234,91 +1345,25 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
+      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
+      <prefix>out</prefix>
+      <sort_size>1000000</sort_size>
+      <free_memory/>
+      <compress>N</compress>
+      <compress_variable/>
+      <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>fieldSeq</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <presorted>N</presorted>
+      </field>
+    </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>672</xloc>
-      <yloc>30</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>ETL Metadata Injection</name>
-    <type>MetaInject</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <specification_method>filename</specification_method>
-    <trans_object_id/>
-    <trans_name/>
-    <filename>&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;copy_modified_masters_template.ktr</filename>
-    <directory_path/>
-    <source_step/>
-    <source_output_fields>    </source_output_fields>    <target_file/>
-    <no_execution>N</no_execution>
-    <stream_source_step/>
-    <stream_target_step/>
-    <mappings>      <mapping>        <target_step_name>Input File</target_step_name>
-        <target_attribute_key>FIELD_FORMAT</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>Merge</source_step>
-        <source_field>fieldFormat</source_field>
-      </mapping>      <mapping>        <target_step_name>Input File</target_step_name>
-        <target_attribute_key>FIELD_TRIM_TYPE</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>Merge</source_step>
-        <source_field>fieldTrim</source_field>
-      </mapping>      <mapping>        <target_step_name>Input File</target_step_name>
-        <target_attribute_key>FIELD_NAME</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>Merge</source_step>
-        <source_field>fieldName</source_field>
-      </mapping>      <mapping>        <target_step_name>Input File</target_step_name>
-        <target_attribute_key>FIELD_TYPE</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>Merge</source_step>
-        <source_field>fieldType</source_field>
-      </mapping>    </mappings>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>515</xloc>
-      <yloc>319</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Switch Type</name>
-    <type>SwitchCase</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<fieldname>DATA_TYPE</fieldname>
-<use_contains>N</use_contains>
-<case_value_type>String</case_value_type>
-<case_value_format/>
-<case_value_decimal/>
-<case_value_group/>
-<default_target_step>Unknown Type</default_target_step>
-<cases><case><value>VARCHAR</value>
-<target_step>String</target_step>
-</case><case><value>VARCHAR2</value>
-<target_step>String</target_step>
-</case><case><value>NUMBER</value>
-<target_step>Number</target_step>
-</case></cases>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>509</xloc>
-      <yloc>21</yloc>
+      <xloc>637</xloc>
+      <yloc>350</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1374,14 +1419,231 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>454</xloc>
-      <yloc>143</yloc>
+      <xloc>622</xloc>
+      <yloc>209</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Number</name>
+    <name>Switch Type</name>
+    <type>SwitchCase</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<fieldname>DATA_TYPE</fieldname>
+<use_contains>N</use_contains>
+<case_value_type>String</case_value_type>
+<case_value_format/>
+<case_value_decimal/>
+<case_value_group/>
+<default_target_step>Unknown Type</default_target_step>
+<cases><case><value>VARCHAR</value>
+<target_step>String</target_step>
+</case><case><value>VARCHAR2</value>
+<target_step>String</target_step>
+</case><case><value>NUMBER</value>
+<target_step>Number</target_step>
+</case><case><value>DATE</value>
+<target_step>Date</target_step>
+</case></cases>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>693</xloc>
+      <yloc>52</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Unknown Type</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>856</xloc>
+      <yloc>61</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Unpivot Field names</name>
+    <type>Normaliser</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+   <typefield>fieldType</typefield>
+    <fields>      <field>        <name>Field1</name>
+        <value>Field1</value>
+        <norm>fieldName</norm>
+        </field>      <field>        <name>Field2</name>
+        <value>Field2</value>
+        <norm>fieldName</norm>
+        </field>      <field>        <name>Field3</name>
+        <value>Field3</value>
+        <norm>fieldName</norm>
+        </field>      <field>        <name>Field4</name>
+        <value>Field4</value>
+        <norm>fieldName</norm>
+        </field>      <field>        <name>Field5</name>
+        <value>Field5</value>
+        <norm>fieldName</norm>
+        </field>      <field>        <name>Field6</name>
+        <value>Field6</value>
+        <norm>fieldName</norm>
+        </field>      <field>        <name>Field7</name>
+        <value>Field7</value>
+        <norm>fieldName</norm>
+        </field>      <field>        <name>Field8</name>
+        <value>Field8</value>
+        <norm>fieldName</norm>
+        </field>      <field>        <name>Field9</name>
+        <value>Field9</value>
+        <norm>fieldName</norm>
+        </field>      <field>        <name>Field10</name>
+        <value>Field10</value>
+        <norm>fieldName</norm>
+        </field>      <field>        <name>Field11</name>
+        <value>Field11</value>
+        <norm>fieldName</norm>
+        </field>      <field>        <name>Field12</name>
+        <value>Field12</value>
+        <norm>fieldName</norm>
+        </field>      <field>        <name>Field13</name>
+        <value>Field13</value>
+        <norm>fieldName</norm>
+        </field>      <field>        <name>Field14</name>
+        <value>Field14</value>
+        <norm>fieldName</norm>
+        </field>      <field>        <name>Field15</name>
+        <value>Field15</value>
+        <norm>fieldName</norm>
+        </field>      <field>        <name>Field16</name>
+        <value>Field16</value>
+        <norm>fieldName</norm>
+        </field>      <field>        <name>Field17</name>
+        <value>Field17</value>
+        <norm>fieldName</norm>
+        </field>      <field>        <name>Field18</name>
+        <value>Field18</value>
+        <norm>fieldName</norm>
+        </field>      <field>        <name>Field19</name>
+        <value>Field19</value>
+        <norm>fieldName</norm>
+        </field>      <field>        <name>Field20</name>
+        <value>Field20</value>
+        <norm>fieldName</norm>
+        </field>      <field>        <name>Field21</name>
+        <value>Field21</value>
+        <norm>fieldName</norm>
+        </field>      <field>        <name>Field22</name>
+        <value>Field22</value>
+        <norm>fieldName</norm>
+        </field>      <field>        <name>Field23</name>
+        <value>Field23</value>
+        <norm>fieldName</norm>
+        </field>      <field>        <name>Field24</name>
+        <value>Field24</value>
+        <norm>fieldName</norm>
+        </field>      <field>        <name>Field25</name>
+        <value>Field25</value>
+        <norm>fieldName</norm>
+        </field>      <field>        <name>Field26</name>
+        <value>Field26</value>
+        <norm>fieldName</norm>
+        </field>      <field>        <name>Field27</name>
+        <value>Field27</value>
+        <norm>fieldName</norm>
+        </field>      <field>        <name>Field28</name>
+        <value>Field28</value>
+        <norm>fieldName</norm>
+        </field>      <field>        <name>Field29</name>
+        <value>Field29</value>
+        <norm>fieldName</norm>
+        </field>      <field>        <name>Field30</name>
+        <value>Field30</value>
+        <norm>fieldName</norm>
+        </field>      <field>        <name>Field31</name>
+        <value>Field31</value>
+        <norm>fieldName</norm>
+        </field>      <field>        <name>Field32</name>
+        <value>Field32</value>
+        <norm>fieldName</norm>
+        </field>      <field>        <name>Field33</name>
+        <value>Field33</value>
+        <norm>fieldName</norm>
+        </field>      <field>        <name>Field34</name>
+        <value>Field34</value>
+        <norm>fieldName</norm>
+        </field>      <field>        <name>Field35</name>
+        <value>Field35</value>
+        <norm>fieldName</norm>
+        </field>      <field>        <name>Field36</name>
+        <value>Field36</value>
+        <norm>fieldName</norm>
+        </field>      <field>        <name>Field37</name>
+        <value>Field37</value>
+        <norm>fieldName</norm>
+        </field>      <field>        <name>Field38</name>
+        <value>Field38</value>
+        <norm>fieldName</norm>
+        </field>      <field>        <name>Field39</name>
+        <value>Field39</value>
+        <norm>fieldName</norm>
+        </field>      <field>        <name>Field40</name>
+        <value>Field40</value>
+        <norm>fieldName</norm>
+        </field>      <field>        <name>Field41</name>
+        <value>Field41</value>
+        <norm>fieldName</norm>
+        </field>      <field>        <name>Field42</name>
+        <value>Field42</value>
+        <norm>fieldName</norm>
+        </field>      <field>        <name>Field43</name>
+        <value>Field43</value>
+        <norm>fieldName</norm>
+        </field>      <field>        <name>Field44</name>
+        <value>Field44</value>
+        <norm>fieldName</norm>
+        </field>      <field>        <name>Field45</name>
+        <value>Field45</value>
+        <norm>fieldName</norm>
+        </field>      <field>        <name>Field46</name>
+        <value>Field46</value>
+        <norm>fieldName</norm>
+        </field>      <field>        <name>Field47</name>
+        <value>Field47</value>
+        <norm>fieldName</norm>
+        </field>      <field>        <name>Field48</name>
+        <value>Field48</value>
+        <norm>fieldName</norm>
+        </field>      </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>176</xloc>
+      <yloc>54</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Date</name>
     <type>Constant</type>
     <description/>
     <distribute>Y</distribute>
@@ -1399,7 +1661,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif>Number</nullif>
+        <nullif>Date</nullif>
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
@@ -1414,7 +1676,7 @@
         <nullif/>
         <length>-1</length>
         <precision>-1</precision>
-        <set_empty_string>Y</set_empty_string>
+        <set_empty_string>N</set_empty_string>
       </field>
       <field>
         <name>fieldTrim</name>
@@ -1423,7 +1685,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif>none</nullif>
+        <nullif>None</nullif>
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
@@ -1431,15 +1693,15 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>572</xloc>
-      <yloc>144</yloc>
+      <xloc>532</xloc>
+      <yloc>214</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Merge</name>
-    <type>Dummy</type>
+    <name>Abort</name>
+    <type>Abort</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -1448,10 +1710,13 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
+      <row_threshold>0</row_threshold>
+      <message>Unknown Data Type</message>
+      <always_log_rows>Y</always_log_rows>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>513</xloc>
-      <yloc>226</yloc>
+      <xloc>955</xloc>
+      <yloc>61</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

@@ -9,31 +9,6 @@
     <trans_status>0</trans_status>
     <directory>&#x2f;</directory>
     <parameters>
-        <parameter>
-            <name>destSchema</name>
-            <default_value>CODAUSER</default_value>
-            <description/>
-        </parameter>
-        <parameter>
-            <name>fileName</name>
-            <default_value>C&#x3a;&#x5c;Users&#x5c;CLANCE&#x5c;Documents&#x5c;Syncplicity Folders&#x5c;Livingston&#x5c;_CODA Initiative - Hermes&#x5c;Migration&#x5c;Baseline&#x5c;Sources&#x5c;Masters&#x5c;OAS_MAM.csv</default_value>
-            <description/>
-        </parameter>
-        <parameter>
-            <name>keyFields</name>
-            <default_value>CMPCODE,CODE</default_value>
-            <description/>
-        </parameter>
-        <parameter>
-            <name>sourceSchema</name>
-            <default_value>CODAUSER</default_value>
-            <description/>
-        </parameter>
-        <parameter>
-            <name>tableName</name>
-            <default_value>OAS_MAM</default_value>
-            <description/>
-        </parameter>
     </parameters>
     <log>
 <trans-log-table><connection/>
@@ -97,27 +72,6 @@
   <modified_date>2015&#x2f;11&#x2f;16 18&#x3a;09&#x3a;13.260</modified_date>
   </info>
   <notepads>
-    <notepad>
-      <note>1. Lookup source&#xd;&#xa;2. Update fields&#xd;&#xa;3. Delete dest&#xd;&#xa;4. Insert dest</note>
-      <xloc>250</xloc>
-      <yloc>295</yloc>
-      <width>121</width>
-      <heigth>90</heigth>
-      <fontname>Segoe UI</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
   </notepads>
   <connection>
     <name>ARCHIVE</name>
@@ -148,9 +102,9 @@
   <connection>
     <name>CODA-DEST</name>
     <server>localhost</server>
-    <type>ORACLE</type>
+    <type>GENERIC</type>
     <access>Native</access>
-    <database>coda</database>
+    <database>codadev</database>
     <port>21521</port>
     <username>codauser</username>
     <password>Encrypted 2be98afc86aa7f2e4cb1aa174df96aacc</password>
@@ -158,6 +112,8 @@
     <data_tablespace>codauser</data_tablespace>
     <index_tablespace>codauser</index_tablespace>
     <attributes>
+      <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>oracle.jdbc.OracleDriver</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;oracle&#x3a;thin&#x3a;&#x40;localhost&#x3a;21521&#x3a;coda</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
@@ -222,7 +178,7 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Input File</from><to>User Defined Java Class</to><enabled>Y</enabled> </hop>
+  <hop> <from>Input File</from><to>Merge Rows</to><enabled>Y</enabled> </hop>
   </order>
   <step>
     <name>Input File</name>
@@ -243,7 +199,7 @@
     <enclosure>&#x22;</enclosure>
     <enclosure_breaks>N</enclosure_breaks>
     <escapechar/>
-    <header>N</header>
+    <header>Y</header>
     <nr_headerlines>1</nr_headerlines>
     <footer>N</footer>
     <nr_footerlines>1</nr_footerlines>
@@ -273,488 +229,8 @@
     <filters>
     </filters>
     <fields>
-      <field>
-        <name>CODE</name>
-        <type>String</type>
-        <format>&#x23;</format>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>both</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>NAME</name>
-        <type>String</type>
-        <format>&#x23;</format>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>both</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>SNAME</name>
-        <type>String</type>
-        <format>&#x23;</format>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>both</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>CURRULE</name>
-        <type>Number</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>CURCODE</name>
-        <type>String</type>
-        <format>&#x23;</format>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>both</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>ELMLEVEL</name>
-        <type>Number</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>INCSUPPRPAID</name>
-        <type>Number</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>COPYCOMMENT</name>
-        <type>Number</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>EXPLODEPRESCODE</name>
-        <type>String</type>
-        <format>&#x23;</format>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>both</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>MATCHINGMETHOD</name>
-        <type>Number</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>COPYPAYDATA</name>
-        <type>Number</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>MATCHINGDATE</name>
-        <type>String</type>
-        <format>&#x23;</format>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>both</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>PERIOD</name>
-        <type>String</type>
-        <format>&#x23;</format>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>both</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>DISCAC</name>
-        <type>String</type>
-        <format>&#x23;</format>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>both</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>WOAC</name>
-        <type>String</type>
-        <format>&#x23;</format>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>both</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>CURAC</name>
-        <type>String</type>
-        <format>&#x23;</format>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>both</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>RESTRICTCURAC</name>
-        <type>Number</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>USEFROMINPUT</name>
-        <type>Number</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>GENSETTLEPOST</name>
-        <type>Number</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>SETTLEDOCCODE</name>
-        <type>String</type>
-        <format>&#x23;</format>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>both</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>SUSPAC</name>
-        <type>String</type>
-        <format>&#x23;</format>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>both</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>RESTRICTSUSPAC</name>
-        <type>Number</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>USECURRENTRATES</name>
-        <type>Number</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>SELCODE1</name>
-        <type>String</type>
-        <format>&#x23;</format>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>both</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>PRESCODE1</name>
-        <type>String</type>
-        <format>&#x23;</format>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>both</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>NUMLINES1</name>
-        <type>Number</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>SELCODE2</name>
-        <type>String</type>
-        <format>&#x23;</format>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>both</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>PRESCODE2</name>
-        <type>String</type>
-        <format>&#x23;</format>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>both</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>NUMLINES2</name>
-        <type>Number</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>TITLE1</name>
-        <type>String</type>
-        <format>&#x23;</format>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>both</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>TITLE2</name>
-        <type>String</type>
-        <format>&#x23;</format>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>both</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>INPDATAPROP</name>
-        <type>Number</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
     </fields>
-    <limit>1</limit>
+    <limit>0</limit>
     <error_ignored>N</error_ignored>
     <skip_bad_files>N</skip_bad_files>
     <file_error_field/>
@@ -781,14 +257,14 @@
     <sizeFieldName/>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>112</xloc>
-      <yloc>210</yloc>
+      <xloc>133</xloc>
+      <yloc>85</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>User Defined Java Class</name>
+    <name>Merge Rows</name>
     <type>UserDefinedJavaClass</type>
     <description/>
     <distribute>Y</distribute>
@@ -807,65 +283,146 @@
 
         <class_source><![CDATA[import org.pentaho.di.core.database.*;
 import java.sql.*;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 import org.pentaho.di.core.row.*;
 import org.pentaho.di.core.exception.*;
 import org.pentaho.di.trans.step.*;
-import org.pentaho.di.trans.steps.userdefinedjavaclass.*;  
+import org.pentaho.di.trans.steps.userdefinedjavaclass.*;
+  
+  
+  private Database sourceDb = null;
+  private Database destDb = null;
+  private DatabaseMeta sourceDbMeta = null;
+  private DatabaseMeta destDbMeta = null;
+  private String tableName = "";
+  private String sourceSchema = "";
+  private String destSchema = "";
+  private String[] keyFieldNames = null;
+  private int[] inputKeyIndexes = null;
+  private int[] sourceKeyIndexes = null;
+  private int[] destKeyIndexes = null;
+  private PreparedStatement selectStatement = null;
+  private PreparedStatement deleteStatement = null;
+  private PreparedStatement insertStatement = null;
+  private RowMetaInterface sourceRowMeta = null;
+  private int[] updateIndexes = null;
+  private int[] outputIndexes = null;
+  private int rowCount = 0;
+  private int maxRows = 0;
+  private boolean deleteDestRows = false;
+  private boolean truncateDest = false;
+  private boolean stop = false;
 
-private Database sourceDb = null;
-private Database destDb = null;
-private DatabaseMeta sourceDbMeta = null;
-private DatabaseMeta destDbMeta = null;
-private String tableName = "";
-private String sourceSchema = "";
-private String destSchema = "";
-private final Map keyFieldIndexes = new HashMap();
-private PreparedStatement selectStatement = null;
-private PreparedStatement deleteStatement = null;
-private PreparedStatement insertStatement = null;
-private RowMetaInterface sourceRowMeta = null;
-private int[] updateIndexes = null;
-private int[] outputIndexes = null;
-
+// TODO: Output only key fields for logging (OR) write to log table/file  
+  
   // Overrides
-  public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws KettleException
-  {
-    if (first) {
-      // For each input stream field, identify the source row field to update
-      updateIndexes = new int[data.inputRowMeta.size()];
-      logDebug("Mapping " + data.inputRowMeta.size() + " input fields");
-      String[] columns = data.inputRowMeta.getFieldNames();
-      for (int c = 0; c < updateIndexes.length; c++) {
-        // Use each input field's name to look up its index in the source row
-        if (keyFieldIndexes.containsKey(columns[c])) {
-          logDebug("    Skipping (key field) " + columns[c]);
-          updateIndexes[c] = -1;
-        }
-        else {
-          logDebug("    Mapping " + columns[c]);
-          updateIndexes[c] = sourceRowMeta.indexOfValue(columns[c]);
-        }
-      }
-      
-      // Merge source row fields with any other output fields
-      data.outputRowMeta.addRowMeta(sourceRowMeta);
-      
-      // For each source row field, identify the associated output stream field
-      outputIndexes = new int[data.outputRowMeta.size()];
-      logDebug("Mapping " + data.inputRowMeta.size() + " source columns");
-      columns = sourceRowMeta.getFieldNames();
-      for (int c = 0; c < outputIndexes.length; c++) {
-        // Use each source field's name to look up its index in the output stream
-        logDebug("    Mapping " + columns[c]);
-        outputIndexes[c] = data.outputRowMeta.indexOfValue(columns[c]);
-      }      
-    }
+  public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws KettleException {
 
     // Get an input row
     Object[] row = getRow();
+    if (row == null || stop) {
+      completeProcessing();
+      return false;
+    }
+        
+    ///// Initialization ////
+    if (first) {
+      
+      data.outputRowMeta = sourceRowMeta;
+      
+      logDebug("Input Meta:");
+      String[] inputFields = data.inputRowMeta.getFieldNamesAndTypes(100);
+      for (int f=0; f < inputFields.length; f++) {
+        ValueMetaInterface v = data.inputRowMeta.getValueMeta(f);
+        logDebug("  Input Field: " + v.getName() + "(" + v.getTypeDesc() + ")");
+      }      
+      
+      logDebug("Source Meta:");
+      String[] sourceFields = sourceRowMeta.getFieldNamesAndTypes(100);
+      for (int f=0; f < sourceFields.length; f++) {
+        ValueMetaInterface v = sourceRowMeta.getValueMeta(f);
+        logDebug("  Source Field: " + v.getName() + "(" + v.getTypeDesc() + ")");
+      }
+      
+      logDebug("Output Meta:");
+      String[] outFields = data.outputRowMeta.getFieldNamesAndTypes(100);
+      for (int f=0; f < outFields.length; f++) {
+        ValueMetaInterface v = data.outputRowMeta.getValueMeta(f);
+        logDebug("  Output Field: " + v.getName() + "(" + v.getTypeDesc() + ")");
+      }
+      
+      // For each key field, find its location in each stream
+      inputKeyIndexes = new int[keyFieldNames.length];
+      sourceKeyIndexes = new int[keyFieldNames.length];
+      destKeyIndexes = new int[keyFieldNames.length];
+      for (int k = 0; k < keyFieldNames.length; k++) {
+        String keyFieldName = keyFieldNames[k];
+        inputKeyIndexes[k] = data.inputRowMeta.indexOfValue(keyFieldName);
+        sourceKeyIndexes[k] = sourceRowMeta.indexOfValue(keyFieldName);
+        destKeyIndexes[k] = data.outputRowMeta.indexOfValue(keyFieldName);
+        logDebug("Found key field " + keyFieldName + " at: input[" + inputKeyIndexes[k] + "] source[" + sourceKeyIndexes[k] + "] dest[ " + destKeyIndexes[k] + "]");
+      }
+      
+      // For each input stream field, identify the source row field to update
+      updateIndexes = new int[data.inputRowMeta.size()];
+      logDebug("Mapping " + data.inputRowMeta.size() + " input fields to source columns");
+      String[] fieldNames = data.inputRowMeta.getFieldNames();
+      // Use each input field's name to look up its index in the source row
+      for (int f = 0; f < updateIndexes.length; f++) {
+        String fieldName = fieldNames[f];
+        boolean isKeyField = false;
+        // Check to see if this is a key field (we do not update these)
+        for (int k = 0; k < keyFieldNames.length; k++) {
+          if (fieldName.equals(keyFieldNames[k]))
+            isKeyField = true;
+        }
+        if (isKeyField) {
+          updateIndexes[f] = -1;
+          logDebug("    Skipped (key field) " + fieldName);
+        }
+        else {
+          int sourceIndex = sourceRowMeta.indexOfValue(fieldName);
+          updateIndexes[f] = sourceIndex;
+          logDebug("    Mapped " + fieldName + "(input: " + f + " -> source: " + sourceIndex + ")");
+        }
+      }
+      
+      // For each source row field, identify the associated output stream field
+      outputIndexes = new int[sourceRowMeta.size()];
+      logDebug("Mapping " + sourceRowMeta.size() + " source columns to output fields");
+      fieldNames = sourceRowMeta.getFieldNames();
+      // Use each source field's name to look up its index in the output stream
+      for (int f = 0; f < outputIndexes.length; f++) {
+        String fieldName = fieldNames[f];
+        int outputIndex =  data.outputRowMeta.indexOfValue(fieldName);
+        outputIndexes[f] = outputIndex;
+        logDebug("    Mapped " + fieldName + "(source: " + f + " -> dest: " + outputIndex);
+      }
+      logDebug("Finished building mappings");
+        
+      if (truncateDest) {
+        String fullTableName = destSchema + "." + tableName;
+        String truncateSQL = "TRUNCATE TABLE " + fullTableName;
+        logBasic("Truncating all rows in table " + fullTableName);
+        destDb.execStatement(truncateSQL);
+      }
+      
+      // Done with first-row initialization
+      first = false;
+    }
+    
+    ///// Row processing ////
+
+    rowCount++;
+    logRowlevel("Row: " + rowCount);
+    if (maxRows > 0 && rowCount > maxRows) {
+      logDetailed("Reached max rows");
+      completeProcessing();
+      stopAll();
+      return false;
+    }
+    
+    // Get the keys for this row from the input stream
+    ValueMetaAndData[] keyValues = getKeys(data.inputRowMeta, row, inputKeyIndexes);
 
     // Reset prepared statements
     try {
@@ -877,66 +434,82 @@ private int[] outputIndexes = null;
     
     // Get the record from source    
     // For each field in the object's key, set a parameter in the SELECT statement
-    setKeyParameters(sourceDbMeta, selectStatement,row);
-    
-    ResultSet selectResult = null;
+    setKeyParameters(sourceDbMeta, selectStatement, keyValues);
+    Object[] sourceRow;
     try {
-      selectResult = selectStatement.executeQuery();
-      if (!selectResult.next()) {
-        logError("Source row with key "+ keyToString(row) + " does not exist");
-        return true; // Move on to the next row
-      }
-    } catch (SQLException se) {
-      logError("Failed to retrieve source row");
-      throw new KettleException(se.getCause());
+      sourceRow = sourceDb.getLookup(selectStatement);
     }
-    
+    catch (KettleDatabaseException kex) {
+      logError("Failed to retrieve source row: " + kex.getMessage());
+      return true;
+    }
+    if (sourceRow == null) {
+      logBasic("NO SOURCE|" + sourceSchema + "|" + tableName + "|" + destSchema + "|" + tableName + "|" + keyToString(sourceKeyIndexes, row));
+      return true; // Nothing more to do with this row
+    }
+    //logRowlevel("Source Row: " + rowToString(sourceRowMeta, sourceRow));
+
     // Allocate an output row array
     Object[] outputRow = RowDataUtil.allocateRowData(data.outputRowMeta.size());
-    
+
     // For each field in the source row, copy its value to the appropriate output field
     for (int sourceIndex = 0; sourceIndex < sourceRowMeta.size(); sourceIndex++) {
       int outputIndex = outputIndexes[sourceIndex];
+// TODO: Figure out how to set output meta
       ValueMetaInterface sourceValueMeta = sourceRowMeta.getValueMeta(sourceIndex);
-      ValueMetaInterface destValueMeta = data.outputRowMeta.getValueMeta(outputIndex);
-      Object val = sourceDbMeta.getValueFromResultSet(selectResult, sourceValueMeta, sourceIndex);
-
-      // Convert to output type and set output value
-      if (val != null) {
-        if (val instanceof String)// Trim any string values before converting
-          val = ((String)val).trim();
-        outputRow[outputIndex] = destValueMeta.convertData(sourceValueMeta, val);
-      }
-      else
-        outputRow[outputIndex] = null;
+      ValueMetaInterface destValueMeta = sourceValueMeta;
+//      logDebug(sourceValueMeta.getName() + " -> " + destValueMeta.getName() + " | " + "Source value type:" + sourceValueMeta.getTypeDesc() + " | " + "Dest value type:" + destValueMeta.getTypeDesc());
+      
+      Object val = sourceRow[sourceIndex];      
+      outputRow[outputIndex] = convertValue(sourceValueMeta, destValueMeta, val);
     }
-
+    
     // for each field in the input stream, update the corresponding field in the output stream
     for (int inputIndex = 0; inputIndex < data.inputRowMeta.size(); inputIndex++) {
       int sourceIndex = updateIndexes[inputIndex];
       if (sourceIndex >= 0) {
         int outputIndex = outputIndexes[sourceIndex];
-        outputRow[outputIndex] = row[inputIndex];
+        Object val = row[inputIndex];
+        if (val instanceof String)
+          if (((String)val).length() == 0) 
+            val = " ";
+        outputRow[outputIndex] = val;
       }
     }
+//    logRowlevel("Output Row: " + rowToString(sourceRowMeta, outputRow));
 
-    // Delete matching row from destination (if it exists)
-    setKeyParameters(destDbMeta, deleteStatement, row);
-    try {
-      deleteStatement.executeUpdate();
-    } catch (SQLException se) {
-      logError("Failed to delete destination row");
-      throw new KettleException(se.getCause());
+    // Delete matching row from destination (if it exists and deleteDestRows is 'true')
+    if (deleteDestRows) {
+      setKeyParameters(destDbMeta, deleteStatement, keyValues);
+      try {
+        deleteStatement.executeUpdate();
+      } catch (SQLException se) {
+        logError("Failed to delete destination row");
+        throw new KettleException(se.getCause());
+      }
     }
     
-    // Send to next step
-    putRow(data.outputRowMeta, outputRow);
+    // Insert dest
+    destDb.setValues(sourceRowMeta, outputRow, insertStatement);
+    try {
+      destDb.insertRow(insertStatement,true,true);
+    } catch (KettleDatabaseException kde) {
+      logError("Failed to insert new row with key: " + keyToString(destKeyIndexes, row));
+      return true;
+    }    
 
+    // Send to next step
+// TODO: Figure out how to set output meta properly
+    putRow(data.outputRowMeta, outputRow);
+    
+    StringBuilder logBuilder = new StringBuilder();
+    logBasic("MIGRATED|" + sourceSchema + "|" + tableName + "|" + destSchema + "|" + tableName + "|" + keyToString(destKeyIndexes, outputRow));
+    
     // Signal that we are ready for more
     return true;
   }
 
-  public void prepareStatements(String[] keys) throws Exception {
+  public void prepareStatements() throws Exception {
     
     Statement probeStatement = sourceDb.getConnection().createStatement();
     ResultSet probeSet = probeStatement.executeQuery("SELECT * FROM " + sourceSchema + "." + tableName + " WHERE ROWNUM <= 1");
@@ -946,44 +519,63 @@ private int[] outputIndexes = null;
     if (sourceRowMeta == null)
       logError("Unable to fetch database row meta");
 
-    // Add each key to the map and set it to the default index (-1)
-
-    for (int k = 0; k < keys.length; k++)
-      keyFieldIndexes.put(keys[k], -1);
-
-    StringBuilder sb = new StringBuilder();
-    String[] fieldNames = sourceRowMeta.getFieldNames();
-    for (int fieldIndex = 0; fieldIndex < fieldNames.length; fieldIndex++) {
-      if (fieldIndex > 0)
-        sb.append(",");
-      sb.append("?");
-
-      // If this is a key field, store its index
-      String fieldName = fieldNames[fieldIndex];
-      if (keyFieldIndexes.containsKey(fieldName))
-        keyFieldIndexes.put(fieldName, fieldIndex);
-    }
-    insertStatement = destDb.getConnection().prepareStatement("INSERT INTO " + destSchema + "." + tableName + " VALUES(" + sb.toString() + ")");
-
-    sb = new StringBuilder();
-    for (int keyIndex = 0; keyIndex < keys.length; keyIndex++) {
+    String insertSQL = destDb.getInsertStatement(destSchema, tableName, sourceRowMeta);
+    insertStatement = destDb.getConnection().prepareStatement(insertSQL);
+    logDetailed("Insert SQL: " + insertSQL);
+    
+    StringBuilder keyClause = new StringBuilder();
+    for (int keyIndex = 0; keyIndex < keyFieldNames.length; keyIndex++) {
       if (keyIndex > 0)
-        sb.append(" AND ");
-
-      sb.append(keys[keyIndex]).append("=?");
+        keyClause.append(" AND ");
+      String key = keyFieldNames[keyIndex];
+      keyClause.append(key).append("=?");
     }
-    selectStatement = sourceDb.getConnection().prepareStatement("SELECT * FROM " + sourceSchema + "." + tableName + " WHERE " + sb.toString());
-    deleteStatement = sourceDb.getConnection().prepareStatement("DELETE FROM " + sourceSchema + "." + tableName + " WHERE " + sb.toString());
+
+    String selectSQL = "SELECT * FROM " + sourceSchema + "." + tableName + " WHERE " + keyClause.toString();
+    selectStatement = sourceDb.getConnection().prepareStatement(selectSQL);
+    logDetailed("Select SQL: " + selectSQL);
+    String deleteSQL = "DELETE FROM " + sourceSchema + "." + tableName + " WHERE " + keyClause.toString();
+    deleteStatement = destDb.getConnection().prepareStatement(deleteSQL);
+    logDetailed("Delete SQL: " + deleteSQL);
   }
 
   public boolean init(StepMetaInterface stepMetaInterface, StepDataInterface stepDataInterface)
   {
     if (parent.initImpl(stepMetaInterface, stepDataInterface)) {
       String keyFieldString = getVariable("keyFields", "");
-      String[] keyFields = keyFieldString.split(",");
+      keyFieldNames = keyFieldString.split(",");
       tableName = getVariable("tableName", "");
       sourceSchema = getVariable("sourceSchema", "");
       destSchema = getVariable("destSchema", "");
+      
+      logDetailed("Initializing for table " + sourceSchema + "." + tableName + " - Keys: " + keyFieldString);
+
+      String maxRowsString = getParameter("maxRows");
+      if (maxRowsString != null)
+        maxRows = Integer.parseInt(maxRowsString);
+      else
+        maxRows = 0;
+      logBasic("Setting 'Max Rows' to: " + maxRows);
+      
+      String truncDestString = getParameter("truncateDest");
+      if (truncDestString != null)
+        truncateDest = Boolean.parseBoolean(truncDestString);
+      else
+        truncateDest = false;
+      logBasic("Setting 'Truncate Dest' to : " + truncateDest);
+
+      if (truncateDest) {
+        deleteDestRows = false;
+        logDetailed("Forcing 'Delete Dest Rows' to : false ('Truncate Dest' is true)");
+      }
+      else {
+        String deleteDestString = getParameter("deleteDestRows");
+        if (deleteDestString != null)
+          deleteDestRows = Boolean.parseBoolean(deleteDestString);
+        else
+          deleteDestRows = false;
+        logBasic("Setting 'Delete Dest Rows' to : " + deleteDestRows);
+      }
 
       // Connect to the source and destination databases
       String sourceConn = getParameter("sourceConn");
@@ -999,17 +591,28 @@ private int[] outputIndexes = null;
         destDb.shareVariablesWith(this.parent);
         destDb.connect();
         destDbMeta = destDb.getDatabaseMeta();
+        destDb.setCommit(1000);
         logDetailed("Connected to destination database [" + destConn + "]");
       }
       catch(Exception e) {
-          logError("Error connecting to databases" + e.getMessage());
+        logError("Error connecting to databases" + e.getMessage());
+        setErrors(1);
+        stopAll();
+        return false;
       }
       try {
-        prepareStatements(keyFields);
+        prepareStatements();
       }
       catch(Exception e) {
-          logError("Error creating statements" + e.getMessage());
+        logError("Error creating statements" + e.getMessage());
+        setErrors(1);
+        stopAll();
+        return false;
       }
+      // Configure output fields
+// TODO: Figure out how to set properly output meta
+      data.outputRowMeta = sourceRowMeta.clone();
+
       return true;      
     }
 
@@ -1028,28 +631,90 @@ private int[] outputIndexes = null;
   }
 
   public void stopRunning(StepMetaInterface stepMetaInterface, StepDataInterface stepDataInterface) throws KettleException {
+    stop = true;
     parent.stopRunningImpl(stepMetaInterface, stepDataInterface);
   }
   
-  private String keyToString(Object[] row) {
-    return "";
+  private void completeProcessing() throws KettleDatabaseException {
+    setOutputDone();
+    sourceDb.disconnect();
+    logDebug("Executing remaining batch and committing remaining rows");
+    destDb.emptyAndCommit(insertStatement,true);
+    destDb.disconnect();
   }
   
-  private void setKeyParameters(DatabaseMeta dbMeta, PreparedStatement stmt, Object[] row) throws KettleException {
-    // For each key field, set the associated parameter value
-    int paramNum = 1;
-    Iterator keys = keyFieldIndexes.keySet().iterator();
-    for (Object o = keys.next(); o != null; o = keys.next()) {
-      int inputIndex = ((Integer)keyFieldIndexes.get(o)).intValue();
-      if (inputIndex >= 0) {
-        // Get the parameter value
-        Object paramValue = row[inputIndex];
-        // Set the parameter value in the prepared statement
-        data.inputRowMeta.getValueMeta(inputIndex).setPreparedStatementValue(dbMeta, stmt, paramNum, paramValue);
+  private ValueMetaAndData[] getKeys(RowMetaInterface rowMeta, Object[] row, int[] keyIndexes) {
+
+    ValueMetaAndData[] keyValues = new ValueMetaAndData[keyIndexes.length];
+    for (int k = 0; k < keyIndexes.length; k++) {
+      int keyIndex = keyIndexes[k];
+      if (keyIndex >= 0) {
+        Object paramValue = row[keyIndex];
+        logRowlevel("Found key field [" + keyFieldNames[k] + "] at index " + keyIndex + " with value [" + paramValue.toString() + "]");
+        keyValues[k] = new ValueMetaAndData(rowMeta.getValueMeta(keyIndex), paramValue);
       }
-      paramNum++;
-    }    
-  }]]></class_source>
+    }
+    return keyValues;
+  }
+
+  private String keyToString(int[] keyIndexes, Object[] row) {
+    StringBuilder sb = new StringBuilder();
+    for (int k = 0; k < keyFieldNames.length; k++) {
+      int keyIndex = keyIndexes[k];
+      String keyString = "";
+      if (keyIndex >= 0) {
+        // Get the parameter value
+        Object paramValue = row[keyIndex];
+        keyString = "[" + keyFieldNames[keyIndex] + " = " + paramValue.toString() + "] ";
+      }
+      else
+        keyString = "[" + keyFieldNames[keyIndex] + " = (not found)] ";
+      sb.append(keyString);
+    }
+    return sb.toString();
+  }
+
+  private void setKeyParameters(DatabaseMeta dbMeta, PreparedStatement stmt, ValueMetaAndData[] keys) throws KettleException {
+    // For each key field, set the associated parameter value
+    for (int k = 0; k < keys.length; k++) {
+//      logRowlevel("Setting key field " + keyFieldNames[k] + " to " + keyValues[k].toString());
+      ValueMetaAndData key = keys[k];
+      key.getValueMeta().setPreparedStatementValue(dbMeta, stmt, k+1, key.getValueData());
+    }
+  }
+  
+  private String rowToString(RowMetaInterface rowMeta, Object[] row) {
+    StringBuilder sb = new StringBuilder();
+    if (row == null)
+      return "";
+    for (int i = 0; i < rowMeta.size(); i++) {
+      if (row[i] == null)
+        sb.append("(null),");
+      else
+        sb.append(row[i].toString()).append(",");
+    }
+    return sb.toString();
+  }
+    
+  private Object convertValue(ValueMetaInterface sourceMeta, ValueMetaInterface destMeta, Object val) throws KettleException {
+    
+    Object retVal = val;
+    if (retVal == null){
+      if (destMeta.getTypeDesc().equals("String"))
+        retVal = " ";
+    }
+    else if (retVal instanceof String) {
+      if (((String)retVal).isEmpty())
+        retVal = " ";
+    }
+    else if (val instanceof Timestamp)
+      retVal = val;
+    else
+      retVal = destMeta.convertData(sourceMeta, val);
+    
+    return retVal;
+  }    
+]]></class_source>
         </definition>
     </definitions>
     <fields>
@@ -1060,10 +725,19 @@ private int[] outputIndexes = null;
 </usage_parameter><usage_parameter><parameter_tag>destConn</parameter_tag>
 <parameter_value>CODA-DEST</parameter_value>
 <parameter_description/>
+</usage_parameter><usage_parameter><parameter_tag>maxRows</parameter_tag>
+<parameter_value>&#x24;&#x7b;maxRows&#x7d;</parameter_value>
+<parameter_description/>
+</usage_parameter><usage_parameter><parameter_tag>deleteDestRows</parameter_tag>
+<parameter_value>&#x24;&#x7b;deleteDestRows&#x7d;</parameter_value>
+<parameter_description/>
+</usage_parameter><usage_parameter><parameter_tag>truncateDest</parameter_tag>
+<parameter_value>&#x24;&#x7b;truncateDest&#x7d;</parameter_value>
+<parameter_description/>
 </usage_parameter></usage_parameters>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>294</xloc>
-      <yloc>209</yloc>
+      <xloc>318</xloc>
+      <yloc>86</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

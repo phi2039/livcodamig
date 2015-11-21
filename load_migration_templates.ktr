@@ -212,7 +212,7 @@
   <connection>
     <name>CODA-DEST</name>
     <server>localhost</server>
-    <type>ORACLE</type>
+    <type>GENERIC</type>
     <access>Native</access>
     <database>codadev</database>
     <port>21521</port>
@@ -222,6 +222,8 @@
     <data_tablespace>codauser</data_tablespace>
     <index_tablespace>codauser</index_tablespace>
     <attributes>
+      <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>oracle.jdbc.OracleDriver</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;oracle&#x3a;thin&#x3a;&#x40;localhost&#x3a;21521&#x3a;coda</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
@@ -414,8 +416,8 @@
     <spreadsheet_type>POI</spreadsheet_type>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>73</xloc>
-      <yloc>766</yloc>
+      <xloc>487</xloc>
+      <yloc>562</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -2099,8 +2101,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>285</xloc>
-      <yloc>766</yloc>
+      <xloc>699</xloc>
+      <yloc>562</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

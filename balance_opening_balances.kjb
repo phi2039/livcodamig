@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <job>
-  <name>build_opening_balances</name>
+  <name>balance_opening_balances</name>
     <description/>
     <extended_description/>
     <job_version/>
     <job_status>0</job_status>
   <directory>&#x2f;</directory>
   <created_user>-</created_user>
-  <created_date>2015&#x2f;11&#x2f;12 18&#x3a;27&#x3a;24.983</created_date>
+  <created_date>2015&#x2f;11&#x2f;21 15&#x3a;58&#x3a;56.564</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2015&#x2f;11&#x2f;12 18&#x3a;27&#x3a;24.983</modified_date>
+  <modified_date>2015&#x2f;11&#x2f;21 15&#x3a;58&#x3a;56.564</modified_date>
     <parameters>
         <parameter>
-            <name>templateFile</name>
-            <default_value>&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;Mapping Templates - Master.xlsx</default_value>
+            <name>cadBalAcct</name>
+            <default_value>321120</default_value>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>funcBalAcct</name>
+            <default_value>321111</default_value>
             <description/>
         </parameter>
     </parameters>
@@ -144,6 +149,39 @@
    <shared_objects_file/>
   <entries>
     <entry>
+      <name>Balance Interco Accounts</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;balance_interco_doc_balances.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>502</xloc>
+      <yloc>101</yloc>
+      </entry>
+    <entry>
       <name>START</name>
       <description/>
       <type>SPECIAL</type>
@@ -160,209 +198,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>45</xloc>
-      <yloc>86</yloc>
-      </entry>
-    <entry>
-      <name>Load Manual Balances</name>
-      <description/>
-      <type>TRANS</type>
-      <specification_method>filename</specification_method>
-      <trans_object_id/>
-      <filename>&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;load_manual_partial_balances.ktr</filename>
-      <transname/>
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <clear_rows>N</clear_rows>
-      <clear_files>N</clear_files>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Basic</loglevel>
-      <cluster>N</cluster>
-      <slave_server_name/>
-      <set_append_logfile>N</set_append_logfile>
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <create_parent_folder>N</create_parent_folder>
-      <logging_remote_work>N</logging_remote_work>
-      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
-            <parameter>            <name>templateFile</name>
-            <stream_name/>
-            <value>&#x24;&#x7b;templateFile&#x7d;</value>
-            </parameter>      </parameters>      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>190</xloc>
-      <yloc>86</yloc>
-      </entry>
-    <entry>
-      <name>Validate Manual Balances</name>
-      <description/>
-      <type>TRANS</type>
-      <specification_method>filename</specification_method>
-      <trans_object_id/>
-      <filename>&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;validate_manual_partial_balances.ktr</filename>
-      <transname/>
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <clear_rows>N</clear_rows>
-      <clear_files>N</clear_files>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Basic</loglevel>
-      <cluster>N</cluster>
-      <slave_server_name/>
-      <set_append_logfile>N</set_append_logfile>
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <create_parent_folder>N</create_parent_folder>
-      <logging_remote_work>N</logging_remote_work>
-      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
-      </parameters>      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>188</xloc>
-      <yloc>173</yloc>
-      </entry>
-    <entry>
-      <name>Load Auto Balances</name>
-      <description/>
-      <type>TRANS</type>
-      <specification_method>filename</specification_method>
-      <trans_object_id/>
-      <filename>&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;load_auto_partial_balances.ktr</filename>
-      <transname/>
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <clear_rows>N</clear_rows>
-      <clear_files>N</clear_files>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Basic</loglevel>
-      <cluster>N</cluster>
-      <slave_server_name/>
-      <set_append_logfile>N</set_append_logfile>
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <create_parent_folder>N</create_parent_folder>
-      <logging_remote_work>N</logging_remote_work>
-      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
-      </parameters>      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>351</xloc>
-      <yloc>173</yloc>
-      </entry>
-    <entry>
-      <name>Load Local Balances</name>
-      <description/>
-      <type>TRANS</type>
-      <specification_method>filename</specification_method>
-      <trans_object_id/>
-      <filename>&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;load_local_balances.ktr</filename>
-      <transname/>
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <clear_rows>N</clear_rows>
-      <clear_files>N</clear_files>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Basic</loglevel>
-      <cluster>N</cluster>
-      <slave_server_name/>
-      <set_append_logfile>N</set_append_logfile>
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <create_parent_folder>N</create_parent_folder>
-      <logging_remote_work>N</logging_remote_work>
-      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
-      </parameters>      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>507</xloc>
-      <yloc>93</yloc>
-      </entry>
-    <entry>
-      <name>Map Opening Balances</name>
-      <description/>
-      <type>TRANS</type>
-      <specification_method>filename</specification_method>
-      <trans_object_id/>
-      <filename>&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;map_opening_balances.ktr</filename>
-      <transname/>
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <clear_rows>N</clear_rows>
-      <clear_files>N</clear_files>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Basic</loglevel>
-      <cluster>N</cluster>
-      <slave_server_name/>
-      <set_append_logfile>N</set_append_logfile>
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <create_parent_folder>N</create_parent_folder>
-      <logging_remote_work>N</logging_remote_work>
-      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
-      </parameters>      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>508</xloc>
-      <yloc>175</yloc>
-      </entry>
-    <entry>
-      <name>Load GL Balances</name>
-      <description/>
-      <type>TRANS</type>
-      <specification_method>filename</specification_method>
-      <trans_object_id/>
-      <filename>&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;load_gl_opening_balances.ktr</filename>
-      <transname/>
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <clear_rows>N</clear_rows>
-      <clear_files>N</clear_files>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Basic</loglevel>
-      <cluster>N</cluster>
-      <slave_server_name/>
-      <set_append_logfile>N</set_append_logfile>
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <create_parent_folder>N</create_parent_folder>
-      <logging_remote_work>N</logging_remote_work>
-      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
-      </parameters>      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>657</xloc>
-      <yloc>170</yloc>
+      <xloc>139</xloc>
+      <yloc>100</yloc>
       </entry>
     <entry>
       <name>Success</name>
@@ -371,56 +208,32 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1120</xloc>
+      <xloc>1074</xloc>
+      <yloc>103</yloc>
+      </entry>
+    <entry>
+      <name>Delete Balancing Lines</name>
+      <description/>
+      <type>SQL</type>
+      <sql>DELETE FROM OPEN_MIG.STAGED_BALANCES WHERE&#xd;&#xa;SOURCE LIKE &#x28;&#x27;Balancing - &#x25;&#x27;&#x29;</sql>
+      <useVariableSubstitution>F</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>STAGING</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>300</xloc>
       <yloc>97</yloc>
       </entry>
     <entry>
-      <name>Check Errors</name>
-      <description/>
-      <type>EVAL_TABLE_CONTENT</type>
-      <connection>STAGING</connection>
-      <schemaname>OPEN_MIG</schemaname>
-      <tablename>MANUAL_PARTIAL_SOURCE_ERR</tablename>
-      <success_condition>rows_count_equal</success_condition>
-      <limit>0</limit>
-      <is_custom_sql>Y</is_custom_sql>
-      <is_usevars>N</is_usevars>
-      <custom_sql>SELECT&#xd;&#xa;  CMPCODE&#xd;&#xa;, EL1&#xd;&#xa;, RULE&#xd;&#xa;, CAD_BALANCE&#xd;&#xa;, ERRDATE&#xd;&#xa;, ERRLEVEL&#xd;&#xa;, ERRMESSAGE&#xd;&#xa;FROM OPEN_MIG.MANUAL_PARTIAL_SOURCE_ERR&#xd;&#xa;WHERE ERRLEVEL&#x3d;&#x27;ERROR&#x27;&#xd;&#xa;</custom_sql>
-      <add_rows_result>N</add_rows_result>
-      <clear_result_rows>Y</clear_result_rows>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>359</xloc>
-      <yloc>89</yloc>
-      </entry>
-    <entry>
-      <name>Check GL Balancing</name>
-      <description/>
-      <type>EVAL_TABLE_CONTENT</type>
-      <connection>STAGING</connection>
-      <schemaname>OPEN_MIG</schemaname>
-      <tablename>GL_BALANCES</tablename>
-      <success_condition>rows_count_equal</success_condition>
-      <limit>0</limit>
-      <is_custom_sql>Y</is_custom_sql>
-      <is_usevars>N</is_usevars>
-      <custom_sql>SELECT CMPCODE,CURCODE,SUM&#x28;AMOUNT&#x29;&#xd;&#xa;FROM OPEN_MIG.GL_BALANCES&#xd;&#xa;GROUP BY CMPCODE,CURCODE&#xd;&#xa;HAVING SUM&#x28;AMOUNT&#x29; &#x21;&#x3d; 0</custom_sql>
-      <add_rows_result>N</add_rows_result>
-      <clear_result_rows>Y</clear_result_rows>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>798</xloc>
-      <yloc>93</yloc>
-      </entry>
-    <entry>
-      <name>Add Missing CTA</name>
+      <name>Balance Local&#x2f;Func</name>
       <description/>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;create_missing_cta_lines.ktr</filename>
+      <filename>&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;balance_companies.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -441,69 +254,56 @@
       <create_parent_folder>N</create_parent_folder>
       <logging_remote_work>N</logging_remote_work>
       <parameters>        <pass_all_parameters>Y</pass_all_parameters>
-      </parameters>      <parallel>N</parallel>
+            <parameter>            <name>balAccount</name>
+            <stream_name/>
+            <value>&#x24;&#x7b;funcBalAcct&#x7d;</value>
+            </parameter>      </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>656</xloc>
-      <yloc>94</yloc>
+      <xloc>685</xloc>
+      <yloc>98</yloc>
       </entry>
     <entry>
-      <name>Balance Companies</name>
+      <name>Balance CAD</name>
       <description/>
-      <type>JOB</type>
+      <type>TRANS</type>
       <specification_method>filename</specification_method>
-      <job_object_id/>
-      <filename>&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;balance_opening_balances.kjb</filename>
-      <jobname/>
+      <trans_object_id/>
+      <filename>&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;balance_cad.ktr</filename>
+      <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
       <set_logfile>N</set_logfile>
       <logfile/>
       <logext/>
       <add_date>N</add_date>
       <add_time>N</add_time>
-      <loglevel>Nothing</loglevel>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
       <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
       <wait_until_finished>Y</wait_until_finished>
       <follow_abort_remote>N</follow_abort_remote>
-      <expand_remote_job>N</expand_remote_job>
       <create_parent_folder>N</create_parent_folder>
-      <pass_export>N</pass_export>
-      <force_separate_logging>N</force_separate_logging>
+      <logging_remote_work>N</logging_remote_work>
       <parameters>        <pass_all_parameters>Y</pass_all_parameters>
-      </parameters>      <set_append_logfile>N</set_append_logfile>
-      <parallel>N</parallel>
+            <parameter>            <name>balAccount</name>
+            <stream_name/>
+            <value>&#x24;&#x7b;cadBalAcct&#x7d;</value>
+            </parameter>      </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>800</xloc>
-      <yloc>174</yloc>
-      </entry>
-    <entry>
-      <name>Check Balancing</name>
-      <description/>
-      <type>EVAL_TABLE_CONTENT</type>
-      <connection>STAGING</connection>
-      <schemaname>OPEN_MIG</schemaname>
-      <tablename>GL_BALANCES</tablename>
-      <success_condition>rows_count_equal</success_condition>
-      <limit>0</limit>
-      <is_custom_sql>Y</is_custom_sql>
-      <is_usevars>N</is_usevars>
-      <custom_sql>SELECT CMPCODE,SUM&#x28;LOCAL_AMT&#x29;,SUM&#x28;FUNC_AMT&#x29;,SUM&#x28;CAD_AMT&#x29;&#xd;&#xa;FROM OPEN_MIG.STAGED_BALANCES&#xd;&#xa;GROUP BY CMPCODE&#xd;&#xa;HAVING&#xd;&#xa;SUM&#x28;LOCAL_AMT&#x29; &#x3e; 0.1&#xd;&#xa;OR SUM&#x28;FUNC_AMT&#x29; &#x3e; 0.1&#xd;&#xa;OR SUM&#x28;CAD_AMT&#x29; &#x3e; 0.1</custom_sql>
-      <add_rows_result>N</add_rows_result>
-      <clear_result_rows>Y</clear_result_rows>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>950</xloc>
-      <yloc>93</yloc>
+      <xloc>843</xloc>
+      <yloc>100</yloc>
       </entry>
   </entries>
   <hops>
     <hop>
       <from>START</from>
-      <to>Load Manual Balances</to>
+      <to>Delete Balancing Lines</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -511,8 +311,8 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>Load Manual Balances</from>
-      <to>Validate Manual Balances</to>
+      <from>Delete Balancing Lines</from>
+      <to>Balance Interco Accounts</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -520,8 +320,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Load Local Balances</from>
-      <to>Map Opening Balances</to>
+      <from>Balance Interco Accounts</from>
+      <to>Balance Local&#x2f;Func</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -529,8 +329,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Validate Manual Balances</from>
-      <to>Check Errors</to>
+      <from>Balance Local&#x2f;Func</from>
+      <to>Balance CAD</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -538,76 +338,13 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Check Errors</from>
-      <to>Load Auto Balances</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Load Auto Balances</from>
-      <to>Load Local Balances</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Load GL Balances</from>
-      <to>Check GL Balancing</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Map Opening Balances</from>
-      <to>Add Missing CTA</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Add Missing CTA</from>
-      <to>Load GL Balances</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Check GL Balancing</from>
-      <to>Balance Companies</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Balance Companies</from>
-      <to>Check Balancing</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Check Balancing</from>
+      <from>Balance CAD</from>
       <to>Success</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
+      <unconditional>Y</unconditional>
     </hop>
   </hops>
   <notepads>

@@ -16,6 +16,11 @@
             <default_value>&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;Mapping Templates - Master.xlsx</default_value>
             <description/>
         </parameter>
+        <parameter>
+            <name>versionName</name>
+            <default_value>TEST</default_value>
+            <description/>
+        </parameter>
     </parameters>
   <connection>
     <name>ARCHIVE</name>
@@ -499,6 +504,22 @@
       <xloc>950</xloc>
       <yloc>93</yloc>
       </entry>
+    <entry>
+      <name>Back Up Results</name>
+      <description/>
+      <type>SQL</type>
+      <sql>SCRIPT DROP TO &#x27;&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;db&#x5c;data&#x5c;backup&#x5c;open_mig.&#x24;&#x7b;versionName&#x7d;.backup.zip&#x27; COMPRESSION ZIP SCHEMA OPEN_MIG</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>STAGING</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>951</xloc>
+      <yloc>171</yloc>
+      </entry>
   </entries>
   <hops>
     <hop>
@@ -602,12 +623,21 @@
     </hop>
     <hop>
       <from>Check Balancing</from>
-      <to>Success</to>
+      <to>Back Up Results</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Back Up Results</from>
+      <to>Success</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
     </hop>
   </hops>
   <notepads>

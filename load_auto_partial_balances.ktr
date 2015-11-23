@@ -178,8 +178,8 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Partial Balances - Automatic</from><to>AUTO_PARTIAL_BAL_SOURCE</to><enabled>Y</enabled> </hop>
   <hop> <from>Auto Rules</from><to>Partial Balances - Automatic</to><enabled>Y</enabled> </hop>
+  <hop> <from>Partial Balances - Automatic</from><to>AUTO_PARTIAL_BAL_SOURCE</to><enabled>Y</enabled> </hop>
   </order>
   <step>
     <name>AUTO_PARTIAL_BAL_SOURCE</name>

@@ -101,7 +101,7 @@
   <connection>
     <name>CODA-DEST</name>
     <server>localhost</server>
-    <type>ORACLE</type>
+    <type>GENERIC</type>
     <access>Native</access>
     <database>codadev</database>
     <port>21521</port>
@@ -111,6 +111,8 @@
     <data_tablespace>codauser</data_tablespace>
     <index_tablespace>codauser</index_tablespace>
     <attributes>
+      <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>oracle.jdbc.OracleDriver</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;oracle&#x3a;thin&#x3a;&#x40;localhost&#x3a;21521&#x3a;coda</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
@@ -203,7 +205,7 @@
            <schema_name/>
            </partitioning>
     <connection>STAGING</connection>
-    <sql>select&#xd;&#xa;b.cmpcode,&#xd;&#xa;b.el1,b.el2,b.el3,b.el4,b.el5,b.el6,&#xd;&#xa;b.doc_curcode,&#xd;&#xa;b.doc_amount as input_amt,&#xd;&#xa;rc.rate as cad_rate,&#xd;&#xa;b.doc_amount &#x2a; &#x28;rc.rate &#x2f; 10000000&#x29; cad_amt,&#xd;&#xa;c.curlocal,&#xd;&#xa;b.doc_amount &#x2a; &#x28;rc.rate&#x2f;rl.rate&#x29; local_amt,&#xd;&#xa;&#x28;rc.rate&#x2f;rl.rate&#x29; &#x2a; 10000000 as local_rate,&#xd;&#xa;c.curfunc,&#xd;&#xa;b.doc_amount &#x2a; &#x28;rc.rate&#x2f;rf.rate&#x29; func_amt,&#xd;&#xa;&#x28;rc.rate&#x2f;rf.rate&#x29; &#x2a; 10000000 as func_rate&#xd;&#xa;from &#xd;&#xa;open_mig.auto_partial_bal_source b&#xd;&#xa;left join staging_templates.cmpcode_map cm on cm.cmpcode_from&#x3d;b.cmpcode&#xd;&#xa;left join staging_templates.cmp_master c on c.cmpcode&#x3d;cm.cmpcode_to&#xd;&#xa;left join staging_templates.rate_master rc on rc.rate_type&#x3d;&#x27;ME_RATE&#x27; and rc.base&#x3d;b.doc_curcode and rc.parent&#x3d;&#x27;CAD&#x27;&#xd;&#xa;left join staging_templates.rate_master rl on rl.rate_type&#x3d;&#x27;ME_RATE&#x27; and rl.base&#x3d;c.curlocal and rl.parent&#x3d;&#x27;CAD&#x27;&#xd;&#xa;left join staging_templates.rate_master rf on rf.rate_type&#x3d;&#x27;ME_RATE&#x27; and rf.base&#x3d;c.curfunc and rf.parent&#x3d;&#x27;CAD&#x27;&#xd;&#xa;</sql>
+    <sql>select&#xd;&#xa;b.cmpcode,&#xd;&#xa;b.el1,b.el2,b.el3,b.el4,b.el5,b.el6,&#xd;&#xa;b.doc_curcode,&#xd;&#xa;b.doc_amount,&#xd;&#xa;rc.rate,&#xd;&#xa;b.doc_amount &#x2a; &#x28;rc.rate &#x2f; 10000000&#x29; cad_amt,&#xd;&#xa;c.curlocal,&#xd;&#xa;b.doc_amount &#x2a; &#x28;rc.rate&#x2f;rl.rate&#x29; local_amt,&#xd;&#xa;&#x28;rc.rate&#x2f;rl.rate&#x29; &#x2a; 10000000 as local_rate,&#xd;&#xa;c.curfunc,&#xd;&#xa;b.doc_amount &#x2a; &#x28;rc.rate&#x2f;rf.rate&#x29; func_amt,&#xd;&#xa;&#x28;rc.rate&#x2f;rf.rate&#x29; &#x2a; 10000000 as func_rate&#xd;&#xa;from &#xd;&#xa;open_mig.auto_partial_bal_source b&#xd;&#xa;left join staging_templates.cmpcode_map cm on cm.cmpcode_from&#x3d;b.cmpcode&#xd;&#xa;left join staging_templates.cmp_master c on c.cmpcode&#x3d;cm.cmpcode_to&#xd;&#xa;left join staging_templates.rate_master rc on rc.rate_type&#x3d;&#x27;ME_RATE&#x27; and rc.base&#x3d;b.doc_curcode and rc.parent&#x3d;&#x27;CAD&#x27;&#xd;&#xa;left join staging_templates.rate_master rl on rl.rate_type&#x3d;&#x27;ME_RATE&#x27; and rl.base&#x3d;c.curlocal and rl.parent&#x3d;&#x27;CAD&#x27;&#xd;&#xa;left join staging_templates.rate_master rf on rf.rate_type&#x3d;&#x27;ME_RATE&#x27; and rf.base&#x3d;c.curfunc and rf.parent&#x3d;&#x27;CAD&#x27;&#xd;&#xa;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>

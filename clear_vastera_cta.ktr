@@ -426,7 +426,7 @@
            <schema_name/>
            </partitioning>
     <connection>STAGING</connection>
-    <sql>select &#xd;&#xa;b.cmpcode,&#xd;&#xa;el2,&#xd;&#xa;el3,&#xd;&#xa;el4,&#xd;&#xa;el5,&#xd;&#xa;el6,&#xd;&#xa;trim &#x28;cm.curlocal&#x29; as doc_curcode,&#xd;&#xa;0.0 as doc_amt,&#xd;&#xa;0 cad_rate,&#xd;&#xa;0.0 as cad_amt,&#xd;&#xa;cm.curlocal,&#xd;&#xa;0 as local_rate,&#xd;&#xa;0.0 as local_amt,&#xd;&#xa;cm.curfunc,&#xd;&#xa;10000000 as func_rate,&#xd;&#xa;-1 &#x2a; sum&#x28;func_amt&#x29;  as func_amt&#xd;&#xa;from open_mig.staged_balances b&#xd;&#xa;left join staging_templates.cmp_master cm on cm.cmpcode&#x3d;b.cmpcode&#xd;&#xa;where el1&#x3d;&#x27;&#x24;&#x7b;sourceAcct&#x7d;&#x27;&#xd;&#xa;and b.cmpcode like &#x27;V&#x25;&#x27;&#xd;&#xa;group by &#xd;&#xa;b.cmpcode,&#xd;&#xa;el2,&#xd;&#xa;el3,&#xd;&#xa;el4,&#xd;&#xa;el5,&#xd;&#xa;el6</sql>
+    <sql>select &#xd;&#xa;b.cmpcode,&#xd;&#xa;el2,&#xd;&#xa;el3,&#xd;&#xa;el4,&#xd;&#xa;el5,&#xd;&#xa;el6,&#xd;&#xa;trim &#x28;cm.curlocal&#x29; as doc_curcode,&#xd;&#xa;0.0 as doc_amt,&#xd;&#xa;0 cad_rate,&#xd;&#xa;0.0 as cad_amt,&#xd;&#xa;cm.curlocal,&#xd;&#xa;0 as local_rate,&#xd;&#xa;0.0 as local_amt,&#xd;&#xa;cm.curfunc,&#xd;&#xa;10000000 as func_rate,&#xd;&#xa;sum&#x28;func_amt&#x29;  as func_amt&#xd;&#xa;from open_mig.staged_balances b&#xd;&#xa;left join staging_templates.cmp_master cm on cm.cmpcode&#x3d;b.cmpcode&#xd;&#xa;where el1&#x3d;&#x27;&#x24;&#x7b;sourceAcct&#x7d;&#x27;&#xd;&#xa;and b.cmpcode like &#x27;V&#x25;&#x27;&#xd;&#xa;group by &#xd;&#xa;b.cmpcode,&#xd;&#xa;el2,&#xd;&#xa;el3,&#xd;&#xa;el4,&#xd;&#xa;el5,&#xd;&#xa;el6</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -654,7 +654,7 @@
            <schema_name/>
            </partitioning>
     <connection>STAGING</connection>
-    <sql>select &#xd;&#xa;b.cmpcode,&#xd;&#xa;el2,&#xd;&#xa;el3,&#xd;&#xa;el4,&#xd;&#xa;el5,&#xd;&#xa;el6,&#xd;&#xa;trim &#x28;cm.curlocal&#x29; as doc_curcode,&#xd;&#xa;0.0 as doc_amt,&#xd;&#xa;0 cad_rate,&#xd;&#xa;0.0 as cad_amt,&#xd;&#xa;cm.curlocal,&#xd;&#xa;10000000 as local_rate,&#xd;&#xa;-1 &#x2a; sum&#x28;local_amt&#x29; as local_amt,&#xd;&#xa;cm.curfunc,&#xd;&#xa;0 as func_rate,&#xd;&#xa;0.0 as func_amt&#xd;&#xa;from open_mig.staged_balances b&#xd;&#xa;left join staging_templates.cmp_master cm on cm.cmpcode&#x3d;b.cmpcode&#xd;&#xa;where el1&#x3d;&#x27;&#x24;&#x7b;sourceAcct&#x7d;&#x27;&#xd;&#xa;and b.cmpcode like &#x27;V&#x25;&#x27;&#xd;&#xa;group by &#xd;&#xa;b.cmpcode,&#xd;&#xa;el2,&#xd;&#xa;el3,&#xd;&#xa;el4,&#xd;&#xa;el5,&#xd;&#xa;el6</sql>
+    <sql>select &#xd;&#xa;b.cmpcode,&#xd;&#xa;el2,&#xd;&#xa;el3,&#xd;&#xa;el4,&#xd;&#xa;el5,&#xd;&#xa;el6,&#xd;&#xa;trim &#x28;cm.curlocal&#x29; as doc_curcode,&#xd;&#xa;0.0 as doc_amt,&#xd;&#xa;0 cad_rate,&#xd;&#xa;0.0 as cad_amt,&#xd;&#xa;cm.curlocal,&#xd;&#xa;10000000 as local_rate,&#xd;&#xa;sum&#x28;local_amt&#x29; as local_amt,&#xd;&#xa;cm.curfunc,&#xd;&#xa;0 as func_rate,&#xd;&#xa;0.0 as func_amt&#xd;&#xa;from open_mig.staged_balances b&#xd;&#xa;left join staging_templates.cmp_master cm on cm.cmpcode&#x3d;b.cmpcode&#xd;&#xa;where el1&#x3d;&#x27;&#x24;&#x7b;sourceAcct&#x7d;&#x27;&#xd;&#xa;and b.cmpcode like &#x27;V&#x25;&#x27;&#xd;&#xa;group by &#xd;&#xa;b.cmpcode,&#xd;&#xa;el2,&#xd;&#xa;el3,&#xd;&#xa;el4,&#xd;&#xa;el5,&#xd;&#xa;el6</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>

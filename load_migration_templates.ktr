@@ -11,7 +11,7 @@
     <parameters>
         <parameter>
             <name>templateFile</name>
-            <default_value> &#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;Mapping Templates - Master.xlsx</default_value>
+            <default_value>Mapping Templates - Master.xlsx</default_value>
             <description/>
         </parameter>
     </parameters>

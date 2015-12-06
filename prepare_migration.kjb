@@ -559,7 +559,7 @@
       <name>Remove Unused</name>
       <description/>
       <type>SQL</type>
-      <sql>DELETE FROM STAGING.ELEMENT_STAGING WHERE CODE &#x3d; &#x27;0&#x27;&#x3b;</sql>
+      <sql>DELETE FROM STAGING.ELEMENT_STAGING WHERE CODE &#x3d; &#x27;0&#x27;&#x3b;&#xd;&#xa;-- No Element 4 currencies&#xd;&#xa;DELETE FROM STAGING.ELEMENT_STAGING WHERE ELMLEVEL &#x3d; 4 AND&#xd;&#xa;CODE IN &#x28;&#x27;CAD&#x27;,&#x27;CNY&#x27;,&#x27;GBP&#x27;,&#x27;HKD&#x27;,&#x27;PLN&#x27;,&#x27;EUR&#x27;,&#x27;USD&#x27;&#x29;&#x3b;</sql>
       <useVariableSubstitution>F</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>

@@ -115,8 +115,8 @@
     </notepad>
     <notepad>
       <note>Is this element to be created&#xd;&#xa;by a new local or global entry&#x3f;</note>
-      <xloc>724</xloc>
-      <yloc>130</yloc>
+      <xloc>366</xloc>
+      <yloc>134</yloc>
       <width>214</width>
       <heigth>50</heigth>
       <fontname>Segoe UI</fontname>
@@ -136,9 +136,30 @@
     </notepad>
     <notepad>
       <note>Does a definition exist for this&#xd;&#xa;element in the SOURCE&#x3f;</note>
-      <xloc>503</xloc>
-      <yloc>411</yloc>
+      <xloc>663</xloc>
+      <yloc>448</yloc>
       <width>209</width>
+      <heigth>50</heigth>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Is this a local element&#xd;&#xa;with a global override&#x3f;</note>
+      <xloc>1138</xloc>
+      <yloc>127</yloc>
+      <width>163</width>
       <heigth>50</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
@@ -265,21 +286,29 @@
   <hop> <from>Select values 3</from><to>Get System Info</to><enabled>Y</enabled> </hop>
   <hop> <from>Get System Info</from><to>ELEMENT_STAGING_ERR</to><enabled>Y</enabled> </hop>
   <hop> <from>Undefined Element</from><to>Select values 3</to><enabled>Y</enabled> </hop>
-  <hop> <from>Lookup New</from><to>New Element</to><enabled>Y</enabled> </hop>
-  <hop> <from>New Element</from><to>Global Element</to><enabled>Y</enabled> </hop>
   <hop> <from>Global Element</from><to>Lookup Source Local</to><enabled>Y</enabled> </hop>
-  <hop> <from>Lookup Source Local</from><to>Valid Element</to><enabled>Y</enabled> </hop>
   <hop> <from>Global Element</from><to>Lookup Source Global</to><enabled>Y</enabled> </hop>
-  <hop> <from>Lookup Source Global</from><to>Valid Element</to><enabled>Y</enabled> </hop>
-  <hop> <from>New Element</from><to>ELEMENT_STAGING</to><enabled>Y</enabled> </hop>
   <hop> <from>Valid Element</from><to>Undefined Element</to><enabled>Y</enabled> </hop>
   <hop> <from>Valid Element</from><to>Select values</to><enabled>Y</enabled> </hop>
   <hop> <from>Unknown Entity</from><to>Select values 2</to><enabled>Y</enabled> </hop>
   <hop> <from>Select values 2</from><to>Get System Info</to><enabled>Y</enabled> </hop>
   <hop> <from>Valid Entity</from><to>Lookup New</to><enabled>Y</enabled> </hop>
-  <hop> <from>Select values</from><to>ELEMENT_STAGING</to><enabled>Y</enabled> </hop>
   <hop> <from>ELEMENT_PRE_STAGING</from><to>Ignore NULL</to><enabled>Y</enabled> </hop>
   <hop> <from>Ignore NULL</from><to>Valid Entity</to><enabled>Y</enabled> </hop>
+  <hop> <from>Lookup Source Global</from><to>Source &#x3d; Global</to><enabled>Y</enabled> </hop>
+  <hop> <from>Source &#x3d; Global</from><to>Valid Element</to><enabled>Y</enabled> </hop>
+  <hop> <from>Lookup Source Local</from><to>Source &#x3d; Local</to><enabled>Y</enabled> </hop>
+  <hop> <from>Source &#x3d; Local</from><to>Valid Element</to><enabled>Y</enabled> </hop>
+  <hop> <from>Lookup New</from><to>New Element</to><enabled>Y</enabled> </hop>
+  <hop> <from>New Element</from><to>Source &#x3d; New</to><enabled>Y</enabled> </hop>
+  <hop> <from>New Element</from><to>Global Element</to><enabled>Y</enabled> </hop>
+  <hop> <from>Source &#x3d; New</from><to>Lookup Override</to><enabled>Y</enabled> </hop>
+  <hop> <from>Select values</from><to>Lookup Override</to><enabled>Y</enabled> </hop>
+  <hop> <from>Lookup Override</from><to>Global Override</to><enabled>Y</enabled> </hop>
+  <hop> <from>Global Override</from><to>Overridden</to><enabled>Y</enabled> </hop>
+  <hop> <from>Overridden</from><to>Select values 4</to><enabled>Y</enabled> </hop>
+  <hop> <from>Select values 4</from><to>Get System Info</to><enabled>Y</enabled> </hop>
+  <hop> <from>Global Override</from><to>ELEMENT_STAGING</to><enabled>Y</enabled> </hop>
   </order>
   <step>
     <name>ELEMENT_PRE_STAGING</name>
@@ -348,11 +377,15 @@
           <column_name>CODE</column_name>
           <stream_name>CODE</stream_name>
         </field>
+        <field>
+          <column_name>SOURCE</column_name>
+          <stream_name>SOURCE</stream_name>
+        </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1199</xloc>
-      <yloc>209</yloc>
+      <xloc>1414</xloc>
+      <yloc>215</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -389,8 +422,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>572</xloc>
-      <yloc>661</yloc>
+      <xloc>782</xloc>
+      <yloc>723</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -414,8 +447,8 @@
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>572</xloc>
-      <yloc>547</yloc>
+      <xloc>782</xloc>
+      <yloc>609</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -443,8 +476,49 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>675</xloc>
-      <yloc>326</yloc>
+      <xloc>623</xloc>
+      <yloc>318</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Global Override</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Overridden</send_true_to>
+<send_false_to>ELEMENT_STAGING</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <conditions>
+  <condition>
+   <negated>N</negated>
+   <leftvalue>CMPCODE</leftvalue>
+   <function>&#x3c;&#x3e;</function>
+   <rightvalue/>
+   <value><name>constant</name><type>String</type><text>&#x2a;</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
+  <condition>
+   <negated>N</negated>
+   <operator>AND</operator>
+   <leftvalue>GLOBALOVERRIDE</leftvalue>
+   <function>&#x3d;</function>
+   <rightvalue/>
+   <value><name>constant</name><type>String</type><text>TRUE</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
+  </conditions>
+ </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1277</xloc>
+      <yloc>215</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -522,8 +596,42 @@
     </parameter>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>490</xloc>
-      <yloc>205</yloc>
+      <xloc>455</xloc>
+      <yloc>208</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Lookup Override</name>
+    <type>DBJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>STAGING</connection>
+    <rowlimit>0</rowlimit>
+    <sql>select&#xd;&#xa;  case when exists &#x28;select &#x2a; from staging.element_pre_staging where cmpcode&#x3d;&#x27;&#x2a;&#x27; and elmlevel&#x3d;&#x3f; and code&#x3d;&#x3f;&#x29; then &#x27;TRUE&#x27;&#xd;&#xa;  else &#x27;FALSE&#x27;&#xd;&#xa;  end as globalOverride&#xd;&#xa;from dual</sql>
+    <outer_join>N</outer_join>
+    <replace_vars>N</replace_vars>
+    <parameter>
+      <field>
+        <name>ELMLEVEL</name>
+        <type>Integer</type>
+      </field>
+      <field>
+        <name>CODE</name>
+        <type>String</type>
+      </field>
+    </parameter>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1143</xloc>
+      <yloc>216</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -556,8 +664,8 @@
     </parameter>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>815</xloc>
-      <yloc>272</yloc>
+      <xloc>746</xloc>
+      <yloc>282</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -594,8 +702,8 @@
     </parameter>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>806</xloc>
-      <yloc>399</yloc>
+      <xloc>747</xloc>
+      <yloc>379</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -611,7 +719,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-<send_true_to>ELEMENT_STAGING</send_true_to>
+<send_true_to>Source &#x3d; New</send_true_to>
 <send_false_to>Global Element</send_false_to>
     <compare>
 <condition>
@@ -623,8 +731,53 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>618</xloc>
-      <yloc>205</yloc>
+      <xloc>571</xloc>
+      <yloc>209</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Overridden</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>errMessage</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Ignoring due to global override</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>errLevel</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>WARN</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1272</xloc>
+      <yloc>358</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -656,11 +809,15 @@
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
+      </field>      <field>        <name>SOURCE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
       </field>        <select_unspecified>N</select_unspecified>
     </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1124</xloc>
-      <yloc>343</yloc>
+      <xloc>1116</xloc>
+      <yloc>329</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -739,8 +896,147 @@
       </field>        <select_unspecified>N</select_unspecified>
     </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>760</xloc>
-      <yloc>541</yloc>
+      <xloc>993</xloc>
+      <yloc>512</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Select values 4</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>      <field>        <name>CODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ELMLEVEL</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CMPCODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>errMessage</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>errLevel</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>        <select_unspecified>N</select_unspecified>
+    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1269</xloc>
+      <yloc>554</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Source &#x3d; Global</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>SOURCE</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>GLOBAL</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>885</xloc>
+      <yloc>282</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Source &#x3d; Local</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>SOURCE</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>LOCAL</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>884</xloc>
+      <yloc>381</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Source &#x3d; New</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>SOURCE</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>NEW</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>890</xloc>
+      <yloc>210</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -784,8 +1080,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>971</xloc>
-      <yloc>489</yloc>
+      <xloc>996</xloc>
+      <yloc>433</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -858,8 +1154,8 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>971</xloc>
-      <yloc>344</yloc>
+      <xloc>1002</xloc>
+      <yloc>330</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

@@ -11,7 +11,7 @@
     <parameters>
         <parameter>
             <name>templateFile</name>
-            <default_value>C&#x3a;&#x5c;Users&#x5c;CLANCE&#x5c;Documents&#x5c;Syncplicity Folders&#x5c;Livingston&#x5c;_CODA Initiative - Hermes&#x5c;Migration&#x5c;PDI&#x5c;Mapping Templates - Master.xlsx</default_value>
+            <default_value>Mapping Templates - Master.xlsx</default_value>
             <description/>
         </parameter>
     </parameters>

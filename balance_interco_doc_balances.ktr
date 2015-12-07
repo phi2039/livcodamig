@@ -178,16 +178,157 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>STAGED_BALANCES</from><to>Ignore Zeros</to><enabled>Y</enabled> </hop>
-  <hop> <from>Ignore Zeros</from><to>Build EL3</to><enabled>Y</enabled> </hop>
   <hop> <from>Build Acct String</from><to>Clean-up ACCODE</to><enabled>Y</enabled> </hop>
   <hop> <from>Add Constants</from><to>Build Acct String</to><enabled>Y</enabled> </hop>
   <hop> <from>Clean-up ACCODE</from><to>Insert STAGED_BALANCES</to><enabled>Y</enabled> </hop>
-  <hop> <from>Build EL3</from><to>Database lookup</to><enabled>Y</enabled> </hop>
   <hop> <from>Database lookup</from><to>Valid ICP</to><enabled>Y</enabled> </hop>
-  <hop> <from>Valid ICP</from><to>Dummy &#x28;do nothing&#x29;</to><enabled>Y</enabled> </hop>
-  <hop> <from>Valid ICP</from><to>Add Constants</to><enabled>Y</enabled> </hop>
+  <hop> <from>Instance Name</from><to>Database lookup</to><enabled>Y</enabled> </hop>
+  <hop> <from>Valid ICP</from><to>Account</to><enabled>Y</enabled> </hop>
+  <hop> <from>Account</from><to>Dummy &#x28;do nothing&#x29;</to><enabled>Y</enabled> </hop>
+  <hop> <from>Account</from><to>216112</to><enabled>Y</enabled> </hop>
+  <hop> <from>Account</from><to>112801</to><enabled>Y</enabled> </hop>
+  <hop> <from>112801</from><to>Group By Curcode</to><enabled>Y</enabled> </hop>
+  <hop> <from>Group By Curcode</from><to>Offset to U125&#x2f;C310</to><enabled>Y</enabled> </hop>
+  <hop> <from>Ignore Zeros</from><to>Select values</to><enabled>Y</enabled> </hop>
+  <hop> <from>STAGED_BALANCES</from><to>Instance Name</to><enabled>Y</enabled> </hop>
+  <hop> <from>Offset to U125&#x2f;C310</from><to>Select values 2</to><enabled>Y</enabled> </hop>
+  <hop> <from>Select values 2</from><to>Add Constants</to><enabled>Y</enabled> </hop>
+  <hop> <from>Valid ICP</from><to>Build EL3</to><enabled>Y</enabled> </hop>
+  <hop> <from>Build EL3</from><to>Ignore Zeros</to><enabled>Y</enabled> </hop>
+  <hop> <from>Select values</from><to>Add Constants</to><enabled>Y</enabled> </hop>
+  <hop> <from>216112</from><to>Select values</to><enabled>Y</enabled> </hop>
   </order>
+  <step>
+    <name>112801</name>
+    <type>Formula</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+       <formula><field_name>DOC_AMT</field_name>
+<formula_string>&#x5b;DOC_AMOUNT&#x5d; &#x2a; -1</formula_string>
+<value_type>Number</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field>DOC_AMT</replace_field>
+</formula>
+       <formula><field_name>CAD_AMT</field_name>
+<formula_string>&#x28;&#x5b;RATE&#x5d;&#x2f;10000000&#x29; &#x2a; &#x5b;DOC_AMOUNT&#x5d; &#x2a; -1</formula_string>
+<value_type>Number</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field>CAD_AMT</replace_field>
+</formula>
+       <formula><field_name>FUNC_AMT</field_name>
+<formula_string>&#x28;&#x5b;FUNC_RATE&#x5d;&#x2f;10000000&#x29; &#x2a; &#x5b;DOC_AMOUNT&#x5d; &#x2a; -1</formula_string>
+<value_type>Number</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field>FUNC_AMT</replace_field>
+</formula>
+       <formula><field_name>LOCAL_AMT</field_name>
+<formula_string>&#x28;&#x5b;LOCAL_RATE&#x5d;&#x2f;10000000&#x29; &#x2a; &#x5b;DOC_AMOUNT&#x5d; &#x2a; -1</formula_string>
+<value_type>Number</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field>LOCAL_AMT</replace_field>
+</formula>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>613</xloc>
+      <yloc>144</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>216112</name>
+    <type>Formula</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+       <formula><field_name>DOC_AMT</field_name>
+<formula_string>&#x5b;DOC_AMOUNT&#x5d; &#x2a; -1</formula_string>
+<value_type>Number</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field>DOC_AMT</replace_field>
+</formula>
+       <formula><field_name>CAD_AMT</field_name>
+<formula_string>&#x28;&#x5b;RATE&#x5d;&#x2f;10000000&#x29; &#x2a; &#x5b;DOC_AMOUNT&#x5d; &#x2a; -1</formula_string>
+<value_type>Number</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field>CAD_AMT</replace_field>
+</formula>
+       <formula><field_name>FUNC_AMT</field_name>
+<formula_string>&#x28;&#x5b;FUNC_RATE&#x5d;&#x2f;10000000&#x29; &#x2a; &#x5b;DOC_AMOUNT&#x5d; &#x2a; -1</formula_string>
+<value_type>Number</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field>FUNC_AMT</replace_field>
+</formula>
+       <formula><field_name>LOCAL_AMT</field_name>
+<formula_string>&#x28;&#x5b;LOCAL_RATE&#x5d;&#x2f;10000000&#x29; &#x2a; &#x5b;DOC_AMOUNT&#x5d; &#x2a; -1</formula_string>
+<value_type>Number</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field>LOCAL_AMT</replace_field>
+</formula>
+       <formula><field_name>EL3</field_name>
+<formula_string>IF&#x28;&#x5b;ICP&#x5d;&#x3d;&#x22;NONE&#x22;&#x3b;&#x22;8400998&#x22;&#x3b;&#x22;84I&#x22; &#x26; &#x5b;ICP&#x5d;&#x29;</formula_string>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field/>
+</formula>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>663</xloc>
+      <yloc>256</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Account</name>
+    <type>SwitchCase</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<fieldname>EL1</fieldname>
+<use_contains>N</use_contains>
+<case_value_type>String</case_value_type>
+<case_value_format/>
+<case_value_decimal/>
+<case_value_group/>
+<default_target_step>Dummy &#x28;do nothing&#x29;</default_target_step>
+<cases><case><value>216112</value>
+<target_step>216112</target_step>
+</case><case><value>112801</value>
+<target_step>112801</target_step>
+</case></cases>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>504</xloc>
+      <yloc>203</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
   <step>
     <name>Add Constants</name>
     <type>Constant</type>
@@ -263,8 +404,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>776</xloc>
-      <yloc>140</yloc>
+      <xloc>989</xloc>
+      <yloc>357</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -392,8 +533,8 @@
     </ConcatFields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>906</xloc>
-      <yloc>135</yloc>
+      <xloc>1108</xloc>
+      <yloc>357</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -418,8 +559,8 @@
 </formula>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>362</xloc>
-      <yloc>135</yloc>
+      <xloc>599</xloc>
+      <yloc>356</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -450,8 +591,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1068</xloc>
-      <yloc>137</yloc>
+      <xloc>1240</xloc>
+      <yloc>356</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -483,6 +624,12 @@
         <condition>&#x3d;</condition>
         <name2/>
       </key>
+      <key>
+        <name>INSTANCE</name>
+        <field>INSTANCE</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
       <value>
         <name>CMPCODE</name>
         <rename>PARTNER</rename>
@@ -492,8 +639,8 @@
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>497</xloc>
-      <yloc>130</yloc>
+      <xloc>340</xloc>
+      <yloc>353</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -511,8 +658,62 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>684</xloc>
-      <yloc>264</yloc>
+      <xloc>499</xloc>
+      <yloc>36</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Group By Curcode</name>
+    <type>MemoryGroupBy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <give_back_row>N</give_back_row>
+      <group>
+        <field>
+          <name>DOC_CURCODE</name>
+        </field>
+        <field>
+          <name>ICP</name>
+        </field>
+      </group>
+      <fields>
+        <field>
+          <aggregate>TOT_DOC</aggregate>
+          <subject>DOC_AMT</subject>
+          <type>SUM</type>
+          <valuefield/>
+        </field>
+        <field>
+          <aggregate>TOT_CAD</aggregate>
+          <subject>CAD_AMT</subject>
+          <type>SUM</type>
+          <valuefield/>
+        </field>
+        <field>
+          <aggregate>TOT_LOCAL</aggregate>
+          <subject>LOCAL_AMT</subject>
+          <type>SUM</type>
+          <valuefield/>
+        </field>
+        <field>
+          <aggregate>TOT_FUNC</aggregate>
+          <subject>FUNC_AMT</subject>
+          <type>SUM</type>
+          <valuefield/>
+        </field>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>713</xloc>
+      <yloc>90</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -528,7 +729,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-<send_true_to>Build EL3</send_true_to>
+<send_true_to>Select values</send_true_to>
 <send_false_to/>
     <compare>
 <condition>
@@ -540,8 +741,8 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>211</xloc>
-      <yloc>135</yloc>
+      <xloc>720</xloc>
+      <yloc>356</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -584,50 +785,6 @@
           <stream_name>EL1</stream_name>
         </field>
         <field>
-          <column_name>DOC_CURCODE</column_name>
-          <stream_name>DOC_CURCODE</stream_name>
-        </field>
-        <field>
-          <column_name>LOCAL_CURCODE</column_name>
-          <stream_name>CURLOCAL</stream_name>
-        </field>
-        <field>
-          <column_name>LOCAL_RATE</column_name>
-          <stream_name>LOCAL_RATE</stream_name>
-        </field>
-        <field>
-          <column_name>FUNC_CURCODE</column_name>
-          <stream_name>CURFUNC</stream_name>
-        </field>
-        <field>
-          <column_name>FUNC_RATE</column_name>
-          <stream_name>FUNC_RATE</stream_name>
-        </field>
-        <field>
-          <column_name>CAD_AMT</column_name>
-          <stream_name>CAD_AMT</stream_name>
-        </field>
-        <field>
-          <column_name>LOCAL_AMT</column_name>
-          <stream_name>LOCAL_AMT</stream_name>
-        </field>
-        <field>
-          <column_name>FUNC_AMT</column_name>
-          <stream_name>FUNC_AMT</stream_name>
-        </field>
-        <field>
-          <column_name>SOURCE</column_name>
-          <stream_name>SOURCE</stream_name>
-        </field>
-        <field>
-          <column_name>DOC_AMT</column_name>
-          <stream_name>DOC_AMT</stream_name>
-        </field>
-        <field>
-          <column_name>CAD_RATE</column_name>
-          <stream_name>RATE</stream_name>
-        </field>
-        <field>
           <column_name>EL2</column_name>
           <stream_name>EL2</stream_name>
         </field>
@@ -651,11 +808,191 @@
           <column_name>ACCODE</column_name>
           <stream_name>DEST_ACCODE</stream_name>
         </field>
+        <field>
+          <column_name>DOC_CURCODE</column_name>
+          <stream_name>DOC_CURCODE</stream_name>
+        </field>
+        <field>
+          <column_name>DOC_AMT</column_name>
+          <stream_name>DOC_AMT</stream_name>
+        </field>
+        <field>
+          <column_name>LOCAL_CURCODE</column_name>
+          <stream_name>CURLOCAL</stream_name>
+        </field>
+        <field>
+          <column_name>LOCAL_RATE</column_name>
+          <stream_name>LOCAL_RATE</stream_name>
+        </field>
+        <field>
+          <column_name>LOCAL_AMT</column_name>
+          <stream_name>LOCAL_AMT</stream_name>
+        </field>
+        <field>
+          <column_name>FUNC_CURCODE</column_name>
+          <stream_name>CURFUNC</stream_name>
+        </field>
+        <field>
+          <column_name>FUNC_RATE</column_name>
+          <stream_name>FUNC_RATE</stream_name>
+        </field>
+        <field>
+          <column_name>FUNC_AMT</column_name>
+          <stream_name>FUNC_AMT</stream_name>
+        </field>
+        <field>
+          <column_name>CAD_AMT</column_name>
+          <stream_name>CAD_AMT</stream_name>
+        </field>
+        <field>
+          <column_name>CAD_RATE</column_name>
+          <stream_name>RATE</stream_name>
+        </field>
+        <field>
+          <column_name>SOURCE</column_name>
+          <stream_name>SOURCE</stream_name>
+        </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1270</xloc>
-      <yloc>137</yloc>
+      <xloc>1405</xloc>
+      <yloc>352</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Instance Name</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>INSTANCE</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>MASTER</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>206</xloc>
+      <yloc>353</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Offset to U125&#x2f;C310</name>
+    <type>Formula</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+       <formula><field_name>CMPCODE</field_name>
+<formula_string>IF&#x28;&#x5b;DOC_CURCODE&#x5d; &#x3d; &#x22;USD&#x22;&#x3b;&#x22;U125&#x22;&#x3b;&#x22;C310&#x22;&#x29;</formula_string>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field/>
+</formula>
+       <formula><field_name>EL1</field_name>
+<formula_string>&#x22;112801&#x22;</formula_string>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field/>
+</formula>
+       <formula><field_name>CURLOCAL</field_name>
+<formula_string>&#x5b;DOC_CURCODE&#x5d;</formula_string>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field/>
+</formula>
+       <formula><field_name>RATE</field_name>
+<formula_string>IF&#x28;&#x5b;DOC_CURCODE&#x5d; &#x3d; &#x22;CAD&#x22;&#x3b;10000000&#x3b;&#x28;&#x5b;TOT_DOC&#x5d;&#x2f;&#x5b;TOT_CAD&#x5d;&#x29; &#x2a; 10000000&#x29;</formula_string>
+<value_type>BigNumber</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field/>
+</formula>
+       <formula><field_name>LOCAL_RATE</field_name>
+<formula_string>10000000</formula_string>
+<value_type>BigNumber</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field/>
+</formula>
+       <formula><field_name>CURFUNC</field_name>
+<formula_string>&#x5b;DOC_CURCODE&#x5d;</formula_string>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field/>
+</formula>
+       <formula><field_name>FUNC_RATE</field_name>
+<formula_string>10000000</formula_string>
+<value_type>BigNumber</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field/>
+</formula>
+       <formula><field_name>DOC_AMT</field_name>
+<formula_string>&#x5b;TOT_DOC&#x5d;</formula_string>
+<value_type>Number</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field/>
+</formula>
+       <formula><field_name>CAD_AMT</field_name>
+<formula_string>&#x5b;TOT_CAD&#x5d;</formula_string>
+<value_type>Number</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field/>
+</formula>
+       <formula><field_name>LOCAL_AMT</field_name>
+<formula_string>&#x5b;TOT_DOC&#x5d;</formula_string>
+<value_type>Number</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field/>
+</formula>
+       <formula><field_name>FUNC_AMT</field_name>
+<formula_string>&#x5b;TOT_DOC&#x5d;</formula_string>
+<value_type>Number</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field/>
+</formula>
+       <formula><field_name>EL3</field_name>
+<formula_string>&#x22;8400998&#x22;</formula_string>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field/>
+</formula>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>808</xloc>
+      <yloc>164</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -680,8 +1017,160 @@
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>79</xloc>
-      <yloc>134</yloc>
+      <xloc>64</xloc>
+      <yloc>351</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Select values</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>      <field>        <name>CMPCODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>EL1</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>DOC_CURCODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>DOC_AMT</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CURLOCAL</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>LOCAL_RATE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>LOCAL_AMT</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CURFUNC</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>FUNC_RATE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>FUNC_AMT</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>RATE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CAD_AMT</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ICP</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>EL3</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>        <select_unspecified>N</select_unspecified>
+    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>864</xloc>
+      <yloc>356</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Select values 2</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>      <field>        <name>CMPCODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>EL1</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>DOC_CURCODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>DOC_AMT</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CURLOCAL</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>LOCAL_RATE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>LOCAL_AMT</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CURFUNC</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>FUNC_RATE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>FUNC_AMT</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>RATE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CAD_AMT</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ICP</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>EL3</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>        <select_unspecified>N</select_unspecified>
+    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>890</xloc>
+      <yloc>252</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -697,8 +1186,8 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-<send_true_to>Add Constants</send_true_to>
-<send_false_to>Dummy &#x28;do nothing&#x29;</send_false_to>
+<send_true_to>Build EL3</send_true_to>
+<send_false_to>Account</send_false_to>
     <compare>
 <condition>
  <negated>N</negated>
@@ -709,8 +1198,8 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>635</xloc>
-      <yloc>136</yloc>
+      <xloc>478</xloc>
+      <yloc>353</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

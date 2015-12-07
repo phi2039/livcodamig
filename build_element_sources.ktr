@@ -73,27 +73,6 @@
   </info>
   <notepads>
     <notepad>
-      <note>If this is a new element,&#xd;&#xa;fetch it from the staging&#xd;&#xa;table. Then, fetch the defaults&#xd;&#xa;for the remaining fields</note>
-      <xloc>116</xloc>
-      <yloc>403</yloc>
-      <width>206</width>
-      <heigth>90</heigth>
-      <fontname>Segoe UI</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
-    <notepad>
       <note>If this is an existing element,&#xd;&#xa;fetch a template from SOURCE</note>
       <xloc>116</xloc>
       <yloc>88</yloc>
@@ -239,15 +218,15 @@
   <hop> <from>Merge</from><to>Lookup Currency</to><enabled>Y</enabled> </hop>
   <hop> <from>Lookup Currency</from><to>Level 1</to><enabled>Y</enabled> </hop>
   <hop> <from>Level 1</from><to>Level 4</to><enabled>Y</enabled> </hop>
-  <hop> <from>Level 4</from><to>ELEMENT_LOAD_DEF</to><enabled>Y</enabled> </hop>
+  <hop> <from>Level 4</from><to>ELEMENT_LOAD_PRE</to><enabled>Y</enabled> </hop>
   <hop> <from>Level 1</from><to>Lookup Bank</to><enabled>Y</enabled> </hop>
   <hop> <from>Lookup Bank</from><to>Check Bank Currency</to><enabled>Y</enabled> </hop>
   <hop> <from>Level 4</from><to>Lookup Note</to><enabled>Y</enabled> </hop>
   <hop> <from>Lookup Note</from><to>Check Note Currency</to><enabled>Y</enabled> </hop>
   <hop> <from>Check Bank Currency</from><to>Remove Fields</to><enabled>Y</enabled> </hop>
   <hop> <from>Check Note Currency</from><to>Remove Fields 2</to><enabled>Y</enabled> </hop>
-  <hop> <from>Remove Fields</from><to>ELEMENT_LOAD_DEF</to><enabled>Y</enabled> </hop>
-  <hop> <from>Remove Fields 2</from><to>ELEMENT_LOAD_DEF</to><enabled>Y</enabled> </hop>
+  <hop> <from>Remove Fields</from><to>ELEMENT_LOAD_PRE</to><enabled>Y</enabled> </hop>
+  <hop> <from>Remove Fields 2</from><to>ELEMENT_LOAD_PRE</to><enabled>Y</enabled> </hop>
   <hop> <from>Get Source Company</from><to>Valid Source</to><enabled>Y</enabled> </hop>
   <hop> <from>Valid Source</from><to>Set Source Element</to><enabled>Y</enabled> </hop>
   <hop> <from>Valid Source</from><to>No Source</to><enabled>Y</enabled> </hop>
@@ -337,80 +316,6 @@
     </step>
 
   <step>
-    <name>ELEMENT_LOAD_DEF</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>STAGING</connection>
-    <schema>STAGING</schema>
-    <table>ELEMENT_LOAD_DEF</table>
-    <commit>1000</commit>
-    <truncate>Y</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-        <field>
-          <column_name>CMPCODE_DEST</column_name>
-          <stream_name>CMPCODE</stream_name>
-        </field>
-        <field>
-          <column_name>ELMCODE_DEST</column_name>
-          <stream_name>CODE</stream_name>
-        </field>
-        <field>
-          <column_name>ELMLEVEL_DEST</column_name>
-          <stream_name>ELMLEVEL</stream_name>
-        </field>
-        <field>
-          <column_name>CMPCODE_SRC</column_name>
-          <stream_name>TEMPLATE_CMP</stream_name>
-        </field>
-        <field>
-          <column_name>ELMCODE_SRC</column_name>
-          <stream_name>TEMPLATE_ELM</stream_name>
-        </field>
-        <field>
-          <column_name>ELMLEVEL_SRC</column_name>
-          <stream_name>ELMLEVEL</stream_name>
-        </field>
-        <field>
-          <column_name>CURCODE_DEST</column_name>
-          <stream_name>CURLOCAL</stream_name>
-        </field>
-        <field>
-          <column_name>NAME_DEST</column_name>
-          <stream_name>NAME</stream_name>
-        </field>
-        <field>
-          <column_name>SNAME_DEST</column_name>
-          <stream_name>SNAME</stream_name>
-        </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>992</xloc>
-      <yloc>779</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
     <name>ELEMENT_LOAD_DEF_ERR</name>
     <type>TableOutput</type>
     <description/>
@@ -468,6 +373,80 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>792</xloc>
       <yloc>43</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>ELEMENT_LOAD_PRE</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>STAGING</connection>
+    <schema>STAGING</schema>
+    <table>ELEMENT_LOAD_PRE</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+        <field>
+          <column_name>CMPCODE_DEST</column_name>
+          <stream_name>CMPCODE</stream_name>
+        </field>
+        <field>
+          <column_name>ELMCODE_DEST</column_name>
+          <stream_name>CODE</stream_name>
+        </field>
+        <field>
+          <column_name>ELMLEVEL_DEST</column_name>
+          <stream_name>ELMLEVEL</stream_name>
+        </field>
+        <field>
+          <column_name>CMPCODE_SRC</column_name>
+          <stream_name>TEMPLATE_CMP</stream_name>
+        </field>
+        <field>
+          <column_name>ELMCODE_SRC</column_name>
+          <stream_name>TEMPLATE_ELM</stream_name>
+        </field>
+        <field>
+          <column_name>ELMLEVEL_SRC</column_name>
+          <stream_name>ELMLEVEL</stream_name>
+        </field>
+        <field>
+          <column_name>CURCODE_DEST</column_name>
+          <stream_name>CURLOCAL</stream_name>
+        </field>
+        <field>
+          <column_name>NAME_DEST</column_name>
+          <stream_name>NAME</stream_name>
+        </field>
+        <field>
+          <column_name>SNAME_DEST</column_name>
+          <stream_name>SNAME</stream_name>
+        </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>992</xloc>
+      <yloc>779</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -685,7 +664,7 @@
            <schema_name/>
            </partitioning>
 <send_true_to>Lookup Note</send_true_to>
-<send_false_to>ELEMENT_LOAD_DEF</send_false_to>
+<send_false_to>ELEMENT_LOAD_PRE</send_false_to>
     <compare>
 <condition>
  <negated>N</negated>

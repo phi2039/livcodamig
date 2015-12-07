@@ -208,8 +208,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1113</xloc>
-      <yloc>108</yloc>
+      <xloc>1187</xloc>
+      <yloc>109</yloc>
       </entry>
     <entry>
       <name>Delete Balancing Lines</name>
@@ -335,8 +335,8 @@
             </parameter>      </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>967</xloc>
-      <yloc>103</yloc>
+      <xloc>1041</xloc>
+      <yloc>104</yloc>
       </entry>
   </entries>
   <hops>
@@ -381,7 +381,7 @@
       <to>Clear Vastera CTA</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
-      <enabled>N</enabled>
+      <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>

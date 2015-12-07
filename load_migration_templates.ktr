@@ -2396,6 +2396,10 @@
           <column_name>sourceFileMod</column_name>
           <stream_name>sourceFileMod</stream_name>
         </field>
+        <field>
+          <column_name>INSTANCE</column_name>
+          <stream_name>INSTANCE</stream_name>
+        </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>

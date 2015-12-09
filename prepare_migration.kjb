@@ -519,8 +519,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1581</xloc>
-      <yloc>112</yloc>
+      <xloc>1580</xloc>
+      <yloc>226</yloc>
       </entry>
     <entry>
       <name>Load Subledger Dest</name>
@@ -733,8 +733,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1579</xloc>
-      <yloc>225</yloc>
+      <xloc>1581</xloc>
+      <yloc>115</yloc>
       </entry>
     <entry>
       <name>Set variables</name>
@@ -885,24 +885,6 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Find Unmapped Balances</from>
-      <to>Build Element Migration</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Build Element Migration</from>
-      <to>Success</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>Load Asset Mapping</from>
       <to>Validate Element Mapping</to>
       <from_nr>0</from_nr>
@@ -931,7 +913,25 @@
     </hop>
     <hop>
       <from>Validate Element Mapping</from>
+      <to>Build Element Migration</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Build Element Migration</from>
       <to>Find Unmapped Balances</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Find Unmapped Balances</from>
+      <to>Success</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -1068,8 +1068,8 @@
     </notepad>
     <notepad>
       <note>ELEMENT_LOAD_DEF_ERR</note>
-      <xloc>1519</xloc>
-      <yloc>301</yloc>
+      <xloc>1490</xloc>
+      <yloc>44</yloc>
       <width>182</width>
       <heigth>30</heigth>
       <fontname>Segoe UI</fontname>
@@ -1089,8 +1089,8 @@
     </notepad>
     <notepad>
       <note>UNMAPPED_ELEMENT_ERR</note>
-      <xloc>1492</xloc>
-      <yloc>57</yloc>
+      <xloc>1518</xloc>
+      <yloc>300</yloc>
       <width>190</width>
       <heigth>30</heigth>
       <fontname>Segoe UI</fontname>
@@ -1110,8 +1110,8 @@
     </notepad>
     <notepad>
       <note>UNMAPPED_ENTITY_ERR</note>
-      <xloc>1492</xloc>
-      <yloc>7</yloc>
+      <xloc>1523</xloc>
+      <yloc>352</yloc>
       <width>174</width>
       <heigth>30</heigth>
       <fontname>Segoe UI</fontname>

@@ -294,8 +294,8 @@
   <hop> <from>EL1_BANK_MAP</from><to>Insert EL1_BANK_MAP</to><enabled>Y</enabled> </hop>
   <hop> <from>EL3_IC_MAP</from><to>Insert EL3_IC_MAP</to><enabled>Y</enabled> </hop>
   <hop> <from>EL3_GEN_MAP</from><to>Insert EL3_GEN_MAP</to><enabled>Y</enabled> </hop>
-  <hop> <from>CODA Element 2&#x2f;4</from><to>Get System Info</to><enabled>Y</enabled> </hop>
-  <hop> <from>Get System Info</from><to>Insert EL2_4_SOURCE</to><enabled>Y</enabled> </hop>
+  <hop> <from>CODA Element 4</from><to>Get System Info</to><enabled>Y</enabled> </hop>
+  <hop> <from>Get System Info</from><to>Insert EL4_SOURCE</to><enabled>Y</enabled> </hop>
   <hop> <from>EL1_MASTER_NEW</from><to>Insert EL1_MASTER_NEW</to><enabled>Y</enabled> </hop>
   <hop> <from>EL3_MASTER_NEW</from><to>Insert EL3_MASTER_NEW</to><enabled>Y</enabled> </hop>
   <hop> <from>EL4_MASTER_NEW</from><to>Insert EL4_MASTER_NEW</to><enabled>Y</enabled> </hop>
@@ -853,6 +853,18 @@
         <group/>
       </field>
       <field>
+        <name>CURDUAL</name>
+        <type>String</type>
+        <length>3</length>
+        <precision>-1</precision>
+        <trim_type>both</trim_type>
+        <repeat>N</repeat>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+      </field>
+      <field>
         <name>PARENT</name>
         <type>String</type>
         <length>12</length>
@@ -911,7 +923,7 @@
     </step>
 
   <step>
-    <name>CODA Element 2&#x2f;4</name>
+    <name>CODA Element 4</name>
     <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -922,7 +934,7 @@
            <schema_name/>
            </partitioning>
     <connection>CODA-SOURCE</connection>
-    <sql>SELECT CODE, ELMLEVEL, COUNT&#x28;1&#x29; AS INSTANCES &#xd;&#xa;FROM OAS_ELEMENT &#xd;&#xa;WHERE ELMLEVEL IN &#x28;2,4&#x29;&#xd;&#xa;AND DELDATE IS NULL&#xd;&#xa;AND CMPCODE NOT IN &#x28;&#x27;PROPHET&#x27;,&#x27;PROCAD&#x27;,&#x27;ZBPCAD&#x27;,&#x27;ZBPUSD&#x27;,&#x27;TESTC310&#x27;,&#x27;TESTU125&#x27;,&#x27;DEVC310&#x27;,&#x27;DEVU125&#x27;,&#x27;MIGRATEU125&#x27;,&#x27;MIGRATEC310&#x27;,&#x27;MODELUSD&#x27;,&#x27;MODELCAD&#x27;&#x29;&#xd;&#xa;GROUP BY CODE, ELMLEVEL</sql>
+    <sql>SELECT CODE, ELMLEVEL, COUNT&#x28;1&#x29; AS INSTANCES &#xd;&#xa;FROM OAS_ELEMENT &#xd;&#xa;WHERE ELMLEVEL IN &#x28;4&#x29;&#xd;&#xa;AND DELDATE IS NULL&#xd;&#xa;AND CMPCODE NOT IN &#x28;&#x27;PROPHET&#x27;,&#x27;PROCAD&#x27;,&#x27;ZBPCAD&#x27;,&#x27;ZBPUSD&#x27;,&#x27;TESTC310&#x27;,&#x27;TESTU125&#x27;,&#x27;DEVC310&#x27;,&#x27;DEVU125&#x27;,&#x27;MIGRATEU125&#x27;,&#x27;MIGRATEC310&#x27;,&#x27;MODELUSD&#x27;,&#x27;MODELCAD&#x27;&#x29;&#xd;&#xa;GROUP BY CODE, ELMLEVEL</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -2381,6 +2393,10 @@
           <stream_name>CURFUNC</stream_name>
         </field>
         <field>
+          <column_name>CURDUAL</column_name>
+          <stream_name>CURDUAL</stream_name>
+        </field>
+        <field>
           <column_name>PARENT</column_name>
           <stream_name>PARENT</stream_name>
         </field>
@@ -2751,64 +2767,6 @@
     </step>
 
   <step>
-    <name>Insert EL2_4_SOURCE</name>
-    <type>InsertUpdate</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>STAGING</connection>
-    <commit>100</commit>
-    <update_bypassed>Y</update_bypassed>
-    <lookup>
-      <schema>STAGING_TEMPLATES</schema>
-      <table>EL2_4_SOURCE</table>
-      <key>
-        <name>CODE</name>
-        <field>CODE</field>
-        <condition>&#x3d;</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>ELMLEVEL</name>
-        <field>ELMLEVEL</field>
-        <condition>&#x3d;</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>CODE</name>
-        <rename>CODE</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>ELMLEVEL</name>
-        <rename>ELMLEVEL</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>INSTANCES</name>
-        <rename>INSTANCES</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>queryDate</name>
-        <rename>queryDate</rename>
-        <update>Y</update>
-      </value>
-    </lookup>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>407</xloc>
-      <yloc>644</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
     <name>Insert EL3_GEN_MAP</name>
     <type>InsertUpdate</type>
     <description/>
@@ -3149,6 +3107,64 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>1173</xloc>
       <yloc>356</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Insert EL4_SOURCE</name>
+    <type>InsertUpdate</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>STAGING</connection>
+    <commit>100</commit>
+    <update_bypassed>Y</update_bypassed>
+    <lookup>
+      <schema>STAGING_TEMPLATES</schema>
+      <table>EL4_SOURCE</table>
+      <key>
+        <name>CODE</name>
+        <field>CODE</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>ELMLEVEL</name>
+        <field>ELMLEVEL</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>CODE</name>
+        <rename>CODE</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ELMLEVEL</name>
+        <rename>ELMLEVEL</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>INSTANCES</name>
+        <rename>INSTANCES</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>queryDate</name>
+        <rename>queryDate</rename>
+        <update>Y</update>
+      </value>
+    </lookup>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>407</xloc>
+      <yloc>644</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

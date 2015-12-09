@@ -107,7 +107,7 @@
   <connection>
     <name>CODA-DEST</name>
     <server>localhost</server>
-    <type>ORACLE</type>
+    <type>GENERIC</type>
     <access>Native</access>
     <database>codadev</database>
     <port>21521</port>
@@ -117,6 +117,8 @@
     <data_tablespace>codauser</data_tablespace>
     <index_tablespace>codauser</index_tablespace>
     <attributes>
+      <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>oracle.jdbc.OracleDriver</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;oracle&#x3a;thin&#x3a;&#x40;localhost&#x3a;21521&#x3a;coda</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
@@ -181,8 +183,7 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Lookup Entity</from><to>Copy EL2,5,6</to><enabled>Y</enabled> </hop>
-  <hop> <from>Copy EL2,5,6</from><to>Lookup Mapping</to><enabled>Y</enabled> </hop>
+  <hop> <from>Copy EL5&#x2f;6</from><to>Lookup Mapping</to><enabled>Y</enabled> </hop>
   <hop> <from>Lookup Mapping</from><to>Set Mapping</to><enabled>Y</enabled> </hop>
   <hop> <from>Set Mapping</from><to>EL4 Currency</to><enabled>Y</enabled> </hop>
   <hop> <from>EL4 Currency</from><to>EL5 Currency</to><enabled>Y</enabled> </hop>
@@ -196,6 +197,8 @@
   <hop> <from>Build Acct String</from><to>Clean-up ACCODE</to><enabled>Y</enabled> </hop>
   <hop> <from>EL6 Currency</from><to>Standard CER</to><enabled>Y</enabled> </hop>
   <hop> <from>Standard CER</from><to>Trim Codes</to><enabled>Y</enabled> </hop>
+  <hop> <from>Lookup Entity</from><to>Collapse EL2</to><enabled>Y</enabled> </hop>
+  <hop> <from>Collapse EL2</from><to>Copy EL5&#x2f;6</to><enabled>Y</enabled> </hop>
   </order>
   <step>
     <name>Build Acct String</name>
@@ -320,8 +323,8 @@
     </ConcatFields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>598</xloc>
-      <yloc>169</yloc>
+      <xloc>673</xloc>
+      <yloc>166</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -352,14 +355,14 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>721</xloc>
-      <yloc>65</yloc>
+      <xloc>796</xloc>
+      <yloc>62</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Copy EL2,5,6</name>
+    <name>Copy EL5&#x2f;6</name>
     <type>Calculator</type>
     <description/>
     <distribute>Y</distribute>
@@ -369,20 +372,6 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-       <calculation><field_name>DEST_EL2</field_name>
-<calc_type>COPY_FIELD</calc_type>
-<field_a>EL2</field_a>
-<field_b/>
-<field_c/>
-<value_type>String</value_type>
-<value_length>-1</value_length>
-<value_precision>-1</value_precision>
-<remove>N</remove>
-<conversion_mask/>
-<decimal_symbol/>
-<grouping_symbol/>
-<currency_symbol/>
-</calculation>
        <calculation><field_name>DEST_EL5</field_name>
 <calc_type>COPY_FIELD</calc_type>
 <field_a>EL5</field_a>
@@ -413,8 +402,8 @@
 </calculation>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>208</xloc>
-      <yloc>59</yloc>
+      <xloc>192</xloc>
+      <yloc>161</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -565,8 +554,8 @@
 <allowed_value></allowed_value></validator_field>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>865</xloc>
-      <yloc>69</yloc>
+      <xloc>926</xloc>
+      <yloc>68</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -621,8 +610,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>328</xloc>
-      <yloc>169</yloc>
+      <xloc>443</xloc>
+      <yloc>57</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -673,8 +662,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>444</xloc>
-      <yloc>61</yloc>
+      <xloc>443</xloc>
+      <yloc>163</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -725,8 +714,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>446</xloc>
-      <yloc>169</yloc>
+      <xloc>554</xloc>
+      <yloc>59</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -744,8 +733,8 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>865</xloc>
-      <yloc>231</yloc>
+      <xloc>926</xloc>
+      <yloc>230</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -844,8 +833,8 @@
     </parameter>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>206</xloc>
-      <yloc>165</yloc>
+      <xloc>320</xloc>
+      <yloc>57</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -863,8 +852,8 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1013</xloc>
-      <yloc>70</yloc>
+      <xloc>1074</xloc>
+      <yloc>69</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -952,8 +941,8 @@
       </remove>      <remove>        <name>EL4_OVERRIDE</name>
       </remove>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>721</xloc>
-      <yloc>163</yloc>
+      <xloc>796</xloc>
+      <yloc>160</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -992,8 +981,8 @@
 </formula>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>330</xloc>
-      <yloc>59</yloc>
+      <xloc>318</xloc>
+      <yloc>163</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1018,8 +1007,8 @@
 </formula>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>444</xloc>
-      <yloc>272</yloc>
+      <xloc>554</xloc>
+      <yloc>169</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1117,8 +1106,41 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>599</xloc>
-      <yloc>67</yloc>
+      <xloc>674</xloc>
+      <yloc>64</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Collapse EL2</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>DEST_EL2</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>NONE</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>195</xloc>
+      <yloc>58</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

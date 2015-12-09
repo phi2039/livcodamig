@@ -122,7 +122,7 @@
   <connection>
     <name>CODA-DEST</name>
     <server>localhost</server>
-    <type>ORACLE</type>
+    <type>GENERIC</type>
     <access>Native</access>
     <database>codadev</database>
     <port>21521</port>
@@ -132,6 +132,8 @@
     <data_tablespace>codauser</data_tablespace>
     <index_tablespace>codauser</index_tablespace>
     <attributes>
+      <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>oracle.jdbc.OracleDriver</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;oracle&#x3a;thin&#x3a;&#x40;localhost&#x3a;21521&#x3a;coda</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
@@ -196,15 +198,16 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>EL1_MASTER_NEW</from><to>All Companies &#x28;Level 1&#x29;</to><enabled>Y</enabled> </hop>
   <hop> <from>EL3_MASTER_NEW</from><to>Level 3</to><enabled>Y</enabled> </hop>
   <hop> <from>Level 3</from><to>Select values</to><enabled>Y</enabled> </hop>
   <hop> <from>EL4_MASTER_NEW</from><to>Level 4</to><enabled>Y</enabled> </hop>
   <hop> <from>Level 4</from><to>Select values 3</to><enabled>Y</enabled> </hop>
-  <hop> <from>All Companies &#x28;Level 1&#x29;</from><to>Select values 2</to><enabled>Y</enabled> </hop>
   <hop> <from>Select values 3</from><to>Insert NEW_ELEMENT_PRE_STAGING</to><enabled>Y</enabled> </hop>
-  <hop> <from>Select values</from><to>Insert NEW_ELEMENT_PRE_STAGING</to><enabled>Y</enabled> </hop>
+  <hop> <from>EL1_MASTER_NEW</from><to>All Companies &#x28;Level 1&#x29;</to><enabled>Y</enabled> </hop>
+  <hop> <from>All Companies &#x28;Level 1&#x29;</from><to>Select values 2</to><enabled>Y</enabled> </hop>
   <hop> <from>Select values 2</from><to>Insert NEW_ELEMENT_PRE_STAGING</to><enabled>Y</enabled> </hop>
+  <hop> <from>Select values</from><to>Insert NEW_ELEMENT_PRE_STAGING</to><enabled>Y</enabled> </hop>
+  <hop> <from>EL2 - NONE</from><to>Insert NEW_ELEMENT_PRE_STAGING</to><enabled>Y</enabled> </hop>
   </order>
   <step>
     <name>All Companies &#x28;Level 1&#x29;</name>
@@ -573,6 +576,107 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>422</xloc>
       <yloc>296</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>EL2 - NONE</name>
+    <type>DataGrid</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>CMPCODE</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>ELMLEVEL</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>CODE</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>NAME</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>SNAME</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>TEMPLATE_CMP</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>TEMPLATE_ELM</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <data>
+      <line> <item>&#x2a;</item><item>2</item><item>NONE</item><item>STATIC VALUES</item><item>NONE</item><item>C310</item><item>100101</item> </line>
+    </data>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>430</xloc>
+      <yloc>411</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

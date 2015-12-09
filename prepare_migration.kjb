@@ -160,8 +160,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>81</xloc>
-      <yloc>116</yloc>
+      <xloc>99</xloc>
+      <yloc>118</yloc>
       </entry>
     <entry>
       <name>Success</name>
@@ -321,8 +321,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>83</xloc>
-      <yloc>218</yloc>
+      <xloc>99</xloc>
+      <yloc>221</yloc>
       </entry>
     <entry>
       <name>Validate Ledger Dest</name>

@@ -649,7 +649,7 @@
            </partitioning>
     <connection>CODA-SOURCE</connection>
     <rowlimit>0</rowlimit>
-    <sql>select&#xd;&#xa;  case when exists &#x28;select 1 from oas_element where elmlevel&#x3d;&#x3f; and code&#x3d;&#x3f;&#x29; then &#x27;TRUE&#x27;&#xd;&#xa;  else &#x27;FALSE&#x27;&#xd;&#xa;  end as existingElement&#xd;&#xa;from dual</sql>
+    <sql>select&#xd;&#xa;  case when exists &#x28;select 1 from oas_element where elmlevel&#x3d;&#x3f; and code&#x3d;&#x3f; and deldate is null&#x29; then &#x27;TRUE&#x27;&#xd;&#xa;  else &#x27;FALSE&#x27;&#xd;&#xa;  end as existingElement&#xd;&#xa;from dual</sql>
     <outer_join>N</outer_join>
     <replace_vars>N</replace_vars>
     <parameter>
@@ -683,7 +683,7 @@
            </partitioning>
     <connection>CODA-SOURCE</connection>
     <rowlimit>0</rowlimit>
-    <sql>select&#xd;&#xa;  case when exists &#x28;select 1 from oas_element where cmpcode&#x3d;&#x3f; and elmlevel&#x3d;&#x3f; and code&#x3d;&#x3f;&#x29; then &#x27;TRUE&#x27;&#xd;&#xa;  else &#x27;FALSE&#x27;&#xd;&#xa;  end as existingElement&#xd;&#xa;from dual</sql>
+    <sql>select&#xd;&#xa;  case when exists &#x28;select 1 from oas_element where cmpcode&#x3d;&#x3f; and elmlevel&#x3d;&#x3f; and code&#x3d;&#x3f; and deldate is null&#x29; then &#x27;TRUE&#x27;&#xd;&#xa;  else &#x27;FALSE&#x27;&#xd;&#xa;  end as existingElement&#xd;&#xa;from dual</sql>
     <outer_join>N</outer_join>
     <replace_vars>N</replace_vars>
     <parameter>

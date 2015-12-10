@@ -207,7 +207,7 @@
            <schema_name/>
            </partitioning>
     <connection>CODA-SOURCE</connection>
-    <sql>with active_bals as&#xd;&#xa;&#x28;&#xd;&#xa;select distinct&#xd;&#xa;  cmpcode,&#xd;&#xa;  el1,el2,el3,el4,el5,el6&#xd;&#xa;from&#xd;&#xa;  oas_balance&#xd;&#xa;where&#xd;&#xa;  &#x28;debit_value &#x21;&#x3d; 0 or credit_value &#x21;&#x3d; 0&#x29;&#xd;&#xa;  and yr &#x3d; 2015&#xd;&#xa;  and balcode &#x3d; &#x27;ACTUAL&#x27;&#xd;&#xa;--  and curcode &#x3d; &#x27;CAD&#x27;&#xd;&#xa;  and repbasis &#x3d; 0&#xd;&#xa;&#x29;&#xd;&#xa;&#xd;&#xa;SELECT distinct cmpcode, 1 as elmlevel, el1 as code from active_bals&#xd;&#xa;union&#xd;&#xa;--SELECT distinct cmpcode, 2 as elmlevel, el2 as code from active_bals&#xd;&#xa;--union&#xd;&#xa;SELECT distinct cmpcode, 3 as elmlevel, el3 as code from active_bals&#xd;&#xa;union&#xd;&#xa;SELECT distinct cmpcode, 4 as elmlevel, el4 as code from active_bals&#xd;&#xa;union&#xd;&#xa;SELECT distinct cmpcode, 5 as elmlevel, el5 as code from active_bals&#xd;&#xa;union&#xd;&#xa;SELECT distinct cmpcode, 6 as elmlevel, el6 as code from active_bals</sql>
+    <sql>select cmpcode, 1 as elmlevel, el1 as code, min&#x28;period&#x29; as first_per from oas_balance &#xd;&#xa;where &#x28;debit_value &#x21;&#x3d; 0 or credit_value &#x21;&#x3d; 0&#x29; and yr &#x3d; 2015 and balcode &#x3d; &#x27;ACTUAL&#x27; and repbasis &#x3d; 0 group by cmpcode, el1, 1&#xd;&#xa;union&#xd;&#xa;select cmpcode, 3 as elmlevel, el3 as code, min&#x28;period&#x29; as first_per from oas_balance &#xd;&#xa;where &#x28;debit_value &#x21;&#x3d; 0 or credit_value &#x21;&#x3d; 0&#x29; and yr &#x3d; 2015 and balcode &#x3d; &#x27;ACTUAL&#x27; and repbasis &#x3d; 0 group by cmpcode, el3, 3&#xd;&#xa;union&#xd;&#xa;select cmpcode, 4 as elmlevel, el4 as code, min&#x28;period&#x29; as first_per from oas_balance &#xd;&#xa;where &#x28;debit_value &#x21;&#x3d; 0 or credit_value &#x21;&#x3d; 0&#x29; and yr &#x3d; 2015 and balcode &#x3d; &#x27;ACTUAL&#x27; and repbasis &#x3d; 0 group by cmpcode, el4, 4&#xd;&#xa;union&#xd;&#xa;select cmpcode, 5 as elmlevel, el5 as code, min&#x28;period&#x29; as first_per from oas_balance &#xd;&#xa;where &#x28;debit_value &#x21;&#x3d; 0 or credit_value &#x21;&#x3d; 0&#x29; and yr &#x3d; 2015 and balcode &#x3d; &#x27;ACTUAL&#x27; and repbasis &#x3d; 0 group by cmpcode, el5, 5&#xd;&#xa;union&#xd;&#xa;select cmpcode, 6 as elmlevel, el6 as code, min&#x28;period&#x29; as first_per from oas_balance &#xd;&#xa;where &#x28;debit_value &#x21;&#x3d; 0 or credit_value &#x21;&#x3d; 0&#x29; and yr &#x3d; 2015 and balcode &#x3d; &#x27;ACTUAL&#x27; and repbasis &#x3d; 0 group by cmpcode, el6, 6</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -539,6 +539,64 @@
     </step>
 
   <step>
+    <name>MAPPED_BALANCE_CHECK_LOG</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>STAGING</connection>
+    <schema>STAGING</schema>
+    <table>MAPPED_BALANCE_CHECK_LOG</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+        <field>
+          <column_name>CMPCODE_FROM</column_name>
+          <stream_name>CMPCODE</stream_name>
+        </field>
+        <field>
+          <column_name>ELMLEVEL</column_name>
+          <stream_name>ELMLEVEL</stream_name>
+        </field>
+        <field>
+          <column_name>ELMCODE_FROM</column_name>
+          <stream_name>CODE</stream_name>
+        </field>
+        <field>
+          <column_name>CMPCODE_TO</column_name>
+          <stream_name>CMPCODE_TO</stream_name>
+        </field>
+        <field>
+          <column_name>ELMCODE_TO</column_name>
+          <stream_name>ELMCODE_TO</stream_name>
+        </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1083</xloc>
+      <yloc>135</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
     <name>Select values</name>
     <type>SelectValues</type>
     <description/>
@@ -626,6 +684,10 @@
         <field>
           <column_name>NAME</column_name>
           <stream_name>NAME</stream_name>
+        </field>
+        <field>
+          <column_name>FIRSTPER</column_name>
+          <stream_name>FIRST_PER</stream_name>
         </field>
     </fields>
      <cluster_schema/>
@@ -782,64 +844,6 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>669</xloc>
       <yloc>236</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>MAPPED_BALANCE_CHECK_LOG</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>STAGING</connection>
-    <schema>STAGING</schema>
-    <table>MAPPED_BALANCE_CHECK_LOG</table>
-    <commit>1000</commit>
-    <truncate>Y</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-        <field>
-          <column_name>CMPCODE_FROM</column_name>
-          <stream_name>CMPCODE</stream_name>
-        </field>
-        <field>
-          <column_name>ELMLEVEL</column_name>
-          <stream_name>ELMLEVEL</stream_name>
-        </field>
-        <field>
-          <column_name>ELMCODE_FROM</column_name>
-          <stream_name>CODE</stream_name>
-        </field>
-        <field>
-          <column_name>CMPCODE_TO</column_name>
-          <stream_name>CMPCODE_TO</stream_name>
-        </field>
-        <field>
-          <column_name>ELMCODE_TO</column_name>
-          <stream_name>ELMCODE_TO</stream_name>
-        </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1083</xloc>
-      <yloc>135</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

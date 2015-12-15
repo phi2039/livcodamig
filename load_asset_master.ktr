@@ -94,9 +94,35 @@
     </notepad>
   </notepads>
   <connection>
+    <name>ARCHIVE</name>
+    <server/>
+    <type>GENERIC</type>
+    <access>Native</access>
+    <database/>
+    <port>1521</port>
+    <username>sa</username>
+    <password>Encrypted 2be98afc86aa7f2e4cb79ce10bef2bcdb</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>org.h2.Driver</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;h2&#x3a;&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;db&#x5c;data&#x5c;archive&#x3b;AUTO_SERVER&#x3d;true&#x3b;DB_CLOSE_ON_EXIT&#x3d;FALSE</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>1521</attribute></attribute>
+      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>N</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
     <name>CODA-DEST</name>
     <server>localhost</server>
-    <type>ORACLE</type>
+    <type>GENERIC</type>
     <access>Native</access>
     <database>codadev</database>
     <port>21521</port>
@@ -106,6 +132,8 @@
     <data_tablespace>codauser</data_tablespace>
     <index_tablespace>codauser</index_tablespace>
     <attributes>
+      <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>oracle.jdbc.OracleDriver</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;oracle&#x3a;thin&#x3a;&#x40;localhost&#x3a;21521&#x3a;coda</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
@@ -242,7 +270,7 @@
            <schema_name/>
            </partitioning>
     <connection>STAGING</connection>
-    <sql>SELECT&#xd;&#xa;  CATG_CODE&#xd;&#xa;, CATG_NAME&#xd;&#xa;, CATG_SNAME&#xd;&#xa;, CATG_TYPE&#xd;&#xa;, DEPR_RULE&#xd;&#xa;, CATG_ID&#xd;&#xa;, WIP_PARTNER&#xd;&#xa;, DEPR_AMORT&#xd;&#xa;, SALEABLE&#xd;&#xa;, SOURCESHEET&#xd;&#xa;, SOURCEROW&#xd;&#xa;, SOURCEFILE&#xd;&#xa;, SOURCEFILESIZE&#xd;&#xa;, SOURCEFILEMOD&#xd;&#xa;FROM STAGING_TEMPLATES.ASSET_MASTER&#xd;&#xa;</sql>
+    <sql>SELECT&#xd;&#xa;  CATG_CODE&#xd;&#xa;, PPA_CATG_CODE&#xd;&#xa;, CATG_NAME&#xd;&#xa;, CATG_SNAME&#xd;&#xa;, CATG_TYPE&#xd;&#xa;, DEPR_RULE&#xd;&#xa;, CATG_ID&#xd;&#xa;, WIP_PARTNER&#xd;&#xa;, DEPR_AMORT&#xd;&#xa;, SALEABLE&#xd;&#xa;, SOURCESHEET&#xd;&#xa;, SOURCEROW&#xd;&#xa;, SOURCEFILE&#xd;&#xa;, SOURCEFILESIZE&#xd;&#xa;, SOURCEFILEMOD&#xd;&#xa;FROM STAGING_TEMPLATES.ASSET_MASTER&#xd;&#xa;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -868,6 +896,10 @@
            </partitioning>
     <fields>      <field>        <name>CATG_CODE</name>
         <rename>CODE</rename>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>PPA_CATG_CODE</name>
+        <rename>PPA_CODE</rename>
         <length>-2</length>
         <precision>-2</precision>
       </field>      <field>        <name>CATG_NAME</name>

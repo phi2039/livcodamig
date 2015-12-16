@@ -214,7 +214,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif>840101</nullif>
+        <nullif>NONE</nullif>
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
@@ -274,7 +274,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif>321120.840101.8400998.100907003</nullif>
+        <nullif>321120.NONE.8400998.100907003</nullif>
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>

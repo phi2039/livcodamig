@@ -227,7 +227,7 @@
   <connection>
     <name>CODA-DEST</name>
     <server>localhost</server>
-    <type>ORACLE</type>
+    <type>GENERIC</type>
     <access>Native</access>
     <database>codadev</database>
     <port>21521</port>
@@ -237,6 +237,8 @@
     <data_tablespace>codauser</data_tablespace>
     <index_tablespace>codauser</index_tablespace>
     <attributes>
+      <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>oracle.jdbc.OracleDriver</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;oracle&#x3a;thin&#x3a;&#x40;localhost&#x3a;21521&#x3a;coda</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
@@ -477,7 +479,7 @@
            <schema_name/>
            </partitioning>
     <connection>CODA-SOURCE</connection>
-    <sql>SELECT E.CODE&#xd;&#xa;FROM OAS_ELEMENT E&#xd;&#xa;JOIN OAS_BALANCE B ON B.EL6&#x3d;E.CODE&#xd;&#xa;WHERE E.ELMLEVEL &#x3d; 6&#xd;&#xa;AND E.CMPCODE NOT IN &#x28;&#x27;PROPHET&#x27;,&#x27;PROCAD&#x27;,&#x27;ZBPCAD&#x27;,&#x27;ZBPUSD&#x27;,&#x27;TESTC310&#x27;,&#x27;TESTU125&#x27;,&#x27;DEVC310&#x27;,&#x27;DEVU125&#x27;,&#x27;MIGRATEU125&#x27;,&#x27;MIGRATEC310&#x27;,&#x27;MODELUSD&#x27;,&#x27;MODELCAD&#x27;&#x29;&#xd;&#xa;AND E.DELDATE IS NULL&#xd;&#xa;GROUP BY E.CODE&#xd;&#xa;HAVING SUM&#x28;B.FULL_VALUE&#x29; &#x21;&#x3d;0</sql>
+    <sql>SELECT E.CODE&#xd;&#xa;FROM OAS_ELEMENT E&#xd;&#xa;JOIN OAS_BALANCE B ON B.EL6&#x3d;E.CODE&#xd;&#xa;WHERE E.ELMLEVEL &#x3d; 6&#xd;&#xa;AND E.CMPCODE NOT IN &#x28;&#x27;PROPHET&#x27;,&#x27;PROCAD&#x27;,&#x27;ZBPCAD&#x27;,&#x27;ZBPUSD&#x27;,&#x27;TESTC310&#x27;,&#x27;TESTU125&#x27;,&#x27;DEVC310&#x27;,&#x27;DEVU125&#x27;,&#x27;MIGRATEU125&#x27;,&#x27;MIGRATEC310&#x27;,&#x27;MODELUSD&#x27;,&#x27;MODELCAD&#x27;&#x29;&#xd;&#xa;AND E.DELDATE IS NULL&#xd;&#xa;GROUP BY E.CODE&#xd;&#xa;--HAVING SUM&#x28;B.FULL_VALUE&#x29; &#x21;&#x3d;0</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>

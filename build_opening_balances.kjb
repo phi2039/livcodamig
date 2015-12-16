@@ -376,8 +376,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1336</xloc>
-      <yloc>101</yloc>
+      <xloc>1418</xloc>
+      <yloc>102</yloc>
       </entry>
     <entry>
       <name>Check Errors</name>
@@ -507,8 +507,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1166</xloc>
-      <yloc>97</yloc>
+      <xloc>1160</xloc>
+      <yloc>182</yloc>
       </entry>
     <entry>
       <name>Back Up Results</name>
@@ -523,8 +523,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1167</xloc>
-      <yloc>175</yloc>
+      <xloc>1294</xloc>
+      <yloc>99</yloc>
       </entry>
     <entry>
       <name>Set variables</name>
@@ -612,6 +612,45 @@
       <xloc>202</xloc>
       <yloc>174</yloc>
       </entry>
+    <entry>
+      <name>Clear Vastera CTA</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;clear_vastera_cta.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
+            <parameter>            <name>offsetAcct</name>
+            <stream_name/>
+            <value>&#x24;&#x7b;funcBalAcct&#x7d;</value>
+            </parameter>            <parameter>            <name>sourceAcct</name>
+            <stream_name/>
+            <value>&#x24;&#x7b;cadBalAcct&#x7d;</value>
+            </parameter>      </parameters>      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>1160</xloc>
+      <yloc>101</yloc>
+      </entry>
   </entries>
   <hops>
     <hop>
@@ -696,15 +735,6 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Balance Companies</from>
-      <to>Check Balancing</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>Check Balancing</from>
       <to>Back Up Results</to>
       <from_nr>0</from_nr>
@@ -752,6 +782,24 @@
     <hop>
       <from>Validate Open Balance Rules</from>
       <to>Load Manual Balances</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Balance Companies</from>
+      <to>Clear Vastera CTA</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Clear Vastera CTA</from>
+      <to>Check Balancing</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>

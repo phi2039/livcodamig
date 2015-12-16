@@ -259,7 +259,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif>840101</nullif>
+        <nullif>NONE</nullif>
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>

@@ -1,0 +1,794 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<transformation>
+  <info>
+    <name>copy_modified_masters_template_local</name>
+    <description/>
+    <extended_description/>
+    <trans_version/>
+    <trans_type>Normal</trans_type>
+    <trans_status>0</trans_status>
+    <directory>&#x2f;</directory>
+    <parameters>
+    </parameters>
+    <log>
+<trans-log-table><connection/>
+<schema/>
+<table/>
+<size_limit_lines/>
+<interval/>
+<timeout_days/>
+<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>Y</enabled><name>CHANNEL_ID</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STATUS</id><enabled>Y</enabled><name>STATUS</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name><subject/></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name><subject/></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name><subject/></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name><subject/></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name><subject/></field><field><id>LINES_REJECTED</id><enabled>Y</enabled><name>LINES_REJECTED</name><subject/></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>STARTDATE</id><enabled>Y</enabled><name>STARTDATE</name></field><field><id>ENDDATE</id><enabled>Y</enabled><name>ENDDATE</name></field><field><id>LOGDATE</id><enabled>Y</enabled><name>LOGDATE</name></field><field><id>DEPDATE</id><enabled>Y</enabled><name>DEPDATE</name></field><field><id>REPLAYDATE</id><enabled>Y</enabled><name>REPLAYDATE</name></field><field><id>LOG_FIELD</id><enabled>Y</enabled><name>LOG_FIELD</name></field><field><id>EXECUTING_SERVER</id><enabled>N</enabled><name>EXECUTING_SERVER</name></field><field><id>EXECUTING_USER</id><enabled>N</enabled><name>EXECUTING_USER</name></field><field><id>CLIENT</id><enabled>N</enabled><name>CLIENT</name></field></trans-log-table>
+<perf-log-table><connection/>
+<schema/>
+<table/>
+<interval/>
+<timeout_days/>
+<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>SEQ_NR</id><enabled>Y</enabled><name>SEQ_NR</name></field><field><id>LOGDATE</id><enabled>Y</enabled><name>LOGDATE</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STEPNAME</id><enabled>Y</enabled><name>STEPNAME</name></field><field><id>STEP_COPY</id><enabled>Y</enabled><name>STEP_COPY</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name></field><field><id>LINES_REJECTED</id><enabled>Y</enabled><name>LINES_REJECTED</name></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>INPUT_BUFFER_ROWS</id><enabled>Y</enabled><name>INPUT_BUFFER_ROWS</name></field><field><id>OUTPUT_BUFFER_ROWS</id><enabled>Y</enabled><name>OUTPUT_BUFFER_ROWS</name></field></perf-log-table>
+<channel-log-table><connection/>
+<schema/>
+<table/>
+<timeout_days/>
+<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>Y</enabled><name>CHANNEL_ID</name></field><field><id>LOG_DATE</id><enabled>Y</enabled><name>LOG_DATE</name></field><field><id>LOGGING_OBJECT_TYPE</id><enabled>Y</enabled><name>LOGGING_OBJECT_TYPE</name></field><field><id>OBJECT_NAME</id><enabled>Y</enabled><name>OBJECT_NAME</name></field><field><id>OBJECT_COPY</id><enabled>Y</enabled><name>OBJECT_COPY</name></field><field><id>REPOSITORY_DIRECTORY</id><enabled>Y</enabled><name>REPOSITORY_DIRECTORY</name></field><field><id>FILENAME</id><enabled>Y</enabled><name>FILENAME</name></field><field><id>OBJECT_ID</id><enabled>Y</enabled><name>OBJECT_ID</name></field><field><id>OBJECT_REVISION</id><enabled>Y</enabled><name>OBJECT_REVISION</name></field><field><id>PARENT_CHANNEL_ID</id><enabled>Y</enabled><name>PARENT_CHANNEL_ID</name></field><field><id>ROOT_CHANNEL_ID</id><enabled>Y</enabled><name>ROOT_CHANNEL_ID</name></field></channel-log-table>
+<step-log-table><connection/>
+<schema/>
+<table/>
+<timeout_days/>
+<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>Y</enabled><name>CHANNEL_ID</name></field><field><id>LOG_DATE</id><enabled>Y</enabled><name>LOG_DATE</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STEPNAME</id><enabled>Y</enabled><name>STEPNAME</name></field><field><id>STEP_COPY</id><enabled>Y</enabled><name>STEP_COPY</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name></field><field><id>LINES_REJECTED</id><enabled>Y</enabled><name>LINES_REJECTED</name></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>LOG_FIELD</id><enabled>N</enabled><name>LOG_FIELD</name></field></step-log-table>
+<metrics-log-table><connection/>
+<schema/>
+<table/>
+<timeout_days/>
+<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>Y</enabled><name>CHANNEL_ID</name></field><field><id>LOG_DATE</id><enabled>Y</enabled><name>LOG_DATE</name></field><field><id>METRICS_DATE</id><enabled>Y</enabled><name>METRICS_DATE</name></field><field><id>METRICS_CODE</id><enabled>Y</enabled><name>METRICS_CODE</name></field><field><id>METRICS_DESCRIPTION</id><enabled>Y</enabled><name>METRICS_DESCRIPTION</name></field><field><id>METRICS_SUBJECT</id><enabled>Y</enabled><name>METRICS_SUBJECT</name></field><field><id>METRICS_TYPE</id><enabled>Y</enabled><name>METRICS_TYPE</name></field><field><id>METRICS_VALUE</id><enabled>Y</enabled><name>METRICS_VALUE</name></field></metrics-log-table>
+    </log>
+    <maxdate>
+      <connection/>
+      <table/>
+      <field/>
+      <offset>0.0</offset>
+      <maxdiff>0.0</maxdiff>
+    </maxdate>
+    <size_rowset>10000</size_rowset>
+    <sleep_time_empty>50</sleep_time_empty>
+    <sleep_time_full>50</sleep_time_full>
+    <unique_connections>N</unique_connections>
+    <feedback_shown>Y</feedback_shown>
+    <feedback_size>50000</feedback_size>
+    <using_thread_priorities>Y</using_thread_priorities>
+    <shared_objects_file/>
+    <capture_step_performance>N</capture_step_performance>
+    <step_performance_capturing_delay>1000</step_performance_capturing_delay>
+    <step_performance_capturing_size_limit>100</step_performance_capturing_size_limit>
+    <dependencies>
+    </dependencies>
+    <partitionschemas>
+    </partitionschemas>
+    <slaveservers>
+    </slaveservers>
+    <clusterschemas>
+    </clusterschemas>
+  <created_user>-</created_user>
+  <created_date>2015&#x2f;11&#x2f;16 18&#x3a;09&#x3a;13.260</created_date>
+  <modified_user>-</modified_user>
+  <modified_date>2015&#x2f;11&#x2f;16 18&#x3a;09&#x3a;13.260</modified_date>
+  </info>
+  <notepads>
+  </notepads>
+  <connection>
+    <name>ARCHIVE</name>
+    <server/>
+    <type>GENERIC</type>
+    <access>Native</access>
+    <database/>
+    <port>1521</port>
+    <username>sa</username>
+    <password>Encrypted 2be98afc86aa7f2e4cb79ce10bef2bcdb</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>org.h2.Driver</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;h2&#x3a;&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;db&#x5c;data&#x5c;archive&#x3b;AUTO_SERVER&#x3d;true&#x3b;DB_CLOSE_ON_EXIT&#x3d;FALSE</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>1521</attribute></attribute>
+      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>N</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>CODA-DEST</name>
+    <server>localhost</server>
+    <type>GENERIC</type>
+    <access>Native</access>
+    <database>codadev</database>
+    <port>21521</port>
+    <username>codauser</username>
+    <password>Encrypted 2be98afc86aa7f2e4cb1aa174df96aacc</password>
+    <servername/>
+    <data_tablespace>codauser</data_tablespace>
+    <index_tablespace>codauser</index_tablespace>
+    <attributes>
+      <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>oracle.jdbc.OracleDriver</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;oracle&#x3a;thin&#x3a;&#x40;localhost&#x3a;21521&#x3a;coda</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>21521</attribute></attribute>
+      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>N</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>CODA-SOURCE</name>
+    <server>localhost</server>
+    <type>GENERIC</type>
+    <access>Native</access>
+    <database>coda2dev</database>
+    <port>11521</port>
+    <username>codamig</username>
+    <password>Encrypted 2be98afc86aa7f2e4cb1aa174df96aacc</password>
+    <servername/>
+    <data_tablespace>codamigtbl</data_tablespace>
+    <index_tablespace>codamigidx</index_tablespace>
+    <attributes>
+      <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>oracle.jdbc.OracleDriver</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;oracle&#x3a;thin&#x3a;&#x40;localhost&#x3a;21523&#x3a;coda</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>11521</attribute></attribute>
+      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>N</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>STAGING</name>
+    <server/>
+    <type>GENERIC</type>
+    <access>Native</access>
+    <database/>
+    <port>1521</port>
+    <username>sa</username>
+    <password>Encrypted 2be98afc86aa7f2e4cb79ce10bef2bcdb</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>org.h2.Driver</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;h2&#x3a;&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;db&#x5c;data&#x5c;staging&#x3b;AUTO_SERVER&#x3d;true&#x3b;DB_CLOSE_ON_EXIT&#x3d;FALSE</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>1521</attribute></attribute>
+      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>N</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <order>
+  <hop> <from>Input File</from><to>Lookup Target Company</to><enabled>Y</enabled> </hop>
+  <hop> <from>Lookup Target Company</from><to>Merge Rows</to><enabled>Y</enabled> </hop>
+  </order>
+  <step>
+    <name>Input File</name>
+    <type>TextFileInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <accept_filenames>N</accept_filenames>
+    <passing_through_fields>N</passing_through_fields>
+    <accept_field/>
+    <accept_stepname/>
+    <separator>,</separator>
+    <enclosure>&#x22;</enclosure>
+    <enclosure_breaks>N</enclosure_breaks>
+    <escapechar/>
+    <header>Y</header>
+    <nr_headerlines>1</nr_headerlines>
+    <footer>N</footer>
+    <nr_footerlines>1</nr_footerlines>
+    <line_wrapped>N</line_wrapped>
+    <nr_wraps>1</nr_wraps>
+    <layout_paged>N</layout_paged>
+    <nr_lines_per_page>80</nr_lines_per_page>
+    <nr_lines_doc_header>0</nr_lines_doc_header>
+    <noempty>Y</noempty>
+    <include>N</include>
+    <include_field/>
+    <rownum>N</rownum>
+    <rownumByFile>N</rownumByFile>
+    <rownum_field/>
+    <format>DOS</format>
+    <encoding/>
+    <add_to_result_filenames>Y</add_to_result_filenames>
+    <file>
+      <name>&#x24;&#x7b;fileName&#x7d;</name>
+      <filemask/>
+      <exclude_filemask/>
+      <file_required>N</file_required>
+      <include_subfolders>N</include_subfolders>
+      <type>CSV</type>
+      <compression>None</compression>
+    </file>
+    <filters>
+    </filters>
+    <fields>
+    </fields>
+    <limit>0</limit>
+    <error_ignored>N</error_ignored>
+    <skip_bad_files>N</skip_bad_files>
+    <file_error_field/>
+    <file_error_message_field/>
+    <error_line_skipped>N</error_line_skipped>
+    <error_count_field/>
+    <error_fields_field/>
+    <error_text_field/>
+    <bad_line_files_destination_directory/>
+    <bad_line_files_extension>warning</bad_line_files_extension>
+    <error_line_files_destination_directory/>
+    <error_line_files_extension>error</error_line_files_extension>
+    <line_number_files_destination_directory/>
+    <line_number_files_extension>line</line_number_files_extension>
+    <date_format_lenient>Y</date_format_lenient>
+    <date_format_locale>en_US</date_format_locale>
+    <shortFileFieldName/>
+    <pathFieldName/>
+    <hiddenFieldName/>
+    <lastModificationTimeFieldName/>
+    <uriNameFieldName/>
+    <rootUriNameFieldName/>
+    <extensionFieldName/>
+    <sizeFieldName/>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>133</xloc>
+      <yloc>85</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Lookup Target Company</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>CODA-DEST</connection>
+    <cache>Y</cache>
+    <cache_load_all>Y</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema>&#x24;&#x7b;destSchema&#x7d;</schema>
+      <table>OAS_COMPANY</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>Y</eat_row_on_failure>
+      <key>
+        <name>CMPCODE</name>
+        <field>CODE</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>NAME</name>
+        <rename>NAME</rename>
+        <default/>
+        <type>String</type>
+      </value>
+    </lookup>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>275</xloc>
+      <yloc>86</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Merge Rows</name>
+    <type>UserDefinedJavaClass</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+
+    <definitions>
+        <definition>
+        <class_type>TRANSFORM_CLASS</class_type>
+
+        <class_name>Processor</class_name>
+
+        <class_source><![CDATA[import org.pentaho.di.core.database.*;
+import java.sql.*;
+import org.pentaho.di.core.row.*;
+import org.pentaho.di.core.exception.*;
+import org.pentaho.di.trans.step.*;
+import org.pentaho.di.trans.steps.userdefinedjavaclass.*;
+  
+  
+  private Database sourceDb = null;
+  private Database destDb = null;
+  private DatabaseMeta sourceDbMeta = null;
+  private DatabaseMeta destDbMeta = null;
+  private String tableName = "";
+  private String sourceSchema = "";
+  private String destSchema = "";
+  private String[] keyFieldNames = null;
+  private int[] inputKeyIndexes = null;
+  private int[] sourceKeyIndexes = null;
+  private int[] destKeyIndexes = null;
+  private PreparedStatement selectStatement = null;
+  private PreparedStatement deleteStatement = null;
+  private PreparedStatement insertStatement = null;
+  private RowMetaInterface sourceRowMeta = null;
+  private int[] updateIndexes = null;
+  private int[] outputIndexes = null;
+  private int rowCount = 0;
+  private int maxRows = 0;
+  private boolean deleteDestRows = false;
+  private boolean truncateDest = false;
+  private boolean stop = false;
+
+// TODO: Output only key fields for logging (OR) write to log table/file  
+  
+  // Overrides
+  public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws KettleException {
+
+    // Get an input row
+    Object[] row = getRow();
+    if (row == null || stop) {
+      completeProcessing();
+      return false;
+    }
+        
+    ///// Initialization ////
+    if (first) {
+      
+      data.outputRowMeta = sourceRowMeta;
+      
+      logDebug("Input Meta:");
+      String[] inputFields = data.inputRowMeta.getFieldNamesAndTypes(100);
+      for (int f=0; f < inputFields.length; f++) {
+        ValueMetaInterface v = data.inputRowMeta.getValueMeta(f);
+        logDebug("  Input Field: " + v.getName() + "(" + v.getTypeDesc() + ")");
+      }      
+      
+      logDebug("Source Meta:");
+      String[] sourceFields = sourceRowMeta.getFieldNamesAndTypes(100);
+      for (int f=0; f < sourceFields.length; f++) {
+        ValueMetaInterface v = sourceRowMeta.getValueMeta(f);
+        logDebug("  Source Field: " + v.getName() + "(" + v.getTypeDesc() + ")");
+      }
+      
+      logDebug("Output Meta:");
+      String[] outFields = data.outputRowMeta.getFieldNamesAndTypes(100);
+      for (int f=0; f < outFields.length; f++) {
+        ValueMetaInterface v = data.outputRowMeta.getValueMeta(f);
+        logDebug("  Output Field: " + v.getName() + "(" + v.getTypeDesc() + ")");
+      }
+      
+      // For each key field, find its location in each stream
+      inputKeyIndexes = new int[keyFieldNames.length];
+      sourceKeyIndexes = new int[keyFieldNames.length];
+      destKeyIndexes = new int[keyFieldNames.length];
+      for (int k = 0; k < keyFieldNames.length; k++) {
+        String keyFieldName = keyFieldNames[k];
+        inputKeyIndexes[k] = data.inputRowMeta.indexOfValue(keyFieldName);
+        sourceKeyIndexes[k] = sourceRowMeta.indexOfValue(keyFieldName);
+        destKeyIndexes[k] = data.outputRowMeta.indexOfValue(keyFieldName);
+        logDebug("Found key field " + keyFieldName + " at: input[" + inputKeyIndexes[k] + "] source[" + sourceKeyIndexes[k] + "] dest[ " + destKeyIndexes[k] + "]");
+      }
+      
+      // For each input stream field, identify the source row field to update
+      updateIndexes = new int[data.inputRowMeta.size()];
+      logDebug("Mapping " + data.inputRowMeta.size() + " input fields to source columns");
+      String[] fieldNames = data.inputRowMeta.getFieldNames();
+      // Use each input field's name to look up its index in the source row
+      for (int f = 0; f < updateIndexes.length; f++) {
+        String fieldName = fieldNames[f];
+        boolean isKeyField = false;
+        // Check to see if this is a key field (we do not update these)
+        for (int k = 0; k < keyFieldNames.length; k++) {
+          if (fieldName.equals(keyFieldNames[k]))
+            isKeyField = true;
+        }
+        if (isKeyField) {
+          updateIndexes[f] = -1;
+          logDebug("    Skipped (key field) " + fieldName);
+        }
+        else {
+          int sourceIndex = sourceRowMeta.indexOfValue(fieldName);
+          updateIndexes[f] = sourceIndex;
+          logDebug("    Mapped " + fieldName + "(input: " + f + " -> source: " + sourceIndex + ")");
+        }
+      }
+      
+      // For each source row field, identify the associated output stream field
+      outputIndexes = new int[sourceRowMeta.size()];
+      logDebug("Mapping " + sourceRowMeta.size() + " source columns to output fields");
+      fieldNames = sourceRowMeta.getFieldNames();
+      // Use each source field's name to look up its index in the output stream
+      for (int f = 0; f < outputIndexes.length; f++) {
+        String fieldName = fieldNames[f];
+        int outputIndex =  data.outputRowMeta.indexOfValue(fieldName);
+        outputIndexes[f] = outputIndex;
+        logDebug("    Mapped " + fieldName + "(source: " + f + " -> dest: " + outputIndex);
+      }
+      logDebug("Finished building mappings");
+        
+      if (truncateDest) {
+        String fullTableName = destSchema + "." + tableName;
+        String truncateSQL = "TRUNCATE TABLE " + fullTableName;
+        logBasic("Truncating all rows in table " + fullTableName);
+        destDb.execStatement(truncateSQL);
+      }
+      
+      // Done with first-row initialization
+      first = false;
+    }
+    
+    ///// Row processing ////
+
+    rowCount++;
+    logRowlevel("Row: " + rowCount);
+    if (maxRows > 0 && rowCount > maxRows) {
+      logDetailed("Reached max rows");
+      completeProcessing();
+      stopAll();
+      return false;
+    }
+    
+    // Get the keys for this row from the input stream
+    ValueMetaAndData[] keyValues = getKeys(data.inputRowMeta, row, inputKeyIndexes);
+
+    // Reset prepared statements
+    try {
+      selectStatement.clearParameters();
+      deleteStatement.clearParameters();
+    } catch (SQLException se) {
+      throw new KettleException("Failed to clear statement paramters",se);
+    }
+    
+    // Get the record from source    
+    // For each field in the object's key, set a parameter in the SELECT statement
+    setKeyParameters(sourceDbMeta, selectStatement, keyValues);
+    Object[] sourceRow;
+    try {
+      sourceRow = sourceDb.getLookup(selectStatement);
+    }
+    catch (KettleDatabaseException kex) {
+      logError("Failed to retrieve source row: " + kex.getMessage());
+      return true;
+    }
+    if (sourceRow == null) {
+      logBasic("NO SOURCE|" + sourceSchema + "|" + tableName + "|" + destSchema + "|" + tableName + "|" + keyToString(sourceKeyIndexes, row));
+      return true; // Nothing more to do with this row
+    }
+    //logRowlevel("Source Row: " + rowToString(sourceRowMeta, sourceRow));
+
+    // Allocate an output row array
+    Object[] outputRow = RowDataUtil.allocateRowData(data.outputRowMeta.size());
+
+    // For each field in the source row, copy its value to the appropriate output field
+    for (int sourceIndex = 0; sourceIndex < sourceRowMeta.size(); sourceIndex++) {
+      int outputIndex = outputIndexes[sourceIndex];
+// TODO: Figure out how to set output meta
+      ValueMetaInterface sourceValueMeta = sourceRowMeta.getValueMeta(sourceIndex);
+      ValueMetaInterface destValueMeta = sourceValueMeta;
+//      logDebug(sourceValueMeta.getName() + " -> " + destValueMeta.getName() + " | " + "Source value type:" + sourceValueMeta.getTypeDesc() + " | " + "Dest value type:" + destValueMeta.getTypeDesc());
+      
+      Object val = sourceRow[sourceIndex];      
+      outputRow[outputIndex] = convertValue(sourceValueMeta, destValueMeta, val);
+    }
+    
+    // for each field in the input stream, update the corresponding field in the output stream
+    for (int inputIndex = 0; inputIndex < data.inputRowMeta.size(); inputIndex++) {
+      int sourceIndex = updateIndexes[inputIndex];
+      if (sourceIndex >= 0) {
+        int outputIndex = outputIndexes[sourceIndex];
+        Object val = row[inputIndex];
+        if (val instanceof String)
+          if (((String)val).length() == 0) 
+            val = " ";
+        outputRow[outputIndex] = val;
+      }
+    }
+//    logRowlevel("Output Row: " + rowToString(sourceRowMeta, outputRow));
+
+    // Delete matching row from destination (if it exists and deleteDestRows is 'true')
+    if (deleteDestRows) {
+      setKeyParameters(destDbMeta, deleteStatement, keyValues);
+      try {
+        deleteStatement.executeUpdate();
+      } catch (SQLException se) {
+        logError("Failed to delete destination row: " + se.getMessage());
+        throw new KettleException(se.getCause());
+      }
+    }
+    
+    // Insert dest
+    destDb.setValues(sourceRowMeta, outputRow, insertStatement);
+    try {
+      destDb.insertRow(insertStatement,true,true);
+    } catch (KettleDatabaseException kde) {
+      logError("Failed to insert new row with key: " + keyToString(destKeyIndexes, row));
+      return true;
+    }    
+
+    // Send to next step
+// TODO: Figure out how to set output meta properly
+    putRow(data.outputRowMeta, outputRow);
+    
+    StringBuilder logBuilder = new StringBuilder();
+    logBasic("MIGRATED|" + sourceSchema + "|" + tableName + "|" + destSchema + "|" + tableName + "|" + keyToString(destKeyIndexes, outputRow));
+    
+    // Signal that we are ready for more
+    return true;
+  }
+
+  public void prepareStatements() throws Exception {
+    
+    Statement probeStatement = sourceDb.getConnection().createStatement();
+    ResultSet probeSet = probeStatement.executeQuery("SELECT * FROM " + sourceSchema + "." + tableName + " WHERE ROWNUM <= 1");
+
+    logDebug("Retrieving row meta information");
+    sourceRowMeta = sourceDb.getMetaFromRow(null, probeSet.getMetaData()); // getMetaFromRow does not use the provided row (as of PDI 5.1)
+    if (sourceRowMeta == null)
+      logError("Unable to fetch database row meta");
+
+    String insertSQL = destDb.getInsertStatement(destSchema, tableName, sourceRowMeta);
+    insertStatement = destDb.getConnection().prepareStatement(insertSQL);
+    logDetailed("Insert SQL: " + insertSQL);
+    
+    StringBuilder keyClause = new StringBuilder();
+    for (int keyIndex = 0; keyIndex < keyFieldNames.length; keyIndex++) {
+      if (keyIndex > 0)
+        keyClause.append(" AND ");
+      String key = keyFieldNames[keyIndex];
+      keyClause.append(key).append("=?");
+    }
+
+    String selectSQL = "SELECT * FROM " + sourceSchema + "." + tableName + " WHERE " + keyClause.toString();
+    selectStatement = sourceDb.getConnection().prepareStatement(selectSQL);
+    logDetailed("Select SQL: " + selectSQL);
+    String deleteSQL = "DELETE FROM " + destSchema + "." + tableName + " WHERE " + keyClause.toString();
+    deleteStatement = destDb.getConnection().prepareStatement(deleteSQL);
+    logDetailed("Delete SQL: " + deleteSQL);
+  }
+
+  public boolean init(StepMetaInterface stepMetaInterface, StepDataInterface stepDataInterface)
+  {
+    if (parent.initImpl(stepMetaInterface, stepDataInterface)) {
+      String keyFieldString = getVariable("keyFields", "");
+      keyFieldNames = keyFieldString.split(",");
+      tableName = getVariable("tableName", "");
+      sourceSchema = getVariable("sourceSchema", "");
+      destSchema = getVariable("destSchema", "");
+      
+      logDetailed("Initializing for table " + sourceSchema + "." + tableName + " - Keys: " + keyFieldString);
+
+      String maxRowsString = getParameter("maxRows");
+      if (maxRowsString != null)
+        maxRows = Integer.parseInt(maxRowsString);
+      else
+        maxRows = 0;
+      logBasic("Setting 'Max Rows' to: " + maxRows);
+      
+      String truncDestString = getParameter("truncateDest");
+      if (truncDestString != null)
+        truncateDest = Boolean.parseBoolean(truncDestString);
+      else
+        truncateDest = false;
+      logBasic("Setting 'Truncate Dest' to : " + truncateDest);
+
+      if (truncateDest) {
+        deleteDestRows = false;
+        logDetailed("Forcing 'Delete Dest Rows' to : false ('Truncate Dest' is true)");
+      }
+      else {
+        String deleteDestString = getParameter("deleteDestRows");
+        if (deleteDestString != null)
+          deleteDestRows = Boolean.parseBoolean(deleteDestString);
+        else
+          deleteDestRows = false;
+        logBasic("Setting 'Delete Dest Rows' to : " + deleteDestRows);
+      }
+
+      // Connect to the source and destination databases
+      String sourceConn = getParameter("sourceConn");
+      String destConn = getParameter("destConn");
+      try {
+        sourceDb = new Database(this.parent, getTransMeta().findDatabase(sourceConn));
+        sourceDb.shareVariablesWith(this.parent);
+        sourceDb.connect();
+        sourceDbMeta = sourceDb.getDatabaseMeta();
+        logDetailed("Connected to source database [" + sourceConn + "]");
+
+        destDb = new Database(this.parent, getTransMeta().findDatabase(destConn));
+        destDb.shareVariablesWith(this.parent);
+        destDb.connect();
+        destDbMeta = destDb.getDatabaseMeta();
+        destDb.setCommit(1000);
+        logDetailed("Connected to destination database [" + destConn + "]");
+      }
+      catch(Exception e) {
+        logError("Error connecting to databases" + e.getMessage());
+        setErrors(1);
+        stopAll();
+        return false;
+      }
+      try {
+        prepareStatements();
+      }
+      catch(Exception e) {
+        logError("Error creating statements" + e.getMessage());
+        setErrors(1);
+        stopAll();
+        return false;
+      }
+      // Configure output fields
+// TODO: Figure out how to set properly output meta
+      data.outputRowMeta = sourceRowMeta.clone();
+
+      return true;      
+    }
+
+    // Something went wrong...
+    setErrors(1);
+    stopAll();
+    return false;
+  }
+
+  public void dispose(StepMetaInterface smi, StepDataInterface sdi) {
+      if (sourceDb != null) 
+        sourceDb.disconnect();
+      if (destDb != null) 
+        destDb.disconnect();
+      parent.disposeImpl(smi, sdi);
+  }
+
+  public void stopRunning(StepMetaInterface stepMetaInterface, StepDataInterface stepDataInterface) throws KettleException {
+    stop = true;
+    parent.stopRunningImpl(stepMetaInterface, stepDataInterface);
+  }
+  
+  private void completeProcessing() throws KettleDatabaseException {
+    setOutputDone();
+    sourceDb.disconnect();
+    logDebug("Executing remaining batch and committing remaining rows");
+    destDb.emptyAndCommit(insertStatement,true);
+    destDb.disconnect();
+  }
+  
+  private ValueMetaAndData[] getKeys(RowMetaInterface rowMeta, Object[] row, int[] keyIndexes) {
+
+    ValueMetaAndData[] keyValues = new ValueMetaAndData[keyIndexes.length];
+    for (int k = 0; k < keyIndexes.length; k++) {
+      int keyIndex = keyIndexes[k];
+      if (keyIndex >= 0) {
+        Object paramValue = row[keyIndex];
+        logRowlevel("Found key field [" + keyFieldNames[k] + "] at index " + keyIndex + " with value [" + paramValue.toString() + "]");
+        keyValues[k] = new ValueMetaAndData(rowMeta.getValueMeta(keyIndex), paramValue);
+      }
+    }
+    return keyValues;
+  }
+
+  private String keyToString(int[] keyIndexes, Object[] row) {
+    StringBuilder sb = new StringBuilder();
+    for (int k = 0; k < keyFieldNames.length; k++) {
+      int keyIndex = keyIndexes[k];
+      String keyString = "";
+      if (keyIndex >= 0) {
+        // Get the parameter value
+        Object paramValue = row[keyIndex];
+        keyString = "[" + keyFieldNames[keyIndex] + " = " + paramValue.toString() + "] ";
+      }
+      else
+        keyString = "[" + keyFieldNames[keyIndex] + " = (not found)] ";
+      sb.append(keyString);
+    }
+    return sb.toString();
+  }
+
+  private void setKeyParameters(DatabaseMeta dbMeta, PreparedStatement stmt, ValueMetaAndData[] keys) throws KettleException {
+    // For each key field, set the associated parameter value
+    for (int k = 0; k < keys.length; k++) {
+//      logRowlevel("Setting key field " + keyFieldNames[k] + " to " + keyValues[k].toString());
+      ValueMetaAndData key = keys[k];
+      key.getValueMeta().setPreparedStatementValue(dbMeta, stmt, k+1, key.getValueData());
+    }
+  }
+  
+  private String rowToString(RowMetaInterface rowMeta, Object[] row) {
+    StringBuilder sb = new StringBuilder();
+    if (row == null)
+      return "";
+    for (int i = 0; i < rowMeta.size(); i++) {
+      if (row[i] == null)
+        sb.append("(null),");
+      else
+        sb.append(row[i].toString()).append(",");
+    }
+    return sb.toString();
+  }
+    
+  private Object convertValue(ValueMetaInterface sourceMeta, ValueMetaInterface destMeta, Object val) throws KettleException {
+    
+    Object retVal = val;
+    if (retVal == null){
+      if (destMeta.getTypeDesc().equals("String"))
+        retVal = " ";
+    }
+    else if (retVal instanceof String) {
+      if (((String)retVal).isEmpty())
+        retVal = " ";
+    }
+    else if (val instanceof Timestamp)
+      retVal = val;
+    else
+      retVal = destMeta.convertData(sourceMeta, val);
+    
+    return retVal;
+  }    
+]]></class_source>
+        </definition>
+    </definitions>
+    <fields>
+    </fields><clear_result_fields>N</clear_result_fields>
+<info_steps></info_steps><target_steps></target_steps><usage_parameters><usage_parameter><parameter_tag>sourceConn</parameter_tag>
+<parameter_value>CODA-SOURCE</parameter_value>
+<parameter_description/>
+</usage_parameter><usage_parameter><parameter_tag>destConn</parameter_tag>
+<parameter_value>CODA-DEST</parameter_value>
+<parameter_description/>
+</usage_parameter><usage_parameter><parameter_tag>maxRows</parameter_tag>
+<parameter_value>&#x24;&#x7b;maxRows&#x7d;</parameter_value>
+<parameter_description/>
+</usage_parameter><usage_parameter><parameter_tag>deleteDestRows</parameter_tag>
+<parameter_value>&#x24;&#x7b;deleteDestRows&#x7d;</parameter_value>
+<parameter_description/>
+</usage_parameter><usage_parameter><parameter_tag>truncateDest</parameter_tag>
+<parameter_value>&#x24;&#x7b;truncateDest&#x7d;</parameter_value>
+<parameter_description/>
+</usage_parameter></usage_parameters>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>453</xloc>
+      <yloc>87</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step_error_handling>
+  </step_error_handling>
+   <slave-step-copy-partition-distribution>
+</slave-step-copy-partition-distribution>
+   <slave_transformation>N</slave_transformation>
+
+</transformation>

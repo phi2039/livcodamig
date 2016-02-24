@@ -142,14 +142,14 @@
     <access>Native</access>
     <database>coda2dev</database>
     <port>11521</port>
-    <username>codauser</username>
+    <username>codamig</username>
     <password>Encrypted 2be98afc86aa7f2e4cb1aa174df96aacc</password>
     <servername/>
     <data_tablespace>codamigtbl</data_tablespace>
     <index_tablespace>codamigidx</index_tablespace>
     <attributes>
       <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>oracle.jdbc.OracleDriver</attribute></attribute>
-      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;oracle&#x3a;thin&#x3a;&#x40;10.253.133.146&#x3a;1521&#x3a;codadev</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;oracle&#x3a;thin&#x3a;&#x40;localhost&#x3a;21523&#x3a;coda</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
@@ -188,8 +188,8 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Manifest File</from><to>Modified Db Copy</to><enabled>Y</enabled> </hop>
-  <hop> <from>Modified Db Copy</from><to>Select values</to><enabled>Y</enabled> </hop>
+  <hop> <from>Manifest File</from><to>Filter Method</to><enabled>Y</enabled> </hop>
+  <hop> <from>Filter Method</from><to>Select values</to><enabled>Y</enabled> </hop>
   <hop> <from>Select values</from><to>Row Normaliser</to><enabled>Y</enabled> </hop>
   <hop> <from>Select values 2</from><to>Get Variables</to><enabled>Y</enabled> </hop>
   <hop> <from>Get Variables</from><to>Build File Names</to><enabled>Y</enabled> </hop>
@@ -240,6 +240,47 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>1371</xloc>
       <yloc>149</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Filter Method</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Select values</send_true_to>
+<send_false_to/>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <conditions>
+  <condition>
+   <negated>N</negated>
+   <leftvalue>Migration Method</leftvalue>
+   <function>&#x3d;</function>
+   <rightvalue/>
+   <value><name>constant</name><type>String</type><text>Modified DB Copy</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
+  <condition>
+   <negated>N</negated>
+   <operator>OR</operator>
+   <leftvalue>Migration Method</leftvalue>
+   <function>&#x3d;</function>
+   <rightvalue/>
+   <value><name>constant</name><type>String</type><text>DB Copy</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
+  </conditions>
+ </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>212</xloc>
+      <yloc>150</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -526,47 +567,6 @@
     </step>
 
   <step>
-    <name>Modified Db Copy</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<send_true_to>Select values</send_true_to>
-<send_false_to/>
-    <compare>
-<condition>
- <negated>N</negated>
- <conditions>
-  <condition>
-   <negated>N</negated>
-   <leftvalue>Migration Method</leftvalue>
-   <function>&#x3d;</function>
-   <rightvalue/>
-   <value><name>constant</name><type>String</type><text>Modified DB Copy</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
-  <condition>
-   <negated>N</negated>
-   <operator>OR</operator>
-   <leftvalue>Migration Method</leftvalue>
-   <function>&#x3d;</function>
-   <rightvalue/>
-   <value><name>constant</name><type>String</type><text>DB Copy</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
-  </conditions>
- </condition>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>209</xloc>
-      <yloc>149</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
     <name>Row Normaliser</name>
     <type>Normaliser</type>
     <description/>
@@ -726,6 +726,13 @@
 <value_precision>-1</value_precision>
 <replace_field/>
 </formula>
+       <formula><field_name>globalScope</field_name>
+<formula_string>IF&#x28;ISERR&#x28;FIND&#x28;&#x22;CMPCODE&#x22;&#x3b;&#x5b;keyFields&#x5d;&#x29;&#x29;&#x3b;&#x22;true&#x22;&#x3b;&#x22;false&#x22;&#x29;</formula_string>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field/>
+</formula>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>1084</xloc>
@@ -794,6 +801,9 @@
         </field>
       <field>
         <name>migrationType</name>
+        </field>
+      <field>
+        <name>globalScope</name>
         </field>
       </fields>
      <cluster_schema/>

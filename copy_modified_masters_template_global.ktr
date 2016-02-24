@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>copy_modified_masters_template</name>
+    <name>copy_modified_masters_template_global</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -132,14 +132,14 @@
     <access>Native</access>
     <database>coda2dev</database>
     <port>11521</port>
-    <username>codauser</username>
+    <username>codamig</username>
     <password>Encrypted 2be98afc86aa7f2e4cb1aa174df96aacc</password>
     <servername/>
     <data_tablespace>codamigtbl</data_tablespace>
     <index_tablespace>codamigidx</index_tablespace>
     <attributes>
       <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>oracle.jdbc.OracleDriver</attribute></attribute>
-      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;oracle&#x3a;thin&#x3a;&#x40;10.253.133.146&#x3a;1521&#x3a;codadev</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;oracle&#x3a;thin&#x3a;&#x40;localhost&#x3a;21523&#x3a;coda</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
@@ -484,7 +484,7 @@ import org.pentaho.di.trans.steps.userdefinedjavaclass.*;
       try {
         deleteStatement.executeUpdate();
       } catch (SQLException se) {
-        logError("Failed to delete destination row");
+        logError("Failed to delete destination row: " + se.getMessage());
         throw new KettleException(se.getCause());
       }
     }
@@ -534,7 +534,7 @@ import org.pentaho.di.trans.steps.userdefinedjavaclass.*;
     String selectSQL = "SELECT * FROM " + sourceSchema + "." + tableName + " WHERE " + keyClause.toString();
     selectStatement = sourceDb.getConnection().prepareStatement(selectSQL);
     logDetailed("Select SQL: " + selectSQL);
-    String deleteSQL = "DELETE FROM " + sourceSchema + "." + tableName + " WHERE " + keyClause.toString();
+    String deleteSQL = "DELETE FROM " + destSchema + "." + tableName + " WHERE " + keyClause.toString();
     deleteStatement = destDb.getConnection().prepareStatement(deleteSQL);
     logDetailed("Delete SQL: " + deleteSQL);
   }

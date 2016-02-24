@@ -234,3 +234,5 @@ set_env.bat
 *.db
 
 .kettle/.spoonrc
+
+masters/*

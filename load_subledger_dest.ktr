@@ -479,7 +479,7 @@
            <schema_name/>
            </partitioning>
     <connection>CODA-SOURCE</connection>
-    <sql>SELECT E.CODE&#xd;&#xa;FROM OAS_ELEMENT E&#xd;&#xa;JOIN OAS_BALANCE B ON B.EL6&#x3d;E.CODE&#xd;&#xa;WHERE E.ELMLEVEL &#x3d; 6&#xd;&#xa;AND E.CMPCODE NOT IN &#x28;&#x27;PROPHET&#x27;,&#x27;PROCAD&#x27;,&#x27;ZBPCAD&#x27;,&#x27;ZBPUSD&#x27;,&#x27;TESTC310&#x27;,&#x27;TESTU125&#x27;,&#x27;DEVC310&#x27;,&#x27;DEVU125&#x27;,&#x27;MIGRATEU125&#x27;,&#x27;MIGRATEC310&#x27;,&#x27;MODELUSD&#x27;,&#x27;MODELCAD&#x27;&#x29;&#xd;&#xa;AND E.DELDATE IS NULL&#xd;&#xa;GROUP BY E.CODE&#xd;&#xa;--HAVING SUM&#x28;B.FULL_VALUE&#x29; &#x21;&#x3d;0</sql>
+    <sql>SELECT E.CODE&#xd;&#xa;FROM OAS_ELEMENT E&#xd;&#xa;JOIN OAS_BALANCE B ON B.EL6&#x3d;E.CODE&#xd;&#xa;WHERE E.ELMLEVEL &#x3d; 6&#xd;&#xa;AND E.CMPCODE NOT IN &#x28;&#x27;PROPHET&#x27;,&#x27;PROCAD&#x27;,&#x27;ZBPCAD&#x27;,&#x27;ZBPUSD&#x27;,&#x27;TESTC310&#x27;,&#x27;TESTU125&#x27;,&#x27;DEVC310&#x27;,&#x27;DEVU125&#x27;,&#x27;MIGRATEU125&#x27;,&#x27;MIGRATEC310&#x27;,&#x27;MODELUSD&#x27;,&#x27;MODELCAD&#x27;&#x29;&#xd;&#xa;AND E.DELDATE IS NULL&#xd;&#xa;AND &#x28;B.CREDIT_VALUE &#x21;&#x3d; 0 OR B.DEBIT_VALUE &#x21;&#x3d; 0&#x29;&#xd;&#xa;AND B.YR &#x3e;&#x3d;2015&#xd;&#xa;GROUP BY E.CODE</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -523,6 +523,13 @@
    <function>&#x3d;</function>
    <rightvalue/>
    <value><name>constant</name><type>String</type><text>CER</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
+  <condition>
+   <negated>N</negated>
+   <operator>AND NOT</operator>
+   <leftvalue>CODE</leftvalue>
+   <function>&#x3d;</function>
+   <rightvalue/>
+   <value><name>constant</name><type>String</type><text>CAD</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
   </conditions>
  </condition>
     </compare>

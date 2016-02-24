@@ -1,39 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>copy_masters_super</name>
+    <name>validate_element_addresses</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
-    <trans_status>0</trans_status>
     <directory>&#x2f;</directory>
     <parameters>
-        <parameter>
-            <name>deleteDestRows</name>
-            <default_value>true</default_value>
-            <description/>
-        </parameter>
-        <parameter>
-            <name>destSchema</name>
-            <default_value>CODAUSER</default_value>
-            <description/>
-        </parameter>
-        <parameter>
-            <name>globalScope</name>
-            <default_value>false</default_value>
-            <description/>
-        </parameter>
-        <parameter>
-            <name>maxRows</name>
-            <default_value>0</default_value>
-            <description/>
-        </parameter>
-        <parameter>
-            <name>sourceSchema</name>
-            <default_value>CODAUSER</default_value>
-            <description/>
-        </parameter>
     </parameters>
     <log>
 <trans-log-table><connection/>
@@ -92,9 +66,9 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2015&#x2f;11&#x2f;19 12&#x3a;47&#x3a;55.619</created_date>
+  <created_date>2015&#x2f;12&#x2f;16 13&#x3a;15&#x3a;22.687</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2015&#x2f;11&#x2f;19 12&#x3a;47&#x3a;55.619</modified_date>
+  <modified_date>2015&#x2f;12&#x2f;16 13&#x3a;15&#x3a;22.687</modified_date>
   </info>
   <notepads>
   </notepads>
@@ -157,14 +131,14 @@
     <access>Native</access>
     <database>coda2dev</database>
     <port>11521</port>
-    <username>codamig</username>
+    <username>codauser</username>
     <password>Encrypted 2be98afc86aa7f2e4cb1aa174df96aacc</password>
     <servername/>
     <data_tablespace>codamigtbl</data_tablespace>
     <index_tablespace>codamigidx</index_tablespace>
     <attributes>
       <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>oracle.jdbc.OracleDriver</attribute></attribute>
-      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;oracle&#x3a;thin&#x3a;&#x40;localhost&#x3a;21523&#x3a;coda</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;oracle&#x3a;thin&#x3a;&#x40;10.253.133.146&#x3a;1521&#x3a;codadev</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
@@ -203,16 +177,14 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Get rows from result</from><to>Get Variables</to><enabled>Y</enabled> </hop>
-  <hop> <from>Get Variables</from><to>Migration Type</to><enabled>Y</enabled> </hop>
-  <hop> <from>Migration Type</from><to>DB Copy &#x28;All Local&#x29;</to><enabled>Y</enabled> </hop>
-  <hop> <from>Migration Type</from><to>Unknown Type</to><enabled>Y</enabled> </hop>
-  <hop> <from>Migration Type</from><to>Set Template Name</to><enabled>Y</enabled> </hop>
-  <hop> <from>Set Template Name</from><to>Modified DB Copy</to><enabled>Y</enabled> </hop>
+  <hop> <from>OAS_ELMADDRLIST</from><to>Mail Validator</to><enabled>Y</enabled> </hop>
+  <hop> <from>Invalid Email</from><to>Text file output</to><enabled>Y</enabled> </hop>
+  <hop> <from>Mail Validator</from><to>Valid Email</to><enabled>Y</enabled> </hop>
+  <hop> <from>Valid Email</from><to>Invalid Email</to><enabled>Y</enabled> </hop>
   </order>
   <step>
-    <name>DB Copy &#x28;All Local&#x29;</name>
-    <type>TransExecutor</type>
+    <name>OAS_ELMADDRLIST</name>
+    <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -221,51 +193,24 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <specification_method>filename</specification_method>
-    <trans_object_id/>
-    <trans_name/>
-    <filename>&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;copy_existing_masters_local.ktr</filename>
-    <directory_path/>
-    <group_size>1</group_size>
-    <group_field/>
-    <group_time/>
-          <parameters>       <variablemapping><variable>destSchema</variable><field>destSchema</field><input/></variablemapping>
-       <variablemapping><variable>maxRows</variable><field>maxRows</field><input/></variablemapping>
-       <variablemapping><variable>sourceSchema</variable><field>sourceSchema</field><input/></variablemapping>
-       <variablemapping><variable>tableName</variable><field>tableName</field><input/></variablemapping>
-       <variablemapping><variable>globalScope</variable><field>globalScope</field><input/></variablemapping>
-    <inherit_all_vars>N</inherit_all_vars>
-    </parameters>
-    <execution_result_target_step/>
-    <execution_time_field>ExecutionTime</execution_time_field>
-    <execution_result_field>ExecutionResult</execution_result_field>
-    <execution_errors_field>ExecutionNrErrors</execution_errors_field>
-    <execution_lines_read_field>ExecutionLinesRead</execution_lines_read_field>
-    <execution_lines_written_field>ExecutionLinesWritten</execution_lines_written_field>
-    <execution_lines_input_field>ExecutionLinesInput</execution_lines_input_field>
-    <execution_lines_output_field>ExecutionLinesOutput</execution_lines_output_field>
-    <execution_lines_rejected_field>ExecutionLinesRejected</execution_lines_rejected_field>
-    <execution_lines_updated_field>ExecutionLinesUpdated</execution_lines_updated_field>
-    <execution_lines_deleted_field>ExecutionLinesDeleted</execution_lines_deleted_field>
-    <execution_files_retrieved_field>ExecutionFilesRetrieved</execution_files_retrieved_field>
-    <execution_exit_status_field>ExecutionExitStatus</execution_exit_status_field>
-    <execution_log_text_field>ExecutionLogText</execution_log_text_field>
-    <execution_log_channelid_field>ExecutionLogChannelId</execution_log_channelid_field>
-    <result_rows_target_step/>
-    <result_files_target_step/>
-    <result_files_file_name_field>FileName</result_files_file_name_field>
-    <executors_output_step/>
+    <connection>CODA-SOURCE</connection>
+    <sql>SELECT A.CMPCODE,A.ELMCODE,E.NAME,A.EMAILADDR &#xd;&#xa;FROM OAS_ELMADDRLIST A JOIN OAS_ELEMENT E ON E.CMPCODE&#x3d;A.CMPCODE AND E.ELMLEVEL&#x3d;A.ELMLEVEL AND E.CODE&#x3d;A.ELMCODE&#xd;&#xa;WHERE E.CMPCODE NOT IN &#x28;&#x27;PROPHET&#x27;,&#x27;PROCAD&#x27;,&#x27;ZBPCAD&#x27;,&#x27;ZBPUSD&#x27;,&#x27;TESTC310&#x27;,&#x27;TESTU125&#x27;,&#x27;DEVC310&#x27;,&#x27;DEVU125&#x27;,&#x27;MIGRATEU125&#x27;,&#x27;MIGRATEC310&#x27;,&#x27;MODELUSD&#x27;,&#x27;MODELCAD&#x27;&#x29; &#xd;&#xa;AND A.EMAILADDR &#x21;&#x3d; &#x27; &#x27;&#xd;&#xa;</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>672</xloc>
-      <yloc>210</yloc>
+      <xloc>195</xloc>
+      <yloc>93</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Get Variables</name>
-    <type>GetVariable</type>
+    <name>Mail Validator</name>
+    <type>MailValidator</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -274,223 +219,28 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <fields>
-      <field>
-        <name>deleteDestRows</name>
-        <variable>&#x24;&#x7b;deleteDestRows&#x7d;</variable>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>destSchema</name>
-        <variable>&#x24;&#x7b;destSchema&#x7d;</variable>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>maxRows</name>
-        <variable>&#x24;&#x7b;maxRows&#x7d;</variable>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>sourceSchema</name>
-        <variable>&#x24;&#x7b;sourceSchema&#x7d;</variable>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-    </fields>
+    <emailfield>EMAILADDR</emailfield>
+    <resultfieldname>validEmail</resultfieldname>
+    <ResultAsString>N</ResultAsString>
+    <smtpCheck>N</smtpCheck>
+    <emailValideMsg>email address is valid</emailValideMsg>
+    <emailNotValideMsg>email address is not valid</emailNotValideMsg>
+    <errorsFieldName>Error message</errorsFieldName>
+    <timeout>0</timeout>
+    <defaultSMTP/>
+    <emailSender>noreply&#x40;domain.com</emailSender>
+    <defaultSMTPField/>
+    <isdynamicDefaultSMTP>N</isdynamicDefaultSMTP>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>222</xloc>
-      <yloc>89</yloc>
+      <xloc>396</xloc>
+      <yloc>97</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Get rows from result</name>
-    <type>RowsFromResult</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>      <field>        <name>tableName</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        </field>      <field>        <name>keyFields</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        </field>      <field>        <name>fileName</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        </field>      <field>        <name>truncateDest</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        </field>      <field>        <name>migrationType</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        </field>      <field>        <name>globalScope</name>
-        <type>Boolean</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        </field>      </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>87</xloc>
-      <yloc>88</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Migration Type</name>
-    <type>SwitchCase</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<fieldname>migrationType</fieldname>
-<use_contains>N</use_contains>
-<case_value_type>String</case_value_type>
-<case_value_format/>
-<case_value_decimal/>
-<case_value_group/>
-<default_target_step>Unknown Type</default_target_step>
-<cases><case><value>Modified DB Copy</value>
-<target_step>Set Template Name</target_step>
-</case><case><value>DB Copy</value>
-<target_step>DB Copy &#x28;All Local&#x29;</target_step>
-</case></cases>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>342</xloc>
-      <yloc>88</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Modified DB Copy</name>
-    <type>TransExecutor</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <specification_method>filename</specification_method>
-    <trans_object_id/>
-    <trans_name/>
-    <filename>&#x24;&#x7b;KETTLE_HOME&#x7d;&#x5c;copy_modified_masters.ktr</filename>
-    <directory_path/>
-    <group_size>1</group_size>
-    <group_field/>
-    <group_time/>
-          <parameters>       <variablemapping><variable>deleteDestRows</variable><field>deleteDestRows</field><input/></variablemapping>
-       <variablemapping><variable>destSchema</variable><field>destSchema</field><input/></variablemapping>
-       <variablemapping><variable>fileName</variable><field>fileName</field><input/></variablemapping>
-       <variablemapping><variable>keyFields</variable><field>keyFields</field><input/></variablemapping>
-       <variablemapping><variable>maxRows</variable><field>maxRows</field><input/></variablemapping>
-       <variablemapping><variable>sourceSchema</variable><field>sourceSchema</field><input/></variablemapping>
-       <variablemapping><variable>tableName</variable><field>tableName</field><input/></variablemapping>
-       <variablemapping><variable>truncateDest</variable><field>truncateDest</field><input/></variablemapping>
-       <variablemapping><variable>globalScope</variable><field>globalScope</field><input/></variablemapping>
-       <variablemapping><variable>templateFile</variable><field>templateFile</field><input/></variablemapping>
-    <inherit_all_vars>N</inherit_all_vars>
-    </parameters>
-    <execution_result_target_step/>
-    <execution_time_field>ExecutionTime</execution_time_field>
-    <execution_result_field>ExecutionResult</execution_result_field>
-    <execution_errors_field>ExecutionNrErrors</execution_errors_field>
-    <execution_lines_read_field>ExecutionLinesRead</execution_lines_read_field>
-    <execution_lines_written_field>ExecutionLinesWritten</execution_lines_written_field>
-    <execution_lines_input_field>ExecutionLinesInput</execution_lines_input_field>
-    <execution_lines_output_field>ExecutionLinesOutput</execution_lines_output_field>
-    <execution_lines_rejected_field>ExecutionLinesRejected</execution_lines_rejected_field>
-    <execution_lines_updated_field>ExecutionLinesUpdated</execution_lines_updated_field>
-    <execution_lines_deleted_field>ExecutionLinesDeleted</execution_lines_deleted_field>
-    <execution_files_retrieved_field>ExecutionFilesRetrieved</execution_files_retrieved_field>
-    <execution_exit_status_field>ExecutionExitStatus</execution_exit_status_field>
-    <execution_log_text_field>ExecutionLogText</execution_log_text_field>
-    <execution_log_channelid_field>ExecutionLogChannelId</execution_log_channelid_field>
-    <result_rows_target_step/>
-    <result_files_target_step/>
-    <result_files_file_name_field>FileName</result_files_file_name_field>
-    <executors_output_step/>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>672</xloc>
-      <yloc>90</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Set Template Name</name>
-    <type>Formula</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-       <formula><field_name>templateFile</field_name>
-<formula_string>IF&#x28;&#x5b;globalScope&#x5d;&#x3b; &#x22;copy_modified_masters_template_global.ktr&#x22;&#x3b;&#x22;copy_modified_masters_template_local.ktr&#x22;&#x29;</formula_string>
-<value_type>String</value_type>
-<value_length>-1</value_length>
-<value_precision>-1</value_precision>
-<replace_field/>
-</formula>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>521</xloc>
-      <yloc>89</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Unknown Type</name>
+    <name>Invalid Email</name>
     <type>Dummy</type>
     <description/>
     <distribute>Y</distribute>
@@ -502,8 +252,137 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>572</xloc>
-      <yloc>322</yloc>
+      <xloc>730</xloc>
+      <yloc>200</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Text file output</name>
+    <type>TextFileOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <separator>,</separator>
+    <enclosure>&#x22;</enclosure>
+    <enclosure_forced>N</enclosure_forced>
+    <enclosure_fix_disabled>N</enclosure_fix_disabled>
+    <header>Y</header>
+    <footer>N</footer>
+    <format>DOS</format>
+    <compression>None</compression>
+    <encoding/>
+    <endedLine/>
+    <fileNameInField>N</fileNameInField>
+    <fileNameField/>
+    <create_parent_folder>Y</create_parent_folder>
+    <file>
+      <name>C&#x3a;&#x5c;temp&#x5c;invalid_emails</name>
+      <is_command>N</is_command>
+      <servlet_output>N</servlet_output>
+      <do_not_open_new_file_init>N</do_not_open_new_file_init>
+      <extention>txt</extention>
+      <append>N</append>
+      <split>N</split>
+      <haspartno>N</haspartno>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format/>
+      <add_to_result_filenames>Y</add_to_result_filenames>
+      <pad>N</pad>
+      <fast_dump>N</fast_dump>
+      <splitevery>0</splitevery>
+    </file>
+    <fields>
+      <field>
+        <name>CMPCODE</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ELMCODE</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>NAME</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>EMAILADDR</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>875</xloc>
+      <yloc>123</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Valid Email</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to/>
+<send_false_to>Invalid Email</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>validEmail</leftvalue>
+ <function>&#x3d;</function>
+ <rightvalue/>
+ <value><name>constant</name><type>Boolean</type><text>Y</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>564</xloc>
+      <yloc>103</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

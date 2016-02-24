@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>copy_existing_masters</name>
+    <name>find_orphaned_opening_balances</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -9,26 +9,6 @@
     <trans_status>0</trans_status>
     <directory>&#x2f;</directory>
     <parameters>
-        <parameter>
-            <name>destSchema</name>
-            <default_value>CODAUSER</default_value>
-            <description/>
-        </parameter>
-        <parameter>
-            <name>maxRows</name>
-            <default_value>0</default_value>
-            <description/>
-        </parameter>
-        <parameter>
-            <name>sourceSchema</name>
-            <default_value>CODAUSER</default_value>
-            <description/>
-        </parameter>
-        <parameter>
-            <name>tableName</name>
-            <default_value/>
-            <description/>
-        </parameter>
     </parameters>
     <log>
 <trans-log-table><connection/>
@@ -87,9 +67,9 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2015&#x2f;11&#x2f;19 15&#x3a;25&#x3a;32.393</created_date>
+  <created_date>2015&#x2f;08&#x2f;04 14&#x3a;02&#x3a;32.956</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2015&#x2f;11&#x2f;19 15&#x3a;25&#x3a;32.393</modified_date>
+  <modified_date>2015&#x2f;08&#x2f;04 14&#x3a;02&#x3a;32.956</modified_date>
   </info>
   <notepads>
   </notepads>
@@ -198,10 +178,15 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Table input</from><to>Table output</to><enabled>Y</enabled> </hop>
+  <hop> <from>Lookup Dest</from><to>Known Dest</to><enabled>Y</enabled> </hop>
+  <hop> <from>Lookup Element Name</from><to>UNMAPPED_ELEMENT_ERR</to><enabled>Y</enabled> </hop>
+  <hop> <from>Known Dest</from><to>Select values</to><enabled>Y</enabled> </hop>
+  <hop> <from>Select values</from><to>Unknown Dest</to><enabled>Y</enabled> </hop>
+  <hop> <from>Unknown Dest</from><to>Lookup Element Name</to><enabled>Y</enabled> </hop>
+  <hop> <from>Known Dest</from><to>MAPPED_BALANCE_CHECK_LOG</to><enabled>Y</enabled> </hop>
   </order>
   <step>
-    <name>Table input</name>
+    <name>Elements with balances</name>
     <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -211,23 +196,160 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>CODA-SOURCE</connection>
-    <sql>SELECT &#x2a; FROM &#x24;&#x7b;sourceSchema&#x7d;.&#x24;&#x7b;tableName&#x7d;</sql>
-    <limit>&#x24;&#x7b;maxRows&#x7d;</limit>
+    <connection>STAGING</connection>
+    <sql>select cmpcode, 1 as elmlevel, el1 as code from open_mig.staged_balances&#xd;&#xa;where &#x28;debit_value &#x21;&#x3d; 0 or credit_value &#x21;&#x3d; 0&#x29; and yr &#x3d; 2015 and balcode &#x3d; &#x27;ACTUAL&#x27; and repbasis &#x3d; 0 group by cmpcode, el1, 1&#xd;&#xa;union&#xd;&#xa;select cmpcode, 3 as elmlevel, el3 as code from open_mig.staged_balances&#xd;&#xa;where &#x28;debit_value &#x21;&#x3d; 0 or credit_value &#x21;&#x3d; 0&#x29; and yr &#x3d; 2015 and balcode &#x3d; &#x27;ACTUAL&#x27; and repbasis &#x3d; 0 group by cmpcode, el3, 3&#xd;&#xa;union&#xd;&#xa;select cmpcode, 4 as elmlevel, el4 as code from open_mig.staged_balances&#xd;&#xa;where &#x28;debit_value &#x21;&#x3d; 0 or credit_value &#x21;&#x3d; 0&#x29; and yr &#x3d; 2015 and balcode &#x3d; &#x27;ACTUAL&#x27; and repbasis &#x3d; 0 group by cmpcode, el4, 4&#xd;&#xa;union&#xd;&#xa;select cmpcode, 5 as elmlevel, el5 as code from open_mig.staged_balances&#xd;&#xa;where &#x28;debit_value &#x21;&#x3d; 0 or credit_value &#x21;&#x3d; 0&#x29; and yr &#x3d; 2015 and balcode &#x3d; &#x27;ACTUAL&#x27; and repbasis &#x3d; 0 group by cmpcode, el5, 5&#xd;&#xa;union&#xd;&#xa;select cmpcode, 6 as elmlevel, el6 as code from open_mig.staged_balances&#xd;&#xa;where &#x28;debit_value &#x21;&#x3d; 0 or credit_value &#x21;&#x3d; 0&#x29; and yr &#x3d; 2015 and balcode &#x3d; &#x27;ACTUAL&#x27; and repbasis &#x3d; 0 group by cmpcode, el6, 6</sql>
+    <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
-    <variables_active>Y</variables_active>
+    <variables_active>N</variables_active>
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>205</xloc>
-      <yloc>92</yloc>
+      <xloc>67</xloc>
+      <yloc>136</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Table output</name>
+    <name>Known Dest</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>MAPPED_BALANCE_CHECK_LOG</send_true_to>
+<send_false_to>Select values</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>CURCODE_DEST</leftvalue>
+ <function>IS NOT NULL</function>
+ <rightvalue/>
+ <value><name>constant</name><type>String</type><text>TRUE</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>378</xloc>
+      <yloc>134</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Lookup Dest</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>STAGING</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema>STAGING</schema>
+      <table>ELEMENT_LOAD_DEF</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>CMPCODE_TO</name>
+        <field>CMPCODE_DEST</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>ELMLEVEL</name>
+        <field>ELMLEVEL_DEST</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>ELMCODE_TO</name>
+        <field>ELMCODE_DEST</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>CURCODE_DEST</name>
+        <rename>CURCODE_DEST</rename>
+        <default/>
+        <type>String</type>
+      </value>
+    </lookup>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>212</xloc>
+      <yloc>136</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Lookup Element Name</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>CODA-SOURCE</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema/>
+      <table>OAS_ELEMENT</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>CMPCODE</name>
+        <field>CMPCODE</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>ELMLEVEL</name>
+        <field>ELMLEVEL</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>CODE</name>
+        <field>CODE</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>NAME</name>
+        <rename>NAME</rename>
+        <default/>
+        <type>String</type>
+      </value>
+    </lookup>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>212</xloc>
+      <yloc>321</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>MAPPED_BALANCE_CHECK_LOG</name>
     <type>TableOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -237,14 +359,14 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>CODA-DEST</connection>
-    <schema>&#x24;&#x7b;destSchema&#x7d;</schema>
-    <table>&#x24;&#x7b;tableName&#x7d;</table>
+    <connection>STAGING</connection>
+    <schema>STAGING</schema>
+    <table>MAPPED_BALANCE_CHECK_LOG</table>
     <commit>1000</commit>
     <truncate>Y</truncate>
     <ignore_errors>N</ignore_errors>
     <use_batch>Y</use_batch>
-    <specify_fields>N</specify_fields>
+    <specify_fields>Y</specify_fields>
     <partitioning_enabled>N</partitioning_enabled>
     <partitioning_field/>
     <partitioning_daily>N</partitioning_daily>
@@ -255,11 +377,159 @@
     <return_keys>N</return_keys>
     <return_field/>
     <fields>
+        <field>
+          <column_name>CMPCODE_FROM</column_name>
+          <stream_name>CMPCODE</stream_name>
+        </field>
+        <field>
+          <column_name>ELMLEVEL</column_name>
+          <stream_name>ELMLEVEL</stream_name>
+        </field>
+        <field>
+          <column_name>ELMCODE_FROM</column_name>
+          <stream_name>CODE</stream_name>
+        </field>
+        <field>
+          <column_name>CMPCODE_TO</column_name>
+          <stream_name>CMPCODE_TO</stream_name>
+        </field>
+        <field>
+          <column_name>ELMCODE_TO</column_name>
+          <stream_name>ELMCODE_TO</stream_name>
+        </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>388</xloc>
-      <yloc>94</yloc>
+      <xloc>561</xloc>
+      <yloc>133</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Select values</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>      <field>        <name>CMPCODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ELMLEVEL</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CODE</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>CMPCODE_TO</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ELMCODE_TO</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>        <select_unspecified>N</select_unspecified>
+    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>377</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>UNMAPPED_ELEMENT_ERR</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>STAGING</connection>
+    <schema>STAGING</schema>
+    <table>UNMAPPED_ELEMENT_ERR</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+        <field>
+          <column_name>CMPCODE</column_name>
+          <stream_name>CMPCODE</stream_name>
+        </field>
+        <field>
+          <column_name>ELMLEVEL</column_name>
+          <stream_name>ELMLEVEL</stream_name>
+        </field>
+        <field>
+          <column_name>CODE</column_name>
+          <stream_name>CODE</stream_name>
+        </field>
+        <field>
+          <column_name>ERRMESSAGE</column_name>
+          <stream_name>ERRMESSAGE</stream_name>
+        </field>
+        <field>
+          <column_name>NAME</column_name>
+          <stream_name>NAME</stream_name>
+        </field>
+        <field>
+          <column_name>FIRSTPER</column_name>
+          <stream_name>FIRST_PER</stream_name>
+        </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>319</xloc>
+      <yloc>440</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Unknown Dest</name>
+    <type>Formula</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+       <formula><field_name>ERRMESSAGE</field_name>
+<formula_string>&#x22;Unknown destination&#x3a; &#x22; &#x26; &#x5b;ELMCODE_TO&#x5d;</formula_string>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field/>
+</formula>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>362</xloc>
+      <yloc>317</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
